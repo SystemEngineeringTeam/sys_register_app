@@ -12,4 +12,5 @@
     "arrowParens": "always",
     "htmlWhitespaceSensitivity": "css",
     "endOfLine": "lf"
+    
   }
