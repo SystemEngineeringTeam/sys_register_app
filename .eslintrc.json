@@ -3,7 +3,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["airbnb", "airbnb-typescript", "standard-with-typescript", "plugin:react/recommended", "prettier"],
+  "extends": ["airbnb", "airbnb-typescript", "standard-with-typescript", "plugin:react/recommended", "prettier",  "plugin:prettier/recommended" ],
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module",
@@ -29,12 +29,13 @@
     "import/extensions": "off",
     "import/no-unresolved": "off",
     "no-restricted-imports": ["error", { "patterns": ["../*"] }],
-    "import/order": [
-      "error",
-      {
-        "alphabetize": { "order": "asc" }
-      }
-    ],
+    "import/order": "off",
+    // "import/order": [
+    //   "error",
+    //   {
+    //     "alphabetize": { "order": "asc" }
+    //   }
+    // ],
     "unused-imports/no-unused-imports": "error"
   }
 }
