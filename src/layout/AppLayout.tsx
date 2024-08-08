@@ -1,4 +1,5 @@
 import React from 'react';
+import { Outlet, Link, useLocation } from 'react-router-dom';
 import { styled, useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
@@ -21,7 +22,41 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 
+interface ListItem {
+  text: string;
+  icon: React.ReactNode;
+  to: string;
+}
+
 const drawerWidth = 240;
+// listItemのリスト
+const listItems: ListItem[] = [
+  {
+    text: '注文',
+    icon: <InboxIcon />,
+    to: '/order',
+  },
+  {
+    text: '調理',
+    icon: <MailIcon />,
+    to: '/cooking',
+  },
+  {
+    text: '提供',
+    icon: <MailIcon />,
+    to: '/delivery',
+  },
+  {
+    text: '呼び出し',
+    icon: <MailIcon />,
+    to: '/call',
+  },
+  {
+    text: '管理',
+    icon: <MailIcon />,
+    to: '/admin',
+  },
+];
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
   open: boolean;
@@ -101,7 +136,8 @@ const AppLayout = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Responsive drawer
+            {/* Listの値を取得して表示 */}
+            {listItems.find((item) => item.to === useLocation().pathname)?.text}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -125,32 +161,23 @@ const AppLayout = () => {
           </IconButton>
         </DrawerHeader>
         <Divider />
+
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
+          {listItems.map((item) => (
+            <ListItem key={item.text} component={Link} to={item.to}>
+              <ListItemButton onClick={handleDrawerClose}>
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemText primary={item.text} />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
+
         <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
       </Drawer>
       <Main open={isDrawerOpen && !isSmallScreen}>
         <DrawerHeader />
-        <Typography paragraph>test</Typography>
-        <Typography paragraph>test2</Typography>
+        <Outlet /> {/* ここにルートで指定されたコンテンツが表示される */}
       </Main>
     </Box>
   );

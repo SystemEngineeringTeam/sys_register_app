@@ -1,8 +1,8 @@
-const Home = () => (
+const Order = () => (
   <div>
     <h1>Home</h1>
     <p>Homeページです</p>
   </div>
 );
 
-export default Home;
+export default Order;
