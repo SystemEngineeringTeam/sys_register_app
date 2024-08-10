@@ -13,6 +13,7 @@ const NumberButton = ({orders}:NumberButtonProps) => {
     <div>
       <Box
         sx={{
+    
           flexGrow: 1,
           border: '2px solid #2b2b2b',
           textAlign: 'center',
