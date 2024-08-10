@@ -6,9 +6,9 @@ import Order from '../pages/Order';
 //    return(values);
 // })
 interface NumberButtonProps{
-    order:number,
+    orders:number,
 }
-const NumberButton = ({order}:NumberButtonProps) => {
+const NumberButton = ({orders}:NumberButtonProps) => {
   return (
     <div>
       <Box
@@ -23,7 +23,7 @@ const NumberButton = ({order}:NumberButtonProps) => {
           margin: '12px',
         }}
       >
-        {order}
+        {orders}
       </Box>
     </div>
   );
