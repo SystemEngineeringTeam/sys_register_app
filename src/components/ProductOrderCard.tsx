@@ -9,14 +9,13 @@ const ProductOrderCard = () => {
   return (
     <div>
       <Box>
-        <Card variant="outlined" sx={{display:'flex', flexDirection: 'column',alignItems:'center'}}>
+        <Card variant="outlined" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <CardContent sx={{ display: 'flex' }}>
             <Typography component="h1">ねぎま</Typography>
             <Typography component="h1">4</Typography>
           </CardContent>
 
-          <Grid container spacing={1}  >
-
+          <Grid container spacing={1}>
             <Grid item xs={6}>
               <ItemOptions />
             </Grid>
@@ -29,7 +28,6 @@ const ProductOrderCard = () => {
             <Grid item xs={6}>
               <ItemOptions />
             </Grid>
-
           </Grid>
         </Card>
       </Box>

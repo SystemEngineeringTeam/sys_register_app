@@ -1,43 +1,40 @@
-import { collection, getDocs } from "firebase/firestore";
-import { atom } from 'jotai'
-import { db } from "./firebase";
+import { collection, getDocs } from 'firebase/firestore';
+import { atom } from 'jotai';
+import { db } from './firebase';
+import { order } from '../types/index';
 
 // firebaseのエラーを判定する関数
-//型ガードを使用する
-function isFirebaseError(
-    err: unknown
-  ): err is { code: string; message: string } {
-    return typeof err === "object" && err !== null && "code" in err;
-  }
+// 型ガードを使用する
+function isFirebaseError(err: unknown): err is { code: string; message: string } {
+  return typeof err === 'object' && err !== null && 'code' in err;
+}
 
-
-//データを取得する関数
+// データを取得する関数
 
 export const fetchOrder = async () => {
-    try {
-        const querySnapshot = await getDocs(collection(db, "order"));
-        console.log(querySnapshot);
+  try {
+    const querySnapshot = await getDocs(collection(db, 'order'));
 
-        const OrderData = querySnapshot.docs.map((doc) => {
-            return {
-                ...doc.data(),
-                id: doc.id,
-              };
-            });
+    const OrderData: order[] = querySnapshot.docs.map((doc): order => {
+      const data = doc.data();
+      return {
+        id: data.id, // 必要なプロパティを明示的に指定
+        items_id: data.items_id,
+        timestamp: data.timestamp,
+        // 他のプロパティも必要に応じて追加
+      };
+    });
 
     return OrderData;
-
-
-} catch (err) {        // エラー処理
+  } catch (err) {
+    // エラー処理
     if (isFirebaseError(err)) {
-      console.error("Firestore Error:", err);
-
+      console.error('Firestore Error:', err);
     } else {
-      console.error("一般的なエラー", err);
+      console.error('一般的なエラー', err);
     }
   } finally {
-    console.log("finally");
-
+    console.log('finally');
   }
 };
 
