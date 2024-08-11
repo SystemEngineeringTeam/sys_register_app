@@ -25,6 +25,8 @@ export const fetchOrder = async () => {
               };
             });
 
+    return OrderData;
+
 
 } catch (err) {        // エラー処理
     if (isFirebaseError(err)) {
