@@ -1,12 +1,9 @@
-
-
-
 const Order = () => {
-  return(
-  <div>
-    <h1>Home</h1>
-    <p>Homeページです</p>
-  </div>
+  return (
+    <div>
+      <h1>Home</h1>
+      <p>Homeページです</p>
+    </div>
   );
 };
 

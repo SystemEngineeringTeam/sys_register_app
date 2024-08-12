@@ -19,9 +19,10 @@ export const fetchOrder = async () => {
     const OrderData: order[] = querySnapshot.docs.map((doc): order => {
       const data = doc.data();
       return {
-        id: data.id, // 必要なプロパティを明示的に指定
+        // idはdocに含まれているので、doc.idを使用
+        id: doc.id, // 必要なプロパティを明示的に指定
         items_id: data.items_id,
-        timestamp: data.timestamp,
+        timestamp: data.timestmp,
         // 他のプロパティも必要に応じて追加
       };
     });
