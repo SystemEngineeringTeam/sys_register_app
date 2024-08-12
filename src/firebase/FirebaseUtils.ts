@@ -2,6 +2,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import { atom } from 'jotai';
 import { db } from './firebase';
 import { order } from '../types/index';
+import { loadable } from 'jotai/utils';
 
 // firebaseのエラーを判定する関数
 // 型ガードを使用する
@@ -38,4 +39,4 @@ export const fetchOrder = async () => {
   }
 };
 
-export const orderAtom = atom(async () => await fetchOrder());
+export const orderAtom = loadable(atom(async () => await fetchOrder()));
