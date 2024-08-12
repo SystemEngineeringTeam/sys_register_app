@@ -8,11 +8,11 @@ interface OrderMenueContenaProps {
 const OrderMenueCustomize = ({ custom }: OrderMenueContenaProps) => {
   return (
     <div>
-      <Stack direction="row">
-        <Box sx={{ borderBottom: '2px solid #2b2b2b', flex: 3 }}>
-          <Box>{custom}</Box>
-          <Box>+20</Box>
-        </Box>
+      <Stack direction="row" sx={{ borderBottom: '2px solid #2b2b2b', flex: 3 }}>
+        
+          <Box sx={{flex:1}}>{custom}</Box>
+          <Box sx={{flex:1,textAlign:'right'}}>+20</Box>
+        
       </Stack>
     </div>
   );
