@@ -16,6 +16,7 @@ const OrderChange = () => {
           ))}
         </Box>
         <Box>注文番号</Box>
+        
       </Stack>
     </div>
   );
