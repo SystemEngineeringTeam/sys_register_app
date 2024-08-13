@@ -25,6 +25,8 @@ export const fetchOrder = async () => {
         items_id: data.items_id,
         timestamp: data.timestmp,
         accounting: data.accounting,
+        cooking: data.cooking,
+        offer: data.offer,
         // 他のプロパティも必要に応じて追加
       };
     });

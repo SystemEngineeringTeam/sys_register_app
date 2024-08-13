@@ -39,4 +39,6 @@ export interface order {
   items_id: items_id[];
   timestamp: number;
   accounting: boolean;
+  cooking: boolean;
+  offer: boolean;
 }
