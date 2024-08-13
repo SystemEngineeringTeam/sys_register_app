@@ -8,9 +8,10 @@ import { BorderBottom } from '@mui/icons-material';
 interface OrderMenueContenaProps{
     ordername:string;
     orderprice:number;
+    orderimg:string;
 }
 
-const OrderMenueContena = ({ordername,orderprice}:OrderMenueContenaProps) => {
+const OrderMenueContena = ({ordername,orderprice,orderimg}:OrderMenueContenaProps) => {
   const imageDisplaySize = { width: 150, height: 150 };
   const custommenus = [
     {menu: 'たれ',price:20},
@@ -40,7 +41,7 @@ const OrderMenueContena = ({ordername,orderprice}:OrderMenueContenaProps) => {
         >
           {/* flexは幅の割合 */}
           <Box>
-            <img src={Yakitori} className="yakitori" style={imageDisplaySize} />
+            <img src={orderimg} className="yakitori" style={imageDisplaySize} />
           </Box>
         </Stack>
 
