@@ -24,6 +24,7 @@ export const fetchOrder = async () => {
         id: doc.id, // 必要なプロパティを明示的に指定
         items_id: data.items_id,
         timestamp: data.timestmp,
+        accounting: data.accounting,
         // 他のプロパティも必要に応じて追加
       };
     });

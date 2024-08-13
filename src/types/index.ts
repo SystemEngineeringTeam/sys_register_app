@@ -38,4 +38,5 @@ export interface order {
   id: string;
   items_id: items_id[];
   timestamp: number;
+  accounting: boolean;
 }

@@ -19,6 +19,7 @@ export function useOrderList() {
     if (order.state === 'hasData') {
         const result = order.data?.map((o) => {
             const order_id = o.id;
+            const accounting = o.accounting;
             const items_id = o.items_id;
 
             // orderに紐付けられたitemsを取得
@@ -30,6 +31,7 @@ export function useOrderList() {
 
                 const relatedOptions = options.state === 'hasData'&& options.data?.filter((opt) => item.options_id.includes(opt.id)) || [];
 
+            
                 return {
                     name: item.name,
                     price: item.price,
@@ -40,15 +42,19 @@ export function useOrderList() {
                 };
             });
 
+            // dataがある時のデータ
             return {
                 id: order_id,
                 item: itemDetails,
+                accounting: accounting
             };
         });
 
+        // dataがある時のstatus
         return { status: 'success', data: result };
     }
 
+    // それ以外の時
     return { status: 'idle', data: null };
 }
 
