@@ -7,18 +7,28 @@ import { BorderBottom } from '@mui/icons-material';
 
 interface OrderMenueContenaProps{
     ordername:string;
+    orderprice:number;
 }
 
-const OrderMenueContena = ({ordername}:OrderMenueContenaProps) => {
+const OrderMenueContena = ({ordername,orderprice}:OrderMenueContenaProps) => {
   const imageDisplaySize = { width: 150, height: 150 };
-  const custommenu = ['たれ','塩','レモン','こしょう','チーズ','みそ','カレー',];
+  const custommenus = [
+    {menu: 'たれ',price:20},
+    {menu: '塩',price:20},
+    {menu: 'レモン',price:10},
+    {menu: 'こしょう',price:10},
+    {menu: 'チーズ',price:20},
+    {menu: 'みそ',price:10},
+    {menu: '辛め',price:20},
+  ];
+ 
   return (
     <div>
       <Stack
         direction="row"
         sx={{
-          border: '2px solid #2b2b2b',
-          width: '60vw', // ビューポート全体の横幅を占める。横幅いっぱいにする
+          borderBottom: '2px solid #2b2b2b',
+          
         }}
       >
         <Stack
@@ -36,13 +46,22 @@ const OrderMenueContena = ({ordername}:OrderMenueContenaProps) => {
 
         <Stack sx={{ flex: 3 }}>
           <Stack>
-            <OrderMenueName ordername={ordername}/>
+          
+            <OrderMenueName 
+            ordername={ordername} 
+            orderprice={orderprice}
+            />
+    
+            
           </Stack>
           <Stack sx={{ flex: 4 }}>
 
-            {custommenu.map((menu) => (
-                <OrderMenueCustomize custom={menu} />
+            {custommenus.map((menu) => (
+                <OrderMenueCustomize 
+                custom={menu.menu}
+                customprice={menu.price} />
             ))}
+            
             
 
           </Stack>
