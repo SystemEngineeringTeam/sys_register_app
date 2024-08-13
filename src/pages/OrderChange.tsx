@@ -1,22 +1,22 @@
 import React from 'react';
-import OrderMenueContena from '../components/OrderMenueContena';
-import OrderMenueCustomize from '../components/OrderMenueCustomize';
-import OrderMenueName from '../components/OrderMenueName';
-import { Box, Grid, Stack } from '@mui/material';
+import OrderMenuLeft from '../components/OrderMenuLeft';
+import OrderMenuRight from '../components/OrderMenuRight';
+import { Box, Stack } from '@mui/material';
+import OrderButton from '../components/OrderButton';
 
 const OrderChange = () => {
-  const ordername = ['塩', 'たれ', 'ねぎま', 'もも', 'コーラ', 'ファンタグレープ'];
-
   return (
     <div>
-      <Stack direction="row">
+      <Stack direction="row" >
+        {/* 左側メニューリスト */}
         <Box>
-          {ordername.map((order) => (
-            <OrderMenueContena ordername={order} />
-          ))}
+          <OrderMenuLeft />
         </Box>
-        <Box>注文番号</Box>
-        
+
+        {/* 右側注文情報 */}
+        <Box>
+          <OrderMenuRight />
+        </Box>
       </Stack>
     </div>
   );
