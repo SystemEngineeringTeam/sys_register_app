@@ -1,6 +1,6 @@
 // 型定義する
 
-export type opthons_id = string;
+export type options_id = string;
 export type items_id = string;
 
 // itemsの型を定義
@@ -11,7 +11,7 @@ export interface items {
   price: number;
   visible: boolean;
   category_id: string;
-  opthons_id: opthons_id[];
+  options_id: options_id[];
 }
 
 //　shop_userの型を定義

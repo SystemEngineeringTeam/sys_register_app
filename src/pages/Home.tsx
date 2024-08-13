@@ -1,31 +1,28 @@
-import { or } from 'firebase/firestore';
-import { orderAtom } from '../firebase/FirebaseUtils';
-import { useAtom } from 'jotai';
+
+import { useOrderList } from '../utils/OrderList';
 
 const Home = () => {
-  const [order, setOrder] = useAtom(orderAtom);
 
-  console.log(order);
+    const order = useOrderList();
+
+    console.log('orderData:'+order.data);
+    console.log('orderStatus:'+order.status);
+
+    console.log('orderID:'+order.data?.map((o) => o.id));
+    console.log('orderIteName:'+order.data?.map((o) => o.item.map((i) => i.name)));
+    console.log('orderItemPrice:'+order.data?.map((o) => o.item.map((i) => i.price)));
+    console.log('orderItemOptionsName:'+order.data?.map((o) => o.item.map((i) => i.options.map((opt) => opt.name))));
+    console.log('orderItemOptionsPrice:'+order.data?.map((o) => o.item.map((i) => i.options.map((opt) => opt.price))));
+
+
+
+
 
 
   return (
     <div>
       <h1>注文情報</h1>
       <p>注文情報ページです</p>
-      <div>
-        {order.state === 'loading' && <p>Loading...</p>}
-        {order.state === 'hasError' && <p>Error</p>}
-
-        {order.state === 'hasData' &&
-          order.data?.map((o) => (
-
-            <div key={o.id}>
-              <p>id:{o.id}</p>
-              <p>itemID:{o.items_id}</p>
-              <p>時間：{o.timestamp}</p>
-            </div>
-          ))}
-      </div>
     </div>
   );
 };

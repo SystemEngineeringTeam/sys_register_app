@@ -1,7 +1,7 @@
 import { collection, getDocs } from 'firebase/firestore';
 import { atom } from 'jotai';
 import { db } from './firebase';
-import { order } from '../types/index';
+import { items, options, order } from '../types/index';
 import { loadable } from 'jotai/utils';
 
 // firebaseのエラーを判定する関数
@@ -12,6 +12,7 @@ function isFirebaseError(err: unknown): err is { code: string; message: string }
 
 // データを取得する関数
 
+// orderのデータを取得する関数
 export const fetchOrder = async () => {
   try {
     const querySnapshot = await getDocs(collection(db, 'order'));
@@ -41,3 +42,63 @@ export const fetchOrder = async () => {
 };
 
 export const orderAtom = loadable(atom(async () => await fetchOrder()));
+
+// itemsのデータを取得する関数
+export const fetchItems = async () => {
+    try {
+        const querySnapshot = await getDocs(collection(db, 'item'));
+    
+        const ItemsData: items[] = querySnapshot.docs.map((doc): items => {
+        const data = doc.data();
+        return {
+            id: doc.id,
+            user_id: data.user_id,
+            name: data.name,
+            price: data.price,
+            visible: data.visible,
+            category_id: data.category_id,
+            options_id: data.opthons_id,
+        };
+        });
+    
+        return ItemsData;
+    } catch (err) {
+        if (isFirebaseError(err)) {
+        console.error('Firestore Error:', err);
+        } else {
+        console.error('一般的なエラー', err);
+        }
+    } finally {
+        console.log('finally');
+    }
+};
+
+export const itemsAtom = loadable(atom(async () => await fetchItems()));
+
+// optionsのデータを取得する関数
+export const option = async () => {
+    try {
+        const querySnapshot = await getDocs(collection(db, 'opthons'));
+    
+        const OptionsData: options[] = querySnapshot.docs.map((doc): options => {
+        const data = doc.data();
+        return {
+            id: doc.id,
+            name: data.name,
+            price: data.price,
+        };
+        });
+    
+        return OptionsData;
+    } catch (err) {
+        if (isFirebaseError(err)) {
+        console.error('Firestore Error:', err);
+        } else {
+        console.error('一般的なエラー', err);
+        }
+    } finally {
+        console.log('finally');
+    }
+};
+
+export const optionsAtom = loadable(atom(async () => await option()));
