@@ -6,10 +6,9 @@ function OrderButton() {
     <div>
       <Grid item sx={{ 
         background:'#F68B1F',
-        ml: '28%',
         padding: '10px 20px', // 必要に応じてパディングを調整
         position:'fixed',
-        bottom:'30px',
+        bottom:'20px',
         color:'#FFFFFF',
        fontSize:{xs:"none",sm:"none",md:"1.5rem"},
        display: {
