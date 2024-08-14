@@ -42,3 +42,9 @@ export interface order {
   cooking: boolean;
   offer: boolean;
 }
+
+// orderの更新用の型を定義
+export interface UpdateOrder {
+  items_id: items_id[];
+}
+

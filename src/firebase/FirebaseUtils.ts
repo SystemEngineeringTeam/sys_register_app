@@ -1,7 +1,7 @@
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDocs, updateDoc } from 'firebase/firestore';
 import { atom } from 'jotai';
 import { db } from './firebase';
-import { items, options, order } from '../types/index';
+import { items, options, order, UpdateOrder } from '../types/index';
 import { loadable } from 'jotai/utils';
 
 // firebaseのエラーを判定する関数
@@ -105,3 +105,41 @@ export const option = async () => {
 };
 
 export const optionsAtom = loadable(atom(async () => await option()));
+
+
+// orderのデータを更新する関数
+
+export const updateOrder = async (id: string, data: UpdateOrder) => {
+    try {
+
+      await updateDoc(doc(db, 'order', id), {'items_id': data.items_id});  
+
+      console.log('注文の変更が完了しました');
+
+    } catch (err) {
+        if (isFirebaseError(err)) {
+        console.error('Firestore Error:', err);
+        } else {
+        console.error('一般的なエラー', err);
+        }
+    } finally {
+        console.log('finally');
+    }
+}
+
+// orderのデータを消去する関数
+
+export const deleteOrder = async (id: string) => {
+    try {
+        await deleteDoc(doc(db, 'order', id));
+        console.log('注文の削除が完了しました');
+    } catch (err) {
+        if (isFirebaseError(err)) {
+        console.error('Firestore Error:', err);
+        } else {
+        console.error('一般的なエラー', err);
+        }
+    } finally {
+        console.log('finally');
+    }
+}
