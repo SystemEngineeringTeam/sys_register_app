@@ -9,12 +9,12 @@ const OrderChange = () => {
     <div>
       <Stack direction="row" >
         {/* 左側メニューリスト */}
-        <Box>
+        <Box >
           <OrderMenuLeft />
         </Box>
 
         {/* 右側注文情報 */}
-        <Box>
+        <Box >
           <OrderMenuRight />
         </Box>
       </Stack>
