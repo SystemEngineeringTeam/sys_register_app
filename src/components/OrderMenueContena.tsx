@@ -12,7 +12,7 @@ interface OrderMenueContenaProps{
 }
 
 const OrderMenueContena = ({ordername,orderprice,orderimg}:OrderMenueContenaProps) => {
-  const imageDisplaySize = { width: 150, height: 150 };
+  const imageDisplaySize = { width: 200, height: 200 };
   const custommenus = [
     {menu: 'たれ',price:20},
     {menu: '塩',price:20},
@@ -29,7 +29,6 @@ const OrderMenueContena = ({ordername,orderprice,orderimg}:OrderMenueContenaProp
         direction="row"
         sx={{
           borderBottom: '1px solid #2b2b2b',
-          width:'150%'
         }}
       >
         <Stack
@@ -40,7 +39,7 @@ const OrderMenueContena = ({ordername,orderprice,orderimg}:OrderMenueContenaProp
           }}
         >
           {/* flexは幅の割合 */}
-          <Box>
+          <Box >
             <img src={orderimg} className="yakitori" style={imageDisplaySize} />
           </Box>
         </Stack>
@@ -55,7 +54,7 @@ const OrderMenueContena = ({ordername,orderprice,orderimg}:OrderMenueContenaProp
     
             
           </Stack>
-          <Stack sx={{ flex: 2 }}>
+          <Stack >
 
             {custommenus.map((menu) => (
                 <OrderMenueCustomize 
