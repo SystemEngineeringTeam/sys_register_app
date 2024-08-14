@@ -5,10 +5,10 @@ import OrderButton from './OrderButton';
 function OrderMenuRight() {
   return (
     <div>
-      <Box sx={{ ml: '40%', position: 'fixed'}}>
-        <Box sx={{fontSize:'30px', pt: '30px' }}>注文番号</Box>
+      <Box sx={{position:'fixed'}}>
+        <Box sx={{fontSize:'30px',pl:'200px', pt: '30px' }}>注文番号</Box>
         <Box>
-          <Box sx={{pt:'550px', fontSize: { xs: 'none', sm: 'none', md: '2rem' },
+          <Box sx={{pt:'550px', pl:'200px',fontSize: { xs: 'none', sm: 'none', md: '2rem' },
               display: {
                 xs: 'none',
                 sm: 'none',
@@ -18,7 +18,7 @@ function OrderMenuRight() {
 
             計
             </Box>
-            <Box sx={{  fontSize: { xs: 'none', sm: 'none', md: '3rem' },
+            <Box sx={{  pl:'200px',fontSize: { xs: 'none', sm: 'none', md: '3rem' },
             display: {
               xs: 'none',
               sm: 'none',
@@ -27,8 +27,9 @@ function OrderMenuRight() {
           }}>1,600</Box>
 
         </Box>
-        <Grid
+        <Box
           sx={{
+            ml:'170px',
             my:'30px',
             background: '#F68B1F',
             padding: '10px 20px', // 必要に応じてパディングを調整
@@ -42,7 +43,7 @@ function OrderMenuRight() {
           }}
         >
           お支払いへ
-        </Grid>
+        </Box>
       </Box>
 
       {/* <Box><OrderButton /></Box> */}
