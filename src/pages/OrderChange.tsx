@@ -14,7 +14,7 @@ const OrderChange = () => {
         </Box>
 
         {/* 右側注文情報 */}
-        <Box >
+        <Box sx={{display:'flex',justifyContent:'center',textAlign:'center'}}>
           <OrderMenuRight />
         </Box>
       </Stack>
