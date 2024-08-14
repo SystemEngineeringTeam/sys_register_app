@@ -15,27 +15,69 @@ const ProductOrderCard = () => {
             <Typography variant="h4">X 4</Typography>
           </CardContent>
 
-        <Box sx={{ m:2, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <Grid container spacing={2} >
-            <Grid item xs={12} sm={12} md={6} lg={4} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <ItemOptions />
+          <Box sx={{ m: 2, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <Grid container spacing={2}>
+              <Grid
+                item
+                xs={12}
+                sm={12}
+                md={6}
+                lg={4}
+                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+              >
+                <ItemOptions />
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={12}
+                md={6}
+                lg={4}
+                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+              >
+                <ItemOptions />
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={12}
+                md={6}
+                lg={4}
+                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+              >
+                <ItemOptions />
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={12}
+                md={6}
+                lg={4}
+                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+              >
+                <ItemOptions />
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={12}
+                md={6}
+                lg={4}
+                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+              >
+                <ItemOptions />
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={12}
+                md={6}
+                lg={4}
+                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+              >
+                <ItemOptions />
+              </Grid>
             </Grid>
-            <Grid item xs={12} sm={12} md={6} lg={4} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <ItemOptions />
-            </Grid>
-            <Grid item xs={12} sm={12} md={6} lg={4} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <ItemOptions />
-            </Grid>
-            <Grid item xs={12} sm={12} md={6} lg={4} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <ItemOptions />
-            </Grid>
-            <Grid item xs={12} sm={12} md={6} lg={4} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <ItemOptions />
-            </Grid>
-            <Grid item xs={12} sm={12} md={6} lg={4} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <ItemOptions />
-            </Grid>
-          </Grid>
           </Box>
         </Card>
       </Box>
