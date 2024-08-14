@@ -12,8 +12,8 @@ const MoneyPaid = ({ image }: MoneyPaidProps) => {
       <Box
         sx={{
           border: 1,
-          width: 150,
-          height: 140,
+          width: { xs: "7rem", sm: "9rem"},
+          height: { xs: "7rem", sm: "9rem"},
         }}
       >
         {/* 0以上の値の場合、クリック時にcountを -1 */}
@@ -34,7 +34,7 @@ const MoneyPaid = ({ image }: MoneyPaidProps) => {
         <Box
           sx={{
             textAlign: 'center',
-            fontSize: '1.5rem',
+            fontSize: { xs: "0.8rem", sm: "1.5rem"},
             position: 'relative',
           }}
         >
