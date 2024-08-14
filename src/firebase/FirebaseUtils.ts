@@ -12,36 +12,32 @@ function isFirebaseError(err: unknown): err is { code: string; message: string }
 
 // データを取得する関数
 
-// orderのデータを取得する関数
-export const fetchOrder = async () => {
-  try {
-    const querySnapshot = await getDocs(collection(db, 'order'));
-
-    const OrderData: order[] = querySnapshot.docs.map((doc): order => {
-      const data = doc.data();
-      return {
-        // idはdocに含まれているので、doc.idを使用
-        id: doc.id, // 必要なプロパティを明示的に指定
-        items_id: data.items_id,
-        timestamp: data.timestmp,
-        accounting: data.accounting,
-        cooking: data.cooking,
-        offer: data.offer,
-        // 他のプロパティも必要に応じて追加
-      };
-    });
-
-    return OrderData;
-  } catch (err) {
-    // エラー処理
-    if (isFirebaseError(err)) {
-      console.error('Firestore Error:', err);
-    } else {
-      console.error('一般的なエラー', err);
+// 会計前の注文データを取得する関数
+export const fetchReservationOrder = async () => {
+    try {
+        const querySnapshot = await getDocs(collection(db, 'order'));
+    
+        const OrderData: order[] = querySnapshot.docs.map((doc): order => {
+        const data = doc.data();
+        return {
+            id: doc.id,
+            items_id: data.items_id,
+            user_id: data.user_id,
+            status: data.status,
+            created_at: data.created_at,
+        };
+        });
+    
+        return OrderData;
+    } catch (err) {
+        if (isFirebaseError(err)) {
+        console.error('Firestore Error:', err);
+        } else {
+        console.error('一般的なエラー', err);
+        }
+    } finally {
+        console.log('finally');
     }
-  } finally {
-    console.log('finally');
-  }
 };
 
 export const orderAtom = loadable(atom(async () => await fetchOrder()));
