@@ -1,5 +1,5 @@
 import { Divider, Stack } from '@mui/material';
-import ProductOrderContena from '@/components/ProductOrderContena';
+import ProductOrderContena from "@/components/ProductOrderContena.tsx"
 
 const Cooking = () => (
   <div>
