@@ -17,8 +17,8 @@ const OrderMenueName = ({ordername,orderprice}:OrderMenueNameProps) => {
       
         {/* {menuname} */}
         <Box sx={{fontSize:{xs:"1.2rem",sm:"1.5rem",md:"2rem",fontSize:'30px'}}}><CreateIcon /></Box>
-        <Box flex={.7} sx={{ml:'0px',wordBreak:"break-word", fontSize:{xs:"1.2rem",sm:"1.5rem",md:"2rem"}}} >{ordername}</Box>
-        <Box sx={{paddingX:'30px', fontSize:{xs:"1.2rem",sm:"1.5rem",md:"2rem"}}}>x2</Box>
+        <Box flex={.4} sx={{wordBreak:"break-word", fontSize:{xs:"1.2rem",sm:"1.5rem",md:"2rem"}}} >{ordername}</Box>
+        <Box sx={{ml:{xs:"30px",sm:"50px",md:"200px"}, fontSize:{xs:"1.2rem",sm:"1.5rem",md:"2rem"}}}>x2</Box>
         <Box sx={{ml: 'auto',fontSize:{xs:"1.2rem",sm:"1.5rem",md:"2rem"}}}>{orderprice}</Box>
       
     </div>
