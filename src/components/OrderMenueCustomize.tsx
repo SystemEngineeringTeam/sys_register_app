@@ -9,10 +9,10 @@ interface OrderMenueCustomizeProps {
 const OrderMenueCustomize = ({ custom, customprice}: OrderMenueCustomizeProps) => {
   return (
     <div>
-      <Stack direction="row" sx={{ borderBottom: '1px solid #2b2b2b', flex: 3 }}>
+      <Stack direction="row" sx={{ borderBottom: '1px solid #2b2b2b'}}>
         
-          <Box sx={{flex:1}}>{custom}</Box>
-          <Box sx={{flex:1,textAlign:'right'}}>+{customprice}</Box>
+          <Box sx={{pl:'30px'}}>{custom}</Box>
+          <Box sx={{ml:'auto'}}>+{customprice}</Box>
         
       </Stack>
     </div>
