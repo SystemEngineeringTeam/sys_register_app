@@ -28,14 +28,14 @@ const OrderMenueContena = ({ordername,orderprice,orderimg}:OrderMenueContenaProp
       <Stack
         direction="row"
         sx={{
-          borderBottom: '2px solid #2b2b2b',
-          
+          borderBottom: '1px solid #2b2b2b',
+          width:'150%'
         }}
       >
         <Stack
           sx={{
            
-            flex: 0.8,
+            flex: 1,
             textAlign: 'center',
           }}
         >
@@ -45,7 +45,7 @@ const OrderMenueContena = ({ordername,orderprice,orderimg}:OrderMenueContenaProp
           </Box>
         </Stack>
 
-        <Stack sx={{ flex: 3 }}>
+        <Stack sx={{ flex: 5 }}>
           <Stack>
           
             <OrderMenueName 
@@ -55,7 +55,7 @@ const OrderMenueContena = ({ordername,orderprice,orderimg}:OrderMenueContenaProp
     
             
           </Stack>
-          <Stack sx={{ flex: 4 }}>
+          <Stack sx={{ flex: 2 }}>
 
             {custommenus.map((menu) => (
                 <OrderMenueCustomize 
