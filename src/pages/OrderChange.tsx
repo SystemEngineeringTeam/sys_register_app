@@ -1,23 +1,25 @@
 import React from 'react';
 import OrderMenuLeft from '../components/OrderMenuLeft';
 import OrderMenuRight from '../components/OrderMenuRight';
-import { Box, Stack } from '@mui/material';
+import { Box, Grid, Stack } from '@mui/material';
 import OrderButton from '../components/OrderButton';
 
 const OrderChange = () => {
   return (
-    <div>
-      <Stack direction="row" >
+    <div > 
+      <Box sx={{display:'flex',justifyContent:'space-between'}}>
         {/* 左側メニューリスト */}
-        <Box >
+        <Box>
           <OrderMenuLeft />
         </Box>
 
         {/* 右側注文情報 */}
-        <Box sx={{display:'flex',justifyContent:'center',textAlign:'center'}}>
+        <Box>
+          <Box sx={{left:'50%',transform:'translateX(-50%)'}}>
           <OrderMenuRight />
+          </Box>
         </Box>
-      </Stack>
+      </Box>
     </div>
   );
 };
