@@ -1,8 +1,7 @@
-import OrderChange from "./OrderChange";
-
 const Order = () => (
   <div>
-    <OrderChange />
+    <h1>Home</h1>
+    <p>Homeページです</p>
   </div>
 );
 
