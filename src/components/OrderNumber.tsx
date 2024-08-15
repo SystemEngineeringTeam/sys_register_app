@@ -6,7 +6,6 @@ const OrderNumber = () => (
     <Grid
       container
       sx={{
-        //
         flexFlow: 'column',
         textAlign: 'center',
         fontSize: { xs: '0.8rem', sm: '1rem', md: '1.5rem' },
