@@ -1,6 +1,6 @@
-import { Box, Card, Grid } from '@mui/material';
+import { Box } from '@mui/material';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { CardMedia } from '@mui/material';
 interface MoneyPaidProps {
   image: string;
@@ -19,7 +19,7 @@ const MoneyPaid = ({ image }: MoneyPaidProps) => {
         {/* 0以上の値の場合、クリック時にcountを -1 */}
         <RemoveCircleIcon onClick={() => { if(count > 0){setCount((prevState) => prevState -1)}} }/>
         <CardMedia
-          component="img"
+          component='img'
           sx={{
             display: 'flex',
             margin: 'auto',
@@ -34,7 +34,7 @@ const MoneyPaid = ({ image }: MoneyPaidProps) => {
         <Box
           sx={{
             textAlign: 'center',
-            fontSize: { xs: "0.8rem", sm: "1.5rem"},
+            fontSize: { xs: '0.8rem', sm: '1.5rem'},
             position: 'relative',
           }}
         >
