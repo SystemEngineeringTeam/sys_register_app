@@ -10,20 +10,22 @@ function OrderMenuRight() {
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <Box sx={{ display:'flex',alignItems:'center', mt: '400px' }}>
             <Box sx={{
-                ml:'20px',
+                ml:'25%',
                 fontSize:'30px',
                 verticalAlign:'bottom',
+                mt:'200px'
             }}>計
           </Box>
           <Box
             sx={{
               fontSize:'50px',
+              mt:'200px'
             }}
           >
             1,600
           </Box>
         </Box>
-        <Box sx={{mt:'20px'}}>
+        <Box sx={{mt:'30px'}}>
           <OrderButton />
         </Box>
       </Box>
