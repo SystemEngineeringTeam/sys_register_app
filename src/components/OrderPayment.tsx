@@ -4,6 +4,7 @@ import { Box } from '@mui/material';
 import WritePaidSumMoney from './WritePaidSumMoney';
 import WriteNotEnoughMoney from './WriteNotEnoughMoney';
 import { BorderAll } from '@mui/icons-material';
+import BackButton from './BackButton';
 
 const OrderPayment = () => {
   return (
@@ -20,6 +21,9 @@ const OrderPayment = () => {
         <Box sx={{ border: 1 }}></Box>
         {/* おつり */}
         <WriteNotEnoughMoney />
+        <Box>
+          <BackButton />
+        </Box>
       </Box>
     </Box>
   );
