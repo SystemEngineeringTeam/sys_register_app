@@ -1,8 +1,9 @@
-import { collection, deleteDoc, doc, getDocs, updateDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDoc, getDocs, query, updateDoc, where } from 'firebase/firestore';
 import { atom } from 'jotai';
 import { db } from './firebase';
-import { items, options, order, UpdateOrder } from '../types/index';
+import { items, options, order, orderCollection, UpdateOrder } from '../types/index';
 import { loadable } from 'jotai/utils';
+import { ref } from 'firebase/storage';
 
 // firebaseのエラーを判定する関数
 // 型ガードを使用する
@@ -21,10 +22,9 @@ export const fetchReservationOrder = async () => {
         const data = doc.data();
         return {
             id: doc.id,
-            items_id: data.items_id,
-            user_id: data.user_id,
-            status: data.status,
-            created_at: data.created_at,
+            item: data.item,
+            options: data.options,
+            qty: data.qty,
         };
         });
     
@@ -40,7 +40,82 @@ export const fetchReservationOrder = async () => {
     }
 };
 
-export const orderAtom = loadable(atom(async () => await fetchOrder()));
+// orderCollectionのデータを取得する関数
+export const fetchOrderCollection = async () => {
+    try {
+        const querySnapshot = await getDocs(collection(db, 'orderCollection'));
+
+        const orderCollectionData: orderCollection[] = await Promise.all(
+            querySnapshot.docs.map(async (doc): Promise<orderCollection> => {
+                const data = doc.data();
+
+                const order: order[] = await Promise.all(
+                    data.order.map(async (o): Promise<order> => {
+                        try {
+                            const itemRef = o.item;
+                            const itemDoc = await getDoc(itemRef);
+                            const itemData = itemDoc.data();
+
+                            const options = await Promise.all(
+                                o.options.map(async (opt): Promise<options> => {
+                                    const optionsDoc = await getDoc(opt);
+                                    const optionsData = optionsDoc.data();
+
+                                    if (optionsData.exists()) {
+                                        return {
+                                            id: optionsData.id,
+                                            name: optionsData.name,
+                                            price: optionsData.price,
+                                        };
+                                      } else {
+                                        // docSnap.data() will be undefined in this case
+                                        console.log("No such document!");
+                                      }
+
+                                })
+                            );
+
+                            return {
+                                id: o.id,
+                                item: itemData,
+                                options: options,
+                                qty: o.qty,
+                            };
+                        } catch (err) {
+                            if (isFirebaseError(err)) {
+                                console.error('Firestore Error:', err);
+                            } else {
+                                console.error('一般的なエラー', err);
+                            }
+                            throw err; // エラーが発生した場合は、外側のcatchに伝播させるために再スローします
+                        }
+                    })
+                );
+
+                return {
+                    id: doc.id,
+                    order: order,
+                    timestamp: data.timestamp,
+                    accounting: data.accounting,
+                    cooking: data.cooking,
+                    offer: data.offer,
+                };
+            })
+        );
+
+        return orderCollectionData;
+    } catch (err) {
+        if (isFirebaseError(err)) {
+            console.error('Firestore Error:', err);
+        } else {
+            console.error('一般的なエラー', err);
+        }
+    } finally {
+        console.log('finally');
+    }
+};
+
+export const orderCollectionAtom = loadable(atom(async () => await fetchOrderCollection()));
 
 // itemsのデータを取得する関数
 export const fetchItems = async () => {

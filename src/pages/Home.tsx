@@ -1,28 +1,55 @@
+import { useAtom } from "jotai";
+import { orderCollectionAtom } from "../firebase/FirebaseUtils";
 
-import { useOrderList } from '../utils/OrderList';
+
 
 const Home = () => {
 
-    const order = useOrderList();
 
-    console.log('orderData:'+order.data);
-    console.log('orderStatus:'+order.status);
+  const [orderCollectionData, setOrderCollectionData] = useAtom(orderCollectionAtom);
 
-    console.log('orderID:'+order.data?.map((o) => o.id));
-    console.log('orderIteName:'+order.data?.map((o) => o.item.map((i) => i.name)));
-    console.log('orderItemPrice:'+order.data?.map((o) => o.item.map((i) => i.price)));
-    console.log('orderItemOptionsName:'+order.data?.map((o) => o.item.map((i) => i.options.map((opt) => opt.name))));
-    console.log('orderItemOptionsPrice:'+order.data?.map((o) => o.item.map((i) => i.options.map((opt) => opt.price))));
+  console.log(orderCollectionData);
+
+  function orderCollection() {
+  switch (orderCollectionData.state) {
+    case 'loading':
+      return <p>Loading...</p>;
+
+    case 'hasError':
+      return <p>Error</p>;
+
+    case 'hasData':
+      return (
+        <div>
+          {orderCollectionData.data?.map((orderCollection) => (
+            <div key={orderCollection.id}>
+              <h2>{orderCollection.id}</h2>
+              <p>注文内容: {orderCollection.order.map((o)=>{
+                console.log('order'+o)
+                console.log('order.item.name:'+o.item.name)
+                return o.item.name
+              })}</p>
+              <p>注文日時: {orderCollection.timestamp}</p>
+              <p>会計状況: {orderCollection.accounting}</p>
+              <p>調理状況: {orderCollection.cooking}</p>
+              <p>提供状況: {orderCollection.offer}</p>
+            </div>
+          ))}
+        </div>
+      );
 
 
-
+    default:
+      return <p>Idle</p>;
+  }
+};
 
 
 
   return (
     <div>
-      <h1>注文情報</h1>
-      <p>注文情報ページです</p>
+      <h1>注文一覧</h1>
+      {orderCollection()}
     </div>
   );
 };

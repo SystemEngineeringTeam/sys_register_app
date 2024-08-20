@@ -36,15 +36,23 @@ export interface options {
 //orderの型を定義
 export interface order {
   id: string;
-  items_id: items_id[];
-  timestamp: number;
-  accounting: boolean;
-  cooking: boolean;
-  offer: boolean;
+  item: items;
+  options: options[];
+  qty: number;
 }
 
 // orderの更新用の型を定義
 export interface UpdateOrder {
   items_id: items_id[];
+}
+
+//orderCollectionの型を定義
+export interface orderCollection {
+  id: string;
+  order: order[];
+  timestamp: number;//ミリ秒で保存
+  accounting: boolean;//会計
+  cooking: boolean;//調理
+  offer: boolean;//提供
 }
 
