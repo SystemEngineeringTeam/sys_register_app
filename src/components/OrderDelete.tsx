@@ -12,7 +12,7 @@ function OrderDelete() {
            sx={{ 
             background:'#FF4337',
             py: '20px', // 必要に応じてパディングを調整
-            width:'50%',
+            width:'40%',
             }}>
             注文取消
           </Button>
