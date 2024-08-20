@@ -25,7 +25,7 @@ function OrderMenuRight() {
             1,600
           </Box>
         </Box>
-        <Box sx={{mt:'30px'}}>
+        <Box sx={{mt:'20px'}}>
           <OrderButton />
         </Box>
       </Box>
