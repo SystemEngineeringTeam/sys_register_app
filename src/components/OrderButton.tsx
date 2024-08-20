@@ -12,7 +12,7 @@ function OrderButton() {
        sx={{ 
         background:'#F68B1F',
         py: '20px', // 必要に応じてパディングを調整
-        width:'100%',
+        width:'70%',
         }}>
         お支払いへ
       </Button>
