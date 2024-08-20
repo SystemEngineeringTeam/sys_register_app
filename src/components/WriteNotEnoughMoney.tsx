@@ -10,7 +10,7 @@ const WriteNotEnoughMoney = () => {
           display: 'flex',
         }}
       >
-        <Box>おつり</Box>
+        <Box>不足金額</Box>
         {/* 仮置き */}
         <Box sx={{ marginLeft: {sm: '7rem', md: '8rem'} }}>1000円</Box>
       </Box>
