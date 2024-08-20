@@ -1,5 +1,5 @@
-import { Button, createTheme, PaletteColor, PaletteColorOptions, ThemeProvider } from '@mui/material';
-import { grey, orange } from '@mui/material/colors';
+import { Button, ThemeProvider } from '@mui/material';
+
 import { theme } from '../themes/theme';
 
 
