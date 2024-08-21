@@ -1,7 +1,7 @@
 import { collection, deleteDoc, doc, getDoc, getDocs, query, updateDoc, where } from 'firebase/firestore';
 import { atom } from 'jotai';
 import { db } from './firebase';
-import { items, options, order, orderCollection, UpdateOrder } from '../types/index';
+import { items, options, order, orderCollection, UpdateOrder, options_id } from '../types/index';
 import { loadable } from 'jotai/utils';
 import { ref } from 'firebase/storage';
 
@@ -10,6 +10,8 @@ import { ref } from 'firebase/storage';
 function isFirebaseError(err: unknown): err is { code: string; message: string } {
   return typeof err === 'object' && err !== null && 'code' in err;
 }
+
+export type optionRef = string;
 
 // データを取得する関数
 
@@ -49,52 +51,49 @@ export const fetchOrderCollection = async () => {
             querySnapshot.docs.map(async (doc): Promise<orderCollection> => {
                 const data = doc.data();
 
-                const order: order[] = await Promise.all(
-                    data.order.map(async (o): Promise<order> => {
-                        try {
-                            const itemRef = o.item;
-                            const itemDoc = await getDoc(itemRef);
-                            const itemData = itemDoc.data();
 
-                            const options = await Promise.all(
-                                o.options.map(async (opt): Promise<options> => {
-                                    const optionsDoc = await getDoc(opt);
-                                    const optionsData = optionsDoc.data();
+                // orderのデータを取得
+                const order = async () => {
 
-                                    if (optionsData.exists()) {
-                                        return {
-                                            id: optionsData.id,
-                                            name: optionsData.name,
-                                            price: optionsData.price,
-                                        };
-                                      } else {
-                                        // docSnap.data() will be undefined in this case
-                                        console.log("No such document!");
-                                      }
 
-                                })
-                            );
+                const orderRef = await getDocs(collection(db, 'orderCollection', doc.id, 'order'));
 
-                            return {
-                                id: o.id,
-                                item: itemData,
-                                options: options,
-                                qty: o.qty,
-                            };
-                        } catch (err) {
-                            if (isFirebaseError(err)) {
-                                console.error('Firestore Error:', err);
-                            } else {
-                                console.error('一般的なエラー', err);
-                            }
-                            throw err; // エラーが発生した場合は、外側のcatchに伝播させるために再スローします
-                        }
-                    })
-                );
+                const orderData:order[] =  await Promise.all(
+                orderRef.docs.map(async(doc): Promise<order> => {
+                const data = doc.data();
+
+                const itemRef = data.item;
+
+                const itemDoc =  await itemRef.get();
+
+                const itemData = itemDoc.data();
+
+                const optionData:options[] = await Promise.all(data.options.map(async (optionRef:any)=> {
+                    const optionDoc = await optionRef.get();
+                    return optionDoc.data();
+                }
+                ));
+
 
                 return {
                     id: doc.id,
-                    order: order,
+                    item: itemData,
+                    options: optionData,
+                    qty: data.qty,
+                };
+            }));
+
+            return orderData;
+
+                }
+
+                const orderData = await order();
+
+
+
+                return {
+                    id: doc.id,
+                    order: orderData,
                     timestamp: data.timestamp,
                     accounting: data.accounting,
                     cooking: data.cooking,

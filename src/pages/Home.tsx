@@ -25,10 +25,29 @@ const Home = () => {
             <div key={orderCollection.id}>
               <h2>{orderCollection.id}</h2>
               <p>注文内容: {orderCollection.order.map((o)=>{
-                console.log('order'+o)
+                console.log('order'+o.id)
                 console.log('order.item.name:'+o.item.name)
-                return o.item.name
-              })}</p>
+                const opt = o.options.map((option)=>{
+                  console.log('optionName:'+option.name)
+                  console.log('optionPrice:'+option.price)
+                  return (
+                    <div>
+                      <p>{'optName'+option.name}</p>
+                      <p>{'optPrice'+option.price}</p>
+                    </div>
+                  )
+                })
+                return (
+                  <div>
+                  <p>{'itemName'+o.item.name}</p>
+                  <p>{'itemPrice'+o.item.price}</p>
+                  {opt}
+                  </div>
+
+                )
+              })}
+              
+              </p>
               <p>注文日時: {orderCollection.timestamp}</p>
               <p>会計状況: {orderCollection.accounting}</p>
               <p>調理状況: {orderCollection.cooking}</p>
