@@ -50,9 +50,8 @@ export interface UpdateOrder {
 export interface orderCollection {
   id: string;
   order: order[];
-  timestamp: number;//ミリ秒で保存
-  accounting: boolean;//会計
-  cooking: boolean;//調理
-  offer: boolean;//提供
+  timestamp: number; //ミリ秒で保存
+  accounting: boolean; //会計
+  cooking: boolean; //調理
+  offer: boolean; //提供
 }
-
