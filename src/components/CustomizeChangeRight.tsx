@@ -10,7 +10,7 @@ function CustomizeChangeRight() {
       <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
         <Box sx={{ fontSize: '30px', mt: '50px' }}>注文番号</Box>
 
-        <Box sx={{mt:'520px'}}>
+        <Box sx={{mt:'100%'}}>
         <Box > <OrderDelete /> </Box>
         <Box sx={{mt:'30px'}}><OkeyButton /></Box> 
         </Box>
