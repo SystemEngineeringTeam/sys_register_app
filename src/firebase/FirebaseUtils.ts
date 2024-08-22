@@ -63,20 +63,19 @@ export const fetchOrderCollection = async () => {
               const itemDoc = await getDoc(itemRef);
 
               const item = (): items => {
-                const itemData  = itemDoc.data() as items;
-            
-                    // 明示的な型アサーションを使用して、型を指定する
-                    return{
-                        id: itemDoc.id,
-                        user_id: itemData.user_id,
-                        name: itemData.name,
-                        price: itemData.price,
-                        visible: itemData.visible,
-                        category_id: itemData.category_id,
-                        options_id: itemData.options_id,
+                const itemData = itemDoc.data() as items;
 
-                    }
+                // 明示的な型アサーションを使用して、型を指定する
+                return {
+                  id: itemDoc.id,
+                  user_id: itemData.user_id,
+                  name: itemData.name,
+                  price: itemData.price,
+                  visible: itemData.visible,
+                  category_id: itemData.category_id,
+                  options_id: itemData.options_id,
                 };
+              };
 
               const optionData: options[] = await Promise.all(
                 orderData.options.map(async (optionRef: any) => {
