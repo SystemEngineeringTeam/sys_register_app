@@ -14,9 +14,9 @@ function CustomizeChangeLeft() {
         <Box sx={{ ml: '50px'}}>
             <Box><CustomizeMenu /></Box>
             <Box sx={{fontSize:'30px'}}>カスタマイズ</Box>
-            {customizechanges.map((order) => (
+            <Box>{customizechanges.map((order) => (
                 <CustmizeGraf customize={order} />
-            ))}
+            ))}</Box>
             
         </Box>
         
