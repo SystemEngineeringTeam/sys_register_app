@@ -18,10 +18,11 @@ function CustmizeGraf({customize}:CustmizeGrafProps) {
       <Box>
         <Stack
           direction="row"
-          sx={{ fontSize: '30px', mt: '40px', ml: '40px', borderBottom: '1px solid #2b2b2b', width: '70%' }}
+          sx={{ wordBreak:"break-word",fontSize: {xs:"15px",sm:"20px",md:"40px"}, mt: '40px', ml: '40px', borderBottom: '1px solid #2b2b2b', width: '80%',
+         }}
         >
-          <Box>{customize}</Box>
-          <Box sx={{ ml: '200px' }}>
+          <Box sx={{flex:3, }}>{customize}</Box>
+          <Box sx={{ flex:1}}>
             <ChangeButton 
             selectedChange={selectedChange}
             setSelectedChange={setSelectedChange} />
