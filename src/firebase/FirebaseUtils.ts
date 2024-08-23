@@ -1,4 +1,4 @@
-import { collection, deleteDoc, doc, getDoc, getDocs, query, updateDoc, where } from 'firebase/firestore';
+import { collection, deleteDoc, doc, DocumentReference, getDoc, getDocs, query, updateDoc, where } from 'firebase/firestore';
 import { atom } from 'jotai';
 import { db } from './firebase';
 import { items, options, order, orderCollection, UpdateOrder, options_id } from '../types/index';
@@ -45,21 +45,21 @@ export const fetchReservationOrder = async () => {
 
 export const fetchOrderCollection = async () => {
   try {
-    const querySnapshot = await getDocs(collection(db, 'orderCollection'));
+    const querySnapshot  = await getDocs(collection(db, 'orderCollection'));
 
     const orderCollectionData: orderCollection[] = await Promise.all(
       querySnapshot.docs.map(async (docSnapshot): Promise<orderCollection> => {
         const data = docSnapshot.data();
 
         // orderのデータを取得
-        const fetchOrder = async () => {
+        const fetchOrder = async (): Promise<order[]> => {
           const orderRef = await getDocs(collection(db, 'orderCollection', docSnapshot.id, 'order'));
 
           const orderData: order[] = await Promise.all(
             orderRef.docs.map(async (orderDoc): Promise<order> => {
               const orderData = orderDoc.data();
 
-              const itemRef = orderData.item;
+              const itemRef = orderData.item; 
               const itemDoc = await getDoc(itemRef);
 
               const item = (): items => {
@@ -77,12 +77,24 @@ export const fetchOrderCollection = async () => {
                 };
               };
 
-              const optionData: options[] = await Promise.all(
-                orderData.options.map(async (optionRef: any) => {
-                  const optionDoc = await getDoc(optionRef);
+              const optionData:options[] = await Promise.all(orderData.options.map(async (optionRef:DocumentReference)=> {
+                const optionDoc = await getDoc(optionRef);
+                const option = optionDoc.data;
+
+                if (optionDoc.exists()) {
+                  console.log("Document data:", optionDoc.data());
                   return optionDoc.data();
-                }),
-              );
+                } else {
+                  // docSnap.data() will be undefined in this case
+                  console.log("No such document!");
+                  return{
+                    id:null,
+                    name:null,
+                    price:null,
+                  }
+                }
+            }
+            ));
 
               return {
                 id: orderDoc.id,
@@ -121,6 +133,7 @@ export const fetchOrderCollection = async () => {
   }
 };
 
+
 export const orderCollectionAtom = loadable(atom(async () => await fetchOrderCollection()));
 
 // itemsのデータを取得する関数
@@ -137,7 +150,7 @@ export const fetchItems = async () => {
         price: data.price,
         visible: data.visible,
         category_id: data.category_id,
-        options_id: data.opthons_id,
+        options_id: data.options_id,
       };
     });
 
@@ -158,7 +171,7 @@ export const itemsAtom = loadable(atom(async () => await fetchItems()));
 // optionsのデータを取得する関数
 export const option = async () => {
   try {
-    const querySnapshot = await getDocs(collection(db, 'opthons'));
+    const querySnapshot = await getDocs(collection(db, 'options'));
 
     const OptionsData: options[] = querySnapshot.docs.map((doc): options => {
       const data = doc.data();
