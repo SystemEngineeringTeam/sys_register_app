@@ -1,6 +1,6 @@
 import { ThemeProvider } from '@emotion/react';
 import { Button } from '@mui/material';
-import { theme } from '../themes/theme';
+import { theme } from '../../themes/theme';
 
 const BackButton = () => {
   return (
