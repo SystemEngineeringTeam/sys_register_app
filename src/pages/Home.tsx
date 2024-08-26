@@ -36,8 +36,8 @@ const Home = () => {
                         console.log('order.item.name:' + o.item.name);
 
                         const opt = o.options.map((option) => {
-                          console.log("opt:"+option)
-                          console.log("optName:"+option.name)
+                          console.log('opt:' + option);
+                          console.log('optName:' + option.name);
                           console.log('optionPrice:' + option.price);
                           return (
                             <div>
@@ -48,7 +48,7 @@ const Home = () => {
                         });
                         return (
                           <div>
-                            <p>{'qty:'+ o.qty}</p>
+                            <p>{'qty:' + o.qty}</p>
                             <p>{'itemName' + o.item.name}</p>
                             <p>{'itemPrice' + o.item.price}</p>
                             {opt}

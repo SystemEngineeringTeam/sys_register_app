@@ -1,4 +1,14 @@
-import { collection, deleteDoc, doc, DocumentReference, getDoc, getDocs, query, updateDoc, where } from 'firebase/firestore';
+import {
+  collection,
+  deleteDoc,
+  doc,
+  DocumentReference,
+  getDoc,
+  getDocs,
+  query,
+  updateDoc,
+  where,
+} from 'firebase/firestore';
 import { atom } from 'jotai';
 import { db } from './firebase';
 import { items, options, order, orderCollection, UpdateOrder, options_id } from '../types/index';
@@ -45,7 +55,7 @@ export const fetchReservationOrder = async () => {
 
 export const fetchOrderCollection = async () => {
   try {
-    const querySnapshot  = await getDocs(collection(db, 'orderCollection'));
+    const querySnapshot = await getDocs(collection(db, 'orderCollection'));
 
     const orderCollectionData: orderCollection[] = await Promise.all(
       querySnapshot.docs.map(async (docSnapshot): Promise<orderCollection> => {
@@ -59,7 +69,7 @@ export const fetchOrderCollection = async () => {
             orderRef.docs.map(async (orderDoc): Promise<order> => {
               const orderData = orderDoc.data();
 
-              const itemRef = orderData.item; 
+              const itemRef = orderData.item;
               const itemDoc = await getDoc(itemRef);
 
               const item = (): items => {
@@ -77,24 +87,25 @@ export const fetchOrderCollection = async () => {
                 };
               };
 
-              const optionData:options[] = await Promise.all(orderData.options.map(async (optionRef:DocumentReference)=> {
-                const optionDoc = await getDoc(optionRef);
-                const option = optionDoc.data;
+              const optionData: options[] = await Promise.all(
+                orderData.options.map(async (optionRef: DocumentReference) => {
+                  const optionDoc = await getDoc(optionRef);
+                  const option = optionDoc.data;
 
-                if (optionDoc.exists()) {
-                  console.log("Document data:", optionDoc.data());
-                  return optionDoc.data();
-                } else {
-                  // docSnap.data() will be undefined in this case
-                  console.log("No such document!");
-                  return{
-                    id:null,
-                    name:null,
-                    price:null,
+                  if (optionDoc.exists()) {
+                    console.log('Document data:', optionDoc.data());
+                    return optionDoc.data();
+                  } else {
+                    // docSnap.data() will be undefined in this case
+                    console.log('No such document!');
+                    return {
+                      id: null,
+                      name: null,
+                      price: null,
+                    };
                   }
-                }
-            }
-            ));
+                }),
+              );
 
               return {
                 id: orderDoc.id,
@@ -132,7 +143,6 @@ export const fetchOrderCollection = async () => {
     console.log('finally');
   }
 };
-
 
 export const orderCollectionAtom = loadable(atom(async () => await fetchOrderCollection()));
 
