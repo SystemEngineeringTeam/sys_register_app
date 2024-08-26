@@ -3,7 +3,8 @@ import ProductOrderContena from '../components/ProductOrderContena';
 
 const Cooking = () => (
   <div>
-    {/* Stackで縦に並べる */}
+    {/*Stackで縦に並べる */}
+
     <Stack spacing={2} alignItems="center" divider={<Divider flexItem />}>
       {/*ividerで区切り線を入れる */}
       <ProductOrderContena />

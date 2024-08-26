@@ -5,17 +5,24 @@ import Delivery from './pages/Delivery';
 import Call from './pages/Call';
 import Admin from './pages/Admin';
 import Order from './pages/Order';
+import Home from './pages/Home';
+import { user_props } from './types';
 
-const App = () => {
+
+
+const App = ({userPoto}:user_props) => {
+
   return (
+
     <Router>
       <Routes>
-        <Route path="/" element={<AppLayout />}>
+        <Route path="/" element={<AppLayout userPoto = {userPoto} />}>
+          <Route index element={<Home />} />
           <Route path="/order" element={<Order />} />
           <Route path="/cooking" element={<Cooking />} />
           <Route path="/delivery" element={<Delivery />} />
           <Route path="/call" element={<Call />} />
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin" element={<Admin  />} />
         </Route>
       </Routes>
     </Router>
