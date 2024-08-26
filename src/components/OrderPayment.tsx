@@ -8,24 +8,35 @@ import OkButton from './OkButton';
 
 const OrderPayment = () => {
   return (
-    <Box sx={{display:{xs:'block',sm:'flex'}}}>
+    <Box sx={{ display: 'flex' }}>
       {/* OrderNumberはマージ終わったらsxを記入する */}
       {/* 注文番号 */}
-      <OrderNumber />
+      <Box
+        sx={{
+          position: 'fixed',
+          top: { xs: '4rem', sm: '4.5rem', md: '4.5rem' },
+          right: 10,
+        }}
+      >
+        <OrderNumber />
+      </Box>
+
       {/* 通貨 */}
-      <CollectedMoneyPaid />
-      <Box sx={{marginTop:{sm: '15rem',md:'10rem'}}}>
-        {/* お支払いと合計金額 */}
-        <WritePaidSumMoney />
-        <Box sx={{ border: 1 }}></Box>
-        {/* おつり */}
-        <WriteNotEnoughMoney />
-        <Box sx={{display:'flex', margin:'1rem'}}>
-          <Box >
-            <BackButton />
-          </Box>
-          <Box sx={{marginLeft:'4rem'}}>
-            <OkButton />
+      <Box sx={{ display: { xs: 'block', sm: 'flex' } }}>
+        <CollectedMoneyPaid />
+        <Box sx={{ marginTop: { sm: '15rem', md: '10rem' } }}>
+          {/* お支払いと合計金額 */}
+          <WritePaidSumMoney />
+          <Box sx={{ border: 1 }}></Box>
+          {/* おつり */}
+          <WriteNotEnoughMoney />
+          <Box sx={{ display: 'flex', margin: '1rem' }}>
+            <Box>
+              <BackButton />
+            </Box>
+            <Box sx={{ marginLeft: '4rem' }}>
+              <OkButton />
+            </Box>
           </Box>
         </Box>
       </Box>
