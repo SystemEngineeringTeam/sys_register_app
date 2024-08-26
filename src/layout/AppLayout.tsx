@@ -106,7 +106,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-const AppLayout = () => {
+const AppLayout = ({userPoto}) => {
   const theme = useTheme();
   const [open, setOpen] = React.useState<boolean | null>(null);
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -139,6 +139,7 @@ const AppLayout = () => {
             {/* Listの値を取得して表示 */}
             {listItems.find((item) => item.to === useLocation().pathname)?.text}
           </Typography>
+          <img ></img>
         </Toolbar>
       </AppBar>
       <Drawer

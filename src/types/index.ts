@@ -2,6 +2,7 @@
 
 export type options_id = string;
 export type items_id = string;
+export type user_props = string | null;
 
 // itemsの型を定義
 export interface items {
