@@ -1,8 +1,12 @@
-import React from 'react';
-import NumberButton from '../components/NumberButton';
-import { Box, Grid } from '@mui/material';
-import NumberButtonBox from '../components/NumberButtonBox';
-import OrderWaitPeople from '../components/OrderWaitPeople';
+import OrderPayment from "../components/OrderPayment";
+
+
+const Order = () => (
+  <div>
+    {/* 支払い画面*/}
+    <OrderPayment></OrderPayment>
+  </div>
+);
 
 
 const Order = ( ) => {
