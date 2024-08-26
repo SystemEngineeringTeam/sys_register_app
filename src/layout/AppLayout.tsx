@@ -1,7 +1,6 @@
 import React from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { styled, useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -22,7 +21,7 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 
-interface ListItem {
+interface ListItems {
   text: string;
   icon: React.ReactNode;
   to: string;
@@ -30,7 +29,7 @@ interface ListItem {
 
 const drawerWidth = 240;
 // listItemのリスト
-const listItems: ListItem[] = [
+const listItems: ListItems[] = [
   {
     text: '注文',
     icon: <InboxIcon />,
@@ -108,8 +107,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 const AppLayout = ({userPoto}) => {
   const theme = useTheme();
-  const [open, setOpen] = React.useState<boolean | null>(null);
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -124,7 +122,7 @@ const AppLayout = ({userPoto}) => {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={isDrawerOpen && !isSmallScreen}>
+      <AppBar position="fixed" open={isDrawerOpen}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -151,7 +149,7 @@ const AppLayout = ({userPoto}) => {
             boxSizing: 'border-box',
           },
         }}
-        variant={isSmallScreen ? 'temporary' : 'persistent'}
+        variant='persistent'
         anchor="left"
         open={isDrawerOpen}
         onClose={handleDrawerClose}
@@ -176,7 +174,7 @@ const AppLayout = ({userPoto}) => {
 
         <Divider />
       </Drawer>
-      <Main open={isDrawerOpen && !isSmallScreen}>
+      <Main open={isDrawerOpen}>
         <DrawerHeader />
         <Outlet /> {/* ここにルートで指定されたコンテンツが表示される */}
       </Main>
