@@ -1,4 +1,4 @@
-import { Box, Typography, Card, CardContent, Button, Grid,Stack } from '@mui/material';
+import { Box, Typography, Card, CardContent, Button, Grid, Stack } from '@mui/material';
 import ProductOrderCard from './ProductOrderCard';
 
 // interface test_num {
@@ -30,18 +30,16 @@ const ProductOrderContena = () => {
     <div>
       <Box>
         <Card>
-          <CardContent sx={{display:'flex'}}>
+          <CardContent sx={{ display: 'flex' }}>
+            <Stack spacing={2} alignItems="center" sx={{ mr: 2 }}>
+              <Typography component="h1">1</Typography>
 
-          <Stack spacing={2} alignItems="center" sx={{mr:2} }>
-                <Typography component="h1">1</Typography>
-
-                <Button variant="contained" color="primary">
-                  調理前
-                </Button>
-          </Stack>
+              <Button variant="contained" color="primary">
+                調理前
+              </Button>
+            </Stack>
 
             <Grid container spacing={2}>
-
               <Grid item xs={3}>
                 <ProductOrderCard />
               </Grid>
@@ -67,10 +65,7 @@ const ProductOrderContena = () => {
               <Grid item xs={3}>
                 <ProductOrderCard />
               </Grid>
-
             </Grid>
-
-
           </CardContent>
         </Card>
       </Box>
