@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
-import './index.css';
+import OrderChange from './pages/OrderChange.tsx';
+import OrderMenuRight from './components/OrderMenuRight.tsx';
+import CustomizeChange from './pages/CustomizeChange.tsx';
 
 const root = document.getElementById('root');
 if (root == null) throw new Error('Root element not found');
 
 ReactDOM.createRoot(root).render(
-  <React.StrictMode>  
-    <App />
+  <React.StrictMode>
+   <CustomizeChange/>
   </React.StrictMode>,
 );

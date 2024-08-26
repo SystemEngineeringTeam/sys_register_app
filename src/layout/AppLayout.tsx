@@ -21,7 +21,7 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 
-interface ListItem {
+interface ListItems {
   text: string;
   icon: React.ReactNode;
   to: string;
@@ -29,7 +29,7 @@ interface ListItem {
 
 const drawerWidth = 240;
 // listItemのリスト
-const listItems: ListItem[] = [
+const listItems: ListItems[] = [
   {
     text: '注文',
     icon: <InboxIcon />,
