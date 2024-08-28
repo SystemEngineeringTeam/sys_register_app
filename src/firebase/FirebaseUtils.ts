@@ -22,34 +22,7 @@ function isFirebaseError(err: unknown): err is { code: string; message: string }
 
 export type optionRef = string;
 
-// データを取得する関数
-
-// 会計前の注文データを取得する関数
-export const fetchReservationOrder = async () => {
-  try {
-    const querySnapshot = await getDocs(collection(db, 'order'));
-
-    const OrderData: order[] = querySnapshot.docs.map((doc): order => {
-      const data = doc.data();
-      return {
-        id: doc.id,
-        item: data.item,
-        options: data.options,
-        qty: data.qty,
-      };
-    });
-
-    return OrderData;
-  } catch (err) {
-    if (isFirebaseError(err)) {
-      console.error('Firestore Error:', err);
-    } else {
-      console.error('一般的なエラー', err);
-    }
-  } finally {
-    console.log('finally');
-  }
-};
+// データを取得する関
 
 // orderCollectionのデータを取得する関数
 
@@ -240,3 +213,5 @@ export const deleteOrder = async (id: string) => {
     console.log('finally');
   }
 };
+
+// mon
