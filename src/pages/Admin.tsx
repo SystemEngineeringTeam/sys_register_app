@@ -1,7 +1,9 @@
+import { User } from 'firebase/auth';
+import AdminLogin from '../login/AdminLogin';
+
 const Admin = () => (
   <div>
-    <h1>Admin</h1>
-    <p>Adminページです</p>
+Admin
   </div>
 );
 
