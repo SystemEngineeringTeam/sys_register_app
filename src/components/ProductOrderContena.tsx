@@ -1,75 +1,64 @@
 import { Box, Typography, Card, CardContent, Button, Grid, Stack } from '@mui/material';
 import ProductOrderCard from './ProductOrderCard';
 
-// interface test_num {
-//   id: number;
-//   name: string;
-//   price: number;
-// }
-
-// const test_num: test_num[] = [
-//   {
-//     id: 1,
-//     name: 'テスト1',
-//     price: 100,
-//   },
-//   {
-//     id: 2,
-//     name: 'テスト2',
-//     price: 200,
-//   },
-//   {
-//     id: 3,
-//     name: 'テスト3',
-//     price: 300,
-//   }
-// ];
-
 const ProductOrderContena = () => {
   return (
-    <div>
-      <Box>
-        <Card>
-          <CardContent sx={{ display: 'flex' }}>
-            <Stack spacing={2} alignItems="center" sx={{ mr: 2 }}>
-              <Typography component="h1">1</Typography>
+    <Box sx={{ p: 2 }}>
+      <Card>
+        <CardContent sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
+          <Stack
+            spacing={10}
+            alignItems="center"
+            sx={{
+              mt: { xs: 2, md: 0 },
+              mr: { md: 2, xs: 0 },
+              mb: { xs: 2, md: 0 },
+            }}
+          >
+            <Typography variant="h1">111</Typography>
 
-              <Button variant="contained" color="primary">
-                調理前
-              </Button>
-            </Stack>
+            <Button
+              variant="contained"
+              color="primary"
+              sx={{
+                p: { xs: 2, sm: 3, md: 5 },
+                whiteSpace: 'nowrap',
+                minWidth: '100px',
+              }}
+            >
+              調理前
+            </Button>
+          </Stack>
 
-            <Grid container spacing={2}>
-              <Grid item xs={3}>
-                <ProductOrderCard />
-              </Grid>
-              <Grid item xs={3}>
-                <ProductOrderCard />
-              </Grid>
-              <Grid item xs={3}>
-                <ProductOrderCard />
-              </Grid>
-              <Grid item xs={3}>
-                <ProductOrderCard />
-              </Grid>
-
-              <Grid item xs={3}>
-                <ProductOrderCard />
-              </Grid>
-              <Grid item xs={3}>
-                <ProductOrderCard />
-              </Grid>
-              <Grid item xs={3}>
-                <ProductOrderCard />
-              </Grid>
-              <Grid item xs={3}>
-                <ProductOrderCard />
-              </Grid>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6} md={3}>
+              <ProductOrderCard />
             </Grid>
-          </CardContent>
-        </Card>
-      </Box>
-    </div>
+            <Grid item xs={12} sm={6} md={3}>
+              <ProductOrderCard />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <ProductOrderCard />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <ProductOrderCard />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <ProductOrderCard />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <ProductOrderCard />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <ProductOrderCard />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <ProductOrderCard />
+            </Grid>
+          </Grid>
+        </CardContent>
+      </Card>
+    </Box>
   );
 };
 
