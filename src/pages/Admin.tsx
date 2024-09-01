@@ -1,8 +1,6 @@
-const Admin = () => (
-  <div>
-    <h1>Admin</h1>
-    <p>Adminページです</p>
-  </div>
-);
+import { User } from 'firebase/auth';
+import AdminLogin from '../login/AdminLogin';
+
+const Admin = () => <div>Admin</div>;
 
 export default Admin;

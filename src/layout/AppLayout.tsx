@@ -1,7 +1,6 @@
 import React from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { styled, useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -108,8 +107,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 const AppLayout = () => {
   const theme = useTheme();
-  const [open, setOpen] = React.useState<boolean | null>(null);
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -124,7 +122,7 @@ const AppLayout = () => {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={isDrawerOpen && !isSmallScreen}>
+      <AppBar position="fixed" open={isDrawerOpen}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -139,6 +137,7 @@ const AppLayout = () => {
             {/* Listの値を取得して表示 */}
             {listItems.find((item) => item.to === useLocation().pathname)?.text}
           </Typography>
+          <img></img>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -150,7 +149,7 @@ const AppLayout = () => {
             boxSizing: 'border-box',
           },
         }}
-        variant={isSmallScreen ? 'temporary' : 'persistent'}
+        variant="persistent"
         anchor="left"
         open={isDrawerOpen}
         onClose={handleDrawerClose}
@@ -175,7 +174,7 @@ const AppLayout = () => {
 
         <Divider />
       </Drawer>
-      <Main open={isDrawerOpen && !isSmallScreen}>
+      <Main open={isDrawerOpen}>
         <DrawerHeader />
         <Outlet /> {/* ここにルートで指定されたコンテンツが表示される */}
       </Main>

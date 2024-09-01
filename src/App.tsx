@@ -5,12 +5,15 @@ import Delivery from './pages/Delivery';
 import Call from './pages/Call';
 import Admin from './pages/Admin';
 import Order from './pages/Order';
+import Home from './pages/Home';
+import { user_props } from './types';
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<AppLayout />}>
+        <Route path="/" element={<AppLayout/>}>
+          <Route index element={<Home />} />
           <Route path="/order" element={<Order />} />
           <Route path="/cooking" element={<Cooking />} />
           <Route path="/delivery" element={<Delivery />} />
