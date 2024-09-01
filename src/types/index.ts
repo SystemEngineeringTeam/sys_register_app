@@ -7,18 +7,21 @@ export type user_props = string | null;
 // itemsの型を定義
 export interface items {
   id: string;
-  user_id: string;
   name: number;
   price: number;
   visible: boolean;
   category_id: string;
-  options_id: options_id[];
+  options: options[];
 }
 
 //　shop_userの型を定義
 export interface shop_user {
   id: string;
   name: string;
+  category: category[];
+  item: items[];
+  options: options[];
+  orderCollection: orderCollection[];
 }
 
 //categoryの型を定義
@@ -57,4 +60,5 @@ export interface orderCollection {
   offer: boolean; //提供
 }
 
-//
+// moneyの型を定義
+export interface money {}

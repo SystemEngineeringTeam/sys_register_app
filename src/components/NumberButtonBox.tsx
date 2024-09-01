@@ -1,13 +1,12 @@
-import { Box } from '@mui/material'
-import React from 'react'
-import NumberButton from './NumberButton'
+import { Box } from '@mui/material';
+import React from 'react';
+import NumberButton from './NumberButton';
 
-interface NumberButtonBoxProps{
-    orders:number[];
+interface NumberButtonBoxProps {
+  orders: number[];
 }
 
-const NumberButtonBox = ({orders}:NumberButtonBoxProps) => {
-  
+const NumberButtonBox = ({ orders }: NumberButtonBoxProps) => {
   return (
     <div>
       <Box
@@ -18,16 +17,12 @@ const NumberButtonBox = ({orders}:NumberButtonBoxProps) => {
           flexWrap: 'wrap',
         }}
       >
-        
         {orders.map((value) => (
-            <NumberButton orders={value} />
-            
-        )
-        )}
-        
+          <NumberButton orders={value} />
+        ))}
       </Box>
     </div>
-  )
-}
+  );
+};
 
-export default NumberButtonBox
+export default NumberButtonBox;

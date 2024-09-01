@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
+import { order, orderCollection } from '../types/index';
 import { orderCollectionAtom } from '../firebase/FirebaseUtils';
-import { order } from '../types/index';
 
 const Home = () => {
   const [orderCollectionData, setOrderCollectionData] = useAtom(orderCollectionAtom);
@@ -19,7 +19,7 @@ const Home = () => {
         return (
           <div>
             {orderCollectionData.data?.map(
-              (orderCollection) => (
+              (orderCollection:orderCollection) => (
                 console.log('orderCollection.id:' + orderCollection.id),
                 console.log('orderCollection.order:' + orderCollection.order),
                 console.log('orderCollection.timestamp:' + orderCollection.timestamp),

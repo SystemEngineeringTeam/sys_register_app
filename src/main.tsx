@@ -13,6 +13,6 @@ if (root == null) throw new Error('Root element not found');
 
 ReactDOM.createRoot(root).render(
   <React.StrictMode>
-    <AdminLogin/>
+    <AdminLogin />
   </React.StrictMode>,
 );

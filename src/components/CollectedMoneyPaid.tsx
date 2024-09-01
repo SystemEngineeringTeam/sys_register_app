@@ -17,7 +17,7 @@ const CollectedMoneyPaid = () => {
           <MoneyPaid image="/money_500.svg" />
         </Box>
       </Box>
-      <Box sx={{ display: 'flex',marginTop:'2rem', border:1 }}>
+      <Box sx={{ display: 'flex', marginTop: '2rem', border: 1 }}>
         <MoneyPaid image="/money_1000.svg" />
         <MoneyPaid image="/money_5000.svg" />
         <MoneyPaid image="/money_10000.svg" />
