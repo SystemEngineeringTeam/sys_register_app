@@ -15,7 +15,6 @@ import { db } from './firebase';
 import { items, options, order, orderCollection, UpdateOrder, options_id } from '../types/index';
 import { loadable } from 'jotai/utils';
 import { userAtomLoadable } from '../login/AdminLogin'; // userAtomのインポート位置を確認する
-import { User } from 'firebase/auth';
 
 // firebaseのエラーを判定する関数
 function isFirebaseError(err: unknown): err is { code: string; message: string } {
@@ -42,7 +41,7 @@ export const fetchOrderCollection = async (uid: string) => {
 
         // orderのデータを取得
         const fetchOrder = async (): Promise<order[]> => {
-          const orderRef = await getDocs(collection(db, 'orderCollection', docSnapshot.id, 'order'));
+          const orderRef = await getDocs(collection(db, 'shop_user', uid, 'orderCollection', docSnapshot.id, 'order'));
 
           const orderData: order[] = await Promise.all(
             orderRef.docs.map(async (orderDoc): Promise<order> => {
