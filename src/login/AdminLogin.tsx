@@ -8,7 +8,6 @@ import { loadable } from 'jotai/utils';
 import { atom, useAtom } from 'jotai';
 import { updateOrder } from '../firebase/FirebaseUtils';
 
-
 // ユーザーのログイン情報を保持するatom
 const userAtom = atom<User | null>();
 export const userAtomLoadable = loadable(userAtom);

@@ -19,7 +19,7 @@ const Home = () => {
         return (
           <div>
             {orderCollectionData.data?.map(
-              (orderCollection:orderCollection) => (
+              (orderCollection: orderCollection) => (
                 console.log('orderCollection.id:' + orderCollection.id),
                 console.log('orderCollection.order:' + orderCollection.order),
                 console.log('orderCollection.timestamp:' + orderCollection.timestamp),
