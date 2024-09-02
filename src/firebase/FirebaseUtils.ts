@@ -41,7 +41,7 @@ export const fetchOrderCollection = async (uid:string) => {
 
         // orderのデータを取得
         const fetchOrder = async (): Promise<order[]> => {
-          const orderRef = await getDocs(collection(db, 'orderCollection', docSnapshot.id, 'order'));
+          const orderRef = await getDocs(collection(db, 'shop_user',uid,'orderCollection', docSnapshot.id, 'order'));
 
           const orderData: order[] = await Promise.all(
             orderRef.docs.map(async (orderDoc): Promise<order> => {
