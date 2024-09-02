@@ -8,11 +8,8 @@ import { atom, useAtom } from 'jotai';
 import { developer } from '../types';
 import LoginForm from './LoginForm';
 
-
-
-
 // ユーザーのログイン情報を保持するatom
-export const userAtom = atom<User | null |developer>(null);
+export const userAtom = atom<User | null | developer>(null);
 export const userAtomLoadable = loadable(userAtom);
 
 const AdminLogin = () => {
@@ -22,17 +19,17 @@ const AdminLogin = () => {
   console.log(userData);
 
   return (
-<>
-  { userData ? (
-    <div>
-      <App />
-    </div>
-  ) : (
-    <Box>
-      <LoginForm />
-    </Box>
-  )}
-</>
+    <>
+      {userData ? (
+        <div>
+          <App />
+        </div>
+      ) : (
+        <Box>
+          <LoginForm />
+        </Box>
+      )}
+    </>
   );
 };
 

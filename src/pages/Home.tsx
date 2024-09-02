@@ -7,8 +7,8 @@ const Home = () => {
   const [orderCollectionData, setOrderCollectionData] = useAtom(orderCollectionAtom);
   const [user] = useAtom(userAtomLoadable); // user を分解
 
-  const uid = (user.state === 'hasData') ? user.data?.uid : null;
-  console.log("UID"+uid);
+  const uid = user.state === 'hasData' ? user.data?.uid : null;
+  console.log('UID' + uid);
 
   console.log(orderCollectionData);
 
@@ -26,7 +26,7 @@ const Home = () => {
             <h1>ユーザー:{uid}</h1>
 
             {orderCollectionData.data?.map(
-              (orderCollection:orderCollection) => (
+              (orderCollection: orderCollection) => (
                 console.log('orderCollection.id:' + orderCollection.id),
                 console.log('orderCollection.order:' + orderCollection.order),
                 console.log('orderCollection.timestamp:' + orderCollection.timestamp),
