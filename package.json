@@ -17,11 +17,8 @@
     "@mui/material": "^5.16.6",
     "eslint-plugin-prettier": "^5.2.1",
     "firebase": "^10.12.5",
-    "jotai": "^2.9.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-google-button": "^0.8.0",
-    "react-google-login": "^5.2.2",
     "react-router-dom": "^6.26.0"
   },
   "devDependencies": {
@@ -43,6 +40,7 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.9",
     "eslint-plugin-unused-imports": "^4.0.0",
+    
     "prettier": "^3.3.3",
     "typescript": "5.3",
     "vite": "^5.3.4"
