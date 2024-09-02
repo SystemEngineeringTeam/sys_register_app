@@ -4,6 +4,12 @@ export type options_id = string;
 export type items_id = string;
 export type user_props = string | null;
 
+// userの型を定義
+export interface developer {
+  uid: string;
+  password: string;
+}
+
 // itemsの型を定義
 export interface items {
   id: string;

@@ -15,7 +15,6 @@ import { db } from './firebase';
 import { items, options, order, orderCollection, UpdateOrder, options_id } from '../types/index';
 import { loadable } from 'jotai/utils';
 import {userAtomLoadable } from '../login/AdminLogin';  // userAtomのインポート位置を確認する
-import { User } from 'firebase/auth';
 
 // firebaseのエラーを判定する関数
 function isFirebaseError(err: unknown): err is { code: string; message: string } {

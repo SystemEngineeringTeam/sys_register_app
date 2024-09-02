@@ -1,9 +1,14 @@
 import { useAtom } from 'jotai';
 import { order, orderCollection } from '../types/index';
 import { orderCollectionAtom } from '../firebase/FirebaseUtils';
+import { userAtomLoadable } from '../login/AdminLogin';
 
 const Home = () => {
   const [orderCollectionData, setOrderCollectionData] = useAtom(orderCollectionAtom);
+  const [user] = useAtom(userAtomLoadable); // user を分解
+
+  const uid = (user.state === 'hasData') ? user.data?.uid : null;
+  console.log("UID"+uid);
 
   console.log(orderCollectionData);
 
@@ -18,6 +23,8 @@ const Home = () => {
       case 'hasData':
         return (
           <div>
+            <h1>ユーザー:{uid}</h1>
+
             {orderCollectionData.data?.map(
               (orderCollection:orderCollection) => (
                 console.log('orderCollection.id:' + orderCollection.id),
