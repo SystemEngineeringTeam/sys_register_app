@@ -1,14 +1,17 @@
 import { useAtom } from 'jotai';
-import { order, orderCollection } from '../types/index';
-import { orderCollectionAtom } from '../firebase/FirebaseUtils';
+import { money, order, orderCollection } from '../types/index';
+import { moneyAtom, orderCollectionAtom } from '../firebase/FirebaseUtils';
 import { userAtomLoadable } from '../login/AdminLogin';
 
 const Home = () => {
   const [orderCollectionData, setOrderCollectionData] = useAtom(orderCollectionAtom);
+  const [moneyData, setMoneyData] = useAtom(moneyAtom);
   const [user] = useAtom(userAtomLoadable); // user を分解
 
   const uid = user.state === 'hasData' ? user.data?.uid : null;
   console.log('UID' + uid);
+
+  const money = moneyData.state === 'hasData' ? moneyData.data : null;
 
   console.log(orderCollectionData);
 
@@ -24,6 +27,37 @@ const Home = () => {
         return (
           <div>
             <h1>ユーザー:{uid}</h1>
+
+            <h1>お金</h1>
+            {money?.map(
+              (money:money) => (
+                console.log('money.date:' + money.date),
+                console.log('1円:' + money['1']),
+                console.log('5円:' + money['5']),
+                console.log('10円:' + money['10']),
+                console.log('50円:' + money['50']),
+                console.log('100円:' + money['100']),
+                console.log('500円:' + money['500']),
+                console.log('1000円:' + money['1000']),
+                console.log('5000円:' + money['5000']),
+                console.log('10000円:' + money['10000']),
+                (
+                  <div key={money.date}>
+                    <p>{'1円'+money['1']}</p>
+                    <p>{'5円'+money['5']}</p>
+                    <p>{'10円'+money['10']}</p>
+                    <p>{'50円'+money['50']}</p>
+                    <p>{'100円'+money['100']}</p>
+                    <p>{'500円'+money['500']}</p>
+                    <p>{'1000円'+money['1000']}</p>
+                    <p>{'5000円'+money['5000']}</p>
+                    <p>{'10000円'+money['10000']}</p>
+                  </div>
+                )
+              ),
+            )}
+
+
 
             {orderCollectionData.data?.map(
               (orderCollection: orderCollection) => (

@@ -12,7 +12,7 @@ import {
 } from 'firebase/firestore';
 import { atom, useAtom } from 'jotai';
 import { db } from './firebase';
-import { items, options, order, orderCollection, UpdateOrder, options_id } from '../types/index';
+import { items, options, order, orderCollection, UpdateOrder, options_id, money } from '../types/index';
 import { loadable } from 'jotai/utils';
 import { userAtomLoadable } from '../login/AdminLogin'; // userAtomのインポート位置を確認する
 
@@ -157,6 +157,51 @@ export const orderCollectionAtom = loadable(
   }),
 );
 
+// moneyのデータを取得する関数
+export const fetchMoney = async (uid:string) => {
+  try {
+    const q = query(collection(db, 'shop_user', uid, 'mony'));
+    const querySnapshot = await getDocs(q);
+
+    const MoneyData: money[] = querySnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        date: Number(doc.id),
+        '10000': data['10000円'],
+        '5000': data['5000円'],
+        '1000': data['1000円'],
+        '500': data['500円'],
+        '100': data['100円'],
+        '50': data['50円'],
+        '10': data['10円'],
+        '5': data['5円'],
+        '1': data['1円'],
+        total: data.total,
+      };
+    });
+
+    return MoneyData;
+  } catch (err) {
+    if (isFirebaseError(err)) {
+      console.error('Firestore Error:', err);
+    } else {
+      console.error('一般的なエラー', err);
+    }
+  } finally {
+    console.log('finally');
+  }
+};
+
+export const moneyAtom = loadable(
+  atom(async (get) => {
+    const user = get(uidAtom);
+    if (!user) return null;
+
+    return await fetchMoney(user);
+  }),
+);
+
+
 // itemsのデータを取得する関数
 export const fetchItems = async () => {
   try {
@@ -215,20 +260,6 @@ export const option = async () => {
 };
 
 export const optionsAtom = loadable(atom(async () => await option()));
-
-// money
-
-export const money = async () => {
-  try {
-    await getDocs(collection(db, 'money'));
-  } catch (err) {
-    if (isFirebaseError(err)) {
-      console.error('Firestore Error:', err);
-    } else {
-      console.error('一般的なエラー', err);
-    }
-  }
-};
 
 // orderのデータを更新する関数
 
