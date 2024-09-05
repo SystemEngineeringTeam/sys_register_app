@@ -1,10 +1,10 @@
-import OrderNumber from './OrderNumber';
-import CollectedMoneyPaid from './OrderPayments/CollectedMoneyPaid';
+import OrderNumber from '../OrderNumber';
+import CollectedMoneyPaid from './CollectedMoneyPaid';
 import { Box } from '@mui/material';
 import WritePaidSumMoney from './WritePaidSumMoney';
 import WriteNotEnoughMoney from './WriteNotEnoughMoney';
-import BackButton from './OrderPayments/BackButton';
-import OkButton from './OrderPayments/OkButton';
+import BackButton from './BackButton';
+import OkButton from './OkButton';
 
 const OrderPayment = () => {
   return (
