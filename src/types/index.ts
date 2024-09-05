@@ -4,21 +4,30 @@ export type options_id = string;
 export type items_id = string;
 export type user_props = string | null;
 
+// userの型を定義
+export interface developer {
+  uid: string;
+  password: string;
+}
+
 // itemsの型を定義
 export interface items {
   id: string;
-  user_id: string;
   name: number;
   price: number;
   visible: boolean;
   category_id: string;
-  options_id: options_id[];
+  options: options[];
 }
 
 //　shop_userの型を定義
 export interface shop_user {
   id: string;
   name: string;
+  category: category[];
+  item: items[];
+  options: options[];
+  orderCollection: orderCollection[];
 }
 
 //categoryの型を定義
@@ -55,4 +64,19 @@ export interface orderCollection {
   accounting: boolean; //会計
   cooking: boolean; //調理
   offer: boolean; //提供
+}
+
+// moneyの型を定義
+export interface money {
+  date: number;
+  '10000': number;
+  '5000': number;
+  '1000': number;
+  '500': number;
+  '100': number;
+  '50': number;
+  '10': number;
+  '5': number;
+  '1': number;
+  total: number;
 }

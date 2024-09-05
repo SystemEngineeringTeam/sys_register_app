@@ -105,7 +105,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-const AppLayout = ({userPoto}) => {
+const AppLayout = () => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -137,7 +137,7 @@ const AppLayout = ({userPoto}) => {
             {/* Listの値を取得して表示 */}
             {listItems.find((item) => item.to === useLocation().pathname)?.text}
           </Typography>
-          <img ></img>
+          <img></img>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -149,7 +149,7 @@ const AppLayout = ({userPoto}) => {
             boxSizing: 'border-box',
           },
         }}
-        variant='persistent'
+        variant="persistent"
         anchor="left"
         open={isDrawerOpen}
         onClose={handleDrawerClose}
@@ -183,12 +183,3 @@ const AppLayout = ({userPoto}) => {
 };
 
 export default AppLayout;
-
-
-
-
-
-
-
-
-

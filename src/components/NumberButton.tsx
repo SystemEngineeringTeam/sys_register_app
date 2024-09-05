@@ -5,15 +5,14 @@ import Order from '../pages/Order';
 // const orderLoop = order.map(( values ) => {
 //    return(values);
 // })
-interface NumberButtonProps{
-    orders:number,
+interface NumberButtonProps {
+  orders: number;
 }
-const NumberButton = ({orders}:NumberButtonProps) => {
+const NumberButton = ({ orders }: NumberButtonProps) => {
   return (
     <div>
       <Box
         sx={{
-    
           flexGrow: 1,
           border: '2px solid #2b2b2b',
           textAlign: 'center',

@@ -1,7 +1,6 @@
 import { Box, CardMedia } from '@mui/material';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import { useState } from 'react';
-
 interface MoneyPaidProps {
   image: string;
 }

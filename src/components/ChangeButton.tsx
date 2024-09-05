@@ -1,28 +1,29 @@
-import { Button } from '@mui/material'
-import React, { useEffect } from 'react'
+import { Button } from '@mui/material';
+import React, { useEffect } from 'react';
 
-interface  ChangeButtonProps {
-    selectedChange: boolean;
-    setSelectedChange:React.Dispatch<React.SetStateAction<boolean>>;
+interface ChangeButtonProps {
+  selectedChange: boolean;
+  setSelectedChange: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function ChangeButton({selectedChange,setSelectedChange}:ChangeButtonProps) {
-
-    const handleChange = () => {
-        setSelectedChange(!selectedChange);
-    }
-
-
+function ChangeButton({ selectedChange, setSelectedChange }: ChangeButtonProps) {
+  const handleChange = () => {
+    setSelectedChange(!selectedChange);
+  };
 
   return (
     <div>
-      <Button variant='contained' disableElevation size='large' onClick={handleChange} 
-      sx={{backgroundColor: selectedChange ? '#adadad' : 'orange'}}
+      <Button
+        variant="contained"
+        disableElevation
+        size="large"
+        onClick={handleChange}
+        sx={{ backgroundColor: selectedChange ? '#adadad' : 'orange' }}
       >
-        {selectedChange ? "なし" : "あり"}
+        {selectedChange ? 'なし' : 'あり'}
       </Button>
     </div>
-  )
+  );
 }
 
-export default ChangeButton
+export default ChangeButton;
