@@ -1,7 +1,6 @@
-import { Box } from '@mui/material';
+import { Box, CardMedia } from '@mui/material';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import { useState } from 'react';
-import { CardMedia } from '@mui/material';
 interface MoneyPaidProps {
   image: string;
 }

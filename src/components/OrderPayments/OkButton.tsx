@@ -1,6 +1,6 @@
 import { Button, ThemeProvider } from '@mui/material';
 
-import { theme } from '../themes/theme';
+import { theme } from '../../themes/theme';
 
 const OkButton = () => {
   return (

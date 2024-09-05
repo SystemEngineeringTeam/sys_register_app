@@ -1,4 +1,4 @@
-import OrderNumber from './OrderNumber';
+import OrderNumber from '../OrderNumber';
 import CollectedMoneyPaid from './CollectedMoneyPaid';
 import { Box } from '@mui/material';
 import WritePaidSumMoney from './WritePaidSumMoney';
