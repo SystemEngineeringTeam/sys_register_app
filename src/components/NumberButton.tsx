@@ -1,5 +1,6 @@
-import { Box, Grid } from '@mui/material';
+import { Box, Button, Grid } from '@mui/material';
 import Order from '../pages/Order';
+import { Link } from 'react-router-dom';
 
 // var order = [1,2,3,4,4];
 // const orderLoop = order.map(( values ) => {
@@ -11,20 +12,24 @@ interface NumberButtonProps {
 const NumberButton = ({ orders }: NumberButtonProps) => {
   return (
     <div>
-      <Box
-        sx={{
-          flexGrow: 1,
-          border: '2px solid #2b2b2b',
-          textAlign: 'center',
-          padding: '4px',
-          borderRadius: '1vh',
-          width: '180px',
-          fontSize: '70px',
-          margin: '12px',
-        }}
-      >
-        {orders}
-      </Box>
+      <Link to="/orderchange">
+        <Button
+          sx={{
+            flexGrow: 1,
+            border: '2px solid #2b2b2b',
+            textAlign: 'center',
+            padding: '4px',
+            borderRadius: '1vh',
+            width: '180px',
+            fontSize: '70px',
+            margin: '12px',
+            color:'black'
+
+          }}
+        >
+          {orders}
+        </Button>
+      </Link>
     </div>
   );
 };
