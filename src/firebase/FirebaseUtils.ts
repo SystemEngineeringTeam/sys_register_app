@@ -6,6 +6,7 @@ import {
   DocumentReference,
   getDoc,
   getDocs,
+  onSnapshot,
   query,
   updateDoc,
   where,
@@ -14,9 +15,9 @@ import { atom, useAtom } from 'jotai';
 import { db } from './firebase';
 import { items, options, order, orderCollection, UpdateOrder, options_id, money } from '../types/index';
 import { loadable } from 'jotai/utils';
-import { userAtomLoadable } from '../login/AdminLogin'; // userAtomのインポート位置を確認する
+import { userAtomLoadable } from '../login/AdminLogin';
 
-// firebaseのエラーを判定する関数
+// Firebaseのエラーを判定する関数
 function isFirebaseError(err: unknown): err is { code: string; message: string } {
   return typeof err === 'object' && err !== null && 'code' in err;
 }
@@ -30,23 +31,24 @@ const uidAtom = atom<string | null>((get) => {
   return null;
 });
 
-export const fetchOrderCollection = async (uid: string) => {
-  try {
-    const q = query(collection(db, 'shop_user', uid, 'orderCollection'));
-    const querySnapshot = await getDocs(q);
-
+// orderCollectionのデータをリアルタイムで取得する関数
+export const fetchOrderCollection = (uid: string, callback: (data: orderCollection[]) => void) => {
+  const q = query(collection(db, 'shop_user', uid, 'orderCollection'));
+  
+  onSnapshot(q, async (snapshot) => {
     const orderCollectionData: orderCollection[] = await Promise.all(
-      querySnapshot.docs.map(async (docSnapshot): Promise<orderCollection> => {
+      snapshot.docChanges().map(async (change) => {
+        const docSnapshot = change.doc;
         const data = docSnapshot.data();
 
         // orderのデータを取得
         const fetchOrder = async (): Promise<order[]> => {
-          const orderRef = await getDocs(collection(db, 'shop_user', uid, 'orderCollection', docSnapshot.id, 'order'));
+          const orderRef = query(collection(db, 'shop_user', uid, 'orderCollection', docSnapshot.id, 'order'));
+          const orderSnapshot = await getDocs(orderRef);
 
           const orderData: order[] = await Promise.all(
-            orderRef.docs.map(async (orderDoc): Promise<order> => {
+            orderSnapshot.docs.map(async (orderDoc): Promise<order> => {
               const orderData = orderDoc.data();
-
               const itemRef = orderData.item;
               const itemDoc = await getDoc(itemRef);
 
@@ -55,17 +57,14 @@ export const fetchOrderCollection = async (uid: string) => {
 
                 // optionsが存在するかどうかチェック
                 const optionsArray = itemData.options ?? [];
-
                 const optionData: options[] = await Promise.all(
                   optionsArray.map(async (optionRef: DocumentReference) => {
                     try {
                       const optionSnap = await getDoc(optionRef);
 
                       if (optionSnap.exists()) {
-                        console.log('Document data:', optionSnap.data());
                         return optionSnap.data() as options;
                       } else {
-                        console.log('No such document!');
                         return {
                           id: null,
                           name: null,
@@ -80,7 +79,7 @@ export const fetchOrderCollection = async (uid: string) => {
                         price: null,
                       };
                     }
-                  }),
+                  })
                 );
 
                 return {
@@ -98,17 +97,15 @@ export const fetchOrderCollection = async (uid: string) => {
                   const optionDoc = await getDoc(optionRef);
 
                   if (optionDoc.exists()) {
-                    console.log('Document data:', optionDoc.data());
                     return optionDoc.data() as options;
                   } else {
-                    console.log('No such document!');
                     return {
                       id: null,
                       name: null,
                       price: null,
                     };
                   }
-                }),
+                })
               );
 
               return {
@@ -117,7 +114,7 @@ export const fetchOrderCollection = async (uid: string) => {
                 options: optionData,
                 qty: orderData.qty,
               };
-            }),
+            })
           );
 
           return orderData;
@@ -133,38 +130,33 @@ export const fetchOrderCollection = async (uid: string) => {
           cooking: data.cooking,
           offer: data.offer,
         };
-      }),
+      })
     );
 
-    return orderCollectionData;
-  } catch (err) {
-    if (isFirebaseError(err)) {
-      console.error('Firestore Error:', err);
-    } else {
-      console.error('一般的なエラー', err);
-    }
-  } finally {
-    console.log('finally');
-  }
+    callback(orderCollectionData);
+  });
 };
 
+// orderCollectionAtomをリアルタイムデータで更新する
 export const orderCollectionAtom = loadable(
-  atom(async (get) => {
+  atom((get) => {
     const user = get(uidAtom);
     if (!user) return null;
 
-    return await fetchOrderCollection(user);
-  }),
+    let data: orderCollection[] | null = null;
+    fetchOrderCollection(user, (newData) => (data = newData));
+    return data;
+  })
 );
-
-// moneyのデータを取得する関数
-export const fetchMoney = async (uid:string) => {
-  try {
-    const q = query(collection(db, 'shop_user', uid, 'mony'));
-    const querySnapshot = await getDocs(q);
-
-    const MoneyData: money[] = querySnapshot.docs.map((doc) => {
+// moneyのデータをリアルタイムで取得する関数
+export const fetchMoney = (uid: string, callback: (data: money[]) => void) => {
+  const q = query(collection(db, 'shop_user', uid, 'mony'));
+  
+  onSnapshot(q, (snapshot) => {
+    const MoneyData: money[] = snapshot.docChanges().map((change) => {
+      const doc = change.doc;
       const data = doc.data();
+      
       return {
         date: Number(doc.id),
         '10000': data['10000円'],
@@ -180,118 +172,24 @@ export const fetchMoney = async (uid:string) => {
       };
     });
 
-    return MoneyData;
-  } catch (err) {
+    callback(MoneyData);
+  }, (err) => {
     if (isFirebaseError(err)) {
       console.error('Firestore Error:', err);
     } else {
       console.error('一般的なエラー', err);
     }
-  } finally {
-    console.log('finally');
-  }
+  });
 };
 
+// moneyAtomをリアルタイムデータで更新する
 export const moneyAtom = loadable(
-  atom(async (get) => {
+  atom((get) => {
     const user = get(uidAtom);
     if (!user) return null;
 
-    return await fetchMoney(user);
-  }),
+    let data: money[] | null = null;
+    fetchMoney(user, (newData) => (data = newData));
+    return data;
+  })
 );
-
-
-// itemsのデータを取得する関数
-export const fetchItems = async () => {
-  try {
-    const querySnapshot = await getDocs(collection(db, 'item'));
-
-    const ItemsData: items[] = querySnapshot.docs.map((doc): items => {
-      const data = doc.data();
-      return {
-        id: doc.id,
-        name: data.name,
-        price: data.price,
-        visible: data.visible,
-        category_id: data.category_id,
-        options: data.options,
-      };
-    });
-
-    return ItemsData;
-  } catch (err) {
-    if (isFirebaseError(err)) {
-      console.error('Firestore Error:', err);
-    } else {
-      console.error('一般的なエラー', err);
-    }
-  } finally {
-    console.log('finally');
-  }
-};
-
-export const itemsAtom = loadable(atom(async () => await fetchItems()));
-
-// optionsのデータを取得する関数
-export const option = async () => {
-  try {
-    const querySnapshot = await getDocs(collection(db, 'options'));
-
-    const OptionsData: options[] = querySnapshot.docs.map((doc): options => {
-      const data = doc.data();
-      return {
-        id: doc.id,
-        name: data.name,
-        price: data.price,
-      };
-    });
-
-    return OptionsData;
-  } catch (err) {
-    if (isFirebaseError(err)) {
-      console.error('Firestore Error:', err);
-    } else {
-      console.error('一般的なエラー', err);
-    }
-  } finally {
-    console.log('finally');
-  }
-};
-
-export const optionsAtom = loadable(atom(async () => await option()));
-
-// orderのデータを更新する関数
-
-export const updateOrder = async (id: string, data: UpdateOrder) => {
-  try {
-    await updateDoc(doc(db, 'order', id), { items_id: data.items_id });
-
-    console.log('注文の変更が完了しました');
-  } catch (err) {
-    if (isFirebaseError(err)) {
-      console.error('Firestore Error:', err);
-    } else {
-      console.error('一般的なエラー', err);
-    }
-  } finally {
-    console.log('finally');
-  }
-};
-
-// orderのデータを消去する関数
-
-export const deleteOrder = async (id: string) => {
-  try {
-    await deleteDoc(doc(db, 'order', id));
-    console.log('注文の削除が完了しました');
-  } catch (err) {
-    if (isFirebaseError(err)) {
-      console.error('Firestore Error:', err);
-    } else {
-      console.error('一般的なエラー', err);
-    }
-  } finally {
-    console.log('finally');
-  }
-};
