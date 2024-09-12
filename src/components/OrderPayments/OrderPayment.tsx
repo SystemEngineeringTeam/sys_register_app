@@ -27,7 +27,7 @@ const OrderPayment = () => {
         <Box sx={{ marginTop: { sm: '15rem', md: '10rem' } }}>
           {/* お支払いと合計金額 */}
           <WritePaidSumMoney />
-          <Box sx={{ border: 1 }}></Box>
+          <Box sx={{ border: 1 }} />
           {/* おつり */}
           <WriteNotEnoughMoney />
           <Box sx={{ display: 'flex', margin: '1rem' }}>
