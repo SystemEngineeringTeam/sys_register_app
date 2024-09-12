@@ -14,6 +14,7 @@ const MoneyPaid = ({ image }: MoneyPaidProps) => {
           border: 1,
           width: { xs: '7rem', sm: '9rem' },
           height: { xs: '7rem', sm: '9rem' },
+          opacity: count === 0 ? '0.5' : '1',
         }}
       >
         {/* 0以上の値の場合、クリック時にcountを -1 */}
