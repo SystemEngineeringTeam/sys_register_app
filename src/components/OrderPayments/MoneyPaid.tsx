@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import { Box, CardMedia } from '@mui/material';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import { useState } from 'react';
+
 interface MoneyPaidProps {
   image: string;
 }
@@ -33,9 +34,11 @@ const MoneyPaid = ({ image }: MoneyPaidProps) => {
             objectFit: 'fill',
             position: 'relative',
           }}
-          onClick={() => setCount((prevState) => prevState + 1)}
+          onClick={() => {
+            setCount((prevState) => prevState + 1);
+          }}
           image={image}
-        ></CardMedia>
+        />
         <Box
           sx={{
             textAlign: 'center',
