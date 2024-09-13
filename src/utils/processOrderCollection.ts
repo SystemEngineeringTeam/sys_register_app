@@ -6,7 +6,8 @@ export const processOrderCollection = (orderCollections: orderCollection[]):{ id
   .filter(orderCollection => orderCollection.accounting != true)
   .map(orderCollections => {
     return{
-        id: orderCollections.id}
+        id: orderCollections.id
+    }
     } 
     
 )
