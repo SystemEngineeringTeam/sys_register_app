@@ -1,18 +1,24 @@
 import { Box } from '@mui/material';
-import { red } from '@mui/material/colors';
+import { grey, red } from '@mui/material/colors';
 
-const WriteNotEnoughMoney = () => {
+interface WriteNotEnoughMoneyProps {
+  totalAmount: number;
+  totalPayment: number;
+}
+const WriteNotEnoughMoney = ({ totalAmount, totalPayment }: WriteNotEnoughMoneyProps) => {
   return (
     <Box
       sx={{
         fontSize: { xs: '1.5rem', sm: '2rem', md: '3rem' },
-        color: red[400],
+        // 文字の色を不足金額なら赤、おつりなら黒で出す
+        color: totalPayment - totalAmount <= 0 ? red[500] : grey,
         display: 'flex',
       }}
     >
-      <Box>不足金額</Box>
-      {/* 仮置き */}
-      <Box sx={{ marginLeft: '5rem' }}>1000円</Box>
+      {/* 不足金額かおつりを出す */}
+      <Box>{totalPayment - totalAmount <= 0 ? '不足金額' : 'おつり　'}</Box>
+      {/* 絶対値で不足金額またはおつりを表示 */}
+      <Box sx={{ marginLeft: '5rem' }}>{Math.abs(totalPayment - totalAmount)}円</Box>
     </Box>
   );
 };
