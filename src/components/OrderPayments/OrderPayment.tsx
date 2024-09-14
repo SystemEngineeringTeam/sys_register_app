@@ -8,7 +8,12 @@ import BackButton from './BackButton';
 import OkButton from './OkButton';
 import { useEffect, useState } from 'react';
 
-const OrderPayment = () => {
+// 合計金額をもらうPropsを仮置き
+interface OrderPaymentProps {
+  totalAmount: number;
+}
+
+const OrderPayment = ({ totalAmount }: OrderPaymentProps) => {
   // 貨幣の数を数えるuseState
 
   const [moneyCount1, setMoneyCount1] = useState(0);
@@ -21,6 +26,7 @@ const OrderPayment = () => {
   const [moneyCount5000, setMoneyCount5000] = useState(0);
   const [moneyCount10000, setMoneyCount10000] = useState(0);
   const [totalPayment, setTotalPayment] = useState(0);
+
   useEffect(() => {
     setTotalPayment(
       moneyCount1 +
@@ -44,6 +50,7 @@ const OrderPayment = () => {
     moneyCount500,
     moneyCount5000,
   ]);
+
   return (
     <Box sx={{ display: 'flex' }}>
       {/* OrderNumberはマージ終わったらsxを記入する */}
@@ -82,10 +89,10 @@ const OrderPayment = () => {
         />
         <Box sx={{ marginTop: { sm: '15rem', md: '10rem' } }}>
           {/* お支払いと合計金額 */}
-          <WritePaidSumMoney payment={totalPayment} />
+          <WritePaidSumMoney totalAmount={totalAmount} totalPayment={totalPayment} />
           <Box sx={{ border: 1 }} />
           {/* おつり */}
-          <WriteNotEnoughMoney />
+          <WriteNotEnoughMoney totalAmount={totalAmount} totalPayment={totalPayment} />
           <Box sx={{ display: 'flex', margin: '1rem' }}>
             <Box>
               <BackButton />
