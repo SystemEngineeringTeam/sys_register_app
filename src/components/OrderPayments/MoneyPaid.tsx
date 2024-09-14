@@ -1,12 +1,12 @@
-import { useState } from 'react';
 import { Box, CardMedia } from '@mui/material';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
 interface MoneyPaidProps {
   image: string;
+  count: number;
+  setCount: React.Dispatch<React.SetStateAction<number>>;
 }
-const MoneyPaid = ({ image }: MoneyPaidProps) => {
-  const [count, setCount] = useState(0);
+const MoneyPaid = ({ image, count, setCount }: MoneyPaidProps) => {
   return (
     <div>
       <Box
