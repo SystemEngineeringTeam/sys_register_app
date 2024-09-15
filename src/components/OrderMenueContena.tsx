@@ -4,6 +4,9 @@ import Yakitori from '/yakitori.png';
 import OrderMenueName from './OrderMenueName';
 import OrderMenueCustomize from './OrderMenueCustomize';
 import { BorderBottom } from '@mui/icons-material';
+import { useAtom } from 'jotai';
+import { orderCollectionAtom } from '../firebase/FirebaseUtils';
+import { processCustomizeChange } from '../utils/processCustomizeChange';
 
 interface OrderMenueContenaProps {
   ordername: string;
@@ -13,13 +16,33 @@ interface OrderMenueContenaProps {
 
 const OrderMenueContena = ({ ordername, orderprice, orderimg }: OrderMenueContenaProps) => {
   const imageDisplaySize = { width: 200, height: 200 };
-  const custommenus = [
-    { menu: 'たれ', price: 30 },
-    { menu: '塩', price: 10 },
-    { menu: 'チーズ', price: 20 },
-    { menu: '辛い', price: 20 },
-    { menu: '青のり', price: 10 },
-  ];
+  // const custommenus = [
+  //   { menu: 'たれ', price: 30 },
+  //   { menu: '塩', price: 10 },
+  //   { menu: 'チーズ', price: 20 },
+  //   { menu: '辛い', price: 20 },
+  //   { menu: '青のり', price: 10 },
+  // ];
+
+  const [orderCollectionData, setOrderCollectionData] = useAtom(orderCollectionAtom);
+
+  switch (orderCollectionData.state) {
+    case 'loading':
+      return <p>Loading...</p>;
+
+    case 'hasError':
+      return <p>Error</p>;
+
+    case 'hasData':
+      const processedCustom = processCustomizeChange((orderCollectionData.data || [])
+      .flatMap((order) => 
+          order.order.flatMap((o) => 
+            o.options
+          ))
+      )
+    
+        console.log('〜 ProcessedCustom:',processedCustom);
+       
 
   return (
     <div>
@@ -46,8 +69,8 @@ const OrderMenueContena = ({ ordername, orderprice, orderimg }: OrderMenueConten
             <OrderMenueName ordername={ordername} orderprice={orderprice} />
           </Stack>
           <Stack>
-            {custommenus.map((menu) => (
-              <OrderMenueCustomize custom={menu.menu} customprice={menu.price} />
+            {processedCustom.map((menu) => (
+              <OrderMenueCustomize custom={menu.name} customprice={menu.price} />
             ))}
           </Stack>
         </Stack>
@@ -55,5 +78,6 @@ const OrderMenueContena = ({ ordername, orderprice, orderimg }: OrderMenueConten
     </div>
   );
 };
+}
 
 export default OrderMenueContena;
