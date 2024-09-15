@@ -8,6 +8,7 @@ import Order from './pages/Order';
 import Home from './pages/Home';
 import { user_props } from './types';
 import OrderChange from './pages/OrderChange';
+import CustomizeChange from './pages/CustomizeChange';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/call" element={<Call />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/orderchange" element={<OrderChange />} />
+          <Route path="/customizechange" element={<CustomizeChange />} />
         </Route>
       </Routes>
     </Router>
