@@ -5,7 +5,8 @@ import CustmizeGraf from './CustmizeGraf';
 import { useAtom } from 'jotai';
 import { orderCollectionAtom } from '../firebase/FirebaseUtils';
 import { processCustomizeChange } from '../utils/processCustomizeChange';
-import { processCustomize } from '../utils/processCustomize';
+import { processOrderChange } from '../utils/processOrderChange';
+
 
 function CustomizeChangeLeft() {
   //const customizechanges = ['カスタマイズ1', 'カスタマイズ2', 'カスタマイズ3'];\
@@ -20,12 +21,17 @@ function CustomizeChangeLeft() {
       return <p>Error</p>;
 
     case 'hasData':
-    const processCustmize = processCustomize((orderCollectionData.data || [])
+    const processCustmize = processCustomizeChange((orderCollectionData.data || [])
     .flatMap((order) => 
       order.order.flatMap((o) => 
         o.options 
       ))
   )
+
+  const processOrder = processOrderChange(
+    (orderCollectionData.data || [])
+    .flatMap((order) => order.order.flatMap((o) => o.item)),
+  );
 
   console.log("🚀 ~ CustomizeChangeLeft ~ processCustmize:", processCustmize)
 
