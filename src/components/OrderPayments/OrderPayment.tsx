@@ -8,7 +8,7 @@ import BackButton from './BackButton';
 import OkButton from './OkButton';
 import { useEffect, useState } from 'react';
 // eslint-disable-next-line no-restricted-imports, import/no-cycle
-import { OrderCollectionIdToTotalAmount } from './orderCollectionIdToTotalAmount';
+import { OrderCollectionIdToTotalAmount } from './IdToTotalAmount';
 
 // 合計金額をもらうPropsを仮置き
 interface OrderPaymentProps {
