@@ -33,6 +33,10 @@ export const fetchOrderCollection = (uid: string, setData: (data: orderCollectio
   // 初回データ取得とリアルタイム更新
   onSnapshot(q, async (snapshot) => {
     const changes = snapshot.docChanges();
+    console.log('Changes detected:', changes);
+    if (changes.length === 0) {
+      console.log('No changes detected');
+    }
     const updatedData: orderCollection[] = [];
 
     for (const change of changes) {
@@ -126,18 +130,21 @@ export const fetchOrderCollection = (uid: string, setData: (data: orderCollectio
 
 // orderCollectionAtom をリアルタイムデータで更新する
 export const orderCollectionAtom = loadable(
-  atom((get, set) => {
+  atom(async (get) => {
     const user = get(uidAtom);
-    if (!user) return null;
+    if (!user) return []; // ユーザーが存在しない場合は空配列を返す
 
-    // データの取得および更新
-    fetchOrderCollection(user, (data) => {
-      set(orderCollectionAtom, data); // データを Atom にセット
+    // 非同期処理でデータを取得
+    const data = await new Promise<orderCollection[]>((resolve) => {
+      fetchOrderCollection(user, (fetchedData) => {
+        resolve(fetchedData);
+      });
     });
 
-    return []; // 初期状態の空配列
+    return data;
   })
 );
+
 
 // money のデータをリアルタイムで取得する関数
 export const fetchMoney = (uid: string, setData: (data: money[]) => void) => {
@@ -184,16 +191,21 @@ export const fetchMoney = (uid: string, setData: (data: money[]) => void) => {
   });
 };
 
-// moneyAtom をリアルタイムデータで更新する
-export const moneyAtom = loadable(
-  atom((get, set) => {
-    const user = get(uidAtom);
-    if (!user) return null;
 
-    fetchMoney(user, (data) => {
-      set(moneyAtom, data); // データを Atom にセット
+// 非同期でデータを取得してatomにセットする関数を作成
+
+export const moneyAtom = loadable(
+  atom(async (get) => {
+    const user = get(uidAtom);
+    if (!user) return []; // ユーザーが存在しない場合は空配列を返す
+
+    // 非同期処理でデータを取得
+    const data = await new Promise<money[]>((resolve) => {
+      fetchMoney(user, (fetchedData) => {
+        resolve(fetchedData); // データを取得後に Promise を解決
+      });
     });
 
-    return []; // 初期状態の空配列
+    return data; // データを返す
   })
 );
