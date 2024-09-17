@@ -7,13 +7,14 @@ import WriteNotEnoughMoney from './WriteNotEnoughMoney';
 import BackButton from './BackButton';
 import OkButton from './OkButton';
 import { useEffect, useState } from 'react';
+// eslint-disable-next-line no-restricted-imports, import/no-cycle
+import { OrderCollectionIdToTotalAmount } from './orderCollectionIdToTotalAmount';
 
 // 合計金額をもらうPropsを仮置き
 interface OrderPaymentProps {
-  totalAmount: number;
+  orderCollectionId: string;
 }
-
-const OrderPayment = ({ totalAmount }: OrderPaymentProps) => {
+const OrderPayment = ({ orderCollectionId }: OrderPaymentProps) => {
   // 貨幣の数を数えるuseState
 
   const [moneyCount1, setMoneyCount1] = useState(0);
@@ -26,6 +27,15 @@ const OrderPayment = ({ totalAmount }: OrderPaymentProps) => {
   const [moneyCount5000, setMoneyCount5000] = useState(0);
   const [moneyCount10000, setMoneyCount10000] = useState(0);
   const [totalPayment, setTotalPayment] = useState(0);
+  const [totalAmount, setTotalAmount] = useState(0);
+
+  useEffect(() => {
+    const orderCollectionPromise = async () => {
+      // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
+      setTotalAmount(await OrderCollectionIdToTotalAmount({ orderCollectionId }));
+    };
+    void orderCollectionPromise();
+  }, []);
 
   useEffect(() => {
     setTotalPayment(
