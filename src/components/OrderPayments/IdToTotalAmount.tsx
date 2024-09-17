@@ -11,7 +11,7 @@ interface OrderCollectionIdToTotalAmountProps {
 }
 
 // firebaseのところに書き加える内容
-export const fetchOrder = async (orderCollectionId: string): Promise<order[]> => {
+const fetchOrder = async (orderCollectionId: string): Promise<order[]> => {
   const q = query(collection(db, 'orderCollection', orderCollectionId, 'order'));
   const orderRef = await getDocs(q);
   const orderData: order[] = await Promise.all(
