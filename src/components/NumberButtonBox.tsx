@@ -18,7 +18,7 @@ const NumberButtonBox = ({ orders }: NumberButtonBoxProps) => {
         }}
       >
         {orders.map((value) => (
-          <NumberButton orders={value} />
+          <NumberButton orders={value} key={value} />
         ))}
       </Box>
     </div>

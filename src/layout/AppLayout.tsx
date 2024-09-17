@@ -134,8 +134,7 @@ const AppLayout = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            {/* Listの値を取得して表示 */}
-            {listItems.find((item) => item.to === useLocation().pathname)?.text}
+            <p>{listItems.find((item) => item.to === useLocation().pathname)?.text}</p>
           </Typography>
           <img></img>
         </Toolbar>
