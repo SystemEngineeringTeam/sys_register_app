@@ -8,11 +8,23 @@ import { Link } from 'react-router-dom';
 // })
 interface NumberButtonProps {
   orders: number;
+  menu:{
+    name: string | null;
+    price: number | null;
+}[]
 }
-const NumberButton = ({ orders }: NumberButtonProps) => {
+const NumberButton = ({ orders 
+  , menu
+}: NumberButtonProps) => {
+console.log("🚀 ~ NumberButton ~ menu:", menu)
+console.log("🚀 ~ NumberButton ~ orders:", orders)
+
+  
   return (
     <div>
-      <Link to="/orderchange">
+      <Link to="/orderchange" state={{ states: orders 
+        , menu:menu
+        }}>
         <Button
           sx={{
             flexGrow: 1,
