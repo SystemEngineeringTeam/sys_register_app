@@ -6,6 +6,7 @@ import OrderWaitPeople from '../components/OrderWaitPeople';
 import { orderCollectionAtom } from '../firebase/FirebaseUtils';
 import { useAtom } from 'jotai';
 import { processOrderCollection } from '../utils/processOrderCollection';
+import { processOrderChange } from '../utils/processOrderChange';
 
 const Order = () => {
   // const orders = [
@@ -30,11 +31,16 @@ const Order = () => {
 
         const orders = order.map((order) => Number(order.id))
         //const orders = [Number(order)];
+        
+        const menu = processOrderChange(
+          (orderCollectionData.data || [])
+          .flatMap((order) => order.order.flatMap((o) => o.item)),
+        );
 
         console.log("🚀 ~ Order ~ orders:", orders);
         return (
           <div>
-            <NumberButtonBox orders={orders} />
+            <NumberButtonBox orders={orders} menu={menu}/>
             <OrderWaitPeople orders={orders} />
           </div>
         );
