@@ -1,12 +1,14 @@
 import {
   collection,
   doc,
+  DocumentChange,
   DocumentData,
   DocumentReference,
   getDoc,
   getDocs,
   onSnapshot,
   query,
+  QueryDocumentSnapshot,
 } from 'firebase/firestore';
 import { atom } from 'jotai';
 import { db } from './firebase';
@@ -210,3 +212,62 @@ export const moneyAtom = loadable(
     return data; // データを返す
   }),
 );
+
+
+
+export  const fetchOrder = async (uid:string,docSnapshot:QueryDocumentSnapshot<DocumentData, DocumentData>): Promise<order[]> => {
+  const orderRef = query(collection(db, 'shop_user', uid, 'orderCollection', docSnapshot.id, 'order'));
+  const orderSnapshot = await getDocs(orderRef);
+
+  const orderData: order[] = await Promise.all(
+    orderSnapshot.docs.map(async (orderDoc): Promise<order> => {
+      const orderData = orderDoc.data();
+      const itemRef = orderData.item;
+      const itemDoc = await getDoc(itemRef);
+
+      const item = async (): Promise<items> => {
+        const itemData = itemDoc.data() as DocumentData;
+        const optionsArray = itemData.options ?? [];
+        const optionData: options[] = await Promise.all(
+          optionsArray.map(async (optionRef: DocumentReference) => {
+            const optionSnap = await getDoc(optionRef);
+            if (optionSnap.exists()) {
+              return optionSnap.data() as options;
+            } else {
+              return { id: null, name: null, price: null };
+            }
+          }),
+        );
+
+        return {
+          id: itemDoc.id,
+          name: itemData.name,
+          price: itemData.price,
+          visible: itemData.visible,
+          category_id: itemData.category_id,
+          options: optionData,
+        };
+      };
+
+      const optionData: options[] = await Promise.all(
+        orderData.options.map(async (optionRef: DocumentReference) => {
+          const optionDoc = await getDoc(optionRef);
+          if (optionDoc.exists()) {
+            return optionDoc.data() as options;
+          } else {
+            return { id: null, name: null, price: null };
+          }
+        }),
+      );
+
+      return {
+        id: orderDoc.id,
+        item: await item(),
+        options: optionData,
+        qty: orderData.qty,
+      };
+    }),
+  );
+
+  return orderData;
+};
