@@ -66,7 +66,7 @@ export const fetchOrderCollection = (uid: string, setData: (data: orderCollectio
                     } else {
                       return { id: null, name: null, price: null };
                     }
-                  })
+                  }),
                 );
 
                 return {
@@ -87,7 +87,7 @@ export const fetchOrderCollection = (uid: string, setData: (data: orderCollectio
                   } else {
                     return { id: null, name: null, price: null };
                   }
-                })
+                }),
               );
 
               return {
@@ -96,7 +96,7 @@ export const fetchOrderCollection = (uid: string, setData: (data: orderCollectio
                 options: optionData,
                 qty: orderData.qty,
               };
-            })
+            }),
           );
 
           return orderData;
@@ -142,9 +142,8 @@ export const orderCollectionAtom = loadable(
     });
 
     return data;
-  })
+  }),
 );
-
 
 // money のデータをリアルタイムで取得する関数
 export const fetchMoney = (uid: string, setData: (data: money[]) => void) => {
@@ -183,14 +182,16 @@ export const fetchMoney = (uid: string, setData: (data: money[]) => void) => {
         }
       } else if (change.type === 'removed') {
         // 削除されたデータを配列から除去
-        updatedData.splice(updatedData.findIndex((entry) => entry.date === Number(doc.id)), 1);
+        updatedData.splice(
+          updatedData.findIndex((entry) => entry.date === Number(doc.id)),
+          1,
+        );
       }
     });
 
     setData(updatedData);
   });
 };
-
 
 // 非同期でデータを取得してatomにセットする関数を作成
 
@@ -207,5 +208,5 @@ export const moneyAtom = loadable(
     });
 
     return data; // データを返す
-  })
+  }),
 );

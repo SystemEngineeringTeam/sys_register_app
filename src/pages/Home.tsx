@@ -30,7 +30,7 @@ const Home = () => {
 
             <h1>お金</h1>
             {money?.map(
-              (money:money) => (
+              (money: money) => (
                 console.log('money.date:' + money.date),
                 console.log('1円:' + money['1']),
                 console.log('5円:' + money['5']),
@@ -43,21 +43,19 @@ const Home = () => {
                 console.log('10000円:' + money['10000']),
                 (
                   <div key={money.date}>
-                    <p>{'1円'+money['1']}</p>
-                    <p>{'5円'+money['5']}</p>
-                    <p>{'10円'+money['10']}</p>
-                    <p>{'50円'+money['50']}</p>
-                    <p>{'100円'+money['100']}</p>
-                    <p>{'500円'+money['500']}</p>
-                    <p>{'1000円'+money['1000']}</p>
-                    <p>{'5000円'+money['5000']}</p>
-                    <p>{'10000円'+money['10000']}</p>
+                    <p>{'1円' + money['1']}</p>
+                    <p>{'5円' + money['5']}</p>
+                    <p>{'10円' + money['10']}</p>
+                    <p>{'50円' + money['50']}</p>
+                    <p>{'100円' + money['100']}</p>
+                    <p>{'500円' + money['500']}</p>
+                    <p>{'1000円' + money['1000']}</p>
+                    <p>{'5000円' + money['5000']}</p>
+                    <p>{'10000円' + money['10000']}</p>
                   </div>
                 )
               ),
             )}
-
-
 
             {orderCollectionData.data?.map(
               (orderCollection: orderCollection) => (

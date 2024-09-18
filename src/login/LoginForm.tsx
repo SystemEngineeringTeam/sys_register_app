@@ -37,6 +37,7 @@ const LoginForm = () => {
       if (authUser) {
         // ログインしている場合
         setUser(authUser);
+        navigate(redirectTo ?? '/');
       } else {
         // ログアウトしている場合
         setUser(null);
@@ -75,14 +76,7 @@ const LoginForm = () => {
     }
   };
 
-  // ログアウト
-  const handleSignOut = async () => {
-    try {
-      await signOut(auth);
-    } catch (error) {
-      console.error('ログアウトエラー:', error);
-    }
-  };
+
 
   return (
     <Grid>
