@@ -7,16 +7,20 @@ import WriteNotEnoughMoney from './WriteNotEnoughMoney';
 import BackButton from './BackButton';
 import OkButton from './OkButton';
 import { useEffect, useState } from 'react';
+// eslint-disable-next-line no-restricted-imports
+import { idToTotalAmount } from '../../utils/accountingUtils';
+import { useAtom } from 'jotai';
 // eslint-disable-next-line no-restricted-imports, import/no-cycle
-import { OrderCollectionIdToTotalAmount } from './IdToTotalAmount';
+import { orderCollectionAtom } from '../../firebase/FirebaseUtils';
 
-// 合計金額をもらうPropsを仮置き
 interface OrderPaymentProps {
   orderCollectionId: string;
 }
 const OrderPayment = ({ orderCollectionId }: OrderPaymentProps) => {
+  // orderCollectionをuseAtomで読み取り
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [orderCollectionData, setOrderCollectionData] = useAtom(orderCollectionAtom);
   // 貨幣の数を数えるuseState
-
   const [moneyCount1, setMoneyCount1] = useState(0);
   const [moneyCount5, setMoneyCount5] = useState(0);
   const [moneyCount10, setMoneyCount10] = useState(0);
@@ -27,16 +31,8 @@ const OrderPayment = ({ orderCollectionId }: OrderPaymentProps) => {
   const [moneyCount5000, setMoneyCount5000] = useState(0);
   const [moneyCount10000, setMoneyCount10000] = useState(0);
   const [totalPayment, setTotalPayment] = useState(0);
-  const [totalAmount, setTotalAmount] = useState(0);
-
-  useEffect(() => {
-    const orderCollectionPromise = async () => {
-      // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
-      setTotalAmount(await OrderCollectionIdToTotalAmount({ orderCollectionId }));
-    };
-    void orderCollectionPromise();
-  }, []);
-
+  // const [totalAmount, setTotalAmount] = useState(0);
+  // お客様が支払ったお金を管理するuseEffect
   useEffect(() => {
     setTotalPayment(
       moneyCount1 +
@@ -61,6 +57,26 @@ const OrderPayment = ({ orderCollectionId }: OrderPaymentProps) => {
     moneyCount5000,
   ]);
 
+  function getTotalAmount() {
+    switch (orderCollectionData.state) {
+      case 'loading':
+        return -1;
+
+      case 'hasError':
+        return -1;
+
+      case 'hasData':
+        // orderCollectionData.dataの型整形用
+        if (orderCollectionData.data === null || orderCollectionData.data === undefined) {
+          return -1;
+        }
+        // orderCollectionIdから合計金額を出す関数
+        return idToTotalAmount(orderCollectionId, orderCollectionData.data);
+
+      default:
+        return -1;
+    }
+  }
   return (
     <Box sx={{ display: 'flex' }}>
       {/* OrderNumberはマージ終わったらsxを記入する */}
@@ -99,10 +115,10 @@ const OrderPayment = ({ orderCollectionId }: OrderPaymentProps) => {
         />
         <Box sx={{ marginTop: { sm: '15rem', md: '10rem' } }}>
           {/* お支払いと合計金額 */}
-          <WritePaidSumMoney totalAmount={totalAmount} totalPayment={totalPayment} />
+          <WritePaidSumMoney totalAmount={getTotalAmount()} totalPayment={totalPayment} />
           <Box sx={{ border: 1 }} />
           {/* おつり */}
-          <WriteNotEnoughMoney totalAmount={totalAmount} totalPayment={totalPayment} />
+          <WriteNotEnoughMoney totalAmount={getTotalAmount()} totalPayment={totalPayment} />
           <Box sx={{ display: 'flex', margin: '1rem' }}>
             <Box>
               <BackButton />
