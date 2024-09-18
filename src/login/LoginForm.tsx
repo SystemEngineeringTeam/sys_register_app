@@ -49,7 +49,6 @@ const LoginForm = () => {
       unsubscribe();
     };
   }, [user]);
-  
 
   // idとpasswordを使ってログイン
   const handleLogin = async () => {
@@ -76,8 +75,6 @@ const LoginForm = () => {
       console.error('ログインエラー', error);
     }
   };
-
-
 
   return (
     <Grid>

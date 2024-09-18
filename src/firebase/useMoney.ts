@@ -1,10 +1,9 @@
-import { collection, getDocs, onSnapshot, PartialWithFieldValue, QueryDocumentSnapshot } from 'firebase/firestore';
+import { collection, onSnapshot, PartialWithFieldValue, QueryDocumentSnapshot } from 'firebase/firestore';
 import { useAtomValue } from 'jotai';
-import { useState, useEffect } from 'react';
 import { userAtom } from '../login/AdminLogin';
-import { orderCollection } from '../types';
+import { money } from '../types';
+import { useEffect, useState } from 'react';
 import { db } from './firebase';
-import { fetchOrder } from './FirebaseUtils';
 
 // ref: https://stackoverflow.com/questions/74486413
 function converter<T>() {
@@ -14,56 +13,57 @@ function converter<T>() {
   };
 }
 
-export function useOrderCollection() {
+export function useMoney() {
   const user = useAtomValue(userAtom);
   // TODO (@SatooRu65536):
   // - 良い感じの Atom にする
   // - Writable Derived Atom を使って単一のドキュメントを更新する
-  const [data, setData] = useState<orderCollection[]>();
+  const [money, setMoney] = useState<money[]>();
 
   if (user === null) {
     throw new Error('User is not logged in');
   }
 
-  const colRef = collection(db, 'shop_user', user.uid, 'orderCollection').withConverter(converter<orderCollection>());
-
-  // async function getOnce() {
-  //   const docSnap = await getDocs(colRef);
-  //   const data = docSnap.docs.map((doc) => doc.data());
-  //   console.log({ data });
-  //   return data;
-  // }
+  const colRef = collection(db, 'shop_user', user.uid, 'mony').withConverter(converter<money>());
 
   useEffect(() => {
     const unsub = onSnapshot(colRef, (snapshot) => {
-      const uid = user.uid;
       // const newData = snapshot.docs.map((doc) => doc.data() as orderCollection);
 
       snapshot.docChanges().forEach(async (change) => {
         const docSnapshot = change.doc;
-        const Docdata = docSnapshot.data();
-        const orderData = await fetchOrder(uid, docSnapshot);
+        const changeData = docSnapshot.data();
 
-        const newData: orderCollection = {
-          id: docSnapshot.id,
-          order: orderData,
-          timestamp: Docdata.timestamp as number,
-          accounting: Docdata.accounting as boolean,
-          cooking: Docdata.cooking as boolean,
-          offer: Docdata.offer as boolean,
+        const newData: money = {
+          date: Number(docSnapshot.id),
+          '1000': changeData['1000'] as number,
+          '5000': changeData['5000'] as number,
+          '10000': changeData['10000'] as number,
+          '500': changeData['500'] as number,
+          '100': changeData['100'] as number,
+          '10': changeData['10'] as number,
+          '50': changeData['50'] as number,
+          '5': changeData['5'] as number,
+          '1': changeData['1'] as number,
+          total: changeData.total as number,
         };
 
         // 追加時
         if (change.type === 'added') {
-          setData((prevData) => [...(prevData || []), newData]);
+          setMoney((prevData) => {
+            if (prevData) {
+              return [...prevData, newData];
+            }
+            return [newData];
+          });
         }
 
         // 修正（更新時）
         if (change.type === 'modified') {
-          setData((prevData) => {
+          setMoney((prevData) => {
             if (prevData) {
               return prevData.map((data) => {
-                if (data.id === docSnapshot.id) {
+                if (data.date === newData.date) {
                   return newData;
                 }
                 return data;
@@ -74,27 +74,25 @@ export function useOrderCollection() {
         }
         // 完全削除時
         if (change.type === 'removed') {
-          setData((prevData) => {
+          setMoney((prevData) => {
             if (prevData) {
-              return prevData.filter((data) => data.id !== docSnapshot.id);
+              return prevData.filter((data) => data.date !== newData.date);
             }
             return prevData;
           });
         }
       });
     });
-
     console.log('Changed!!!');
-    // const newData = snapshot.docs.map((doc) => doc.data() as orderCollection);
-    // setData(newData);
+
     return () => {
       unsub();
     };
   }, []);
 
   return {
-    data,
-    setData,
+    money,
+    setMoney,
     // getOnce,
   };
 }

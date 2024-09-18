@@ -7,5 +7,3 @@ import { auth } from '../firebase/firebase';
 // ユーザーのログイン情報を保持するatom
 export const userAtom = atom<User | null | developer>(null);
 export const userAtomLoadable = loadable(userAtom);
-
-
