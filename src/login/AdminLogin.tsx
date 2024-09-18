@@ -9,12 +9,3 @@ export const userAtom = atom<User | null | developer>(null);
 export const userAtomLoadable = loadable(userAtom);
 
 
-
-// ログアウト
-export  const handleSignOut = async () => {
-  try {
-    await signOut(auth);
-  } catch (error) {
-    console.error('ログアウトエラー:', error);
-  }
-}

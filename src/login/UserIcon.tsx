@@ -1,7 +1,10 @@
 import { Logout, PersonAdd, Settings } from '@mui/icons-material';
 import { Avatar, Box, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip } from '@mui/material';
 import React from 'react';
-import { handleSignOut } from './AdminLogin';
+import {  userAtom } from './AdminLogin';
+import { useAtom } from 'jotai';
+import { signOut } from 'firebase/auth';
+import { auth } from '../firebase/firebase';
 
 const UserIcon = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -12,6 +15,19 @@ const UserIcon = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const [user, setUser] = useAtom(userAtom);
+
+  // ログアウト
+ const handleSignOut = async () => {
+  try {
+    await signOut(auth);
+    console.log('ログアウトしました');
+    setUser(null);
+  } catch (error) {
+    console.error('ログアウトエラー:', error);
+  }
+}
 
   return (
     <Box>

@@ -48,7 +48,8 @@ const LoginForm = () => {
     return () => {
       unsubscribe();
     };
-  }, [setUser]);
+  }, [user]);
+  
 
   // idとpasswordを使ってログイン
   const handleLogin = async () => {
