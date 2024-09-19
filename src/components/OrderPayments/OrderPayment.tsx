@@ -9,19 +9,16 @@ import OkButton from './OkButton';
 import { useEffect, useState } from 'react';
 // eslint-disable-next-line no-restricted-imports
 import { idToTotalAmount } from '../../utils/accountingUtils';
+// eslint-disable-next-line no-restricted-imports
 import { useOrderCollection } from '../../firebase/useOrderCollection';
-import { useMoney } from '../../firebase/useMoney';
 
 interface OrderPaymentProps {
   orderCollectionId: string;
 }
 const OrderPayment = ({ orderCollectionId }: OrderPaymentProps) => {
-  // orderCollectionをuseAtomで読み取り
   // ここのdataは固定名
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { data } = useOrderCollection();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { money } = useMoney();
   // 貨幣の数を数えるuseState
   const [moneyCount1, setMoneyCount1] = useState(0);
   const [moneyCount5, setMoneyCount5] = useState(0);
@@ -69,7 +66,6 @@ const OrderPayment = ({ orderCollectionId }: OrderPaymentProps) => {
   }
   return (
     <Box sx={{ display: 'flex' }}>
-      {/* OrderNumberはマージ終わったらsxを記入する */}
       {/* 注文番号 */}
       <Box
         sx={{
