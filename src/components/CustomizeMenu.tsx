@@ -1,8 +1,31 @@
 import { Box, Stack } from '@mui/material';
 import React from 'react';
 import Yakitori from '/yakitori.png';
+import { useAtom } from 'jotai';
+import { orderCollectionAtom } from '../firebase/FirebaseUtils';
+import { processOrderChange } from '../utils/processOrderChange';
 
-function CustomizeMenu() {
+interface CustomizeMenuProps{
+  ordername: string;
+}
+function CustomizeMenu({ordername}:CustomizeMenuProps) {
+
+  const [orderCollectionData, setOrderCollectionData] = useAtom(orderCollectionAtom);
+
+  switch (orderCollectionData.state) {
+    case 'loading':
+      return <p>Loading...</p>;
+
+    case 'hasError':
+      return <p>Error</p>;
+
+    case 'hasData':
+      // const processedOptions = processOrderChange(
+      //   (orderCollectionData.data || [])
+      //   .flatMap((order) => order.order.flatMap((o) => o.item)),
+      // );
+      //console.log('🚀 ~ Order ~ order:', processedOptions);
+
   const imageDisplaySize = { width: 200, height: 200 };
   return (
     <div>
@@ -11,10 +34,17 @@ function CustomizeMenu() {
         <Box>
           <img src={Yakitori} className="yakitori" style={imageDisplaySize} />
         </Box>
-        <Box sx={{ fontSize: '60px' }}>menu</Box>
+        <Box sx={{ fontSize: '60px' }}>
+        {/* {processedOptions.map((order) => (
+                 order.name
+              ))} */}
+              {ordername}
+
+        </Box>
       </Stack>
     </div>
   );
+}
 }
 
 export default CustomizeMenu;
