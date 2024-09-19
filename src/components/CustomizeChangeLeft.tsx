@@ -7,8 +7,12 @@ import { orderCollectionAtom } from '../firebase/FirebaseUtils';
 import { processCustomizeChange } from '../utils/processCustomizeChange';
 import { processOrderChange } from '../utils/processOrderChange';
 
+interface CustomizeChangeLeftProps {
+  processedoptions: string;
+  customizename:string;
+}
 
-function CustomizeChangeLeft() {
+function CustomizeChangeLeft({processedoptions,customizename}:CustomizeChangeLeftProps) {
   //const customizechanges = ['カスタマイズ1', 'カスタマイズ2', 'カスタマイズ3'];\
 
   const [orderCollectionData, setOrderCollectionData] = useAtom(orderCollectionAtom);
@@ -28,10 +32,10 @@ function CustomizeChangeLeft() {
       ))
   )
 
-  const processOrder = processOrderChange(
-    (orderCollectionData.data || [])
-    .flatMap((order) => order.order.flatMap((o) => o.item)),
-  );
+  // const processOrder = processOrderChange(
+  //   (orderCollectionData.data || [])
+  //   .flatMap((order) => order.order.flatMap((o) => o.item)),
+  // );
 
   console.log("🚀 ~ CustomizeChangeLeft ~ processCustmize:", processCustmize)
 
@@ -40,13 +44,20 @@ function CustomizeChangeLeft() {
     <div>
       <Box sx={{ ml: '50px' }}>
         <Box>
-          <CustomizeMenu />
+
+        
+            <CustomizeMenu
+              ordername={processedoptions || ''}
+            />
+ 
+
+          {/* <CustomizeMenu  processedoptions={state.menu} orders={state.menu}/> */}
         </Box>
         <Box sx={{ fontSize: '30px' }}>カスタマイズ</Box>
         <Box>
-          {processCustmize.map((order) => (
-            <CustmizeGraf customize={order.name || ''} />
-          ))}
+          
+            <CustmizeGraf customize={customizename || ''} />
+ 
         </Box>
       </Box>
     </div>
