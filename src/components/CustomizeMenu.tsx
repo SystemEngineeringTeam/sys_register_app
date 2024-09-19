@@ -5,7 +5,10 @@ import { useAtom } from 'jotai';
 import { orderCollectionAtom } from '../firebase/FirebaseUtils';
 import { processOrderChange } from '../utils/processOrderChange';
 
-function CustomizeMenu() {
+interface CustomizeMenuProps{
+  ordername: string;
+}
+function CustomizeMenu({ordername}:CustomizeMenuProps) {
 
   const [orderCollectionData, setOrderCollectionData] = useAtom(orderCollectionAtom);
 
@@ -17,11 +20,11 @@ function CustomizeMenu() {
       return <p>Error</p>;
 
     case 'hasData':
-      const processedOptions = processOrderChange(
-        (orderCollectionData.data || [])
-        .flatMap((order) => order.order.flatMap((o) => o.item)),
-      );
-      console.log('🚀 ~ Order ~ order:', processedOptions);
+      // const processedOptions = processOrderChange(
+      //   (orderCollectionData.data || [])
+      //   .flatMap((order) => order.order.flatMap((o) => o.item)),
+      // );
+      //console.log('🚀 ~ Order ~ order:', processedOptions);
 
   const imageDisplaySize = { width: 200, height: 200 };
   return (
@@ -32,9 +35,11 @@ function CustomizeMenu() {
           <img src={Yakitori} className="yakitori" style={imageDisplaySize} />
         </Box>
         <Box sx={{ fontSize: '60px' }}>
-        {processedOptions.map((order) => (
+        {/* {processedOptions.map((order) => (
                  order.name
-              ))}
+              ))} */}
+              {ordername}
+
         </Box>
       </Stack>
     </div>
