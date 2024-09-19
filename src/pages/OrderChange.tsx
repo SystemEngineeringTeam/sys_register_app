@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import OrderMenuLeft from '../components/OrderMenuLeft';
+
 import OrderMenuRight from '../components/OrderMenuRight';
 import { Box, Stack } from '@mui/material';
 import OrderButton from '../components/OrderButton';
@@ -8,6 +8,7 @@ import { processOrderChange } from '../utils/processOrderChange';
 import { useAtom } from 'jotai';
 import { orderCollectionAtom } from '../firebase/FirebaseUtils';
 import { processOrderCollection } from '../utils/processOrderCollection';
+import OrderMenuLeft from '../components/OrderMenuLeft';
 
 const OrderChange = () => {
   const { state } = useLocation();
@@ -21,6 +22,7 @@ const OrderChange = () => {
   }, [state]);
   
     console.log("🚀 ~ useEffect ~ setOrdersList:", ordersList)
+    
   
 
   const [orderCollectionData, setOrderCollectionData] = useAtom(orderCollectionAtom);
@@ -39,6 +41,8 @@ const OrderChange = () => {
     console.log(state.id);
     console.log(state.name);
     console.log(state.menu.id);
+    console.log(state.menuqty);
+    console.log(state.selectCustomize);
 
 
   // const menu = processOrderChange(
@@ -52,14 +56,13 @@ const OrderChange = () => {
         console.log("🚀 ~ OrderChange ~ orders:", orders)
         
 
-  const processedOptions = processOrderChange(
-    (orderCollectionData.data || [])
-    .flatMap((order) => order.order.flatMap((o) => o.item)),
-  );
+  // const processedOptions = processOrderChange(
+  //   (orderCollectionData.data || [])
+  //   .flatMap((order) => order.order.flatMap((o) => o.item)),
+  // );
 
 
-
-  console.log("🚀 ~ OrderChange ~ processedOptions:", processedOptions)
+  // console.log("🚀 ~ OrderChange ~ processedOptions:", processedOptions)
 
   // // 選択された `order` に対応する `processedOptions` をフィルタリング
   // const filteredOptions = processedOptions.filter((_, index) => setOrdersList.includes(index + 1));
@@ -76,8 +79,12 @@ const OrderChange = () => {
   //    console.log("🚀 ~ OrderChange ~ selectMenu:", selectMenu)
 
   console.log(state);
+  console.log(state.states);
     console.log(state.menu);
-   
+    console.log(state.qty);
+    console.log(state.menuqty);
+   console.log(order);
+   console.log(state.selectCustomize);
 
   return (
 
@@ -85,7 +92,9 @@ const OrderChange = () => {
       <Box sx={{ display: 'flex', height: '100vh' }}>
         {/* 左側メニューリスト */}
         <Box sx={{ flex: 4, overflowY: 'auto' }}>
-        <OrderMenuLeft processedoptions={state.menu} orders={state.menu} />
+        <OrderMenuLeft processedoptions={state.menu} orders={state.states} menuqty={state.menuqty} 
+        customize={state.selectCustomize}
+        />
           
         </Box>
 
