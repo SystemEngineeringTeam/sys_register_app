@@ -1,6 +1,6 @@
-import { items, options, orderCollection } from "../types";
+import { items, options, order, orderCollection } from "../types";
 
-export const processOrderChange = (processcollection: items[]):{name: string | null , price: number | null}[] => {
+export const processOrderChange = (processcollection: items[]):{name: string | null , price: number | null }[] => {
     return processcollection
     
     .map(items => {
@@ -10,4 +10,14 @@ export const processOrderChange = (processcollection: items[]):{name: string | n
 
         }
     })
+}
+
+export const processNumber = (processsnum: order[]):{qty: number | null}[] => {
+    return processsnum
+    .map(items => {
+        return {
+            qty:items.qty || null
+        }
+    })
+
 }
