@@ -18,6 +18,7 @@ import GoogleButton from 'react-google-button';
 import { atom, useAtom } from 'jotai';
 import { userAtom } from './AdminLogin';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const idAtom = atom<string | null>(null);
 const passwordAtom = atom<string | null>(null);
@@ -26,6 +27,9 @@ const LoginForm = () => {
   const [user, setUser] = useAtom(userAtom);
   const [id, setId] = useAtom(idAtom);
   const [password, setPassword] = useAtom(passwordAtom);
+  const navigate = useNavigate();
+
+  const redirectTo = new URLSearchParams(window.location.search).get('redirect');
 
   // ログイン状態の監視
   useEffect(() => {
@@ -33,6 +37,7 @@ const LoginForm = () => {
       if (authUser) {
         // ログインしている場合
         setUser(authUser);
+        navigate(redirectTo ?? '/');
       } else {
         // ログアウトしている場合
         setUser(null);
@@ -43,7 +48,7 @@ const LoginForm = () => {
     return () => {
       unsubscribe();
     };
-  }, [setUser]);
+  }, [user]);
 
   // idとpasswordを使ってログイン
   const handleLogin = async () => {
@@ -52,6 +57,7 @@ const LoginForm = () => {
         // Firebaseの認証メソッドを使ってログインする処理を追加することが推奨されます。
         const uid = id;
         setUser({ uid, password });
+        navigate(redirectTo ?? '/');
       } else {
         throw new Error('IDまたはパスワードが無効です');
       }
@@ -70,15 +76,6 @@ const LoginForm = () => {
     }
   };
 
-  // ログアウト
-  const handleSignOut = async () => {
-    try {
-      await signOut(auth);
-    } catch (error) {
-      console.error('ログアウトエラー:', error);
-    }
-  };
-
   return (
     <Grid>
       <Paper
@@ -89,6 +86,7 @@ const LoginForm = () => {
           width: '280px',
           m: '20px auto',
         }}
+        component="form"
       >
         <Grid container direction="column" alignItems="center">
           <Avatar sx={{ bgcolor: teal[400] }}>
@@ -103,7 +101,7 @@ const LoginForm = () => {
           variant="standard"
           fullWidth
           required
-          value={id}
+          value={id ?? ''}
           onChange={(e) => setId(e.target.value)}
         />
         <TextField
@@ -112,7 +110,8 @@ const LoginForm = () => {
           variant="standard"
           fullWidth
           required
-          value={password}
+          autoComplete="current-password"
+          value={password ?? ''}
           onChange={(e) => setPassword(e.target.value)}
         />
         {/* ラベルとチェックボックス */}
@@ -143,6 +142,17 @@ const LoginForm = () => {
           <GoogleButton onClick={handleSignIn} />
         </Box>
       </Paper>
+      {redirectTo != null && (
+        <p
+          style={{
+            textAlign: 'center',
+            color: 'gray',
+            fontSize: '0.8rem',
+          }}
+        >
+          保護されたページです。ログインしてください; 遷移先: (<code>{redirectTo}</code>)
+        </p>
+      )}
     </Grid>
   );
 };

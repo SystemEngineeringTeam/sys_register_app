@@ -1,12 +1,12 @@
-import { Box } from '@mui/material';
+import { Box, CardMedia } from '@mui/material';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import { useState } from 'react';
-import { CardMedia } from '@mui/material';
+
 interface MoneyPaidProps {
   image: string;
+  count: number;
+  setCount: React.Dispatch<React.SetStateAction<number>>;
 }
-const MoneyPaid = ({ image }: MoneyPaidProps) => {
-  const [count, setCount] = useState(0);
+const MoneyPaid = ({ image, count, setCount }: MoneyPaidProps) => {
   return (
     <div>
       <Box
@@ -14,6 +14,7 @@ const MoneyPaid = ({ image }: MoneyPaidProps) => {
           border: 1,
           width: { xs: '7rem', sm: '9rem' },
           height: { xs: '7rem', sm: '9rem' },
+          opacity: count === 0 ? '0.5' : '1',
         }}
       >
         {/* 0以上の値の場合、クリック時にcountを -1 */}
@@ -34,9 +35,11 @@ const MoneyPaid = ({ image }: MoneyPaidProps) => {
             objectFit: 'fill',
             position: 'relative',
           }}
-          onClick={() => setCount((prevState) => prevState + 1)}
+          onClick={() => {
+            setCount((prevState) => prevState + 1);
+          }}
           image={image}
-        ></CardMedia>
+        />
         <Box
           sx={{
             textAlign: 'center',
