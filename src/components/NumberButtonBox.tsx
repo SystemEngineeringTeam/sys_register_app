@@ -10,9 +10,20 @@ interface NumberButtonBoxProps {
     name: string | null;
     price: number | null;
   }[];
+  menuqty: {
+    qty: number | null;
+  }[];
+  customize: {
+    name: string;
+    price: number;
+}[];
 }
 
-const NumberButtonBox = ({ orders , menu}: NumberButtonBoxProps) => {
+const NumberButtonBox = ({ orders,
+    menu,
+    menuqty,
+  customize,
+ }: NumberButtonBoxProps) => {
   return (
     <div>
       <Box
@@ -24,11 +35,20 @@ const NumberButtonBox = ({ orders , menu}: NumberButtonBoxProps) => {
         }}
       >
         {orders.map((value) => {
-          const selectMenu = menu[value - 1];
+         console.log("🚀 ~ {orders.map ~ value:", value)
+
+         const selectMenu = menu[value - 1];
+         console.log("🚀 ~ {orders.map ~ selectMenu:", selectMenu)
+         
+         const selectQty = menuqty[value - 1];
+
+         const selectCustomize = customize[value - 1];
 
           return <NumberButton orders={value} 
-          menu={selectMenu? [selectMenu] : []} 
-          />;
+          menu={selectMenu ? [selectMenu] : []}
+           menuqty={selectQty ? [selectQty] : []}
+           selectCustomize={selectCustomize ? [selectCustomize] : []}
+           />;
         })}
       </Box>
     </div>
