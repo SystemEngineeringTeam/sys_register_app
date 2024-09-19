@@ -10,13 +10,18 @@ import { Link } from 'react-router-dom';
 interface OrderMenueNameProps {
   ordername: string;
   orderprice: number;
+  menuqty:  number;
+  customizename:string;
 }
 
-const OrderMenueName = ({ ordername, orderprice }: OrderMenueNameProps) => {
+const OrderMenueName = ({ ordername, orderprice, menuqty, customizename}: OrderMenueNameProps) => {
+  console.log("qty:",menuqty);
+  console.log("menu:",ordername)
+  console.log("customizename:",customizename)
   return (
     <div style={{ display: 'flex' }}>
       {/* {menuname} */}
-      <Link to="/customizechange">
+      <Link to="/customizechange" state={{ordername: ordername, customizename:customizename}}>
         <Box sx={{ fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' } }}>
           <CreateIcon></CreateIcon>
         </Box>
@@ -28,7 +33,7 @@ const OrderMenueName = ({ ordername, orderprice }: OrderMenueNameProps) => {
         flex={1.5}
         sx={{ ml: { xs: '30px', sm: '50px', md: '520px' }, fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' } }}
       >
-        x2
+        x{menuqty}
       </Box>
       <Box sx={{ ml: 'auto', fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' } }}>{orderprice}</Box>
     </div>
