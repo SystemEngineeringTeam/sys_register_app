@@ -12,9 +12,13 @@ interface OrderMenueContenaProps {
   ordername: string;
   orderprice: number;
   orderimg: string;
+  menuqty: number;
+  customizename:string;
+  customizeprice:number;
+
 }
 
-const OrderMenueContena = ({ ordername, orderprice, orderimg }: OrderMenueContenaProps) => {
+const OrderMenueContena = ({ ordername, orderprice, orderimg , menuqty,customizename,customizeprice}: OrderMenueContenaProps) => {
   const imageDisplaySize = { width: 200, height: 200 };
   // const custommenus = [
   //   { menu: 'たれ', price: 30 },
@@ -42,6 +46,9 @@ const OrderMenueContena = ({ ordername, orderprice, orderimg }: OrderMenueConten
       )
     
         console.log('〜 ProcessedCustom:',processedCustom);
+        console.log("menuqty:"+menuqty);
+        console.log("customizename:"+customizename);
+        console.log("customizeprice:"+customizeprice);
        
 
   return (
@@ -66,12 +73,12 @@ const OrderMenueContena = ({ ordername, orderprice, orderimg }: OrderMenueConten
 
         <Stack sx={{ flex: 5 }}>
           <Stack>
-            <OrderMenueName ordername={ordername} orderprice={orderprice} />
+            <OrderMenueName ordername={ordername} orderprice={orderprice} menuqty={menuqty} customizename={customizename} />
           </Stack>
           <Stack>
-            {processedCustom.map((menu) => (
-              <OrderMenueCustomize custom={menu.name} customprice={menu.price} />
-            ))}
+            
+              <OrderMenueCustomize custom={customizename} customprice={customizeprice} />
+
           </Stack>
         </Stack>
       </Stack>
