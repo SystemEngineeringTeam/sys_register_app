@@ -1,6 +1,10 @@
 import { Box } from '@mui/material';
 
-const WritePaidSumMoney = () => {
+interface WritePaidSumMoneyProps {
+  totalAmount: number;
+  totalPayment: number;
+}
+const WritePaidSumMoney = ({ totalAmount, totalPayment }: WritePaidSumMoneyProps) => {
   return (
     <Box
       sx={{
@@ -10,12 +14,12 @@ const WritePaidSumMoney = () => {
       <Box sx={{ display: 'flex' }}>
         <Box>お支払い</Box>
         {/* 仮置き */}
-        <Box sx={{ marginLeft: '5rem' }}>1000円</Box>
+        <Box sx={{ marginLeft: '5rem' }}>{totalPayment}円</Box>
       </Box>
       <Box sx={{ display: 'flex' }}>
         <Box>合計金額</Box>
         {/* 仮置き */}
-        <Box sx={{ marginLeft: '5rem' }}>1000円</Box>
+        <Box sx={{ marginLeft: '5rem' }}>{totalAmount}円</Box>
       </Box>
     </Box>
   );
