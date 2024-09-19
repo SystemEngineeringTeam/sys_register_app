@@ -8,23 +8,25 @@ import { Link } from 'react-router-dom';
 // })
 interface NumberButtonProps {
   orders: number;
-  menu:{
+  menu: {
     name: string | null;
     price: number | null;
-}[]
+  }[];
+  menuqty: {
+    qty: number | null;
+  }[];
+  selectCustomize: {
+    name: string;
+    price: number;
+  }[];
 }
-const NumberButton = ({ orders 
-  , menu
-}: NumberButtonProps) => {
-console.log("🚀 ~ NumberButton ~ menu:", menu)
-console.log("🚀 ~ NumberButton ~ orders:", orders)
+const NumberButton = ({ orders, menu, menuqty, selectCustomize }: NumberButtonProps) => {
+  //console.log('🚀 ~ NumberButton ~ menu:', menu);
+  console.log('🚀 ~ NumberButton ~ orders:', orders);
 
-  
   return (
     <div>
-      <Link to="/orderchange" state={{ states: orders 
-        , menu:menu
-        }}>
+      <Link to="/orderchange" state={{ states: orders, menu: menu, menuqty: menuqty,selectCustomize: selectCustomize }}>
         <Button
           sx={{
             flexGrow: 1,
@@ -35,8 +37,7 @@ console.log("🚀 ~ NumberButton ~ orders:", orders)
             width: '180px',
             fontSize: '70px',
             margin: '12px',
-            color:'black'
-
+            color: 'black',
           }}
         >
           {orders}
