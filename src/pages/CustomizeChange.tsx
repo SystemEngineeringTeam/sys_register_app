@@ -1,14 +1,18 @@
 import { Box } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import CustomizeChangeLeft from '../components/CustomizeChangeLeft';
 import CustomizeChangeRight from '../components/CustomizeChangeRight';
 import { useLocation } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import { orderCollectionAtom } from '../firebase/FirebaseUtils';
 import { processCustomizeChange } from '../utils/processCustomizeChange';
+import { useOrderCollection } from '../firebase/useOrderCollection';
+import { useMoney } from '../firebase/useMoney';
 
-function CustomizeChange() {
+export default function CustomizeChange(): ReactElement {
 
+  const { data } = useOrderCollection();
+  const { money} = useMoney();
   const { state } = useLocation();
   const [ordersList,setOrdersList] = useState<number[]>([]);
 
@@ -19,20 +23,6 @@ function CustomizeChange() {
   },[state]);
 
 
-  const [orderCollectionData, setOrderCollectionData] = useAtom(orderCollectionAtom);
-
-  switch (orderCollectionData.state) {
-    case 'loading':
-      return <p>Loading...</p>;
-
-    case 'hasError':
-      return <p>Error</p>;
-
-    case 'hasData':
-
-
-  
-      
     console.log("🚀 ~ use Effect ~ state:", state)
     console.log("🚀 ~ use Effect ~ state.ordername:", state.ordername)
     console.log("🚀 ~ use Effect ~ ordername:", state.name)
@@ -53,6 +43,6 @@ function CustomizeChange() {
     </div>
   );
 }
-}
 
-export default CustomizeChange;
+
+
