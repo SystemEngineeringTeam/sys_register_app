@@ -16,14 +16,10 @@ interface NumberButtonBoxProps {
   customize: {
     name: string;
     price: number;
-}[];
+  }[];
 }
 
-const NumberButtonBox = ({ orders,
-    menu,
-    menuqty,
-  customize,
- }: NumberButtonBoxProps) => {
+const NumberButtonBox = ({ orders, menu, menuqty, customize }: NumberButtonBoxProps) => {
   return (
     <div>
       <Box
@@ -34,21 +30,28 @@ const NumberButtonBox = ({ orders,
           flexWrap: 'wrap',
         }}
       >
-        {orders.map((value) => {
-         console.log("🚀 ~ {orders.map ~ value:", value)
+        {orders.map((value,index) => {
+          console.log("🚀 ~ index:", index)
+          console.log('🚀 ~ {orders.map ~ value:', value);
+          
 
-         const selectMenu = menu[value - 1];
-         console.log("🚀 ~ {orders.map ~ selectMenu:", selectMenu)
-         
-         const selectQty = menuqty[value - 1];
+          const selectMenu = menu[index];
+          console.log('🚀 ~ {orders.map ~ selectMenu:', selectMenu);
 
-         const selectCustomize = customize[value - 1];
+          const selectQty = menuqty[index];
+          console.log("🚀 ~ selectQty:", selectQty)
 
-          return <NumberButton orders={value} 
-          menu={selectMenu ? [selectMenu] : []}
-           menuqty={selectQty ? [selectQty] : []}
-           selectCustomize={selectCustomize ? [selectCustomize] : []}
-           />;
+          const selectCustomize = customize[index];
+          console.log("🚀 ~ selectCustomize:", selectCustomize)
+
+          return (
+            <NumberButton
+              orders={value}
+              menu={selectMenu ? [selectMenu] : []}
+              menuqty={selectQty ? [selectQty] : []}
+              selectCustomize={selectCustomize ? [selectCustomize] : []}
+            />
+          );
         })}
       </Box>
     </div>
