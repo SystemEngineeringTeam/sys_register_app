@@ -6,13 +6,14 @@ import { useAtom } from 'jotai';
 import { orderCollectionAtom } from '../firebase/FirebaseUtils';
 import { processCustomizeChange } from '../utils/processCustomizeChange';
 import { processOrderChange } from '../utils/processOrderChange';
+import { Link } from 'react-router-dom';
 
 interface CustomizeChangeLeftProps {
   processedoptions: string;
-  customizename:string;
+  customizename: string;
 }
 
-function CustomizeChangeLeft({processedoptions,customizename}:CustomizeChangeLeftProps) {
+function CustomizeChangeLeft({ processedoptions, customizename }: CustomizeChangeLeftProps) {
   //const customizechanges = ['カスタマイズ1', 'カスタマイズ2', 'カスタマイズ3'];\
 
   const [orderCollectionData, setOrderCollectionData] = useAtom(orderCollectionAtom);
@@ -25,43 +26,34 @@ function CustomizeChangeLeft({processedoptions,customizename}:CustomizeChangeLef
       return <p>Error</p>;
 
     case 'hasData':
-    const processCustmize = processCustomizeChange((orderCollectionData.data || [])
-    .flatMap((order) => 
-      order.order.flatMap((o) => 
-        o.options 
-      ))
-  )
+      const processCustmize = processCustomizeChange(
+        (orderCollectionData.data || []).flatMap((order) => order.order.flatMap((o) => o.options)),
+      );
 
-  // const processOrder = processOrderChange(
-  //   (orderCollectionData.data || [])
-  //   .flatMap((order) => order.order.flatMap((o) => o.item)),
-  // );
+      // const processOrder = processOrderChange(
+      //   (orderCollectionData.data || [])
+      //   .flatMap((order) => order.order.flatMap((o) => o.item)),
+      // );
 
-  console.log("🚀 ~ CustomizeChangeLeft ~ processCustmize:", processCustmize)
+      console.log('🚀 ~ CustomizeChangeLeft ~ processCustmize:', processCustmize);
 
-  return (
-    
-    <div>
-      <Box sx={{ ml: '50px' }}>
-        <Box>
+      return (
+        <div>
+          <Box sx={{ ml: '50px' }}>
+            <Link to="/orderchange" >
+              <Box>
+                <CustomizeMenu ordername={processedoptions || ''} />
 
-        
-            <CustomizeMenu
-              ordername={processedoptions || ''}
-            />
- 
-
-          {/* <CustomizeMenu  processedoptions={state.menu} orders={state.menu}/> */}
-        </Box>
-        <Box sx={{ fontSize: '30px' }}>カスタマイズ</Box>
-        <Box>
-          
-            <CustmizeGraf customize={customizename || ''} />
- 
-        </Box>
-      </Box>
-    </div>
-  );
-}
+                {/* <CustomizeMenu  processedoptions={state.menu} orders={state.menu}/> */}
+              </Box>
+            </Link>
+            <Box sx={{ fontSize: '30px' }}>カスタマイズ</Box>
+            <Box>
+              <CustmizeGraf customize={customizename || ''} />
+            </Box>
+          </Box>
+        </div>
+      );
+  }
 }
 export default CustomizeChangeLeft;

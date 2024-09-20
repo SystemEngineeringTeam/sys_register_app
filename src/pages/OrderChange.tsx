@@ -35,14 +35,6 @@ const OrderChange = () => {
       return <p>Error</p>;
 
     case 'hasData':
-      
-    console.log(state);
-    console.log(state.menu);
-    console.log(state.id);
-    console.log(state.name);
-    console.log(state.menu.id);
-    console.log(state.menuqty);
-    console.log(state.selectCustomize);
 
 
   // const menu = processOrderChange(
@@ -55,28 +47,6 @@ const OrderChange = () => {
         const orders = order.map((order) => Number(order.id))
         console.log("🚀 ~ OrderChange ~ orders:", orders)
         
-
-  // const processedOptions = processOrderChange(
-  //   (orderCollectionData.data || [])
-  //   .flatMap((order) => order.order.flatMap((o) => o.item)),
-  // );
-
-
-  // console.log("🚀 ~ OrderChange ~ processedOptions:", processedOptions)
-
-  // // 選択された `order` に対応する `processedOptions` をフィルタリング
-  // const filteredOptions = processedOptions.filter((_, index) => setOrdersList.includes(index + 1));
-
-   // ordersList に含まれているか確認する
-   
-
-  //  const num = state.map(() => Number(state));
-  //  console.log("🚀 ~ OrderChange ~ num:", num)
-   
-   
-  //  console.log("state - 1:",+num - 1);
-  //    const selectMenu = processedOptions[state - 1]; // 選択されたメニュー
-  //    console.log("🚀 ~ OrderChange ~ selectMenu:", selectMenu)
 
   console.log(state);
   console.log(state.states);
