@@ -1,14 +1,37 @@
 import { Box } from '@mui/material';
 import React from 'react';
 import MoneyChenge from './MoneyChenge';
+import { useMoney } from '../../../firebase/useMoney';
+import { money } from '../../../types';
 
 interface CollectedChengeProps {
   // おつり
   chenge: number;
 }
 const CollectedChenge = ({ chenge }: CollectedChengeProps) => {
+  const { money } = useMoney();
+  // const testMoney: money = {
+  //   '10000': 1,
+  //   '5000': 1,
+  //   '1000': 1,
+  //   '500': 1,
+  //   '100': 1,
+  //   '50': 1,
+  //   '10': 1,
+  //   '5': 1,
+  //   '1': 1,
+  //   total: 16666,
+  // };
   // おつりの金額から貨幣の数を出す関数
   function chengeQty(chengeAmount: number) {
+    // const testDenominations = ['10000', '5000', '1000', '500', '100', '50', '10', '5', '1'];
+    // const tmpMoney: Record<string, number> = {};
+    // if (money === undefined) {
+    //   return -1;
+    // }
+    // testDenominations.forEach((testDenomination) => {
+    //   tmpMoney[testDenomination] 
+    // });
     // denominationsはresultのキーになる
     const denominations = [5000, 1000, 500, 100, 50, 10, 5, 1];
     const result: Record<number, number> = {};

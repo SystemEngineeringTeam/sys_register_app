@@ -4,10 +4,6 @@ import { Box } from '@mui/material';
 import WriteNotEnoughMoney from '../WriteNotEnoughMoney';
 import BackButton from '../BackButton';
 import OkButton from '../OkButton';
-// eslint-disable-next-line no-restricted-imports
-import { useOrderCollection } from '../../../firebase/useOrderCollection';
-// eslint-disable-next-line no-restricted-imports
-import { useMoney } from '../../../firebase/useMoney';
 import CollectedChenge from './CollectedChenge';
 
 interface OrderPaymentProps {
