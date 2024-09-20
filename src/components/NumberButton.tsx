@@ -1,6 +1,7 @@
 import { Box, Button, Grid } from '@mui/material';
 import Order from '../pages/Order';
 import { Link } from 'react-router-dom';
+import DisplayNumber from './DisplayNumber/ DisplayNumber';
 
 // var order = [1,2,3,4,4];
 // const orderLoop = order.map(( values ) => {
@@ -27,21 +28,7 @@ const NumberButton = ({ orders, menu, menuqty, selectCustomize }: NumberButtonPr
   return (
     <div>
       <Link to="/orderchange" state={{ states: orders, menu: menu, menuqty: menuqty,selectCustomize: selectCustomize }}>
-        <Button
-          sx={{
-            flexGrow: 1,
-            border: '2px solid #2b2b2b',
-            textAlign: 'center',
-            padding: '4px',
-            borderRadius: '1vh',
-            width: '180px',
-            fontSize: '70px',
-            margin: '12px',
-            color: 'black',
-          }}
-        >
-          {orders}
-        </Button>
+      <DisplayNumber orders={orders} />
       </Link>
     </div>
   );

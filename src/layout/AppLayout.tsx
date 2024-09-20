@@ -68,6 +68,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
     duration: theme.transitions.duration.leavingScreen,
   }),
   marginLeft: `-${drawerWidth}px`,
+  marginTop: theme.mixins.toolbar.minHeight, // AppBarの高さ分のマージンを追加
   ...(open && {
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
@@ -76,6 +77,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
     marginLeft: 0,
   }),
 }));
+
 
 interface AppBarProps extends MuiAppBarProps {
   open: boolean;
@@ -175,7 +177,6 @@ const AppLayout = () => {
         <Divider />
       </Drawer>
       <Main open={isDrawerOpen}>
-        <DrawerHeader />
         <Outlet /> {/* ここにルートで指定されたコンテンツが表示される */}
       </Main>
     </Box>
