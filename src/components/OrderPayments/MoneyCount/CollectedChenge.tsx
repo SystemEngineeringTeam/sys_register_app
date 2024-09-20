@@ -59,7 +59,7 @@ const CollectedChenge = ({ chenge }: CollectedChengeProps) => {
         result[denomination] = moneyRec[denomination];
         // eslint-disable-next-line no-param-reassign
         chengeAmount -= denomination * moneyRec[denomination]; // 残りのおつりを次に回す
-        // お釣りが支払えないとき 戻り値を -1 にする
+        // お釣りが支払えないとき 戻り値を undefined にする
         if (denomination === 1) {
           result[denomination] = -1;
         }
