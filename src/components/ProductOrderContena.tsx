@@ -1,74 +1,48 @@
 import { Box, Typography, Card, CardContent, Button, Grid, Stack } from '@mui/material';
 import ProductOrderCard from './ProductOrderCard';
+import { sortingOrders } from '../utils/sortingOrders';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
-// interface test_num {
-//   id: number;
-//   name: string;
-//   price: number;
-// }
+interface ProductOrderContenaProps {
+  key: number;
+  id: number;
+}
 
-// const test_num: test_num[] = [
-//   {
-//     id: 1,
-//     name: 'テスト1',
-//     price: 100,
-//   },
-//   {
-//     id: 2,
-//     name: 'テスト2',
-//     price: 200,
-//   },
-//   {
-//     id: 3,
-//     name: 'テスト3',
-//     price: 300,
-//   }
-// ];
+const ProductOrderContena = ({key, id}: ProductOrderContenaProps) => {
 
-const ProductOrderContena = () => {
+  const orders = sortingOrders(id);
+
   return (
     <div>
-      <Box>
-        <Card>
-          <CardContent sx={{ display: 'flex' }}>
-            <Stack spacing={2} alignItems="center" sx={{ mr: 2 }}>
-              <Typography component="h1">1</Typography>
+<Box sx={{ width: '100vw', mx: 0, p: 2 }}> {/* 画面横いっぱいに広げる */}
+  <Card elevation={3} sx={{ width: '100%' }}> {/* カード全体もフル幅に設定 */}
+    <CardContent
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        width: '100%',  // 幅は画面いっぱいに広げる
+        p: { xs: 1, sm: 2, md: 3 } // 画面サイズごとのパディング
+      }}
+    >
+      <Stack spacing={2} alignItems="center" sx={{ mr: 2 }}>
+        <Typography component="h1" variant="h5" color="primary">{id}</Typography>
 
-              <Button variant="contained" color="primary">
-                調理前
-              </Button>
-            </Stack>
+        <Button variant="contained" color="success" startIcon={<CheckCircleIcon />}>
+          調理前
+        </Button>
+      </Stack>
 
-            <Grid container spacing={2}>
-              <Grid item xs={3}>
-                <ProductOrderCard />
-              </Grid>
-              <Grid item xs={3}>
-                <ProductOrderCard />
-              </Grid>
-              <Grid item xs={3}>
-                <ProductOrderCard />
-              </Grid>
-              <Grid item xs={3}>
-                <ProductOrderCard />
-              </Grid>
+      <Grid container spacing={2}>
+        {orders.map((order) => (
+          <Grid item xs={4} sm={3} key={order.id}> {/* レスポンシブ対応 */}
+            <ProductOrderCard items={order.item} qty={order.qty} options={order.options} />
+          </Grid>
+        ))}
+      </Grid>
+    </CardContent>
+  </Card>
+</Box>
 
-              <Grid item xs={3}>
-                <ProductOrderCard />
-              </Grid>
-              <Grid item xs={3}>
-                <ProductOrderCard />
-              </Grid>
-              <Grid item xs={3}>
-                <ProductOrderCard />
-              </Grid>
-              <Grid item xs={3}>
-                <ProductOrderCard />
-              </Grid>
-            </Grid>
-          </CardContent>
-        </Card>
-      </Box>
     </div>
   );
 };

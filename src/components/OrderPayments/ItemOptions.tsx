@@ -1,9 +1,19 @@
 import Chip from '@mui/material/Chip';
+import { options } from '../../types/index';
 
-const ItemOptions = () => {
+interface ItemOptionsProps {
+  options: options[];
+}
+
+const ItemOptions = ({options}:ItemOptionsProps) => {
+
+
+
   return (
     <div>
-      <Chip label="Option 1" component="button" color="primary" />
+      {options.map((option) => (
+        <Chip label={option.name} component="button" color="primary" />
+      ))}
     </div>
   );
 };

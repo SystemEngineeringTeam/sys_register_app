@@ -1,18 +1,16 @@
+import React from 'react';
 import { Divider, Stack } from '@mui/material';
 import ProductOrderContena from '../components/ProductOrderContena';
+import CookingContena from '../components/Cooking/CookingContena';
 
-const Cooking = () => (
-  <div>
-    {/*Stackで縦に並べる */}
+const Cooking: React.FC = () => {
+  const cooking = [1, 2, 3, 5, 4, 231, 325, 324, 332, 344, 223, 421, 324, 321, 123, 242];
 
-    <Stack spacing={2} alignItems="center" divider={<Divider flexItem />}>
-      {/*ividerで区切り線を入れる */}
-      <ProductOrderContena />
-      <ProductOrderContena />
-      <ProductOrderContena />
-      <ProductOrderContena />
-    </Stack>
-  </div>
-);
+  return (
+    <div>
+      <CookingContena cooking={cooking} />
+    </div>
+  );
+};
 
 export default Cooking;
