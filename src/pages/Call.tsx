@@ -1,8 +1,14 @@
-const Call = () => (
+import CallContena from "../components/Call/CallContena";
+
+const Call = () => {
+
+  const call = [1, 2, 3];
+
+  return(
   <div>
-    <h1>Call</h1>
-    <p>Callページです</p>
+    <CallContena call={call} />
   </div>
-);
+  );
+}
 
 export default Call;
