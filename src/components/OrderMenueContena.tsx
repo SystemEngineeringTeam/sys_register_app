@@ -28,24 +28,6 @@ const OrderMenueContena = ({ ordername, orderprice, orderimg , menuqty,customize
   //   { menu: '青のり', price: 10 },
   // ];
 
-  const [orderCollectionData, setOrderCollectionData] = useAtom(orderCollectionAtom);
-
-  switch (orderCollectionData.state) {
-    case 'loading':
-      return <p>Loading...</p>;
-
-    case 'hasError':
-      return <p>Error</p>;
-
-    case 'hasData':
-      const processedCustom = processCustomizeChange((orderCollectionData.data || [])
-      .flatMap((order) => 
-          order.order.flatMap((o) => 
-            o.options
-          ))
-      )
-    
-        console.log('〜 ProcessedCustom:',processedCustom);
         console.log("menuqty:"+menuqty);
         console.log("customizename:"+customizename);
         console.log("customizeprice:"+customizeprice);
@@ -85,6 +67,6 @@ const OrderMenueContena = ({ ordername, orderprice, orderimg , menuqty,customize
     </div>
   );
 };
-}
+
 
 export default OrderMenueContena;
