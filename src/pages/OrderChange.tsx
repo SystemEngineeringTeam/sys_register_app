@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 
 import OrderMenuRight from '../components/OrderMenuRight';
 import { Box, Stack } from '@mui/material';
@@ -9,11 +9,15 @@ import { useAtom } from 'jotai';
 import { orderCollectionAtom } from '../firebase/FirebaseUtils';
 import { processOrderCollection } from '../utils/processOrderCollection';
 import OrderMenuLeft from '../components/OrderMenuLeft';
+import { useOrderCollection } from '../firebase/useOrderCollection';
+import { useMoney } from '../firebase/useMoney';
 
-const OrderChange = () => {
+
+export default function OrderChange(): ReactElement {
   const { state } = useLocation();
   const [ordersList, setOrdersList] = useState<number[]>([]);
-
+  const { data } = useOrderCollection();
+  const { money} = useMoney();
 
   useEffect(() => {
     if (state && state.state) {
@@ -23,25 +27,12 @@ const OrderChange = () => {
   
     console.log("🚀 ~ useEffect ~ setOrdersList:", ordersList)
     
-  
-
-  const [orderCollectionData, setOrderCollectionData] = useAtom(orderCollectionAtom);
-
-  switch (orderCollectionData.state) {
-    case 'loading':
-      return <p>Loading...</p>;
-
-    case 'hasError':
-      return <p>Error</p>;
-
-    case 'hasData':
-
 
   // const menu = processOrderChange(
   //   (orderCollectionData.data || []).flatMap((order) => order.order.flatMap((o) => o.item)),
   // );
 
-  const order = processOrderCollection(orderCollectionData.data || []);
+  const order = processOrderCollection(data || []);
         console.log("🚀 ~ Order ~ order:", order)
 
         const orders = order.map((order) => Number(order.id))
@@ -77,6 +68,4 @@ const OrderChange = () => {
     </div>
   );
 };
-}
 
-export default OrderChange;
