@@ -27,8 +27,8 @@ const App = () => {
             <Route path="call" element={<Call />} />
             <Route path="admin" element={<Admin />} />
             <Route path="hoge" element={<Hoge />} />
-            <Route path="/orderchange" element={<OrderChange />} />
-          <Route path="/customizechange" element={<CustomizeChange />} />
+            <Route path="orderchange" element={<OrderChange />} />
+          <Route path="customizechange" element={<CustomizeChange />} />
           </Route>
         </Route>
       </Routes>
