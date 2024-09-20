@@ -28,7 +28,7 @@ const App = () => {
             <Route path="admin" element={<Admin />} />
             <Route path="hoge" element={<Hoge />} />
             <Route path="orderchange" element={<OrderChange />} />
-          <Route path="customizechange" element={<CustomizeChange />} />
+            <Route path="customizechange" element={<CustomizeChange />} />
           </Route>
         </Route>
       </Routes>

@@ -62,7 +62,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
   open: boolean;
 }>(({ theme, open }) => ({
   flexGrow: 1,
-  padding: theme.spacing(3),
+  paddingTop: theme.spacing(1),
   transition: theme.transitions.create('margin', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -77,7 +77,6 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
     marginLeft: 0,
   }),
 }));
-
 
 interface AppBarProps extends MuiAppBarProps {
   open: boolean;

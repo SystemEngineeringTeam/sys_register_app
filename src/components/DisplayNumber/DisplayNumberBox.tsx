@@ -1,11 +1,9 @@
 import { Box } from '@mui/material';
 import DisplayNumber from './ DisplayNumber';
 const DisplayNumberBox = ({ orders }: { orders: number[] }) => {
-
-    return (
-
-        <div>
-                  <Box
+  return (
+    <div>
+      <Box
         sx={{
           display: 'flex',
           flexDirection: 'row',
@@ -13,16 +11,11 @@ const DisplayNumberBox = ({ orders }: { orders: number[] }) => {
           flexWrap: 'wrap',
         }}
       >
-        {orders.map((order:number) => {
-            return(
-             
-            <DisplayNumber orders={order} /> 
-            )
-
+        {orders.map((order: number) => {
+          return <DisplayNumber orders={order} />;
         })}
-        </Box>
-        </div>
-    )
-
+      </Box>
+    </div>
+  );
 };
 export default DisplayNumberBox;
