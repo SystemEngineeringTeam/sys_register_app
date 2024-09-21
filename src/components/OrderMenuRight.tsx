@@ -2,12 +2,19 @@ import { Box, Typography } from '@mui/material';
 import React from 'react';
 import OrderButton from './OrderButton';
 import OrderNumber from './OrderNumber';
+import { idToTotalAmount} from '../utils/accountingUtils';
+import { useOrderCollection } from '../firebase/useOrderCollection';
 
 interface OrderMenuRightProps {
   id: string;
 }
 
 function OrderMenuRight({id}: OrderMenuRightProps) { {
+
+  const {data} = useOrderCollection();
+
+
+  const totalAmount = data ? idToTotalAmount(id, data) : 0;
 
   return (
     <Box
@@ -57,7 +64,7 @@ function OrderMenuRight({id}: OrderMenuRightProps) { {
               marginLeft: '8px',
             }}
           >
-            1,600
+            {totalAmount}円
           </Typography>
         </Box>
 

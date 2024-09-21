@@ -5,12 +5,17 @@ import WriteNotEnoughMoney from '../WriteNotEnoughMoney';
 import BackButton from '../BackButton';
 import OkButton from '../OkButton';
 import CollectedChenge from './CollectedChenge';
+import { useLocation } from 'react-router-dom';
 
-interface OrderPaymentProps {
+interface State {
   totalPayment: number;
   totalAmount: number;
+  id: string;
+
 }
-const MoneyCount = ({ totalPayment, totalAmount }: OrderPaymentProps) => {
+const MoneyCount = () => {
+  const location = useLocation();
+  const {totalAmount,totalPayment,id} = location.state as State;
   return (
     <Box sx={{ display: 'flex' }}>
       {/* 注文番号 */}
@@ -21,7 +26,7 @@ const MoneyCount = ({ totalPayment, totalAmount }: OrderPaymentProps) => {
           right: 10,
         }}
       >
-        <OrderNumber />
+        <OrderNumber id={id} />
       </Box>
 
       {/* 通貨と合計金額、おつり */}
@@ -34,11 +39,11 @@ const MoneyCount = ({ totalPayment, totalAmount }: OrderPaymentProps) => {
           <Box sx={{ display: 'flex', margin: '1rem' }}>
             <Box>
               {/* 戻るボタン */}
-              <BackButton />
+              {/* <BackButton to="/payment" id={id} /> */}
             </Box>
             <Box sx={{ marginLeft: '4rem' }}>
               {/* OKボタン */}
-              <OkButton />
+              <OkButton id={id} totalAmount={totalAmount} totalPayment={totalPayment} to="/order" />
             </Box>
           </Box>
         </Box>

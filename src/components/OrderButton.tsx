@@ -6,31 +6,31 @@ interface OrderButtonProps {
   id: string;
 }
 
-function OrderButton({id}:OrderButtonProps) {
-
+function OrderButton({ id }: OrderButtonProps) {
   const handleClick = () => {
     // お支払い画面へ遷移
     // react-router-domのLinkコンポーネントを使って、リンクを設定
     // お支払い画面のパスは'/payment'とする
     // リンクをクリックしたときに、'/payment'に遷移する
-    <Link to="/payment" />;
+    console.log('~ OrderButton ~ handleClick ~ id:', id);
   };
-
+  ``;
   return (
     <div>
-      <Button
-        variant="contained"
-        disableElevation
-        size="large"
-        onClick={handleClick}
-        sx={{
-          background: '#F68B1F',
-          py: '30px', 
-          px: '50px',
-        }}
-      >
-        お支払いへ
-      </Button>
+      <Link to="/payment" state={{ id:id }}>
+        <Button
+          variant="contained"
+          disableElevation
+          size="large"
+          sx={{
+            background: '#F68B1F',
+            py: '30px',
+            px: '50px',
+          }}
+        >
+          お支払いへ
+        </Button>
+      </Link>
     </div>
   );
 }

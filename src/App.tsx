@@ -13,6 +13,7 @@ import { user_props } from './types';
 import OrderChange from './pages/OrderChange';
 import CustomizeChange from './pages/CustomizeChange';
 import OrderPayment from './components/OrderPayments/OrderPayment';
+import MoneyCount from './components/OrderPayments/MoneyCount/MoneyCount';
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
             <Route path="orderchange" element={<OrderChange />} />
             <Route path="customizechange" element={<CustomizeChange />} />
             <Route path="payment" element={<OrderPayment />} />
+            <Route path="paychange" element={<MoneyCount />} />
             <Route path="*" element={<div>Not Found</div>} />
 
           </Route>

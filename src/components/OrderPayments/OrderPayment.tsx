@@ -83,7 +83,7 @@ const OrderPayment = () => {
           right: 10,
         }}
       >
-        <OrderNumber id={id} />
+        <OrderNumber id={id}  />
       </Box>
 
       {/* 通貨と合計金額、おつり */}
@@ -118,11 +118,11 @@ const OrderPayment = () => {
           <Box sx={{ display: 'flex', margin: '1rem' }}>
             <Box>
               {/* 戻るボタン */}
-              <BackButton />
+              <BackButton to="/order" id={id} />
             </Box>
             <Box sx={{ marginLeft: '4rem' }}>
               {/* OKボタン */}
-              <OkButton />
+              <OkButton id={id} totalAmount={getTotalAmount()} totalPayment={totalPayment} to='/paychange'/>
             </Box>
           </Box>
         </Box>
