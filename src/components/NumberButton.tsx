@@ -29,7 +29,7 @@ const NumberButton = ({ orders, menu, menuqty, selectCustomize }: NumberButtonPr
     <div>
       <Link
         to="/orderchange"
-        state={{ states: orders, menu: menu, menuqty: menuqty, selectCustomize: selectCustomize }}
+        state={{ id: orders, menu: menu, menuqty: menuqty, selectCustomize: selectCustomize }}
       >
         <DisplayNumber orders={orders} />
       </Link>

@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import { user_props } from './types';
 import OrderChange from './pages/OrderChange';
 import CustomizeChange from './pages/CustomizeChange';
+import OrderPayment from './components/OrderPayments/OrderPayment';
 
 const App = () => {
   return (
@@ -29,6 +30,9 @@ const App = () => {
             <Route path="hoge" element={<Hoge />} />
             <Route path="orderchange" element={<OrderChange />} />
             <Route path="customizechange" element={<CustomizeChange />} />
+            <Route path="payment" element={<OrderPayment />} />
+            <Route path="*" element={<div>Not Found</div>} />
+
           </Route>
         </Route>
       </Routes>

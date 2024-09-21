@@ -11,9 +11,6 @@ import OrderMenueContena from './OrderMenueContena';
 import Yakitori from '/yakitori_solt.png';
 
 interface OrderMenueLeftProps {
-  orders: {
-    id: string | null;
-  }[];
   processedoptions: {
     name: string | null;
     price: number | null;
@@ -27,7 +24,7 @@ interface OrderMenueLeftProps {
   }[];
 }
 
-const OrderMenuLeft = ({ orders, processedoptions, menuqty, customize }: OrderMenueLeftProps) => {
+const OrderMenuLeft = ({  processedoptions, menuqty, customize }: OrderMenueLeftProps) => {
   // const orders = [
   //   1, 2, 3, 4, 4, 5, 4, 231, 3245, 324, 332, 344, 223, 421, 324, 321, 123, 242, 234, 231, 324, 23, 4, 234, 443, 244,
   //   232,
@@ -36,7 +33,6 @@ const OrderMenuLeft = ({ orders, processedoptions, menuqty, customize }: OrderMe
   console.log('processedOptions:' + processedoptions);
   console.log('menuqty:' + menuqty);
 
-  const order = Number(orders);
 
   return (
     <div>

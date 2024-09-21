@@ -1,7 +1,11 @@
 import { Card, Grid } from '@mui/material';
 import { grey } from '@mui/material/colors';
 
-const OrderNumber = () => (
+interface OrderNumberProps {
+  id: string;
+}
+
+const OrderNumber = ({id}:OrderNumberProps) => (
   <div>
     <Grid
       container
@@ -26,7 +30,7 @@ const OrderNumber = () => (
         }}
       >
         {/* 仮置き */}
-        185
+        {id}
       </Card>
     </Grid>
   </div>

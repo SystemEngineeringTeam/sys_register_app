@@ -1,12 +1,16 @@
 import CallContena from "../components/Call/CallContena";
+import { processOrderCollection } from "../utils/processOrderCollection";
 
 const Call = () => {
 
-  const call = [1, 2, 3];
+  const process = "offer";
+  const call = processOrderCollection(process);
 
+  const calls = call.map((call) => Number(call.id));
   return(
   <div>
-    <CallContena call={call} />
+    
+    <CallContena call={calls} />
   </div>
   );
 }

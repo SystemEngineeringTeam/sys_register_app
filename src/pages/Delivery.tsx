@@ -13,11 +13,11 @@ export default function Delivery() {
 
   // const order = processOrderCollection(data || []);
 
-  const cooking = [
-    1, 2, 3, 5, 4, 231, 325, 324, 332, 344, 223, 421, 324, 321, 123, 242, 234, 231, 324, 23, 4, 234, 443, 244, 232,
-  ];
+  const cooking = processOrderCollection('cooking');
+  const cookings = cooking.map((cooking) => Number(cooking.id));
 
-  const offers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const offer = processOrderCollection('offer');
+  const offers = offer.map((offer) => Number(offer.id));
 
   // 配列を順番に表示する
 
@@ -29,7 +29,7 @@ export default function Delivery() {
       <Box sx={{ display: 'flex', alignContent:'center',justifyContent:'space-between'}}>
         <Box sx={{ width: '50%' }}>
           <Box sx={{ fontSize: 58 ,textAlign: 'center',backgroundColor: '#ffc570',  }}>お待ちの番号</Box>
-          <DisplayNumberBox orders={cooking} />
+          <DisplayNumberBox orders={cookings} />
           {/* <OrderWaitPeople orders={orders} /> */}
           </Box>
           <Divider orientation="vertical" flexItem />

@@ -5,6 +5,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { useState } from 'react';
 import { DoNotDisturbOnTotalSilenceOutlined } from '@mui/icons-material';
 import Ordercard from './OrderList/Ordercard';
+import { useOrderUpdate } from '../firebase/setProcess';
 
 interface ProductOrderContenaProps {
   key: number;
@@ -17,8 +18,11 @@ const ProductOrderContena = ({key, id}: ProductOrderContenaProps) => {
 
   const [status, setStatus] = useState(false);
 
+  const { updateOrderStatus } = useOrderUpdate();
+
   const handleChange = () => {
     setStatus(!status);
+    updateOrderStatus(id.toString(), 'cooking');
   };
 
   return (

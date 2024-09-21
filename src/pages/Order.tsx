@@ -20,7 +20,8 @@ export default function Order(): ReactElement {
   const { data } = useOrderCollection();
   const { money } = useMoney();
 
-  const order = processOrderCollection(data || []);
+  const process = "accounting";
+  const order = processOrderCollection(process);
   console.log('🚀 ~ Order ~ order:', order);
 
   const orders = order.map((order) => Number(order.id));

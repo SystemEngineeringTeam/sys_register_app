@@ -11,11 +11,20 @@ import { useEffect, useState } from 'react';
 import { idToTotalAmount } from '../../utils/accountingUtils';
 // eslint-disable-next-line no-restricted-imports
 import { useOrderCollection } from '../../firebase/useOrderCollection';
+import { useLocation } from 'react-router-dom';
 
-interface OrderPaymentProps {
-  orderCollectionId: string;
+
+interface State {
+  id: string;
 }
-const OrderPayment = ({ orderCollectionId }: OrderPaymentProps) => {
+const OrderPayment = () => {
+
+
+  const location = useLocation();
+  const { id } = location.state as State;
+
+  const orderCollectionId = id;
+
   // ここのdataは固定名
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { data } = useOrderCollection();
@@ -74,7 +83,7 @@ const OrderPayment = ({ orderCollectionId }: OrderPaymentProps) => {
           right: 10,
         }}
       >
-        <OrderNumber />
+        <OrderNumber id={id} />
       </Box>
 
       {/* 通貨と合計金額、おつり */}

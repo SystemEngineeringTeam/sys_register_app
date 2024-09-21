@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { DoNotDisturbOnTotalSilenceOutlined } from '@mui/icons-material';
 import { sortingOrders } from '../../utils/sortingOrders';
 import Ordercard from '../OrderList/Ordercard';
+import { useOrderUpdate } from '../../firebase/setProcess';
 
 
 interface ProductCallContenaProps {
@@ -18,8 +19,11 @@ const ProductCallContena = ({key, id}: ProductCallContenaProps) => {
 
   const [status, setStatus] = useState(false);
 
+  const { updateOrderStatus } = useOrderUpdate();
+
   const handleChange = () => {
     setStatus(!status);
+    updateOrderStatus(id.toString(), 'offer');
   };
 
   return (
