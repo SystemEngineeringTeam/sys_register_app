@@ -3,9 +3,9 @@ import { Box, Typography, Card, CardContent, Button, Grid, Stack } from '@mui/ma
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { useState } from 'react';
 import { DoNotDisturbOnTotalSilenceOutlined } from '@mui/icons-material';
-import { sortingOrders } from '../../utils/sortingOrders';
 import Ordercard from '../OrderList/Ordercard';
 import { useOrderUpdate } from '../../firebase/setProcess';
+import { useOrderCollection } from '../../firebase/useOrderCollection';
 
 
 interface ProductCallContenaProps {
@@ -15,7 +15,11 @@ interface ProductCallContenaProps {
 
 const ProductCallContena = ({key, id}: ProductCallContenaProps) => {
 
-  const orders = sortingOrders(id);//idに対応する注文を取得
+  const {data} = useOrderCollection();
+  const orders = (data ?? []).filter((order) => order.id === id.toString());
+  const order = orders.flatMap((data) => {
+    return data.order;
+  });
 
   const [status, setStatus] = useState(false);
 
@@ -45,7 +49,7 @@ const ProductCallContena = ({key, id}: ProductCallContenaProps) => {
           {status ? '提供済' : '未完了'}
         </Button>
       </Stack>
-      <Ordercard orders={orders} />
+      <Ordercard orders={order} />
     </CardContent>
   </Card>
 </Box>

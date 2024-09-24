@@ -1,11 +1,11 @@
 import { Box, Typography, Card, CardContent, Button, Grid, Stack } from '@mui/material';
 import ProductOrderCard from './ProductOrderCard';
-import { sortingOrders } from '../utils/sortingOrders';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { useState } from 'react';
 import { DoNotDisturbOnTotalSilenceOutlined } from '@mui/icons-material';
 import Ordercard from './OrderList/Ordercard';
 import { useOrderUpdate } from '../firebase/setProcess';
+import { useOrderCollection } from '../firebase/useOrderCollection';
 
 interface ProductOrderContenaProps {
   key: number;
@@ -14,7 +14,12 @@ interface ProductOrderContenaProps {
 
 const ProductOrderContena = ({key, id}: ProductOrderContenaProps) => {
 
-  const orders = sortingOrders(id);//idに対応する注文を取得
+ const {data} = useOrderCollection();
+ const orders = (data ?? []).filter((order) => order.id === id.toString());
+ const order = orders.flatMap((data) => {
+   return data.order;
+ });
+
 
   const [status, setStatus] = useState(false);
 
@@ -44,7 +49,7 @@ const ProductOrderContena = ({key, id}: ProductOrderContenaProps) => {
           {status ? '調理完了' : '未完了'}
         </Button>
       </Stack>
-      <Ordercard orders={orders} />
+      <Ordercard orders={order} />
     </CardContent>
   </Card>
 </Box>
