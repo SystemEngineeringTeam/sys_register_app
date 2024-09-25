@@ -34,7 +34,7 @@ function OrderMenuRight({id}: OrderMenuRightProps) { {
       }}
     >
       {/* 注文番号表示 */}
-      <Box sx={{ marginTop: '50px' }}>
+      <Box sx={{ marginTop: '50px' , mt:'100px'}}>
         <OrderNumber id={id}/>
       </Box>
 
@@ -44,6 +44,7 @@ function OrderMenuRight({id}: OrderMenuRightProps) { {
           sx={{
             display: 'flex',
             alignItems: 'flex-end',
+            mt:'300px'
           }}
         >
           <Typography
@@ -51,6 +52,7 @@ function OrderMenuRight({id}: OrderMenuRightProps) { {
               fontSize: '1.5rem',
               color: '#666',
               lineHeight: '1.5rem',
+              mt:'10px'
             }}
           >
             計
@@ -69,7 +71,7 @@ function OrderMenuRight({id}: OrderMenuRightProps) { {
         </Box>
 
         {/* ボタン */}
-        <Box sx={{ marginTop: '20px' }}>
+        <Box sx={{ marginTop: '20px', mt:'50px'}}>
           <OrderButton id={id} />
         </Box>
       </Box>
