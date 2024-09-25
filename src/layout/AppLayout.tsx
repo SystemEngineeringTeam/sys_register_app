@@ -20,6 +20,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import UserIcon from '../login/UserIcon';
 
 interface ListItems {
   text: string;
@@ -105,7 +106,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-const AppLayout = ({userPoto}) => {
+const AppLayout = () => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -134,10 +135,9 @@ const AppLayout = ({userPoto}) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            {/* Listの値を取得して表示 */}
-            {listItems.find((item) => item.to === useLocation().pathname)?.text}
+            <p>{listItems.find((item) => item.to === useLocation().pathname)?.text}</p>
           </Typography>
-          <img ></img>
+          <UserIcon />
         </Toolbar>
       </AppBar>
       <Drawer
@@ -149,7 +149,7 @@ const AppLayout = ({userPoto}) => {
             boxSizing: 'border-box',
           },
         }}
-        variant='persistent'
+        variant="persistent"
         anchor="left"
         open={isDrawerOpen}
         onClose={handleDrawerClose}
@@ -183,12 +183,3 @@ const AppLayout = ({userPoto}) => {
 };
 
 export default AppLayout;
-
-
-
-
-
-
-
-
-

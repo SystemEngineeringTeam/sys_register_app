@@ -6,11 +6,11 @@ import CustomizeChangeRight from '../components/CustomizeChangeRight';
 function CustomizeChange() {
   return (
     <div>
-      <Box sx={{display:'flex'}}>
-        <Box sx={{flex:6}}>
+      <Box sx={{ display: 'flex' }}>
+        <Box sx={{ flex: 6 }}>
           <CustomizeChangeLeft />
         </Box>
-        <Box sx={{flex:4}}>
+        <Box sx={{ flex: 4 }}>
           <CustomizeChangeRight />
         </Box>
       </Box>
