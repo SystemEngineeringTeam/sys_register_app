@@ -13,13 +13,10 @@ import { idToTotalAmount } from '../../utils/accountingUtils';
 import { useOrderCollection } from '../../firebase/useOrderCollection';
 import { useLocation } from 'react-router-dom';
 
-
 interface State {
   id: string;
 }
 const OrderPayment = () => {
-
-
   const location = useLocation();
   const { id } = location.state as State;
 
@@ -83,7 +80,7 @@ const OrderPayment = () => {
           right: 10,
         }}
       >
-        <OrderNumber id={id}  />
+        <OrderNumber id={id} />
       </Box>
 
       {/* 通貨と合計金額、おつり */}
@@ -122,7 +119,7 @@ const OrderPayment = () => {
             </Box>
             <Box sx={{ marginLeft: '4rem' }}>
               {/* OKボタン */}
-              <OkButton id={id} totalAmount={getTotalAmount()} totalPayment={totalPayment} to='/paychange'/>
+              <OkButton id={id} totalAmount={getTotalAmount()} totalPayment={totalPayment} to="/paychange" />
             </Box>
           </Box>
         </Box>

@@ -1,9 +1,7 @@
 import { useOrderCollection } from '../firebase/useOrderCollection';
 import { useState, useEffect } from 'react';
 
-export const processOrderCollection = (
-  process: string
-): { id: string | null }[] => {
+export const processOrderCollection = (process: string): { id: string | null }[] => {
   const { data } = useOrderCollection();
   const orderCollections = data || [];
 
@@ -18,8 +16,8 @@ export const processOrderCollection = (
     const newOfferIds: Set<string | null> = new Set();
 
     orderCollections.forEach((orderCollection) => {
-      console.log("id:" + orderCollection.id);
-      console.log("boolean:" + orderCollection.accounting);
+      console.log('id:' + orderCollection.id);
+      console.log('boolean:' + orderCollection.accounting);
 
       switch (orderCollection.accounting) {
         case false:
@@ -37,10 +35,9 @@ export const processOrderCollection = (
     });
 
     // 状態を更新
-    setAryAccountigID(Array.from(newAccountigIds).map(id => ({ id })));
-    setAryCookingID(Array.from(newCookingIds).map(id => ({ id })));
-    setAryOfferID(Array.from(newOfferIds).map(id => ({ id })));
-
+    setAryAccountigID(Array.from(newAccountigIds).map((id) => ({ id })));
+    setAryCookingID(Array.from(newCookingIds).map((id) => ({ id })));
+    setAryOfferID(Array.from(newOfferIds).map((id) => ({ id })));
   }, [orderCollections]); // `data`が変更された時だけ実行される
 
   function getProcessArray(process: string) {

@@ -26,18 +26,18 @@ export default function Delivery() {
 
   return (
     <div>
-      <Box sx={{ display: 'flex', alignContent:'center',justifyContent:'space-between'}}>
+      <Box sx={{ display: 'flex', alignContent: 'center', justifyContent: 'space-between' }}>
         <Box sx={{ width: '50%' }}>
-          <Box sx={{ fontSize: 58 ,textAlign: 'center',backgroundColor: '#ffc570',  }}>お待ちの番号</Box>
+          <Box sx={{ fontSize: 58, textAlign: 'center', backgroundColor: '#ffc570' }}>お待ちの番号</Box>
           <DisplayNumberBox orders={cookings} />
           {/* <OrderWaitPeople orders={orders} /> */}
+        </Box>
+        <Divider orientation="vertical" flexItem />
+        <Box sx={{ width: '50%' }}>
+          <Box sx={{ fontSize: 58, textAlign: 'center', backgroundColor: '#ff6f00' }}>呼び出し番号</Box>
+          <Box sx={{ width: 'auto' }}>
+            <DisplayNumberBox orders={offers} />
           </Box>
-          <Divider orientation="vertical" flexItem />
-          <Box sx={{width: '50%' }}>
-            <Box sx={{ fontSize: 58,textAlign: 'center',backgroundColor: '#ff6f00' }}>呼び出し番号</Box>
-            <Box sx={{width:'auto'}}>
-            <DisplayNumberBox orders={offers}  />
-            </Box>
         </Box>
       </Box>
     </div>

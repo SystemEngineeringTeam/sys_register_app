@@ -13,7 +13,6 @@ import { useOrderCollection } from '../firebase/useOrderCollection';
 import { useMoney } from '../firebase/useMoney';
 
 export default function OrderChange(): ReactElement {
-
   interface State {
     id: number;
     menu: {
@@ -41,12 +40,11 @@ export default function OrderChange(): ReactElement {
   //   }
   // }, [state]);
 
-
   // const menu = processOrderChange(
   //   (orderCollectionData.data || []).flatMap((order) => order.order.flatMap((o) => o.item)),
   // );
 
-  const process = "accounting";
+  const process = 'accounting';
   const order = processOrderCollection(process);
   console.log('🚀 ~ Order ~ order:', order);
 
@@ -66,11 +64,7 @@ export default function OrderChange(): ReactElement {
       <Box sx={{ display: 'flex', height: '100vh' }}>
         {/* 左側メニューリスト */}
         <Box sx={{ flex: 4, overflowY: 'auto' }}>
-          <OrderMenuLeft
-            processedoptions={state.menu}
-            menuqty={state.menuqty}
-            customize={state.selectCustomize}
-          />
+          <OrderMenuLeft processedoptions={state.menu} menuqty={state.menuqty} customize={state.selectCustomize} />
         </Box>
 
         {/* 右側注文情報 */}

@@ -5,10 +5,7 @@ interface ItemOptionsProps {
   options: options[];
 }
 
-const ItemOptions = ({options}:ItemOptionsProps) => {
-
-
-
+const ItemOptions = ({ options }: ItemOptionsProps) => {
   return (
     <div>
       {options.map((option) => (

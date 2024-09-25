@@ -6,8 +6,7 @@ import CookingContena from '../components/Cooking/CookingContena';
 import { processOrderCollection } from '../utils/processOrderCollection';
 
 const Cooking: React.FC = () => {
-
-  const process = "cooking";
+  const process = 'cooking';
   const cooking = processOrderCollection(process);
 
   const cookings = cooking.map((cooking) => Number(cooking.id));

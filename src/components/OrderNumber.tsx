@@ -5,7 +5,7 @@ interface OrderNumberProps {
   id: string;
 }
 
-const OrderNumber = ({id}:OrderNumberProps) => (
+const OrderNumber = ({ id }: OrderNumberProps) => (
   <div>
     <Grid
       container

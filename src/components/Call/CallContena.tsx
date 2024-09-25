@@ -12,7 +12,7 @@ const CallContena: React.FC<CallContenaProps> = ({ call }) => {
       <Stack spacing={2} alignItems="center" divider={<Divider flexItem />}>
         {/* Dividerで区切り線を入れる */}
         {call.map((item, index) => (
-          <ProductCallContena key={index} id={item}  />
+          <ProductCallContena key={index} id={item} />
         ))}
       </Stack>
     </div>

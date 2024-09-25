@@ -17,7 +17,7 @@ function OrderButton({ id }: OrderButtonProps) {
   ``;
   return (
     <div>
-      <Link to="/payment" state={{ id:id }}>
+      <Link to="/payment" state={{ id: id }}>
         <Button
           variant="contained"
           disableElevation
