@@ -13,12 +13,18 @@ interface OrderMenueContenaProps {
   orderprice: number;
   orderimg: string;
   menuqty: number;
-  customizename:string;
-  customizeprice:number;
-
+  customizename: string;
+  customizeprice: number;
 }
 
-const OrderMenueContena = ({ ordername, orderprice, orderimg , menuqty,customizename,customizeprice}: OrderMenueContenaProps) => {
+const OrderMenueContena = ({
+  ordername,
+  orderprice,
+  orderimg,
+  menuqty,
+  customizename,
+  customizeprice,
+}: OrderMenueContenaProps) => {
   const imageDisplaySize = { width: 200, height: 200 };
   // const custommenus = [
   //   { menu: 'たれ', price: 30 },
@@ -28,10 +34,9 @@ const OrderMenueContena = ({ ordername, orderprice, orderimg , menuqty,customize
   //   { menu: '青のり', price: 10 },
   // ];
 
-        console.log("menuqty:"+menuqty);
-        console.log("customizename:"+customizename);
-        console.log("customizeprice:"+customizeprice);
-       
+  console.log('menuqty:' + menuqty);
+  console.log('customizename:' + customizename);
+  console.log('customizeprice:' + customizeprice);
 
   return (
     <div>
@@ -55,18 +60,20 @@ const OrderMenueContena = ({ ordername, orderprice, orderimg , menuqty,customize
 
         <Stack sx={{ flex: 5 }}>
           <Stack>
-            <OrderMenueName ordername={ordername} orderprice={orderprice} menuqty={menuqty} customizename={customizename} />
+            <OrderMenueName
+              ordername={ordername}
+              orderprice={orderprice}
+              menuqty={menuqty}
+              customizename={customizename}
+            />
           </Stack>
           <Stack>
-            
-              <OrderMenueCustomize custom={customizename} customprice={customizeprice} />
-
+            <OrderMenueCustomize custom={customizename} customprice={customizeprice} />
           </Stack>
         </Stack>
       </Stack>
     </div>
   );
 };
-
 
 export default OrderMenueContena;

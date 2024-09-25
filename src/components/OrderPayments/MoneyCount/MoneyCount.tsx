@@ -8,29 +8,28 @@ import BackButton from '../BackButton';
 // eslint-disable-next-line no-restricted-imports
 import OkButton from '../OkButton';
 import CollectedChenge from './CollectedChenge';
+import { useLocation } from 'react-router-dom';
 
-interface OrderPaymentProps {
+interface State {
   totalPayment: number;
   totalAmount: number;
+  id: string;
+
 }
-// お釣り画面を表示する
-const MoneyCount = ({ totalPayment, totalAmount }: OrderPaymentProps) => {
+const MoneyCount = () => {
+  const location = useLocation();
+  const {totalAmount,totalPayment,id} = location.state as State;
   return (
-    <>
-      <Box sx={{ display: 'flex' }}>
-        {/* 注文番号 */}
-        <Box
-          sx={{
-            position: 'fixed',
-            top: { xs: '4rem', sm: '4.5rem', md: '4.5rem' },
-            right: 10,
-          }}
-        >
-          <OrderNumber />
-        </Box>
-      </Box>
-      <Box sx={{ display: 'flex' }}>
-        <CollectedChenge chenge={totalPayment - totalAmount} />
+    <Box sx={{ display: 'flex' }}>
+      {/* 注文番号 */}
+      <Box
+        sx={{
+          position: 'fixed',
+          top: { xs: '4rem', sm: '4.5rem', md: '4.5rem' },
+          right: 10,
+        }}
+      >
+        <OrderNumber id={id} />
       </Box>
       {/* 通貨と合計金額、おつり */}
       <Box sx={{ display: { xs: 'block', sm: 'flex' }, position: 'fixed', right: '2rem', bottom: '2rem' }}>
@@ -41,11 +40,11 @@ const MoneyCount = ({ totalPayment, totalAmount }: OrderPaymentProps) => {
           <Box sx={{ display: 'flex', margin: '1rem' }}>
             <Box>
               {/* 戻るボタン */}
-              <BackButton />
+              {/* <BackButton to="/payment" id={id} /> */}
             </Box>
             <Box sx={{ marginLeft: '4rem' }}>
               {/* OKボタン */}
-              <OkButton />
+              <OkButton id={id} totalAmount={totalAmount} totalPayment={totalPayment} to="/order" />
             </Box>
           </Box>
         </Box>

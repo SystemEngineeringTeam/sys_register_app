@@ -30,19 +30,18 @@ const NumberButtonBox = ({ orders, menu, menuqty, customize }: NumberButtonBoxPr
           flexWrap: 'wrap',
         }}
       >
-        {orders.map((value,index) => {
-          console.log("🚀 ~ index:", index)
+        {orders.map((value, index) => {
+          console.log('🚀 ~ index:', index);
           console.log('🚀 ~ {orders.map ~ value:', value);
-          
 
           const selectMenu = menu[index];
           console.log('🚀 ~ {orders.map ~ selectMenu:', selectMenu);
 
           const selectQty = menuqty[index];
-          console.log("🚀 ~ selectQty:", selectQty)
+          console.log('🚀 ~ selectQty:', selectQty);
 
           const selectCustomize = customize[index];
-          console.log("🚀 ~ selectCustomize:", selectCustomize)
+          console.log('🚀 ~ selectCustomize:', selectCustomize);
 
           return (
             <NumberButton

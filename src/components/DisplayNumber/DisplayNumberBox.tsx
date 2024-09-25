@@ -1,28 +1,30 @@
-import { Box } from '@mui/material';
-import DisplayNumber from './ DisplayNumber';
+import { Box, Grid } from '@mui/material';
+import DisplayNumber from './DisplayNumber';
 const DisplayNumberBox = ({ orders }: { orders: number[] }) => {
-
-    return (
-
-        <div>
-                  <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          wordBreak: 'break-word',
-          flexWrap: 'wrap',
-        }}
+  return (
+    <div>
+      <Box
+        // sx={{
+        //   display: 'flex',
+        //   flexDirection: 'row',
+        //   justifyContent: 'center',
+        //   alignContent: 'center',
+        //   wordBreak: 'break-word',
+        //   flexWrap: 'wrap',
+        // }}
       >
-        {orders.map((order:number) => {
-            return(
-             
-            <DisplayNumber orders={order} /> 
-            )
+<Grid container rowSpacing={1} >
 
+        {orders.map((order: number) => {
+          return(
+          <Grid  xs={4} display="flex" justifyContent="center" alignItems="center"  >
+            <DisplayNumber orders={order} />
+          </Grid>
+          );
         })}
-        </Box>
-        </div>
-    )
-
+        </Grid>
+      </Box>
+    </div>
+  );
 };
 export default DisplayNumberBox;
