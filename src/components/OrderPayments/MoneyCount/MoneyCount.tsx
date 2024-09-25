@@ -49,7 +49,7 @@ const MoneyCount = () => {
           </Box>
         </Box>
       </Box>
-    </>
+    </Box>
   );
 };
 
