@@ -13,8 +13,9 @@ function OkeyButton() {
         }}
         sx={{
           background: '#F68B1F',
-          py: '20px', // 必要に応じてパディングを調整
-          width: '40%',
+          py: '30px', // 必要に応じてパディングを調整
+          width: '30%',
+
         }}
       >
         決定
