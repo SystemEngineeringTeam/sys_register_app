@@ -1,8 +1,11 @@
 // eslint-disable-next-line no-restricted-imports
 import OrderNumber from '../../OrderNumber';
 import { Box } from '@mui/material';
+// eslint-disable-next-line no-restricted-imports
 import WriteNotEnoughMoney from '../WriteNotEnoughMoney';
+// eslint-disable-next-line no-restricted-imports
 import BackButton from '../BackButton';
+// eslint-disable-next-line no-restricted-imports
 import OkButton from '../OkButton';
 import CollectedChenge from './CollectedChenge';
 import { useLocation } from 'react-router-dom';
@@ -28,11 +31,9 @@ const MoneyCount = () => {
       >
         <OrderNumber id={id} />
       </Box>
-
       {/* 通貨と合計金額、おつり */}
-      <Box sx={{ display: { xs: 'block', sm: 'flex' } }}>
+      <Box sx={{ display: { xs: 'block', sm: 'flex' }, position: 'fixed', right: '2rem', bottom: '2rem' }}>
         {/* 通貨を表示 */}
-        <CollectedChenge chenge={totalPayment - totalAmount} />
         <Box sx={{ marginTop: { sm: '25rem', md: '20rem' } }}>
           {/* おつり */}
           <WriteNotEnoughMoney totalAmount={totalAmount} totalPayment={totalPayment} />
@@ -48,7 +49,7 @@ const MoneyCount = () => {
           </Box>
         </Box>
       </Box>
-    </Box>
+    </>
   );
 };
 
