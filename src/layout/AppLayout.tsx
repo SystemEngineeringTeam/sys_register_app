@@ -62,12 +62,13 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
   open: boolean;
 }>(({ theme, open }) => ({
   flexGrow: 1,
-  padding: theme.spacing(3),
+  paddingTop: theme.spacing(1),
   transition: theme.transitions.create('margin', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   marginLeft: `-${drawerWidth}px`,
+  marginTop: theme.mixins.toolbar.minHeight, // AppBarの高さ分のマージンを追加
   ...(open && {
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
@@ -175,7 +176,6 @@ const AppLayout = () => {
         <Divider />
       </Drawer>
       <Main open={isDrawerOpen}>
-        <DrawerHeader />
         <Outlet /> {/* ここにルートで指定されたコンテンツが表示される */}
       </Main>
     </Box>
