@@ -59,7 +59,7 @@ const OrderMenueContena = ({
         </Stack>
 
         <Stack sx={{ flex: 5 }}>
-          <Stack>
+          <Stack sx={{mr:'20px'}}>
             <OrderMenueName
               ordername={ordername}
               orderprice={orderprice}
@@ -67,7 +67,7 @@ const OrderMenueContena = ({
               customizename={customizename}
             />
           </Stack>
-          <Stack>
+          <Stack sx={{ml:'20px', mr:'20px'}}>
             <OrderMenueCustomize custom={customizename} customprice={customizeprice} />
           </Stack>
         </Stack>
