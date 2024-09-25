@@ -20,8 +20,6 @@ function OrderMenuRight({id}: OrderMenuRightProps) { {
     <Box
       sx={{
         position: 'fixed', // スクロールしても固定
-        top: 0, 
-        right: 0, 
         height: '100vh', 
         width: '20vw', 
         display: 'flex',
@@ -29,12 +27,11 @@ function OrderMenuRight({id}: OrderMenuRightProps) { {
         alignItems: 'center',
         justifyContent: 'space-between',
         textAlign: 'center',
-        padding: '2vh 0', 
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
       }}
     >
       {/* 注文番号表示 */}
-      <Box sx={{ marginTop: '50px' , mt:'100px'}}>
+      <Box sx={{ marginTop: '30px' }}>
         <OrderNumber id={id}/>
       </Box>
 
