@@ -13,7 +13,7 @@ export interface developer {
 // itemsの型を定義
 export interface items {
   id: string;
-  name: number;
+  name: string;
   price: number;
   visible: boolean;
   category_id: string;

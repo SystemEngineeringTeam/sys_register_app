@@ -1,12 +1,12 @@
 import { Box, CardMedia } from '@mui/material';
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import React from 'react';
 
-interface MoneyPaidProps {
+interface MoneyChengeProps {
   image: string;
-  count: number;
-  setCount: React.Dispatch<React.SetStateAction<number>>;
+  ChengeCount: number;
 }
-const MoneyPaid = ({ image, count, setCount }: MoneyPaidProps) => {
+
+const MoneyChenge = ({ image, ChengeCount }: MoneyChengeProps) => {
   return (
     <div>
       <Box
@@ -14,31 +14,21 @@ const MoneyPaid = ({ image, count, setCount }: MoneyPaidProps) => {
           border: 1,
           width: { xs: '7rem', sm: '9rem' },
           height: { xs: '7rem', sm: '9rem' },
-          opacity: count === 0 ? '0.5' : '1',
+          opacity: ChengeCount === 0 ? '0.3' : '1',
         }}
       >
-        {/* 0以上の値の場合、クリック時にcountを -1 */}
-        <RemoveCircleIcon
-          onClick={() => {
-            if (count > 0) {
-              setCount((prevState) => prevState - 1);
-            }
-          }}
-        />
         <CardMedia
           component="img"
+          image={image}
           sx={{
             display: 'flex',
             margin: 'auto',
+            marginTop: { xs: '1.2rem', sm: '1.8rem' },
             height: '50%',
             width: '100%',
             objectFit: 'fill',
             position: 'relative',
           }}
-          onClick={() => {
-            setCount((prevState) => prevState + 1);
-          }}
-          image={image}
         />
         <Box
           sx={{
@@ -47,11 +37,11 @@ const MoneyPaid = ({ image, count, setCount }: MoneyPaidProps) => {
             position: 'relative',
           }}
         >
-          {count}
+          {ChengeCount}
         </Box>
       </Box>
     </div>
   );
 };
 
-export default MoneyPaid;
+export default MoneyChenge;

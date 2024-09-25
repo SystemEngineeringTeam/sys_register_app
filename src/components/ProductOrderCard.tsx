@@ -4,81 +4,42 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import ItemOptions from './OrderPayments/ItemOptions';
 import { Grid } from '@mui/material';
+import { items, options } from '../types/index';
 
-const ProductOrderCard = () => {
+interface ProductOrderCardProps {
+  items: items;
+  qty: number;
+  options: options[];
+}
+
+const ProductOrderCard = ({items,qty,options}:ProductOrderCardProps) => {
+
+  
+
   return (
     <div>
       <Box>
-        <Card variant="outlined" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-          <CardContent sx={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-            <Typography variant="h4">ねぎま</Typography>
-            <Typography variant="h4">X 4</Typography>
+        <Card variant="outlined" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <CardContent sx={{ display: 'flex',justifyContent:'space-between', width:'100%' }}>
+            <Typography component="h1">{items.name}</Typography>
+            <Typography component="h1">X{qty}</Typography>
           </CardContent>
 
-          <Box sx={{ m: 2, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <Grid container spacing={2}>
-              <Grid
-                item
-                xs={12}
-                sm={12}
-                md={6}
-                lg={4}
-                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-              >
-                <ItemOptions />
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                sm={12}
-                md={6}
-                lg={4}
-                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-              >
-                <ItemOptions />
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                sm={12}
-                md={6}
-                lg={4}
-                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-              >
-                <ItemOptions />
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                sm={12}
-                md={6}
-                lg={4}
-                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-              >
-                <ItemOptions />
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                sm={12}
-                md={6}
-                lg={4}
-                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-              >
-                <ItemOptions />
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                sm={12}
-                md={6}
-                lg={4}
-                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-              >
-                <ItemOptions />
-              </Grid>
+          <Grid container spacing={1}>
+            <Grid item xs={6}>
+              <ItemOptions options={options} />
             </Grid>
-          </Box>
+            {/* <Grid item xs={6}>
+              <ItemOptions />
+            </Grid>
+            <Grid item xs={6}>
+              <ItemOptions />
+            </Grid>
+            <Grid item xs={6}>
+              <ItemOptions />
+            </Grid> */}
+          </Grid>
+
         </Card>
       </Box>
     </div>

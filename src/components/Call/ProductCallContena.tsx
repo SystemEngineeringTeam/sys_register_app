@@ -1,25 +1,25 @@
 import { Box, Typography, Card, CardContent, Button, Grid, Stack } from '@mui/material';
-import ProductOrderCard from './ProductOrderCard';
+
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { useState } from 'react';
 import { DoNotDisturbOnTotalSilenceOutlined } from '@mui/icons-material';
-import Ordercard from './OrderList/Ordercard';
-import { useOrderUpdate } from '../firebase/setProcess';
-import { useOrderCollection } from '../firebase/useOrderCollection';
+import Ordercard from '../OrderList/Ordercard';
+import { useOrderUpdate } from '../../firebase/setProcess';
+import { useOrderCollection } from '../../firebase/useOrderCollection';
 
-interface ProductOrderContenaProps {
+
+interface ProductCallContenaProps {
   key: number;
   id: number;
 }
 
-const ProductOrderContena = ({key, id}: ProductOrderContenaProps) => {
+const ProductCallContena = ({key, id}: ProductCallContenaProps) => {
 
- const {data} = useOrderCollection();
- const orders = (data ?? []).filter((order) => order.id === id.toString());
- const order = orders.flatMap((data) => {
-   return data.order;
- });
-
+  const {data} = useOrderCollection();
+  const orders = (data ?? []).filter((order) => order.id === id.toString());
+  const order = orders.flatMap((data) => {
+    return data.order;
+  });
 
   const [status, setStatus] = useState(false);
 
@@ -27,7 +27,7 @@ const ProductOrderContena = ({key, id}: ProductOrderContenaProps) => {
 
   const handleChange = () => {
     setStatus(!status);
-    updateOrderStatus(id.toString(), 'cooking');
+    updateOrderStatus(id.toString(), 'offer');
   };
 
   return (
@@ -46,7 +46,7 @@ const ProductOrderContena = ({key, id}: ProductOrderContenaProps) => {
         <Typography component="h1" variant="h5" color="primary">{id}</Typography>
 
         <Button variant="contained" color={status? "success":"error"} startIcon={status?<CheckCircleIcon />:< DoNotDisturbOnTotalSilenceOutlined/>} onClick={handleChange}>
-          {status ? '調理完了' : '未完了'}
+          {status ? '提供済' : '未完了'}
         </Button>
       </Stack>
       <Ordercard orders={order} />
@@ -58,4 +58,4 @@ const ProductOrderContena = ({key, id}: ProductOrderContenaProps) => {
   );
 };
 
-export default ProductOrderContena;
+export default ProductCallContena;

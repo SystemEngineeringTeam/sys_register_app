@@ -1,18 +1,22 @@
+import React from 'react';
 import { Divider, Stack } from '@mui/material';
-import ProductOrderContena from "@/components/ProductOrderContena.tsx"
 
-const Cooking = () => (
-  <div>
-    {/*Stackで縦に並べる */}
+import ProductOrderContena from '../components/ProductOrderContena';
+import CookingContena from '../components/Cooking/CookingContena';
+import { processOrderCollection } from '../utils/processOrderCollection';
 
-    <Stack spacing={2} alignItems="center" divider={<Divider flexItem />}>
-      {/* ividerで区切り線を入れる */}
-      <ProductOrderContena />
-      <ProductOrderContena />
-      <ProductOrderContena />
-      <ProductOrderContena />
-    </Stack>
-  </div>
-);
+const Cooking: React.FC = () => {
+
+  const process = "cooking";
+  const cooking = processOrderCollection(process);
+
+  const cookings = cooking.map((cooking) => Number(cooking.id));
+
+  return (
+    <div>
+      <CookingContena cooking={cookings} />
+    </div>
+  );
+};
 
 export default Cooking;
