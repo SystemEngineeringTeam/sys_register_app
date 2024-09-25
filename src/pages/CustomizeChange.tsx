@@ -28,8 +28,8 @@ export default function CustomizeChange(): ReactElement {
 
   return (
     <div>
-      <Box sx={{ display: 'flex' }}>
-        <Box sx={{ flex: 6 }}>
+      <Box sx={{ display: 'flex',height: '90vh' }}>
+        <Box sx={{ flex: 6 ,overflowY:'auto'}}>
           <CustomizeChangeLeft processedoptions={state.ordername} customizename={state.customizename} />
         </Box>
         <Box sx={{ flex: 4 }}>
