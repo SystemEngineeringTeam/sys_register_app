@@ -12,60 +12,73 @@ import OrderMenuLeft from '../components/OrderMenuLeft';
 import { useOrderCollection } from '../firebase/useOrderCollection';
 import { useMoney } from '../firebase/useMoney';
 
-
 export default function OrderChange(): ReactElement {
-  const { state } = useLocation();
+
+  interface State {
+    id: number;
+    menu: {
+      name: string | null;
+      price: number | null;
+    }[];
+    menuqty: {
+      qty: number | null;
+    }[];
+    selectCustomize: {
+      name: string;
+      price: number;
+    }[];
+  }
+
+  const location = useLocation();
+  const { state } = location as { state: State };
   const [ordersList, setOrdersList] = useState<number[]>([]);
   const { data } = useOrderCollection();
-  const { money} = useMoney();
+  const { money } = useMoney();
 
-  useEffect(() => {
-    if (state && state.state) {
-      setOrdersList(state.state);
-    }
-  }, [state]);
-  
-    console.log("🚀 ~ useEffect ~ setOrdersList:", ordersList)
-    
+  // useEffect(() => {
+  //   if (state && state.id) {
+  //     setOrdersList(state.id);
+  //   }
+  // }, [state]);
+
 
   // const menu = processOrderChange(
   //   (orderCollectionData.data || []).flatMap((order) => order.order.flatMap((o) => o.item)),
   // );
 
-  const order = processOrderCollection(data || []);
-        console.log("🚀 ~ Order ~ order:", order)
+  const process = "accounting";
+  const order = processOrderCollection(process);
+  console.log('🚀 ~ Order ~ order:', order);
 
-        const orders = order.map((order) => Number(order.id))
-        console.log("🚀 ~ OrderChange ~ orders:", orders)
-        
+  const orders = order.map((order) => Number(order.id));
+  console.log('🚀 ~ OrderChange ~ orders:', orders);
 
   console.log(state);
-  console.log(state.states);
-    console.log(state.menu);
-    console.log(state.qty);
-    console.log(state.menuqty);
-   console.log(order);
-   console.log(state.selectCustomize);
+  console.log(state.id);
+  console.log(state.menu);
+  console.log(state.menuqty);
+  console.log(state.menuqty);
+  console.log(order);
+  console.log(state.selectCustomize);
 
   return (
-
     <div>
       <Box sx={{ display: 'flex', height: '100vh' }}>
         {/* 左側メニューリスト */}
         <Box sx={{ flex: 4, overflowY: 'auto' }}>
-        <OrderMenuLeft processedoptions={state.menu} orders={state.states} menuqty={state.menuqty} 
-        customize={state.selectCustomize}
-        />
-          
+          <OrderMenuLeft
+            processedoptions={state.menu}
+            menuqty={state.menuqty}
+            customize={state.selectCustomize}
+          />
         </Box>
 
         {/* 右側注文情報 */}
 
         <Box sx={{ flex: 1 }}>
-          <OrderMenuRight />
+          <OrderMenuRight id={state.id.toString()} />
         </Box>
       </Box>
     </div>
   );
-};
-
+}

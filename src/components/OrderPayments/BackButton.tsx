@@ -1,10 +1,17 @@
 import { ThemeProvider } from '@emotion/react';
 import { Button } from '@mui/material';
 import { theme } from '../../themes/theme';
+import { Link } from 'react-router-dom';
 
-const BackButton = () => {
+interface BackButtonProps {
+  to: string;
+  id: string;
+}
+
+const BackButton = ({to,id}:BackButtonProps) => {
   return (
     <ThemeProvider theme={theme}>
+      <Link to={to} state={id}>
       <Button
         variant="contained"
         color="back"
@@ -16,6 +23,7 @@ const BackButton = () => {
       >
         戻る
       </Button>
+      </Link>
     </ThemeProvider>
   );
 };

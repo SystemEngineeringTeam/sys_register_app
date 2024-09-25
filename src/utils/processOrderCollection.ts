@@ -1,97 +1,63 @@
-// utils/processOrderCollection.ts
-import { orderCollection } from '../types/index';
-import { useState } from 'react';
+import { useOrderCollection } from '../firebase/useOrderCollection';
+import { useState, useEffect } from 'react';
 
+export const processOrderCollection = (
+  process: string
+): { id: string | null }[] => {
+  const { data } = useOrderCollection();
+  const orderCollections = data || [];
 
-export const processOrderCollection = (orderCollections: orderCollection[]):{ id: string | null }[] => {
+  const [aryAccountigId, setAryAccountigID] = useState<{ id: string | null }[]>([]);
+  const [aryCookingId, setAryCookingID] = useState<{ id: string | null }[]>([]);
+  const [aryOfferId, setAryOfferID] = useState<{ id: string | null }[]>([]);
 
-  const aryId: { id: string | null}[] = [];
-  const aryWaitPeople: {id: string | null}[] = [];
-  const aryCallPeople:{ id:string | null}[] = [];
-  const [id,setId] = useState<{id: string | null}[]>([]);
-  const [waitPeople,setWaitPeople] = useState<{id: string | null}[]>([]);
-  const [callPeople,setCallPeople] = useState<{id: string | null}[]>([]);
+  useEffect(() => {
+    // 新しいIDを追加するためのセット
+    const newAccountigIds: Set<string | null> = new Set();
+    const newCookingIds: Set<string | null> = new Set();
+    const newOfferIds: Set<string | null> = new Set();
 
-const ordernumber = ():{ id: string | null }[] => {
+    orderCollections.forEach((orderCollection) => {
+      console.log("id:" + orderCollection.id);
+      console.log("boolean:" + orderCollection.accounting);
 
-return orderCollections.map((orderCollection,orderWait) => {
-  console.log("id:"+orderCollection.id);
-  console.log("boolean"+orderCollection.accounting)
-  
-  switch (orderCollection.accounting){
-    case false:
-      
-      //setId(() => [...id,{ id: orderCollection.id}]);
-      // console.log("🚀 ~ returnorderCollections.map ~ setId:", setId)
-      // console.log("🚀 ~ returnorderCollections.map ~ setId:", id)
-      // console.log("🚀 ~ returnorderCollections.map ~ setId:", orderCollection.id)
+      switch (orderCollection.accounting) {
+        case false:
+          newAccountigIds.add(orderCollection.id);
+          break;
 
-      aryId.push({
-        id:orderCollection.id
-      })
-
-       setId((aryId))
-
-
-      console.log("🚀 ~ returnorderCollections.map ~ setId:", setId)
-      console.log("🚀 ~ returnorderCollections.map ~ setId:", id)
-
-
-      return {
-        id:orderCollection.id
-      };
-     
-     case true:
-      if(orderCollection.cooking = false){
-
-        setWaitPeople((waitpeople) => [...waitpeople,{id:orderCollection.id}])
-        console.log("🚀 ~ returnorderCollections.map ~ setWaitPeople:", setWaitPeople)
-        aryWaitPeople.push({
-          id:orderCollection.id
-        })
-        setWaitPeople(aryWaitPeople)
+        case true:
+          if (!orderCollection.cooking) {
+            newCookingIds.add(orderCollection.id);
+          } else if (!orderCollection.offer) {
+            newOfferIds.add(orderCollection.id);
+          }
+          break;
       }
+    });
 
-      console.log("aryWaitPeople:"+aryWaitPeople);
-        return {
-          id:orderCollection.id
-        };
+    // 状態を更新
+    setAryAccountigID(Array.from(newAccountigIds).map(id => ({ id })));
+    setAryCookingID(Array.from(newCookingIds).map(id => ({ id })));
+    setAryOfferID(Array.from(newOfferIds).map(id => ({ id })));
 
+  }, [orderCollections]); // `data`が変更された時だけ実行される
 
-      default: 
-      if(orderCollection.cooking = false){
-        if(orderCollection.offer = false){
+  function getProcessArray(process: string) {
+    switch (process) {
+      case 'accounting':
+        return aryAccountigId;
 
-          setCallPeople((callpeople) => [...callpeople,{id: orderCollection.id}])
-          console.log("🚀 ~ returnorderCollections.map ~ setCallPeople:", setCallPeople)
+      case 'cooking':
+        return aryCookingId;
 
-          aryCallPeople.push({
-            id:orderCollection.id
-          })
-          setCallPeople(aryCallPeople)
-        }
-      }
+      case 'offer':
+        return aryOfferId;
 
-      console.log("aryCallPeople:"+aryCallPeople);
-      return {
-        id:orderCollection.id
-      }
+      default:
+        return [];
+    }
   }
-    
-})
-    
 
-
-}
-
-return ordernumber();
+  return getProcessArray(process);
 };
-
-// const OrderNum = () => {
-//   const [number,setNumber] = useState([]);
-
-//   setNumber( se )
-
-
-//   setNumber
-// }

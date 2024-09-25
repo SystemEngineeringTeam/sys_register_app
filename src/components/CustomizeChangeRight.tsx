@@ -12,16 +12,13 @@ function CustomizeChangeRight() {
 
         <Box sx={{ mt: '100%' }}>
           <Box>
-            {' '}
-            <OrderDelete />{' '}
+            <OrderDelete />
           </Box>
           <Box sx={{ mt: '30px' }}>
             <OkeyButton />
           </Box>
         </Box>
       </Box>
-
-      {/* <Box><OrderButton /></Box> */}
     </div>
   );
 }

@@ -11,42 +11,39 @@ import { processCustomizeChange } from '../utils/processCustomizeChange';
 import { useOrderCollection } from '../firebase/useOrderCollection';
 import { useMoney } from '../firebase/useMoney';
 
-  // const orders = [
-  //   1, 2, 3, 4, 4, 5, 4, 231, 3245, 324, 332, 344, 223, 421, 324, 321, 123, 242, 234, 231, 324, 23, 4, 234, 443, 244,
-  //   232,
-  // ];
+// const orders = [
+//   1, 2, 3, 4, 4, 5, 4, 231, 3245, 324, 332, 344, 223, 421, 324, 321, 123, 242, 234, 231, 324, 23, 4, 234, 443, 244,
+//   232,
+// ];
 
-  export default function Order(): ReactElement {
-    const { data } = useOrderCollection();
-    const { money} = useMoney();
-  
-      const order = processOrderCollection(data || []);
-      console.log('🚀 ~ Order ~ order:', order);
+export default function Order(): ReactElement {
+  const { data } = useOrderCollection();
+  const { money } = useMoney();
 
-      const orders = order.map((order) => Number(order.id));
-      //const orders = [Number(order)];
+  const process = "accounting";
+  const order = processOrderCollection(process);
+  console.log('🚀 ~ Order ~ order:', order);
 
-      const menu = processOrderChange(
-        (data || []).flatMap((order) => order.order.flatMap((o) => o.item)),
-      );
+  const orders = order.map((order) => Number(order.id));
+  //const orders = [Number(order)];
 
-      const menuqty = processNumber((data || []).flatMap((order) => order.order));
+  const menu = processOrderChange((data || []).flatMap((order) => order.order.flatMap((o) => o.item)));
 
-      const processCustmize = processCustomizeChange(
-        (data || []).flatMap((order) => order.order.flatMap((o) => o.options)),
-      );
+  const menuqty = processNumber((data || []).flatMap((order) => order.order));
 
-      console.log('🚀 ~ Order ~ orders:', orders);
-      console.log('🚀 ~ Order ~ menu:', menu);
-      console.log('🚀 ~ Order ~ menuqty:', menuqty);
-      console.log("🚀 ~ Order ~ processCustmize:", processCustmize);
+  const processCustmize = processCustomizeChange(
+    (data || []).flatMap((order) => order.order.flatMap((o) => o.options)),
+  );
 
-      return (
-        <div>
-          <NumberButtonBox orders={orders} menu={menu} menuqty={menuqty} customize={processCustmize}/>
-          <OrderWaitPeople orders={orders} />
-        </div>
-      );
-  }
+  console.log('🚀 ~ Order ~ orders:', orders);
+  console.log('🚀 ~ Order ~ menu:', menu);
+  console.log('🚀 ~ Order ~ menuqty:', menuqty);
+  console.log('🚀 ~ Order ~ processCustmize:', processCustmize);
 
-
+  return (
+    <div>
+      <NumberButtonBox orders={orders} menu={menu} menuqty={menuqty} customize={processCustmize} />
+      <OrderWaitPeople orders={orders} />
+    </div>
+  );
+}
