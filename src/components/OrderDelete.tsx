@@ -12,9 +12,10 @@ function OrderDelete() {
           console.log('お支払いへ');
         }}
         sx={{
-          background: '#FF4337',
-          py: '20px', // 必要に応じてパディングを調整
-          width: '40%',
+          background: '#FF4337', 
+          width: '30%',
+          py: '30px',
+         
         }}
       >
         注文取消
