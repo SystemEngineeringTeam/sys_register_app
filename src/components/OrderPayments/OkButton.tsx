@@ -1,7 +1,7 @@
 import { Button, ThemeProvider } from '@mui/material';
-import { theme } from '../../themes/theme';
 import { Link } from 'react-router-dom';
 import { useOrderUpdate } from '../../firebase/setProcess';
+import { theme } from '../../themes/theme';
 
 interface OkButtonProps {
   id: string;

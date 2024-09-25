@@ -8,10 +8,10 @@ import BackButton from './BackButton';
 import OkButton from './OkButton';
 import { useEffect, useState } from 'react';
 // eslint-disable-next-line no-restricted-imports
-import { idToTotalAmount } from '../../utils/accountingUtils';
 // eslint-disable-next-line no-restricted-imports
 import { useOrderCollection } from '../../firebase/useOrderCollection';
 import { useLocation } from 'react-router-dom';
+import { idToTotalAmount } from '../../utils/accountingUtils';
 
 interface State {
   id: string;

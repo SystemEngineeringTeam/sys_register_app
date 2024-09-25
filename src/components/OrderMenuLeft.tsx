@@ -1,14 +1,5 @@
-import React from 'react';
-import NumberButton from '../components/NumberButton';
-import { Box, Grid } from '@mui/material';
-import NumberButtonBox from '../components/NumberButtonBox';
-import OrderWaitPeople from '../components/OrderWaitPeople';
-import { orderCollectionAtom } from '../firebase/FirebaseUtils';
-import { useAtom } from 'jotai';
-import { processOrderCollection } from '../utils/processOrderCollection';
-import { processOrderChange } from '../utils/processOrderChange';
+import { Box } from '@mui/material';
 import OrderMenueContena from './OrderMenueContena';
-import Yakitori from '/yakitori_solt.png';
 
 interface OrderMenueLeftProps {
   processedoptions: {
