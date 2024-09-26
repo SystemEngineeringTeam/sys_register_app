@@ -5,22 +5,34 @@ import DeleteYesButton from './DeleteYesButton';
 import ClearIcon from '@mui/icons-material/Clear';
 import { processOrderChange } from '@/utils/processOrderChange';
 import { useOrderCollection } from '@/firebase/useOrderCollection';
+import { processOrderCollection } from '@/utils/processOrderCollection';
 
 const ManagementPopup = () => {
 
   const { data } = useOrderCollection();
 
+  const process = 'accounting';
+  const order = processOrderCollection(process);
+  console.log('🚀 ~ Order ~ order:', order);
+
+  const orders = order.map((order) => Number(order.id));
+  console.log('🚀 ~ OrderChange ~ orders:', orders);
+
   const menu = processOrderChange((data || []).flatMap((order) => order.order.flatMap((o) => o.item)));
   console.log("🚀 ~ menu:", menu)
 
-  const menuName = menu.map((value, index) => {
-      
-  })
+  
+
+  // const menuName = orders.map((value, index) => {
+  //   const selectMenu = menu[index];
+  //   console.log("selectMenu.name:",selectMenu.name);
+  // })
   
   
   return (
     <div>
       <Box sx={{ textAlign: 'right' }}>
+        
         <ClearIcon />
       </Box>
       <Box sx={{ textAlign: 'center' }}>
@@ -35,7 +47,19 @@ const ManagementPopup = () => {
           sx={{ justifyContent: 'center', mt: '10rem' }}
         >
           <Stack>メニュー:</Stack>
-          <Stack sx={{ ml: '30px' }}>つくね</Stack>
+          <Stack 
+          sx={{ ml: '30px' }}
+          >
+          {orders.map((value,index) => {
+            const selectMenu = menu[index];
+            return(
+              <div>
+                  {selectMenu.name}
+              </div>
+            
+            )
+          })}
+        </Stack>
         </Stack>
 
         <Box fontSize={{ xs: '10px', sm: '20px', md: '30px' }} sx={{ mt: '5rem' }}>
