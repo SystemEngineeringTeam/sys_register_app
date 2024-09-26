@@ -36,26 +36,7 @@ function OrderMenuRight({ id }: OrderMenuRightProps) {
         <Box sx={{ marginTop: '50px' }}>
           <OrderNumber id={id} />
         </Box>
-  const totalAmount = data ? idToTotalAmount(id, data) : 0;
-
-  return (
-    <Box
-      sx={{
-        position: 'fixed', // スクロールしても固定
-        height: '100vh', 
-        width: '20vw', 
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        textAlign: 'center',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
-      }}
-    >
-      {/* 注文番号表示 */}
-      <Box sx={{ marginTop: '30px' }}>
-        <OrderNumber id={id}/>
-      </Box>
+ 
 
       <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         {/* 合計金額表示 */}
@@ -95,12 +76,14 @@ function OrderMenuRight({ id }: OrderMenuRightProps) {
             >
               {totalAmount}円
             </Typography>
+            </Typography>
           </Box>
 
         {/* ボタン */}
         <Box sx={{ marginTop: '20px', mt:'50px'}}>
           <OrderButton id={id} />
         </Box>
+      </Box>
       </Box>
     );
   }
