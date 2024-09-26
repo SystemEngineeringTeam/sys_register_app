@@ -14,7 +14,7 @@ import OrderChange from './pages/OrderChange';
 import CustomizeChange from './pages/CustomizeChange';
 import OrderPayment from './components/OrderPayments/OrderPayment';
 import MoneyCount from './components/OrderPayments/MoneyCount/MoneyCount';
-import ManagementPopup from './components/managementPopup';
+import ManagementPopup from './components/ManagementPopup';
 
 const App = () => {
   return (
