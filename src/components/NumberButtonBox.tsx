@@ -2,24 +2,19 @@ import { Box } from '@mui/material';
 import React from 'react';
 import NumberButton from './NumberButton';
 import { items } from '../types';
-import { processOrderChange } from '../utils/processOrderChange';
+import { processNumber, processOrderChange } from '../utils/processOrderChange';
+import { useOrderCollection } from '@/firebase/useOrderCollection';
+import { processOrderCollection } from '@/utils/processOrderCollection';
+import { processCustomizeChange } from '@/utils/processCustomizeChange';
+import { useMoney } from '@/firebase/useMoney';
 
-interface NumberButtonBoxProps {
+interface NumberButtonProps{
   orders: number[];
-  menu: {
-    name: string | null;
-    price: number | null;
-  }[];
-  menuqty: {
-    qty: number | null;
-  }[];
-  customize: {
-    name: string;
-    price: number;
-  }[];
 }
 
-const NumberButtonBox = ({ orders, menu, menuqty, customize }: NumberButtonBoxProps) => {
+const NumberButtonBox = ({orders}:NumberButtonProps) => {
+  const { data } = useOrderCollection();
+
   return (
     <div>
       <Box
@@ -30,25 +25,10 @@ const NumberButtonBox = ({ orders, menu, menuqty, customize }: NumberButtonBoxPr
           flexWrap: 'wrap',
         }}
       >
-        {orders.map((value, index) => {
-          console.log('🚀 ~ index:', index);
-          console.log('🚀 ~ {orders.map ~ value:', value);
-
-          const selectMenu = menu[index];
-          console.log('🚀 ~ {orders.map ~ selectMenu:', selectMenu);
-
-          const selectQty = menuqty[index];
-          console.log('🚀 ~ selectQty:', selectQty);
-
-          const selectCustomize = customize[index];
-          console.log('🚀 ~ selectCustomize:', selectCustomize);
-
+        {orders.map((value) => {
           return (
             <NumberButton
               orders={value}
-              menu={selectMenu ? [selectMenu] : []}
-              menuqty={selectQty ? [selectQty] : []}
-              selectCustomize={selectCustomize ? [selectCustomize] : []}
             />
           );
         })}
