@@ -31,9 +31,9 @@ const ManagementPopup = () => {
   
   return (
     <div>
-      <Box sx={{ textAlign: 'right' }}>
+      <Box sx={{ textAlign: 'right', }}>
         
-        <ClearIcon />
+        <ClearIcon sx={{fontSize:'80px'}} />
       </Box>
       <Box sx={{ textAlign: 'center' }}>
         {/* fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' */}
