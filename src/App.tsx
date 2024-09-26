@@ -14,6 +14,7 @@ import OrderChange from './pages/OrderChange';
 import CustomizeChange from './pages/CustomizeChange';
 import OrderPayment from './components/OrderPayments/OrderPayment';
 import MoneyCount from './components/OrderPayments/MoneyCount/MoneyCount';
+import ManagementPopup from './components/managementPopup';
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
             <Route path="customizechange" element={<CustomizeChange />} />
             <Route path="payment" element={<OrderPayment />} />
             <Route path="paychange" element={<MoneyCount />} />
+            <Route path="popup" element={<ManagementPopup />} />
             <Route path="*" element={<div>Not Found</div>} />
           </Route>
         </Route>
