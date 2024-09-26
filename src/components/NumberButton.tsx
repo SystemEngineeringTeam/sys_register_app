@@ -9,25 +9,14 @@ import DisplayNumber from './DisplayNumber/DisplayNumber';
 // })
 interface NumberButtonProps {
   orders: number;
-  menu: {
-    name: string | null;
-    price: number | null;
-  }[];
-  menuqty: {
-    qty: number | null;
-  }[];
-  selectCustomize: {
-    name: string;
-    price: number;
-  }[];
 }
-const NumberButton = ({ orders, menu, menuqty, selectCustomize }: NumberButtonProps) => {
+const NumberButton = ({ orders, }: NumberButtonProps) => {
   //console.log('🚀 ~ NumberButton ~ menu:', menu);
   console.log('🚀 ~ NumberButton ~ orders:', orders);
 
   return (
     <div>
-      <Link to="/orderchange" state={{ id: orders, menu: menu, menuqty: menuqty, selectCustomize: selectCustomize }}>
+      <Link to="/orderchange" state={{ id: orders, }}>
         <DisplayNumber orders={orders} />
       </Link>
     </div>
