@@ -17,9 +17,9 @@ import { useMoney } from '../firebase/useMoney';
 // ];
 
 export default function Order(): ReactElement {
-  const { data } = useOrderCollection();
-  const { money } = useMoney();
 
+  const { data } = useOrderCollection();
+  
   const process = 'accounting';
   const order = processOrderCollection(process);
   console.log('🚀 ~ Order ~ order:', order);
@@ -27,23 +27,10 @@ export default function Order(): ReactElement {
   const orders = order.map((order) => Number(order.id));
   //const orders = [Number(order)];
 
-  const menu = processOrderChange((data || []).flatMap((order) => order.order.flatMap((o) => o.item)));
-
-  const menuqty = processNumber((data || []).flatMap((order) => order.order));
-
-  const processCustmize = processCustomizeChange(
-    (data || []).flatMap((order) => order.order.flatMap((o) => o.options)),
-  );
-
-  console.log('🚀 ~ Order ~ orders:', orders);
-  console.log('🚀 ~ Order ~ menu:', menu);
-  console.log('🚀 ~ Order ~ menuqty:', menuqty);
-  console.log('🚀 ~ Order ~ processCustmize:', processCustmize);
-
   return (
     <div>
-      <NumberButtonBox orders={orders} menu={menu} menuqty={menuqty} customize={processCustmize} />
-      <OrderWaitPeople orders={orders} />
+      <NumberButtonBox  orders={orders}/>
+      <OrderWaitPeople orders={orders}/>
     </div>
   );
 }
