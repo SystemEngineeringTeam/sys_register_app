@@ -12,15 +12,12 @@ interface ProductOrderCardProps {
   options: options[];
 }
 
-const ProductOrderCard = ({items,qty,options}:ProductOrderCardProps) => {
-
-  
-
+const ProductOrderCard = ({ items, qty, options }: ProductOrderCardProps) => {
   return (
     <div>
       <Box>
         <Card variant="outlined" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <CardContent sx={{ display: 'flex',justifyContent:'space-between', width:'100%' }}>
+          <CardContent sx={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
             <Typography component="h1">{items.name}</Typography>
             <Typography component="h1">X{qty}</Typography>
           </CardContent>
@@ -39,7 +36,6 @@ const ProductOrderCard = ({items,qty,options}:ProductOrderCardProps) => {
               <ItemOptions />
             </Grid> */}
           </Grid>
-
         </Card>
       </Box>
     </div>

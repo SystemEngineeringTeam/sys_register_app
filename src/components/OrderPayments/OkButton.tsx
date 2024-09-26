@@ -1,7 +1,7 @@
 import { Button, ThemeProvider } from '@mui/material';
-import { theme } from '../../themes/theme';
 import { Link } from 'react-router-dom';
 import { useOrderUpdate } from '../../firebase/setProcess';
+import { theme } from '../../themes/theme';
 
 interface OkButtonProps {
   id: string;
@@ -10,33 +10,31 @@ interface OkButtonProps {
   to: string;
 }
 
-const OkButton = ({id, totalAmount, totalPayment, to}: OkButtonProps) => {
-
-  const { updateOrderStatus } = useOrderUpdate(); 
+const OkButton = ({ id, totalAmount, totalPayment, to }: OkButtonProps) => {
+  const { updateOrderStatus } = useOrderUpdate();
 
   const handleChange = () => {
     updateOrderStatus(id.toString(), 'accounting');
   };
 
-
-
   const payChange = () => {
     return totalPayment - totalAmount >= 0;
-  }
+  };
 
   const clickhandle = () => {
     if (!payChange()) {
-      alert("お金が足りません");
+      alert('お金が足りません');
     } else {
       console.log('🚀 ~ OkButton ~ clickhandle ~ payChange', payChange());
-    }if(to === "/order"){
+    }
+    if (to === '/order') {
       handleChange();
     }
-  }
+  };
 
   return (
     <ThemeProvider theme={theme}>
-      <Link to={payChange() ? to : "#"} state={{ id, totalAmount, totalPayment }}>
+      <Link to={payChange() ? to : '#'} state={{ id, totalAmount, totalPayment }}>
         <Button
           variant="contained"
           color="ok"

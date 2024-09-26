@@ -12,7 +12,7 @@ const CookingContena: React.FC<CookingContenaProps> = ({ cooking }) => {
       <Stack spacing={2} alignItems="center" divider={<Divider flexItem />}>
         {/* Dividerで区切り線を入れる */}
         {cooking.map((item, index) => (
-          <ProductOrderContena key={index} id={item}  />
+          <ProductOrderContena key={index} id={item} />
         ))}
       </Stack>
     </div>

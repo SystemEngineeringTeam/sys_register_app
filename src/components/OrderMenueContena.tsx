@@ -1,12 +1,6 @@
 import { Box, Stack } from '@mui/material';
-import React from 'react';
-import Yakitori from '/yakitori.png';
-import OrderMenueName from './OrderMenueName';
 import OrderMenueCustomize from './OrderMenueCustomize';
-import { BorderBottom } from '@mui/icons-material';
-import { useAtom } from 'jotai';
-import { orderCollectionAtom } from '../firebase/FirebaseUtils';
-import { processCustomizeChange } from '../utils/processCustomizeChange';
+import OrderMenueName from './OrderMenueName';
 
 interface OrderMenueContenaProps {
   ordername: string;

@@ -12,14 +12,9 @@ const Home = () => {
       </Typography>
 
       {/* おしゃれなメインロゴ */}
-      <Box 
-        component="img" 
-        sx={{ width: '300px', margin: '20px auto' }} 
-        src=""
-        alt="ロゴ募集中" 
-      />
+      <Box component="img" sx={{ width: '300px', margin: '20px auto' }} src="" alt="ロゴ募集中" />
     </Box>
   );
-}
+};
 
 export default Home;

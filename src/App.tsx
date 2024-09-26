@@ -34,7 +34,6 @@ const App = () => {
             <Route path="payment" element={<OrderPayment />} />
             <Route path="paychange" element={<MoneyCount />} />
             <Route path="*" element={<div>Not Found</div>} />
-
           </Route>
         </Route>
       </Routes>

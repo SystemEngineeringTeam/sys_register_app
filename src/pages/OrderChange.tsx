@@ -1,19 +1,14 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useState } from 'react';
 
-import OrderMenuRight from '../components/OrderMenuRight';
-import { Box, Stack } from '@mui/material';
-import OrderButton from '../components/OrderButton';
+import { Box } from '@mui/material';
 import { useLocation } from 'react-router-dom';
-import { processOrderChange } from '../utils/processOrderChange';
-import { useAtom } from 'jotai';
-import { orderCollectionAtom } from '../firebase/FirebaseUtils';
-import { processOrderCollection } from '../utils/processOrderCollection';
 import OrderMenuLeft from '../components/OrderMenuLeft';
-import { useOrderCollection } from '../firebase/useOrderCollection';
+import OrderMenuRight from '../components/OrderMenuRight';
 import { useMoney } from '../firebase/useMoney';
+import { useOrderCollection } from '../firebase/useOrderCollection';
+import { processOrderCollection } from '../utils/processOrderCollection';
 
 export default function OrderChange(): ReactElement {
-
   interface State {
     id: number;
     menu: {
@@ -41,12 +36,11 @@ export default function OrderChange(): ReactElement {
   //   }
   // }, [state]);
 
-
   // const menu = processOrderChange(
   //   (orderCollectionData.data || []).flatMap((order) => order.order.flatMap((o) => o.item)),
   // );
 
-  const process = "accounting";
+  const process = 'accounting';
   const order = processOrderCollection(process);
   console.log('🚀 ~ Order ~ order:', order);
 
@@ -65,6 +59,7 @@ export default function OrderChange(): ReactElement {
     <div>
       <Box sx={{ display: 'flex' }}>
         {/* 左側メニューリスト */}
+
         <Box sx={{ flex: 4, overflowY: 'auto', mt:'20px', mr:'20px', ml:'20px'}}>
           <OrderMenuLeft
             processedoptions={state.menu}

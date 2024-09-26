@@ -1,13 +1,9 @@
 import React from 'react';
-import { Divider, Stack } from '@mui/material';
-
-import ProductOrderContena from '../components/ProductOrderContena';
-import CookingContena from '../components/Cooking/CookingContena';
 import { processOrderCollection } from '../utils/processOrderCollection';
+import CookingContena from '@/components/Cooking/CookingContena';
 
 const Cooking: React.FC = () => {
-
-  const process = "cooking";
+  const process = 'cooking';
   const cooking = processOrderCollection(process);
 
   const cookings = cooking.map((cooking) => Number(cooking.id));

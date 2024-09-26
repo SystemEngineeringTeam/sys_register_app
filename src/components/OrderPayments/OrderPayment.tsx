@@ -8,18 +8,15 @@ import BackButton from './BackButton';
 import OkButton from './OkButton';
 import { useEffect, useState } from 'react';
 // eslint-disable-next-line no-restricted-imports
-import { idToTotalAmount } from '../../utils/accountingUtils';
 // eslint-disable-next-line no-restricted-imports
 import { useOrderCollection } from '../../firebase/useOrderCollection';
 import { useLocation } from 'react-router-dom';
-
+import { idToTotalAmount } from '../../utils/accountingUtils';
 
 interface State {
   id: string;
 }
 const OrderPayment = () => {
-
-
   const location = useLocation();
   const { id } = location.state as State;
 
@@ -83,7 +80,7 @@ const OrderPayment = () => {
           right: 10,
         }}
       >
-        <OrderNumber id={id}  />
+        <OrderNumber id={id} />
       </Box>
 
       {/* 通貨と合計金額、おつり */}
@@ -122,7 +119,7 @@ const OrderPayment = () => {
             </Box>
             <Box sx={{ marginLeft: '4rem' }}>
               {/* OKボタン */}
-              <OkButton id={id} totalAmount={getTotalAmount()} totalPayment={totalPayment} to='/paychange'/>
+              <OkButton id={id} totalAmount={getTotalAmount()} totalPayment={totalPayment} to="/paychange" />
             </Box>
           </Box>
         </Box>
