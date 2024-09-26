@@ -7,21 +7,12 @@ import OrderMenuRight from '../components/OrderMenuRight';
 import { useMoney } from '../firebase/useMoney';
 import { useOrderCollection } from '../firebase/useOrderCollection';
 import { processOrderCollection } from '../utils/processOrderCollection';
+import { processNumber, processOrderChange } from '@/utils/processOrderChange';
+import { processCustomizeChange } from '@/utils/processCustomizeChange';
 
 export default function OrderChange(): ReactElement {
   interface State {
     id: number;
-    menu: {
-      name: string | null;
-      price: number | null;
-    }[];
-    menuqty: {
-      qty: number | null;
-    }[];
-    selectCustomize: {
-      name: string;
-      price: number;
-    }[];
   }
 
   const location = useLocation();
@@ -47,13 +38,15 @@ export default function OrderChange(): ReactElement {
   const orders = order.map((order) => Number(order.id));
   console.log('🚀 ~ OrderChange ~ orders:', orders);
 
-  console.log(state);
-  console.log(state.id);
-  console.log(state.menu);
-  console.log(state.menuqty);
-  console.log(state.menuqty);
-  console.log(order);
-  console.log(state.selectCustomize);
+  const menu = processOrderChange((data || []).flatMap((order) => order.order.flatMap((o) => o.item)));
+  console.log("🚀 ~ menu:", menu)
+
+  const menuqty = processNumber((data || []).flatMap((order) => order.order));
+  console.log("🚀 ~ menuqty:", menuqty)
+
+  const custmize = processCustomizeChange(
+    (data || []).flatMap((order) => order.order.flatMap((o) => o.options)),
+  );
 
   return (
     <div>
@@ -61,11 +54,24 @@ export default function OrderChange(): ReactElement {
         {/* 左側メニューリスト */}
 
         <Box sx={{ flex: 4, overflowY: 'auto', mt:'20px', mr:'20px', ml:'20px'}}>
+
+        {orders.map((index) => {
+          const selectMenu = menu[index];
+          console.log("🚀 ~ {orders.map ~ selectMenu:", selectMenu)
+          const selectQty = menuqty[index];
+          console.log("🚀 ~ {orders.map ~ selectQty:", selectQty)
+          const selectCustomize = custmize[index];
+          console.log("🚀 ~ selectCustomize:", selectCustomize)
+
+          
+          return(
           <OrderMenuLeft
-            processedoptions={state.menu}
-            menuqty={state.menuqty}
-            customize={state.selectCustomize}
+            processedoptions={selectMenu}
+            menuqty={selectQty}
+            customize={selectCustomize}
           />
+          );
+        })}
         </Box>
 
         {/* 右側注文情報 */}
