@@ -63,7 +63,7 @@ export default function OrderChange(): ReactElement {
 
   return (
     <div>
-      <Box sx={{ display: 'flex', height: '95vh' }}>
+      <Box sx={{ display: 'flex' }}>
         {/* 左側メニューリスト */}
         <Box sx={{ flex: 4, overflowY: 'auto', mt:'20px', mr:'20px', ml:'20px'}}>
           <OrderMenuLeft
