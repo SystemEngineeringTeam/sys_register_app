@@ -36,13 +36,43 @@ function OrderMenuRight({ id }: OrderMenuRightProps) {
         <Box sx={{ marginTop: '50px' }}>
           <OrderNumber id={id} />
         </Box>
+  const totalAmount = data ? idToTotalAmount(id, data) : 0;
 
-        <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-          {/* 合計金額表示 */}
-          <Box
+  return (
+    <Box
+      sx={{
+        position: 'fixed', // スクロールしても固定
+        height: '100vh', 
+        width: '20vw', 
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        textAlign: 'center',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
+      }}
+    >
+      {/* 注文番号表示 */}
+      <Box sx={{ marginTop: '30px' }}>
+        <OrderNumber id={id}/>
+      </Box>
+
+      <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        {/* 合計金額表示 */}
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'flex-end',
+            mt:'300px'
+          }}
+        >
+          <Typography
             sx={{
-              display: 'flex',
-              alignItems: 'flex-end',
+              fontSize: '1.5rem',
+              color: '#666',
+              lineHeight: '1.5rem',
+              mt:'10px'
+
             }}
           >
             <Typography
@@ -67,10 +97,9 @@ function OrderMenuRight({ id }: OrderMenuRightProps) {
             </Typography>
           </Box>
 
-          {/* ボタン */}
-          <Box sx={{ marginTop: '20px' }}>
-            <OrderButton id={id} />
-          </Box>
+        {/* ボタン */}
+        <Box sx={{ marginTop: '20px', mt:'50px'}}>
+          <OrderButton id={id} />
         </Box>
       </Box>
     );

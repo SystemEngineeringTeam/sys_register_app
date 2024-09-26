@@ -57,10 +57,15 @@ export default function OrderChange(): ReactElement {
 
   return (
     <div>
-      <Box sx={{ display: 'flex', height: '100vh' }}>
+      <Box sx={{ display: 'flex' }}>
         {/* 左側メニューリスト */}
-        <Box sx={{ flex: 4, overflowY: 'auto' }}>
-          <OrderMenuLeft processedoptions={state.menu} menuqty={state.menuqty} customize={state.selectCustomize} />
+
+        <Box sx={{ flex: 4, overflowY: 'auto', mt:'20px', mr:'20px', ml:'20px'}}>
+          <OrderMenuLeft
+            processedoptions={state.menu}
+            menuqty={state.menuqty}
+            customize={state.selectCustomize}
+          />
         </Box>
 
         {/* 右側注文情報 */}
