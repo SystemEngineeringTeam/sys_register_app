@@ -5,14 +5,14 @@ interface OrderMenueLeftProps {
   processedoptions: {
     name: string | null;
     price: number | null;
-  }[];
+  };
   menuqty: {
     qty: number | null;
-  }[];
+  };
   customize: {
     name: string;
     price: number;
-  }[];
+  };
 }
 
 const OrderMenuLeft = ({ processedoptions, menuqty, customize }: OrderMenueLeftProps) => {
@@ -28,23 +28,14 @@ const OrderMenuLeft = ({ processedoptions, menuqty, customize }: OrderMenueLeftP
     <div>
       <Box>
         <Box>
-          {/* processedoptions をループして OrderMenueContena をレンダリング */}
-          {processedoptions.map((order, index) => {
-            const qty = menuqty[index].qty || 0; // menuqtyから該当する数量を取得
-            const custom = customize?.[index]; // カスタマイズ情報を取得（必要な場合）
-
-            return (
-              <OrderMenueContena
-                key={index}
-                ordername={order.name || ''}
-                orderprice={order.price || 0}
-                orderimg={order.name || ''}
-                menuqty={qty} // menuqtyの値を渡す
-                customizename={custom.name || ''} // カスタマイズ名を渡す（カスタマイズがある場合）
-                customizeprice={custom.price || 0} // カスタマイズ価格を渡す（カスタマイズがある場合）
-              />
-            );
-          })}
+          <OrderMenueContena
+            ordername={processedoptions.name || ''}
+            orderprice={processedoptions.price || 0}
+            orderimg={processedoptions.name || ''}
+            menuqty={menuqty.qty || 0} // menuqtyの値を渡す
+            customizename={customize.name || ''} // カスタマイズ名を渡す（カスタマイズがある場合）
+            customizeprice={customize.price || 0} // カスタマイズ価格を渡す（カスタマイズがある場合）
+          />
         </Box>
       </Box>
     </div>
