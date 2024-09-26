@@ -7,14 +7,20 @@ import OrderDelete from './OrderDelete';
 function CustomizeChangeRight() {
   return (
     <div>
-      <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
-        <Box sx={{ fontSize: '30px', mt: '50px' }}>注文番号</Box>
+      <Box sx={{ 
+        flexDirection: 'column',
+        position: 'fixed',
+        height: '100vh', 
+        width: '20vw',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+        }}>
+        <Box sx={{ fontSize: '30px' , mt:'20px'}}>注文番号</Box>
 
-        <Box sx={{ mt: '80%' }}>
+        <Box sx={{ mt:'500px' }}>
           <Box>
             <OrderDelete />
           </Box>
-          <Box sx={{ mt: '30px' }}>
+          <Box sx={{ mt:'50px'}}>
             <OkeyButton />
           </Box>
         </Box>
