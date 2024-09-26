@@ -13,7 +13,7 @@ function OrderDelete() {
         }}
         sx={{
           background: '#FF4337', 
-          width: '30%',
+          width: '200px',
           py: '30px',
          
         }}
