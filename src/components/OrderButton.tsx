@@ -25,7 +25,7 @@ function OrderButton({ id }: OrderButtonProps) {
           sx={{
             background: '#F68B1F',
             py: '30px',
-            px: '50px',
+            width: '200px',
           }}
         >
           お支払いへ
