@@ -7,6 +7,7 @@ import { orderCollectionAtom } from '../firebase/FirebaseUtils';
 import { processCustomizeChange } from '../utils/processCustomizeChange';
 import { processOrderChange } from '../utils/processOrderChange';
 import { Link } from 'react-router-dom';
+import { useOrderCollection } from '@/firebase/useOrderCollection';
 
 interface CustomizeChangeLeftProps {
   processedoptions: string;
@@ -14,20 +15,13 @@ interface CustomizeChangeLeftProps {
 }
 
 function CustomizeChangeLeft({ processedoptions, customizename }: CustomizeChangeLeftProps) {
-  //const customizechanges = ['カスタマイズ1', 'カスタマイズ2', 'カスタマイズ3'];\
+  //const customizechanges = ['カスタマイズ1', 'カスタマイズ2', 'カスタマイズ3'];
 
-  const [orderCollectionData, setOrderCollectionData] = useAtom(orderCollectionAtom);
+  const { data } = useOrderCollection();
 
-  switch (orderCollectionData.state) {
-    case 'loading':
-      return <p>Loading...</p>;
-
-    case 'hasError':
-      return <p>Error</p>;
-
-    case 'hasData':
+  
       const processCustmize = processCustomizeChange(
-        (orderCollectionData.data || []).flatMap((order) => order.order.flatMap((o) => o.options)),
+        (data || []).flatMap((order) => order.order.flatMap((o) => o.options)),
       );
 
       // const processOrder = processOrderChange(
@@ -55,5 +49,5 @@ function CustomizeChangeLeft({ processedoptions, customizename }: CustomizeChang
         </div>
       );
   }
-}
+
 export default CustomizeChangeLeft;
