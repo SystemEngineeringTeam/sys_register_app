@@ -12,16 +12,17 @@ interface OrderMenueNameProps {
   selectMenuPrice: number;
   selectMenuqty: number;
   selectCustomizeName: string;
+  id:number;
 }
 
-const OrderMenueName = ({ selectMenuName, selectMenuPrice, selectMenuqty, selectCustomizeName }: OrderMenueNameProps) => {
+const OrderMenueName = ({ selectMenuName, selectMenuPrice, selectMenuqty, selectCustomizeName , id}: OrderMenueNameProps) => {
   console.log('qty:', selectMenuqty);
   console.log('menu:', selectMenuName);
   console.log('customizename:', selectCustomizeName);
   return (
     <div style={{ display: 'flex' }}>
       {/* {menuname} */}
-      <Link to="/customizechange" state={{ ordername: selectMenuName, customizename: selectCustomizeName }}>
+      <Link to="/customizechange" state={{ ordername: selectMenuName, customizename: selectCustomizeName , id:id}}>
         <Box sx={{ fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' } }}>
           <CreateIcon></CreateIcon>
         </Box>
