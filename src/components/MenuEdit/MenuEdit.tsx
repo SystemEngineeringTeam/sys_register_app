@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import React from 'react';
+import { React, useEffect, useState } from 'react';
 import ScreenChengeButton from './ScreenChengeButton';
 import CategoryBar from './CategoryBar';
 import { type category, type items, type options } from '@/types';
@@ -33,6 +33,14 @@ const MenuEdit = () => {
     category_id: 'foodId',
     options: [testOption1, testOption2],
   };
+  const testItem3: items = {
+    id: '3',
+    name: 'testItem3',
+    price: 200,
+    visible: true,
+    category_id: 'drinkId',
+    options: [],
+  };
   const testCategory1: category = {
     id: 'foodId',
     name: 'フード',
@@ -42,7 +50,14 @@ const MenuEdit = () => {
     name: 'ドリンク',
   };
   const testCategorys: category[] = [testCategory1, testCategory2];
-  const testItems: items[] = [testItem1, testItem2];
+  const allItems: items[] = [testItem1, testItem2, testItem3];
+  const [selectCategoryId, setSelectcategoryId] = useState('');
+  useEffect(() => {
+    setSelectcategoryId(testCategorys[0].id);
+  }, []);
+  //   ここまでは仮置きデータ
+
+  // category_idが選択中のもののみ表示させたい
   return (
     <Box>
       <Box sx={{ margin: '1.5rem' }}>
@@ -53,13 +68,18 @@ const MenuEdit = () => {
         </Box>
         {/* カテゴリー遷移バー */}
         <Box sx={{ margin: '0.5rem' }}>
-          <CategoryBar categorys={testCategorys} />
+          <CategoryBar categorys={testCategorys} setSelectcategoryId={setSelectcategoryId} />
         </Box>
 
         <Box>
           {/* 商品概要 */}
           <Box>
-            <CollectedItemOverview OverviewItems={testItems} />
+            <CollectedItemOverview
+              // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
+              OverviewItems={allItems.filter((item) => {
+                return item.category_id === selectCategoryId;
+              })}
+            />
           </Box>
         </Box>
       </Box>
