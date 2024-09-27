@@ -9,17 +9,19 @@ import { processCustomizeChange } from '../utils/processCustomizeChange';
 import { useOrderCollection } from '../firebase/useOrderCollection';
 import { useMoney } from '../firebase/useMoney';
 
+interface CustomizeChangeProps{
+  id:number;
+}
+
 export default function CustomizeChange(): ReactElement {
   const { data } = useOrderCollection();
   const { money } = useMoney();
   const { state } = useLocation();
   const [ordersList, setOrdersList] = useState<number[]>([]);
 
-  useEffect(() => {
-    if (state && state.state) {
-      setOrdersList(state.state);
-    }
-  }, [state]);
+  const location = useLocation();
+
+
 
   console.log('🚀 ~ use Effect ~ state:', state);
   console.log('🚀 ~ use Effect ~ state.ordername:', state.ordername);
@@ -32,8 +34,8 @@ export default function CustomizeChange(): ReactElement {
         <Box sx={{ flex: 4 ,overflowY:'auto'}}>
           <CustomizeChangeLeft processedoptions={state.ordername} customizename={state.customizename} />
         </Box>
-        <Box sx={{ flex: 1 , textAlign:'center'}}>
-          <CustomizeChangeRight />
+        <Box sx={{ flex: 1 }}>
+          <CustomizeChangeRight id={state.id.toString()}/>
         </Box>
       </Box>
     </div>
