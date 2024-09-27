@@ -12,7 +12,7 @@ import { processCustomizeChange } from '@/utils/processCustomizeChange';
 
 export default function OrderChange(): ReactElement {
   interface State {
-    id: number;
+    ordersId: number;
   }
 
   const location = useLocation();
@@ -26,13 +26,13 @@ export default function OrderChange(): ReactElement {
         {/* 左側メニューリスト */}
 
         <Box sx={{ flex: 4, overflowY: 'auto', mt:'20px', mr:'20px', ml:'20px'}}>
-          <OrderMenuLeft id={state.id}/>
+          <OrderMenuLeft id={state.ordersId}/>
         </Box>
 
         {/* 右側注文情報 */}
 
         <Box sx={{ flex: 1 }}>
-          <OrderMenuRight id={state.id.toString()} />
+          <OrderMenuRight id={state.ordersId.toString()} />
         </Box>
       </Box>
     </div>
