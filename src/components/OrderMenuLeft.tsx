@@ -8,9 +8,11 @@ import { useState } from 'react';
 import { useMoney } from '@/firebase/useMoney';
 import { useLocation } from 'react-router-dom';
 
-interface OrderMenueLeftProps {}
+interface OrderMenueLeftProps {
+  id:number;
+}
 
-const OrderMenuLeft = () => {
+const OrderMenuLeft = ({id}:OrderMenueLeftProps) => {
 
   const { data } = useOrderCollection();
 
@@ -37,10 +39,10 @@ const OrderMenuLeft = () => {
     <div>
       <Box>
         <Box>
-          {orders.map((index) => {
-            const selectMenu = menu[index];
-            const selectCustomize = customize[index];
-            const selectMenuqty = menuqty[index];
+          {orders.map(() => {
+            const selectMenu = menu[id];
+            const selectCustomize = customize[id];
+            const selectMenuqty = menuqty[id];
 
             return (
               <OrderMenueContena
