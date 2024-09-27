@@ -9,6 +9,7 @@ interface OrderMenueContenaProps {
   selectMenuqty: number;
   selectCustomizeName: string;
   selectCustomizePrice: number;
+  id:number;
 }
 
 const OrderMenueContena = ({
@@ -18,6 +19,7 @@ const OrderMenueContena = ({
   selectMenuqty,
   selectCustomizeName,
   selectCustomizePrice,
+  id,
 }: OrderMenueContenaProps) => {
   const imageDisplaySize = { width: 200, height: 200 };
   // const custommenus = [
@@ -59,6 +61,7 @@ const OrderMenueContena = ({
               selectMenuPrice={selectMenuPrice}
               selectMenuqty={selectMenuqty}
               selectCustomizeName={selectCustomizeName}
+              id={id}
             />
           </Stack>
           <Stack sx={{ml:'20px', mr:'20px'}}>
