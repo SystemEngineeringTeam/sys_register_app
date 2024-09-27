@@ -52,6 +52,7 @@ const OrderMenuLeft = ({id}:OrderMenueLeftProps) => {
                 selectMenuqty={selectMenuqty.qty || 0} // menuqtyの値を渡す
                 selectCustomizeName={selectCustomize.name || ''} // カスタマイズ名を渡す（カスタマイズがある場合）
                 selectCustomizePrice={selectCustomize.price || 0} // カスタマイズ価格を渡す（カスタマイズがある場合）
+                id={id}
               />
             );
           })}
