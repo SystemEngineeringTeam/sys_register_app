@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
 
-const DisplayNumber = ({ orders }: { orders: number }) => {
+const DisplayNumber = ({ ordersId }: { ordersId: number }) => {
   return (
     <div>
       <Box>
@@ -18,7 +18,7 @@ const DisplayNumber = ({ orders }: { orders: number }) => {
             color: 'black',
           }}
         >
-          {orders}
+          {ordersId}
         </Button>
       </Box>
     </div>
