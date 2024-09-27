@@ -26,7 +26,7 @@ export default function OrderChange(): ReactElement {
         {/* 左側メニューリスト */}
 
         <Box sx={{ flex: 4, overflowY: 'auto', mt:'20px', mr:'20px', ml:'20px'}}>
-          <OrderMenuLeft />
+          <OrderMenuLeft id={state.id}/>
         </Box>
 
         {/* 右側注文情報 */}
