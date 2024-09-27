@@ -1,41 +1,58 @@
 import { Box } from '@mui/material';
 import OrderMenueContena from './OrderMenueContena';
+import { processOrderCollection } from '@/utils/processOrderCollection';
+import { processNumber, processOrderChange } from '@/utils/processOrderChange';
+import { processCustomizeChange } from '@/utils/processCustomizeChange';
+import { useOrderCollection } from '@/firebase/useOrderCollection';
+import { useState } from 'react';
+import { useMoney } from '@/firebase/useMoney';
+import { useLocation } from 'react-router-dom';
 
-interface OrderMenueLeftProps {
-  processedoptions: {
-    name: string | null;
-    price: number | null;
-  };
-  menuqty: {
-    qty: number | null;
-  };
-  customize: {
-    name: string;
-    price: number;
-  };
-}
+interface OrderMenueLeftProps {}
 
-const OrderMenuLeft = ({ processedoptions, menuqty, customize }: OrderMenueLeftProps) => {
-  // const orders = [
-  //   1, 2, 3, 4, 4, 5, 4, 231, 3245, 324, 332, 344, 223, 421, 324, 321, 123, 242, 234, 231, 324, 23, 4, 234, 443, 244,
-  //   232,
-  // ];
+const OrderMenuLeft = () => {
 
-  console.log('processedOptions:' + processedoptions);
-  console.log('menuqty:' + menuqty);
+  const { data } = useOrderCollection();
+
+
+  const process = 'accounting';
+  const order = processOrderCollection(process);
+  console.log('🚀 ~ Order ~ order:', order);
+
+  const orders = order.map((order) => Number(order.id));
+  console.log('🚀 ~ OrderChange ~ orders:', orders);
+
+  const menu = processOrderChange((data || []).flatMap((order) => order.order.flatMap((o) => o.item)));
+  console.log('🚀 ~ menu:', menu);
+
+  const menuqty = processNumber((data || []).flatMap((order) => order.order));
+  console.log('🚀 ~ menuqty:', menuqty);
+
+  const customize = processCustomizeChange((data || []).flatMap((order) => order.order.flatMap((o) => o.options)));
+
+  // console.log('processedOptions:' + processedoptions);
+  // console.log('menuqty:' + menuqty);
 
   return (
     <div>
       <Box>
         <Box>
-          <OrderMenueContena
-            ordername={processedoptions.name || ''}
-            orderprice={processedoptions.price || 0}
-            orderimg={processedoptions.name || ''}
-            menuqty={menuqty.qty || 0} // menuqtyの値を渡す
-            customizename={customize.name || ''} // カスタマイズ名を渡す（カスタマイズがある場合）
-            customizeprice={customize.price || 0} // カスタマイズ価格を渡す（カスタマイズがある場合）
-          />
+          {orders.map((index) => {
+            const selectMenu = menu[index];
+            const selectCustomize = customize[index];
+            const selectMenuqty = menuqty[index];
+
+            return (
+              <OrderMenueContena
+                selectMenuName={selectMenu.name || ''}
+                selectMenuPrice={selectMenu.price || 0}
+                selectMenuImg={selectMenu.name || ''}
+                selectMenuqty={selectMenuqty.qty || 0} // menuqtyの値を渡す
+                selectCustomizeName={selectCustomize.name || ''} // カスタマイズ名を渡す（カスタマイズがある場合）
+                selectCustomizePrice={selectCustomize.price || 0} // カスタマイズ価格を渡す（カスタマイズがある場合）
+              />
+            );
+          })}
         </Box>
       </Box>
     </div>
