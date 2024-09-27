@@ -8,16 +8,16 @@ import DisplayNumber from './DisplayNumber/DisplayNumber';
 //    return(values);
 // })
 interface NumberButtonProps {
-  orders: number;
+  ordersId: number;
 }
-const NumberButton = ({ orders, }: NumberButtonProps) => {
+const NumberButton = ({ ordersId, }: NumberButtonProps) => {
   //console.log('🚀 ~ NumberButton ~ menu:', menu);
-  console.log('🚀 ~ NumberButton ~ orders:', orders);
+  console.log('🚀 ~ NumberButton ~ orders:', ordersId);
 
   return (
     <div>
-      <Link to="/orderchange" state={{ id: orders, }}>
-        <DisplayNumber orders={orders} />
+      <Link to="/orderchange" state={{ id: ordersId, }}>
+        <DisplayNumber ordersId={ordersId} />
       </Link>
     </div>
   );
