@@ -19,16 +19,12 @@ function OrderMenuRight({ id }: OrderMenuRightProps) {
       <Box
         sx={{
           position: 'fixed', // スクロールしても固定
-          top: 0,
-          right: 0,
           height: '100vh',
           width: '20vw',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          justifyContent: 'space-between',
           textAlign: 'center',
-          padding: '2vh 0',
           boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
         }}
       >
@@ -36,24 +32,17 @@ function OrderMenuRight({ id }: OrderMenuRightProps) {
         <Box sx={{ marginTop: '50px' }}>
           <OrderNumber id={id} />
         </Box>
- 
 
-      <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        {/* 合計金額表示 */}
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'flex-end',
-            mt:'300px'
-          }}
-        >
-          <Typography
+        <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+          {/* 合計金額表示 */}
+          <Box
             sx={{
+              display: 'flex',
+              alignItems: 'flex-end',
+               mt:'140%',
               fontSize: '1.5rem',
               color: '#666',
               lineHeight: '1.5rem',
-              mt:'10px'
-
             }}
           >
             <Typography
@@ -72,18 +61,18 @@ function OrderMenuRight({ id }: OrderMenuRightProps) {
                 color: '#000',
                 lineHeight: '3rem',
                 marginLeft: '8px',
+                mt:'60px'
               }}
             >
               {totalAmount}円
             </Typography>
-            </Typography>
           </Box>
 
-        {/* ボタン */}
-        <Box sx={{ marginTop: '20px', mt:'50px'}}>
-          <OrderButton id={id} />
+          {/* ボタン */}
+          <Box sx={{ marginTop: '20px', mt: '100px' }}>
+            <OrderButton id={id} />
+          </Box>
         </Box>
-      </Box>
       </Box>
     );
   }
