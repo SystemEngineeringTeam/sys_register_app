@@ -9,11 +9,11 @@ import { processCustomizeChange } from '@/utils/processCustomizeChange';
 import { useMoney } from '@/firebase/useMoney';
 
 interface NumberButtonProps{
-  orders: number[];
+  ordersId: number[];
 }
 
-const NumberButtonBox = ({orders}:NumberButtonProps) => {
-  const { data } = useOrderCollection();
+const NumberButtonBox = ({ordersId}:NumberButtonProps) => {
+
 
   return (
     <div>
@@ -25,10 +25,10 @@ const NumberButtonBox = ({orders}:NumberButtonProps) => {
           flexWrap: 'wrap',
         }}
       >
-        {orders.map((value) => {
+        {ordersId.map((value) => {
           return (
             <NumberButton
-              orders={value}
+              ordersId={value}
             />
           );
         })}
