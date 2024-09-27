@@ -2,10 +2,10 @@ import { Box } from '@mui/material';
 import React from 'react';
 
 interface OrderWaitPeopleProps {
-  orders: number[];
+  ordersId: number[];
 }
 
-const OrderWaitPeople = ({ orders }: OrderWaitPeopleProps) => {
+const OrderWaitPeople = ({ ordersId }: OrderWaitPeopleProps) => {
   return (
     <div>
       <Box
@@ -19,7 +19,7 @@ const OrderWaitPeople = ({ orders }: OrderWaitPeopleProps) => {
           fontSize: '60px',
         }}
       >
-        支払い待ち人数 : {orders.length}人
+        支払い待ち人数 : {ordersId.length}人
       </Box>
     </div>
   );
