@@ -19,10 +19,10 @@ import { useMoney } from '../firebase/useMoney';
 export default function Order(): ReactElement {
   
   const process = 'accounting';
-  const orderId = processOrderCollection(process);
-  console.log('🚀 ~ Order ~ order:', orderId);
+  const orderData = processOrderCollection(process);
+  console.log('🚀 ~ Order ~ order:', orderData);
 
-  const ordersId = orderId.map((order) => Number(order.id));
+  const ordersId = orderData.map((order) => Number(order.id));
   //const orders = [Number(order)];
 
   return (
