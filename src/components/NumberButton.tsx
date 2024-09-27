@@ -16,7 +16,7 @@ const NumberButton = ({ ordersId, }: NumberButtonProps) => {
 
   return (
     <div>
-      <Link to="/orderchange" state={{ id: ordersId, }}>
+      <Link to="/orderchange" state={{ ordersId: ordersId, }}>
         <DisplayNumber ordersId={ordersId} />
       </Link>
     </div>
