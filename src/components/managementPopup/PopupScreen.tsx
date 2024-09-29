@@ -28,11 +28,10 @@ const PopupScreen = () => {
   return (
     <div>
       <Card sx={{ width:'70%', position: 'fixed' , ml:'15%' , mt:'5%'}}>
-        <Box>
-          <Box sx={{ textAlign: 'right' }}>
+          <Stack sx={{ textAlign: 'right' }}>
             <ClearIcon sx={{ fontSize: '80px' }} />
-          </Box>
-          <Box sx={{ textAlign: 'center' }}>
+          </Stack>
+          <Stack sx={{ textAlign: 'center' }}>
             {/* fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' */}
             <Box fontSize={{ xs: '20px', sm: '40px', md: '60px' }} sx={{ mt: '40px' }}>
               本当に消去しますか？
@@ -52,9 +51,9 @@ const PopupScreen = () => {
               </Stack>
             </Stack>
 
-            <Box fontSize={{ xs: '10px', sm: '20px', md: '30px' }} sx={{ mt: '5rem' }}>
+            <Stack fontSize={{ xs: '10px', sm: '20px', md: '30px' }} sx={{ mt: '5rem' }}>
               全ての設定から消されます
-            </Box>
+            </Stack>
 
             <Stack direction={'row'} fontSize={'40px'} sx={{mt:'5%', mb: '3%', justifyContent: 'right', mr: '7rem' }}>
               <Button>
@@ -64,8 +63,7 @@ const PopupScreen = () => {
                 <DeleteYesButton />
               </Button>
             </Stack>
-          </Box>
-        </Box>
+          </Stack>
       </Card>
     </div>
   );
