@@ -10,51 +10,27 @@ interface OrderMenuRightProps {
 }
 
 function OrderMenuRight({ id }: OrderMenuRightProps) {
-  {
-    const { data } = useOrderCollection();
+  const { data } = useOrderCollection();
 
-    const totalAmount = data ? idToTotalAmount(id, data) : 0;
-
-    return (
-      <Box
-        sx={{
-          position: 'fixed', // スクロールしても固定
-          top: 0,
-          right: 0,
-          height: '100vh',
-          width: '20vw',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          textAlign: 'center',
-          padding: '2vh 0',
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-        }}
-      >
-        {/* 注文番号表示 */}
-        <Box sx={{ marginTop: '50px' }}>
-          <OrderNumber id={id} />
-        </Box>
   const totalAmount = data ? idToTotalAmount(id, data) : 0;
 
   return (
     <Box
       sx={{
         position: 'fixed', // スクロールしても固定
-        height: '100vh', 
-        width: '20vw', 
+        height: '100vh',
+        width: '20vw',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'space-between',
         textAlign: 'center',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
       }}
     >
       {/* 注文番号表示 */}
       <Box sx={{ marginTop: '30px' }}>
-        <OrderNumber id={id}/>
+        <OrderNumber id={id} />
       </Box>
 
       <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -63,7 +39,7 @@ function OrderMenuRight({ id }: OrderMenuRightProps) {
           sx={{
             display: 'flex',
             alignItems: 'flex-end',
-            mt:'300px'
+            mt: '300px',
           }}
         >
           <Typography
@@ -71,8 +47,7 @@ function OrderMenuRight({ id }: OrderMenuRightProps) {
               fontSize: '1.5rem',
               color: '#666',
               lineHeight: '1.5rem',
-              mt:'10px'
-
+              mt: '10px',
             }}
           >
             <Typography
@@ -95,15 +70,16 @@ function OrderMenuRight({ id }: OrderMenuRightProps) {
             >
               {totalAmount}円
             </Typography>
-          </Box>
+          </Typography>
+        </Box>
 
         {/* ボタン */}
-        <Box sx={{ marginTop: '20px', mt:'50px'}}>
+        <Box sx={{ marginTop: '20px', mt: '50px' }}>
           <OrderButton id={id} />
         </Box>
       </Box>
-    );
-  }
+    </Box>
+  );
 }
 
 export default OrderMenuRight;
