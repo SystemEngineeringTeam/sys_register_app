@@ -6,9 +6,7 @@ function PopupCard() {
   return (
     <div>
       <Box >
-        <Card >
           <PopupScreen />
-        </Card>
       </Box>
     </div>
   );
