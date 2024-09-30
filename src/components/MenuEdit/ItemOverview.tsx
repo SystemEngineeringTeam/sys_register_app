@@ -1,4 +1,5 @@
-import { Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
 import React from 'react';
 // eslint-disable-next-line no-restricted-imports
 import ItemOptions from '../OrderPayments/ItemOptions';
@@ -15,7 +16,7 @@ const ItemOverview = ({ item }: ItemOverviewProps) => {
     <Box sx={{ display: 'flex', borderTop: '1px solid #2b2b2b' }}>
       <Box sx={{ display: 'flex', margin: '0.5rem' }}>
         {/* 焼き鳥の画像を仮置き */}
-        <img alt="noImage" className="yakitori" src={Yakitori} style={{ maxWidth: '5rem', maxHeight: '5rem' }} />
+        <img alt="noImage" className="yakitori" src={Yakitori} style={{ maxWidth: '8rem', maxHeight: '8rem' }} />
         <Box sx={{ marginLeft: '1rem', alignContent: 'center' }}>
           <Box>{item.name}</Box>
           <Box>{item.price}円</Box>
@@ -23,6 +24,9 @@ const ItemOverview = ({ item }: ItemOverviewProps) => {
         <Box sx={{ marginLeft: '1rem', alignContent: 'center' }}>
           <ItemOptions options={item.options} />
         </Box>
+        <Button sx={{ alignContent: 'center', position: 'fixed', right: '2rem', marginTop: '0.5rem' }}>
+          <EditIcon sx={{ fontSize: '4rem' }} />
+        </Button>
       </Box>
     </Box>
   );
