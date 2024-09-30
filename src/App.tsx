@@ -1,19 +1,19 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Cooking from './pages/Cooking';
-import Delivery from './pages/Delivery';
-import Call from './pages/Call';
-import Admin from './pages/Admin';
-import Order from './pages/Order';
-import Hoge from './pages/Hoge';
-import LoginForm from './login/LoginForm';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import MoneyCount from './components/OrderPayments/MoneyCount/MoneyCount';
+import OrderPayment from './components/OrderPayments/OrderPayment';
 import AppLayout from './layout/AppLayout';
 import { RequiredLogin } from './layout/RequiredLogin';
-import Home from './pages/Home';
-import { user_props } from './types';
-import OrderChange from './pages/OrderChange';
+import LoginForm from './login/LoginForm';
+import Admin from './pages/Admin';
+import Call from './pages/Call';
+import Cooking from './pages/Cooking';
 import CustomizeChange from './pages/CustomizeChange';
-import OrderPayment from './components/OrderPayments/OrderPayment';
-import MoneyCount from './components/OrderPayments/MoneyCount/MoneyCount';
+import Delivery from './pages/Delivery';
+import Hoge from './pages/Hoge';
+import Home from './pages/Home';
+import Order from './pages/Order';
+import OrderChange from './pages/OrderChange';
+import Test from './pages/Test';
 
 const App = () => {
   return (
@@ -33,6 +33,7 @@ const App = () => {
             <Route path="customizechange" element={<CustomizeChange />} />
             <Route path="payment" element={<OrderPayment />} />
             <Route path="paychange" element={<MoneyCount />} />
+            <Route path="test" element={<Test />} />
             <Route path="*" element={<div>Not Found</div>} />
           </Route>
         </Route>

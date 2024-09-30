@@ -1,15 +1,11 @@
-import React, { ReactElement } from 'react';
-import NumberButton from '../components/NumberButton';
-import { Box, Grid } from '@mui/material';
+import { ReactElement } from 'react';
 import NumberButtonBox from '../components/NumberButtonBox';
 import OrderWaitPeople from '../components/OrderWaitPeople';
-import { orderCollectionAtom } from '../firebase/FirebaseUtils';
-import { useAtom } from 'jotai';
-import { processOrderCollection } from '../utils/processOrderCollection';
-import { processNumber, processOrderChange } from '../utils/processOrderChange';
-import { processCustomizeChange } from '../utils/processCustomizeChange';
-import { useOrderCollection } from '../firebase/useOrderCollection';
 import { useMoney } from '../firebase/useMoney';
+import { useOrderCollection } from '../firebase/useOrderCollection';
+import { processCustomizeChange } from '../utils/processCustomizeChange';
+import { processNumber, processOrderChange } from '../utils/processOrderChange';
+import { processOrderCollection } from '../utils/processOrderCollection';
 
 // const orders = [
 //   1, 2, 3, 4, 4, 5, 4, 231, 3245, 324, 332, 344, 223, 421, 324, 321, 123, 242, 234, 231, 324, 23, 4, 234, 443, 244,
