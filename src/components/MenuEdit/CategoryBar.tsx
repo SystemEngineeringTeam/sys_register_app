@@ -5,12 +5,13 @@ import { Box, Button } from '@mui/material';
 
 interface CategoryBarProps {
   categorys: category[];
+  selectcategoryId: string;
   setSelectcategoryId: React.Dispatch<React.SetStateAction<string>>;
 }
 // 必要な機能
 // category[]を受け取ってforEachで展開
 // categoryが選択されている時は文字の色を変える
-const CategoryBar = ({ categorys, setSelectcategoryId }: CategoryBarProps) => {
+const CategoryBar = ({ categorys, selectcategoryId, setSelectcategoryId }: CategoryBarProps) => {
   return (
     <Box sx={{ display: 'flex', alignContent: 'center' }}>
       {categorys.map((cat) => (
@@ -19,7 +20,13 @@ const CategoryBar = ({ categorys, setSelectcategoryId }: CategoryBarProps) => {
             setSelectcategoryId(cat.id);
           }}
           key={cat.id}
-          sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginLeft: '0.5rem' }}
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginLeft: '0.5rem',
+            color: selectcategoryId === cat.id ? 'orange' : 'blue',
+          }}
         >
           {cat.name}
         </Button>
