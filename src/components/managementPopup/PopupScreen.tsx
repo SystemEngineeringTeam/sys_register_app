@@ -7,18 +7,9 @@ import { processOrderChange } from '@/utils/processOrderChange';
 import { useOrderCollection } from '@/firebase/useOrderCollection';
 import { processOrderCollection } from '@/utils/processOrderCollection';
 
+
+
 const PopupScreen = () => {
-  const { data } = useOrderCollection();
-
-  const process = 'accounting';
-  const order = processOrderCollection(process);
-  console.log('🚀 ~ Order ~ order:', order);
-
-  const orders = order.map((order) => Number(order.id));
-  console.log('🚀 ~ OrderChange ~ orders:', orders);
-
-  const menu = processOrderChange((data || []).flatMap((order) => order.order.flatMap((o) => o.item)));
-  console.log('🚀 ~ menu:', menu);
 
   // const menuName = orders.map((value, index) => {
   //   const selectMenu = menu[index];
@@ -27,7 +18,7 @@ const PopupScreen = () => {
 
   return (
     <div>
-      <Card sx={{ width:'70%', position: 'fixed' , ml:'15%' , mt:'5%'}}>
+      <Card>
           <Stack sx={{ textAlign: 'right' }}>
             <ClearIcon sx={{ fontSize: '80px' }} />
           </Stack>
@@ -42,20 +33,14 @@ const PopupScreen = () => {
               direction={'row'}
               sx={{ justifyContent: 'center', mt: '10rem' }}
             >
-              <Stack>メニュー:</Stack>
-              <Stack sx={{ ml: '30px' }}>
-                {orders.map((value, index) => {
-                  const selectMenu = menu[index];
-                  return <div>{selectMenu.name}</div>;
-                })}
-              </Stack>
+              メニュー:唐揚げ
             </Stack>
 
             <Stack fontSize={{ xs: '10px', sm: '20px', md: '30px' }} sx={{ mt: '5rem' }}>
               全ての設定から消されます
             </Stack>
 
-            <Stack direction={'row'} fontSize={'40px'} sx={{mt:'5%', mb: '3%', justifyContent: 'right', mr: '7rem' }}>
+            <Stack direction={'row'} fontSize={'40px'} sx={{mt:'5%', mb: '15%', justifyContent: 'right', mr: '7rem' }}>
               <Button>
                 <CancelButton />
               </Button>
