@@ -1,4 +1,4 @@
-import UploadImageContena from '@/components/Image/upload/uploadImage';
+import UploadImageContena from '@/components/Image/upload/UploadImage';
 
 const Test = () => {
   return (
