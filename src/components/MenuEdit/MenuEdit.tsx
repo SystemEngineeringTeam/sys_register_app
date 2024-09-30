@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { React, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ScreenChengeButton from './ScreenChengeButton';
 import CategoryBar from './CategoryBar';
 import { type category, type items, type options } from '@/types';
@@ -68,7 +68,11 @@ const MenuEdit = () => {
         </Box>
         {/* カテゴリー遷移バー */}
         <Box sx={{ margin: '0.5rem' }}>
-          <CategoryBar categorys={testCategorys} setSelectcategoryId={setSelectcategoryId} />
+          <CategoryBar
+            categorys={testCategorys}
+            selectcategoryId={selectCategoryId}
+            setSelectcategoryId={setSelectcategoryId}
+          />
         </Box>
 
         <Box>
