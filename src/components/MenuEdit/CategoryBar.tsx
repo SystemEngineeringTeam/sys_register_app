@@ -2,6 +2,7 @@ import React from 'react';
 // eslint-disable-next-line no-restricted-imports
 import { type category } from '../../types/index';
 import { Box, Button } from '@mui/material';
+import { blue, orange } from '@mui/material/colors';
 
 interface CategoryBarProps {
   categorys: category[];
@@ -25,7 +26,7 @@ const CategoryBar = ({ categorys, selectcategoryId, setSelectcategoryId }: Categ
             alignItems: 'center',
             justifyContent: 'center',
             marginLeft: '0.5rem',
-            color: selectcategoryId === cat.id ? 'orange' : 'blue',
+            color: selectcategoryId === cat.id ? orange[900] : blue[300],
           }}
         >
           {cat.name}
