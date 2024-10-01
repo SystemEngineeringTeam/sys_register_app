@@ -8,10 +8,11 @@ import BackButton from './BackButton';
 import OkButton from './OkButton';
 import { useEffect, useState } from 'react';
 // eslint-disable-next-line no-restricted-imports
-// eslint-disable-next-line no-restricted-imports
 import { useOrderCollection } from '../../firebase/useOrderCollection';
 import { useLocation } from 'react-router-dom';
+// eslint-disable-next-line no-restricted-imports
 import { idToTotalAmount } from '../../utils/accountingUtils';
+import TiketCount from './MoneyCount/TiketCount';
 
 interface State {
   id: string;
@@ -36,6 +37,7 @@ const OrderPayment = () => {
   const [moneyCount5000, setMoneyCount5000] = useState(0);
   const [moneyCount10000, setMoneyCount10000] = useState(0);
   const [totalPayment, setTotalPayment] = useState(0);
+  const [tiketCount100, setTiketCount100] = useState(0);
   // const [totalAmount, setTotalAmount] = useState(0);
   // お客様が支払ったお金を管理するuseEffect
   useEffect(() => {
@@ -48,7 +50,8 @@ const OrderPayment = () => {
         moneyCount5 * 5 +
         moneyCount50 * 50 +
         moneyCount500 * 500 +
-        moneyCount5000 * 5000,
+        moneyCount5000 * 5000 +
+        tiketCount100 * 100,
     );
   }, [
     moneyCount1,
@@ -60,6 +63,7 @@ const OrderPayment = () => {
     moneyCount50,
     moneyCount500,
     moneyCount5000,
+    tiketCount100,
   ]);
   // 注文から合計金額を算出する関数
   function getTotalAmount() {
@@ -108,6 +112,12 @@ const OrderPayment = () => {
         />
         <Box sx={{ marginTop: { sm: '15rem', md: '10rem' } }}>
           {/* お支払いと合計金額 */}
+          <TiketCount
+            count={tiketCount100}
+            image="public/tiket_100.svg"
+            setCount={setTiketCount100}
+            totalAmount={getTotalAmount()}
+          />
           <WritePaidSumMoney totalAmount={getTotalAmount()} totalPayment={totalPayment} />
           <Box sx={{ border: 1 }} />
           {/* おつり */}
@@ -115,7 +125,7 @@ const OrderPayment = () => {
           <Box sx={{ display: 'flex', margin: '1rem' }}>
             <Box>
               {/* 戻るボタン */}
-              <BackButton to="/order" id={id} />
+              <BackButton id={id} to="/order" />
             </Box>
             <Box sx={{ marginLeft: '4rem' }}>
               {/* OKボタン */}
