@@ -1,8 +1,9 @@
 // eslint-disable-next-line no-restricted-imports
 import OrderNumber from '../../OrderNumber';
 import { Box } from '@mui/material';
+// eslint-disable-next-line no-restricted-imports
 import WriteNotEnoughMoney from '../WriteNotEnoughMoney';
-import BackButton from '../BackButton';
+// eslint-disable-next-line no-restricted-imports
 import OkButton from '../OkButton';
 import CollectedChenge from './CollectedChenge';
 import { useLocation } from 'react-router-dom';
@@ -11,11 +12,10 @@ interface State {
   totalPayment: number;
   totalAmount: number;
   id: string;
-
 }
 const MoneyCount = () => {
   const location = useLocation();
-  const {totalAmount,totalPayment,id} = location.state as State;
+  const { totalAmount, totalPayment, id } = location.state as State;
   return (
     <Box sx={{ display: 'flex' }}>
       {/* 注文番号 */}
@@ -43,7 +43,7 @@ const MoneyCount = () => {
             </Box>
             <Box sx={{ marginLeft: '4rem' }}>
               {/* OKボタン */}
-              <OkButton id={id} totalAmount={totalAmount} totalPayment={totalPayment} to="/order" />
+              <OkButton id={id} to="/order" totalAmount={totalAmount} totalPayment={totalPayment} />
             </Box>
           </Box>
         </Box>
