@@ -14,7 +14,7 @@ const TiketCount = ({ image, count, setCount, totalAmount }: MoneyPaidProps) => 
     <div>
       <Box
         sx={{
-          border: 1,
+          border: 2,
           width: { xs: '7rem', sm: '9rem' },
           height: { xs: '7rem', sm: '9rem' },
           opacity: count === 0 ? '0.5' : '1',
