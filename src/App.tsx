@@ -16,6 +16,12 @@ import OrderPayment from './components/OrderPayments/OrderPayment';
 import MoneyCount from './components/OrderPayments/MoneyCount/MoneyCount';
 import PopupScreen from './components/managementPopup/PopupScreen';
 import PopupCard from './components/managementPopup/PopupCard';
+import CategoryDeletePopupCard from './components/managementPopup/CategoryDeletePopupCard';
+import CategoryAddPopupCard from './components/managementPopup/CategoryAddPopupCard';
+import CategoryNameChangeScreen from './components/managementPopup/CategoryNameChangeScreen';
+import CategoryNameChangeCard from './components/managementPopup/CategoryNameChangeCard';
+import CategoryNameAddScreen from './components/managementPopup/CategoryNameAddScreen';
+import CategoryNameAddCard from './components/managementPopup/CategoryNameAddCard';
 
 const App = () => {
   return (
@@ -36,6 +42,10 @@ const App = () => {
             <Route path="payment" element={<OrderPayment />} />
             <Route path="paychange" element={<MoneyCount />} />
             <Route path="popup" element={<PopupCard />} />
+            <Route path="popupcategorydelete" element={<CategoryDeletePopupCard />} />
+            <Route path="popupcategoryadd" element={<CategoryAddPopupCard />} />
+            <Route path="popupcategorychangename" element={<CategoryNameChangeCard />} />
+            <Route path="categorynameadd" element={<CategoryNameAddCard />} />
             <Route path="*" element={<div>Not Found</div>} />
           </Route>
         </Route>
