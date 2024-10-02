@@ -1,14 +1,28 @@
-import { Box, Button } from '@mui/material'
-import React from 'react'
+import { Box, Button } from '@mui/material';
+import React from 'react';
 
-const CancelButton = () => {
-  return (
-    <div>
-      <Button sx={{bgcolor:'gray', color:'black' , py:'10px',width:'150px',borderRadius:'20px'}}>
-        <Box fontSize={'20px'}>Cancel</Box>
-      </Button>
-    </div>
-  )
+interface CancelButtonProps {
+  selectedChangeCancel: boolean;
+  setSelectedChangeCancel: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default CancelButton
+const CancelButton = ({ selectedChangeCancel, setSelectedChangeCancel }: CancelButtonProps) => {
+  const ClickChangeButton = () => {
+    setSelectedChangeCancel(!selectedChangeCancel);
+  };
+  return (
+    <div>
+      <Button
+        variant="contained"
+        disableElevation
+        size="large"
+        onClick={ClickChangeButton}
+        sx={{ backgroundColor: selectedChangeCancel ? 'blue' : 'gray', borderRadius: '20px', fontSize: '30px' }}
+      >
+        Cancel
+      </Button>
+    </div>
+  );
+};
+
+export default CancelButton;
