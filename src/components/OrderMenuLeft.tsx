@@ -9,13 +9,13 @@ import { useMoney } from '@/firebase/useMoney';
 import { useLocation } from 'react-router-dom';
 
 interface OrderMenueLeftProps {
-  id:number;
+  id: number;
 }
 
-const OrderMenuLeft = ({id}:OrderMenueLeftProps) => {
-
+const OrderMenuLeft = ({ id }: OrderMenueLeftProps) => {
   const { data } = useOrderCollection();
 
+  console.log('id', id);
 
   const process = 'accounting';
   const order = processOrderCollection(process);
@@ -35,14 +35,25 @@ const OrderMenuLeft = ({id}:OrderMenueLeftProps) => {
   // console.log('processedOptions:' + processedoptions);
   // console.log('menuqty:' + menuqty);
 
+  const menuname = menu[id];
+  console.log('🚀 ~ menuname:', menuname);
+
+  const menuqty2 = menuqty[id];
+  console.log('🚀 ~ menuqty2:', menuqty2);
+
+  const customize2 = customize[id];
+  console.log('🚀 ~ customize2:', customize2);
+
   return (
     <div>
       <Box>
         <Box>
-          {orders.map(() => {
-            const selectMenu = menu[id];
-            const selectCustomize = customize[id];
-            const selectMenuqty = menuqty[id];
+          {orders.map((index) => {
+            const selectMenu = menu[index] || {};
+            console.log('🚀 ~ {orders.map ~ menu:', selectMenu.name);
+            console.log('🚀 ~ {orders.map ~ menu:', selectMenu.price);
+            const selectCustomize = customize[index] || {};
+            const selectMenuqty = menuqty[index] || { qty: 0 };
 
             return (
               <OrderMenueContena
