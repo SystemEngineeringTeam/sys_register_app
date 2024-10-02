@@ -1,15 +1,16 @@
-import { Box, CardMedia } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
 interface MoneyPaidProps {
-  image: string;
+  // 割引金額
+  discountAmount: number;
   count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
   totalAmount: number;
+  // チケットの合計金額
+  tiketAmount: number;
 }
-// チケット1つの値段
-const tiketAmount = 100;
-const TiketCount = ({ image, count, setCount, totalAmount }: MoneyPaidProps) => {
+const DiscountAmount = ({ discountAmount, count, setCount, totalAmount, tiketAmount }: MoneyPaidProps) => {
   return (
     <div>
       <Box
@@ -28,12 +29,12 @@ const TiketCount = ({ image, count, setCount, totalAmount }: MoneyPaidProps) => 
             }
           }}
         />
-        <CardMedia
-          component="img"
-          image={image}
-          //   チケットの合計金額 が 注文の合計金額 以下になるように
+        <Button
+          //
           onClick={() => {
-            if ((count + 1) * tiketAmount <= totalAmount) {
+            // totalAmountは値引き後の値段なので、商品の合計金額-値引き金額 =  totalAmount
+            // totalAmount - tiketAmount は値引き後の金額が、チケットの合計金額を超えていないとき
+            if (totalAmount - tiketAmount - discountAmount >= 0) {
               setCount((prevState) => prevState + 1);
             }
           }}
@@ -45,7 +46,9 @@ const TiketCount = ({ image, count, setCount, totalAmount }: MoneyPaidProps) => 
             objectFit: 'fill',
             position: 'relative',
           }}
-        />
+        >
+          {discountAmount}円割引
+        </Button>
         <Box
           sx={{
             textAlign: 'center',
@@ -60,4 +63,4 @@ const TiketCount = ({ image, count, setCount, totalAmount }: MoneyPaidProps) => 
   );
 };
 
-export default TiketCount;
+export default DiscountAmount;

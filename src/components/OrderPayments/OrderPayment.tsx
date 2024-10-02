@@ -13,6 +13,7 @@ import { useLocation } from 'react-router-dom';
 // eslint-disable-next-line no-restricted-imports
 import { idToTotalAmount } from '../../utils/accountingUtils';
 import TiketCount from './MoneyCount/TiketCount';
+import DiscountAmount from './MoneyCount/DiscountAmount';
 
 interface State {
   id: string;
@@ -38,6 +39,8 @@ const OrderPayment = () => {
   const [moneyCount10000, setMoneyCount10000] = useState(0);
   const [totalPayment, setTotalPayment] = useState(0);
   const [tiketCount100, setTiketCount100] = useState(0);
+  const [discount100, setDiscount100] = useState(0);
+  const [discount50, setDiscount50] = useState(0);
   // const [totalAmount, setTotalAmount] = useState(0);
   // お客様が支払ったお金を管理するuseEffect
   useEffect(() => {
@@ -65,14 +68,15 @@ const OrderPayment = () => {
     moneyCount5000,
     tiketCount100,
   ]);
-  // 注文から合計金額を算出する関数
+  // 注文から合計金額を算出する関数 DiscountAmount
   function getTotalAmount() {
     // data: orderCollection[] | undefinedの型整形
-    if (data === undefined) {
-      return -1;
+    if (data !== undefined) {
+      // 割引関係はここに-していく
+      return idToTotalAmount(orderCollectionId, data) - discount100 * 100 - discount50 * 50;
     }
     // orderCollectionIdから合計金額を出す関数
-    return idToTotalAmount(orderCollectionId, data);
+    return -1;
   }
   return (
     <Box sx={{ display: 'flex' }}>
@@ -111,12 +115,30 @@ const OrderPayment = () => {
             setMoneyCount500={setMoneyCount500}
             setMoneyCount5000={setMoneyCount5000}
           />
-          <TiketCount
-            count={tiketCount100}
-            image="public/tiket_100.svg"
-            setCount={setTiketCount100}
-            totalAmount={getTotalAmount()}
-          />
+          <Box sx={{ display: 'flex', border: 1 }}>
+            <TiketCount
+              count={tiketCount100}
+              image="public/tiket_100.svg"
+              setCount={setTiketCount100}
+              totalAmount={getTotalAmount()}
+            />
+            <DiscountAmount
+              count={discount50}
+              discountAmount={50}
+              setCount={setDiscount50}
+              // チケットで支払った値段
+              tiketAmount={tiketCount100 * 100}
+              totalAmount={getTotalAmount()}
+            />
+            <DiscountAmount
+              count={discount100}
+              discountAmount={100}
+              setCount={setDiscount100}
+              // チケットで支払った値段
+              tiketAmount={tiketCount100 * 100}
+              totalAmount={getTotalAmount()}
+            />
+          </Box>
         </Stack>
 
         <Box sx={{ marginTop: { sm: '15rem', md: '10rem' } }}>
@@ -132,7 +154,7 @@ const OrderPayment = () => {
             </Box>
             <Box sx={{ marginLeft: '4rem' }}>
               {/* OKボタン */}
-              <OkButton id={id} totalAmount={getTotalAmount()} totalPayment={totalPayment} to="/paychange" />
+              <OkButton id={id} to="/paychange" totalAmount={getTotalAmount()} totalPayment={totalPayment} />
             </Box>
           </Box>
         </Box>
