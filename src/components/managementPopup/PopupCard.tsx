@@ -1,11 +1,12 @@
 import { Box, Card } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import PopupScreen from './PopupScreen';
 
 function PopupCard() {
+  const [selectedChange, setSelectedChange] = useState(true);
   return (
     <div>
-      <Card sx={{ width:'70%', position: 'fixed' , ml:'15%' , mt:'5%' ,mb:'5%', height:'750px'}}>
+      <Card sx={{ width:'70%' , ml:'15%' , mt:'5%' , height:'60%'}}>
           <PopupScreen />
       </Card>
     </div>
