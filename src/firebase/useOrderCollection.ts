@@ -1,8 +1,8 @@
-import { collection, getDocs, onSnapshot, PartialWithFieldValue, QueryDocumentSnapshot } from 'firebase/firestore';
+import { collection, onSnapshot, type PartialWithFieldValue, type QueryDocumentSnapshot } from 'firebase/firestore';
 import { useAtomValue } from 'jotai';
 import { useState, useEffect } from 'react';
 import { userAtom } from '../login/AdminLogin';
-import { orderCollection } from '../types';
+import { type orderCollection } from '../types';
 import { db } from './firebase';
 import { fetchOrder } from './FirebaseUtils';
 
@@ -36,7 +36,7 @@ export function useOrderCollection() {
 
   useEffect(() => {
     const unsub = onSnapshot(colRef, (snapshot) => {
-      const uid = user.uid;
+      const { uid } = user;
       // const newData = snapshot.docs.map((doc) => doc.data() as orderCollection);
 
       snapshot.docChanges().forEach(async (change) => {

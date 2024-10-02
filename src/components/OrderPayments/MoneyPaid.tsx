@@ -27,6 +27,10 @@ const MoneyPaid = ({ image, count, setCount }: MoneyPaidProps) => {
         />
         <CardMedia
           component="img"
+          image={image}
+          onClick={() => {
+            setCount((prevState) => prevState + 1);
+          }}
           sx={{
             display: 'flex',
             margin: 'auto',
@@ -35,10 +39,6 @@ const MoneyPaid = ({ image, count, setCount }: MoneyPaidProps) => {
             objectFit: 'fill',
             position: 'relative',
           }}
-          onClick={() => {
-            setCount((prevState) => prevState + 1);
-          }}
-          image={image}
         />
         <Box
           sx={{

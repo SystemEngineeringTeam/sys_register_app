@@ -1,7 +1,7 @@
-import { collection, onSnapshot, PartialWithFieldValue, QueryDocumentSnapshot } from 'firebase/firestore';
+import { collection, onSnapshot, type PartialWithFieldValue, type QueryDocumentSnapshot } from 'firebase/firestore';
 import { useAtomValue } from 'jotai';
 import { userAtom } from '../login/AdminLogin';
-import { money } from '../types';
+import { type money } from '../types';
 import { useEffect, useState } from 'react';
 import { db } from './firebase';
 

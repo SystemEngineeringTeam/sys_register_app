@@ -1,4 +1,4 @@
-import { Box, Divider, Grid, Stack } from '@mui/material';
+import { Box } from '@mui/material';
 import React from 'react';
 import CreateIcon from '@mui/icons-material/Create';
 import { Link } from 'react-router-dom';
@@ -21,9 +21,9 @@ const OrderMenueName = ({ ordername, orderprice, menuqty, customizename }: Order
   return (
     <div style={{ display: 'flex' }}>
       {/* {menuname} */}
-      <Link to="/customizechange" state={{ ordername: ordername, customizename: customizename }}>
+      <Link state={{ ordername, customizename }} to="/customizechange">
         <Box sx={{ fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' } }}>
-          <CreateIcon></CreateIcon>
+          <CreateIcon />
         </Box>
       </Link>
       <Box flex={3} sx={{ ml: '30px', wordBreak: 'break-word', fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' } }}>

@@ -28,9 +28,9 @@ const OrderMenueContena = ({
   //   { menu: '青のり', price: 10 },
   // ];
 
-  console.log('menuqty:' + menuqty);
-  console.log('customizename:' + customizename);
-  console.log('customizeprice:' + customizeprice);
+  console.log(`menuqty:${menuqty}`);
+  console.log(`customizename:${customizename}`);
+  console.log(`customizeprice:${customizeprice}`);
 
   return (
     <div>
@@ -48,20 +48,20 @@ const OrderMenueContena = ({
         >
           {/* flexは幅の割合 */}
           <Box>
-            <img src={orderimg} className="yakitori" style={imageDisplaySize} />
+            <img className="yakitori" src={orderimg} style={imageDisplaySize} />
           </Box>
         </Stack>
 
         <Stack sx={{ flex: 5 }}>
-          <Stack sx={{mr:'20px'}}>
+          <Stack sx={{ mr: '20px' }}>
             <OrderMenueName
+              customizename={customizename}
+              menuqty={menuqty}
               ordername={ordername}
               orderprice={orderprice}
-              menuqty={menuqty}
-              customizename={customizename}
             />
           </Stack>
-          <Stack sx={{ml:'20px', mr:'20px'}}>
+          <Stack sx={{ ml: '20px', mr: '20px' }}>
             <OrderMenueCustomize custom={customizename} customprice={customizeprice} />
           </Stack>
         </Stack>

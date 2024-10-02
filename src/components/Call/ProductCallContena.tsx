@@ -1,4 +1,4 @@
-import { Box, Typography, Card, CardContent, Button, Grid, Stack } from '@mui/material';
+import { Box, Typography, Card, CardContent, Button, Stack } from '@mui/material';
 
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { useState } from 'react';
@@ -44,16 +44,16 @@ const ProductCallContena = ({ key, id }: ProductCallContenaProps) => {
               p: { xs: 1, sm: 2, md: 3 }, // 画面サイズごとのパディング
             }}
           >
-            <Stack spacing={2} alignItems="center" sx={{ mr: 2 }}>
-              <Typography component="h1" variant="h5" color="primary">
+            <Stack alignItems="center" spacing={2} sx={{ mr: 2 }}>
+              <Typography color="primary" component="h1" variant="h5">
                 {id}
               </Typography>
 
               <Button
-                variant="contained"
                 color={status ? 'success' : 'error'}
-                startIcon={status ? <CheckCircleIcon /> : <DoNotDisturbOnTotalSilenceOutlined />}
                 onClick={handleChange}
+                startIcon={status ? <CheckCircleIcon /> : <DoNotDisturbOnTotalSilenceOutlined />}
+                variant="contained"
               >
                 {status ? '提供済' : '未完了'}
               </Button>

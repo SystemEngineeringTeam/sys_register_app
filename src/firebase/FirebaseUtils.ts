@@ -1,18 +1,16 @@
 import {
   collection,
-  doc,
-  DocumentChange,
-  DocumentData,
-  DocumentReference,
+  type DocumentData,
+  type DocumentReference,
   getDoc,
   getDocs,
   onSnapshot,
   query,
-  QueryDocumentSnapshot,
+  type QueryDocumentSnapshot,
 } from 'firebase/firestore';
 import { atom } from 'jotai';
 import { db } from './firebase';
-import { items, options, order, orderCollection, money } from '../types/index';
+import { type items, type options, type order, type orderCollection } from '../types/index';
 import { loadable } from 'jotai/utils';
 import { userAtomLoadable } from '../login/AdminLogin';
 
@@ -65,9 +63,8 @@ export const fetchOrderCollection = (uid: string, setData: (data: orderCollectio
                     const optionSnap = await getDoc(optionRef);
                     if (optionSnap.exists()) {
                       return optionSnap.data() as options;
-                    } else {
-                      return { id: null, name: null, price: null };
                     }
+                    return { id: null, name: null, price: null };
                   }),
                 );
 
@@ -86,9 +83,8 @@ export const fetchOrderCollection = (uid: string, setData: (data: orderCollectio
                   const optionDoc = await getDoc(optionRef);
                   if (optionDoc.exists()) {
                     return optionDoc.data() as options;
-                  } else {
-                    return { id: null, name: null, price: null };
                   }
+                  return { id: null, name: null, price: null };
                 }),
               );
 
@@ -236,9 +232,8 @@ export const fetchOrder = async (
             const optionSnap = await getDoc(optionRef);
             if (optionSnap.exists()) {
               return optionSnap.data() as options;
-            } else {
-              return { id: null, name: null, price: null };
             }
+            return { id: null, name: null, price: null };
           }),
         );
 
@@ -257,9 +252,8 @@ export const fetchOrder = async (
           const optionDoc = await getDoc(optionRef);
           if (optionDoc.exists()) {
             return optionDoc.data() as options;
-          } else {
-            return { id: null, name: null, price: null };
           }
+          return { id: null, name: null, price: null };
         }),
       );
 

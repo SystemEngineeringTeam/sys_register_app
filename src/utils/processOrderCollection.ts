@@ -1,23 +1,23 @@
 import { useOrderCollection } from '../firebase/useOrderCollection';
 import { useState, useEffect } from 'react';
 
-export const processOrderCollection = (process: string): { id: string | null }[] => {
+export const processOrderCollection = (process: string): Array<{ id: string | null }> => {
   const { data } = useOrderCollection();
   const orderCollections = data || [];
 
-  const [aryAccountigId, setAryAccountigID] = useState<{ id: string | null }[]>([]);
-  const [aryCookingId, setAryCookingID] = useState<{ id: string | null }[]>([]);
-  const [aryOfferId, setAryOfferID] = useState<{ id: string | null }[]>([]);
+  const [aryAccountigId, setAryAccountigID] = useState<Array<{ id: string | null }>>([]);
+  const [aryCookingId, setAryCookingID] = useState<Array<{ id: string | null }>>([]);
+  const [aryOfferId, setAryOfferID] = useState<Array<{ id: string | null }>>([]);
 
   useEffect(() => {
     // 新しいIDを追加するためのセット
-    const newAccountigIds: Set<string | null> = new Set();
-    const newCookingIds: Set<string | null> = new Set();
-    const newOfferIds: Set<string | null> = new Set();
+    const newAccountigIds = new Set<string | null>();
+    const newCookingIds = new Set<string | null>();
+    const newOfferIds = new Set<string | null>();
 
     orderCollections.forEach((orderCollection) => {
-      console.log('id:' + orderCollection.id);
-      console.log('boolean:' + orderCollection.accounting);
+      console.log(`id:${orderCollection.id}`);
+      console.log(`boolean:${orderCollection.accounting}`);
 
       switch (orderCollection.accounting) {
         case false:

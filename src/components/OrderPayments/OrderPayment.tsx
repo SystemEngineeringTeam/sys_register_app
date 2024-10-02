@@ -115,11 +115,11 @@ const OrderPayment = () => {
           <Box sx={{ display: 'flex', margin: '1rem' }}>
             <Box>
               {/* 戻るボタン */}
-              <BackButton to="/order" id={id} />
+              <BackButton id={id} to="/order" />
             </Box>
             <Box sx={{ marginLeft: '4rem' }}>
               {/* OKボタン */}
-              <OkButton id={id} totalAmount={getTotalAmount()} totalPayment={totalPayment} to="/paychange" />
+              <OkButton id={id} to="/paychange" totalAmount={getTotalAmount()} totalPayment={totalPayment} />
             </Box>
           </Box>
         </Box>

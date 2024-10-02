@@ -1,8 +1,7 @@
-import { signOut, User } from 'firebase/auth';
+import { type User } from 'firebase/auth';
 import { loadable } from 'jotai/utils';
-import { atom, useSetAtom } from 'jotai';
-import { developer } from '../types';
-import { auth } from '../firebase/firebase';
+import { atom } from 'jotai';
+import { type developer } from '../types';
 
 // ユーザーのログイン情報を保持するatom
 export const userAtom = atom<User | null | developer>(null);

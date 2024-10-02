@@ -9,7 +9,7 @@ interface CookingContenaProps {
 const CookingContena: React.FC<CookingContenaProps> = ({ cooking }) => {
   return (
     <div>
-      <Stack spacing={2} alignItems="center" divider={<Divider flexItem />}>
+      <Stack alignItems="center" divider={<Divider flexItem />} spacing={2}>
         {/* Dividerで区切り線を入れる */}
         {cooking.map((item, index) => (
           <ProductOrderContena key={index} id={item} />
@@ -18,5 +18,4 @@ const CookingContena: React.FC<CookingContenaProps> = ({ cooking }) => {
     </div>
   );
 };
-
 export default CookingContena;

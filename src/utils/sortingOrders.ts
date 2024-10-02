@@ -1,5 +1,5 @@
 import { useOrderCollection } from '../firebase/useOrderCollection';
-import { order, orderCollection } from '../types';
+import { type order, type orderCollection } from '../types';
 
 // IDが一致するorder[]を取得する
 export const sortingOrders = (id: number): order[] => {

@@ -19,22 +19,22 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<AppLayout />}>
-          <Route index element={<Home />} />
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/*" element={<RequiredLogin />}>
-            <Route path="order" element={<Order />} />
-            <Route path="cooking" element={<Cooking />} />
-            <Route path="delivery" element={<Delivery />} />
-            <Route path="call" element={<Call />} />
-            <Route path="admin" element={<Admin />} />
-            <Route path="hoge" element={<Hoge />} />
-            <Route path="orderchange" element={<OrderChange />} />
-            <Route path="customizechange" element={<CustomizeChange />} />
-            <Route path="payment" element={<OrderPayment />} />
-            <Route path="paychange" element={<MoneyCount />} />
-            <Route path="test" element={<Test />} />
-            <Route path="*" element={<div>Not Found</div>} />
+        <Route element={<AppLayout />} path="/">
+          <Route element={<Home />} index />
+          <Route element={<LoginForm />} path="/login" />
+          <Route element={<RequiredLogin />} path="/*">
+            <Route element={<Order />} path="order" />
+            <Route element={<Cooking />} path="cooking" />
+            <Route element={<Delivery />} path="delivery" />
+            <Route element={<Call />} path="call" />
+            <Route element={<Admin />} path="admin" />
+            <Route element={<Hoge />} path="hoge" />
+            <Route element={<OrderChange />} path="orderchange" />
+            <Route element={<CustomizeChange />} path="customizechange" />
+            <Route element={<OrderPayment />} path="payment" />
+            <Route element={<MoneyCount />} path="paychange" />
+            <Route element={<Test />} path="test" />
+            <Route element={<div>Not Found</div>} path="*" />
           </Route>
         </Route>
       </Routes>

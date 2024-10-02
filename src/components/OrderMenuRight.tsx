@@ -9,7 +9,7 @@ interface OrderMenuRightProps {
   id: string;
 }
 
-function OrderMenuRight({ id }: OrderMenuRightProps) {
+const OrderMenuRight = ({ id }: OrderMenuRightProps) => {
   {
     const { data } = useOrderCollection();
 
@@ -75,6 +75,6 @@ function OrderMenuRight({ id }: OrderMenuRightProps) {
       </Box>
     );
   }
-}
+};
 
 export default OrderMenuRight;

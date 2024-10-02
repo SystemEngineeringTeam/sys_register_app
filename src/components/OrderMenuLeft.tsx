@@ -2,17 +2,17 @@ import { Box } from '@mui/material';
 import OrderMenueContena from './OrderMenueContena';
 
 interface OrderMenueLeftProps {
-  processedoptions: {
+  processedoptions: Array<{
     name: string | null;
     price: number | null;
-  }[];
-  menuqty: {
+  }>;
+  menuqty: Array<{
     qty: number | null;
-  }[];
-  customize: {
+  }>;
+  customize: Array<{
     name: string;
     price: number;
-  }[];
+  }>;
 }
 
 const OrderMenuLeft = ({ processedoptions, menuqty, customize }: OrderMenueLeftProps) => {
@@ -21,8 +21,8 @@ const OrderMenuLeft = ({ processedoptions, menuqty, customize }: OrderMenueLeftP
   //   232,
   // ];
 
-  console.log('processedOptions:' + processedoptions);
-  console.log('menuqty:' + menuqty);
+  console.log(`processedOptions:${processedoptions}`);
+  console.log(`menuqty:${menuqty}`);
 
   return (
     <div>
@@ -36,12 +36,12 @@ const OrderMenuLeft = ({ processedoptions, menuqty, customize }: OrderMenueLeftP
             return (
               <OrderMenueContena
                 key={index}
-                ordername={order.name || ''}
-                orderprice={order.price || 0}
-                orderimg={order.name || ''}
-                menuqty={qty} // menuqtyの値を渡す
                 customizename={custom.name || ''} // カスタマイズ名を渡す（カスタマイズがある場合）
                 customizeprice={custom.price || 0} // カスタマイズ価格を渡す（カスタマイズがある場合）
+                menuqty={qty} // menuqtyの値を渡す
+                orderimg={order.name || ''}
+                ordername={order.name || ''}
+                orderprice={order.price || 0}
               />
             );
           })}

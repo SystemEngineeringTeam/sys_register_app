@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { type ReactElement } from 'react';
 import NumberButtonBox from '../components/NumberButtonBox';
 import OrderWaitPeople from '../components/OrderWaitPeople';
 import { useMoney } from '../firebase/useMoney';
@@ -21,7 +21,7 @@ export default function Order(): ReactElement {
   console.log('🚀 ~ Order ~ order:', order);
 
   const orders = order.map((order) => Number(order.id));
-  //const orders = [Number(order)];
+  // const orders = [Number(order)];
 
   const menu = processOrderChange((data || []).flatMap((order) => order.order.flatMap((o) => o.item)));
 
@@ -38,7 +38,7 @@ export default function Order(): ReactElement {
 
   return (
     <div>
-      <NumberButtonBox orders={orders} menu={menu} menuqty={menuqty} customize={processCustmize} />
+      <NumberButtonBox customize={processCustmize} menu={menu} menuqty={menuqty} orders={orders} />
       <OrderWaitPeople orders={orders} />
     </div>
   );

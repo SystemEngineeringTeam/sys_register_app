@@ -1,9 +1,10 @@
-import UploadImageContena from '@/components/Image/upload/UploadImage';
+import InputFileUpload from '@/components/Image/upload/InputFileUpload';
 
 const Test = () => {
   return (
     <div>
-      <UploadImageContena />
+      {/* <UploadImageContena /> */}
+      <InputFileUpload />
     </div>
   );
 };

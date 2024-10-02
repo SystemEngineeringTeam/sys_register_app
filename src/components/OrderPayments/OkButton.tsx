@@ -34,16 +34,16 @@ const OkButton = ({ id, totalAmount, totalPayment, to }: OkButtonProps) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Link to={payChange() ? to : '#'} state={{ id, totalAmount, totalPayment }}>
+      <Link state={{ id, totalAmount, totalPayment }} to={payChange() ? to : '#'}>
         <Button
-          variant="contained"
           color="ok"
+          onClick={clickhandle}
           sx={{
             fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
             width: { xs: '6rem', sm: '8rem', md: '10rem' },
             height: { xs: '2.5rem', sm: '3rem', md: '3.5rem' },
           }}
-          onClick={clickhandle}
+          variant="contained"
         >
           OK
         </Button>

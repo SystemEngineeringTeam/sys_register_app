@@ -1,22 +1,20 @@
 import { Box } from '@mui/material';
 import React from 'react';
 import NumberButton from './NumberButton';
-import { items } from '../types';
-import { processOrderChange } from '../utils/processOrderChange';
 
 interface NumberButtonBoxProps {
   orders: number[];
-  menu: {
+  menu: Array<{
     name: string | null;
     price: number | null;
-  }[];
-  menuqty: {
+  }>;
+  menuqty: Array<{
     qty: number | null;
-  }[];
-  customize: {
+  }>;
+  customize: Array<{
     name: string;
     price: number;
-  }[];
+  }>;
 }
 
 const NumberButtonBox = ({ orders, menu, menuqty, customize }: NumberButtonBoxProps) => {
@@ -45,9 +43,9 @@ const NumberButtonBox = ({ orders, menu, menuqty, customize }: NumberButtonBoxPr
 
           return (
             <NumberButton
-              orders={value}
               menu={selectMenu ? [selectMenu] : []}
               menuqty={selectQty ? [selectQty] : []}
+              orders={value}
               selectCustomize={selectCustomize ? [selectCustomize] : []}
             />
           );
