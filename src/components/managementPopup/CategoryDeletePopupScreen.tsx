@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Button, Card, Stack } from '@mui/material';
-import CancelButton from '../CancelButton';
-import DeleteYesButton from '../DeleteYesButton';
+import CancelButton from './CancelButton';
+import DeleteYesButton from './DeleteYesButton';
 import ClearIcon from '@mui/icons-material/Clear';
 import { processOrderChange } from '@/utils/processOrderChange';
 import { useOrderCollection } from '@/firebase/useOrderCollection';
@@ -9,7 +9,7 @@ import { processOrderCollection } from '@/utils/processOrderCollection';
 
 const CategoryDeletePopupScreen = () => {
   const [selectedChangeCancel, setSelectedChangeCalcel] = useState(true);
-  const [selectedChangeOkey,setSelectedChangeOkey] = useState(true);
+  const [selectedChangeOkey, setSelectedChangeOkey] = useState(true);
   return (
     <div>
       <Stack sx={{ textAlign: 'center' }}>
@@ -30,12 +30,15 @@ const CategoryDeletePopupScreen = () => {
           そのカテゴリーにある商品は全て削除されます
         </Box>
 
-        <Stack direction={'row'} fontSize={'40px'} sx={{ mt: '10%', justifyContent: 'right', mr: '7rem' , mb:'20px'}}>
+        <Stack direction={'row'} fontSize={'40px'} sx={{ mt: '10%', justifyContent: 'right', mr: '7rem', mb: '20px' }}>
           <Button>
-            <CancelButton selectedChangeCancel={selectedChangeCancel} setSelectedChangeCancel={setSelectedChangeCalcel}/>
+            <CancelButton
+              selectedChangeCancel={selectedChangeCancel}
+              setSelectedChangeCancel={setSelectedChangeCalcel}
+            />
           </Button>
           <Button>
-          <DeleteYesButton selectedChangeOkey={selectedChangeOkey} setSelectedChangeOkey={setSelectedChangeOkey}/>
+            <DeleteYesButton selectedChangeOkey={selectedChangeOkey} setSelectedChangeOkey={setSelectedChangeOkey} />
           </Button>
         </Stack>
       </Stack>
