@@ -10,15 +10,7 @@ interface CustomizeMenuProps {
 }
 function CustomizeMenu({ ordername }: CustomizeMenuProps) {
   const [orderCollectionData, setOrderCollectionData] = useAtom(orderCollectionAtom);
-
-  switch (orderCollectionData.state) {
-    case 'loading':
-      return <p>Loading...</p>;
-
-    case 'hasError':
-      return <p>Error</p>;
-
-    case 'hasData':
+    
       // const processedOptions = processOrderChange(
       //   (orderCollectionData.data || [])
       //   .flatMap((order) => order.order.flatMap((o) => o.item)),
@@ -43,6 +35,6 @@ function CustomizeMenu({ ordername }: CustomizeMenuProps) {
         </div>
       );
   }
-}
+
 
 export default CustomizeMenu;
