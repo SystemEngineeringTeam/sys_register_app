@@ -1,10 +1,11 @@
-import InputFileUpload from '@/components/Image/upload/InputFileUpload';
+import MenuEdit from '@/components/Edit/menuEdit';
 
 const Test = () => {
   return (
     <div>
       {/* <UploadImageContena /> */}
-      <InputFileUpload />
+      {/* <InputFileUpload /> */}
+      <MenuEdit />
     </div>
   );
 };
