@@ -1,13 +1,13 @@
 import { Box, Button, Stack, TextField } from '@mui/material';
 import React, { useState } from 'react';
 import ClearIcon from '@mui/icons-material/Clear';
-import CancelButton from '../CancelButton';
-import DeleteYesButton from '../DeleteYesButton';
+import CancelButton from './CancelButton';
+import DeleteYesButton from './DeleteYesButton';
 
 function CategoryNameAddScreen() {
   const [selectedChangeCancel, setSelectedChangeCalcel] = useState(true);
-  const [selectedChangeOkey,setSelectedChangeOkey] = useState(true);
-  
+  const [selectedChangeOkey, setSelectedChangeOkey] = useState(true);
+
   return (
     <div>
       <Stack sx={{ textAlign: 'center' }}>
@@ -20,16 +20,23 @@ function CategoryNameAddScreen() {
           カテゴリ追加
         </Box>
 
-        <Box fontSize={{ xs: '10px', sm: '20px', md: '30px' }} sx={{ mt: '5rem' }} >
+        <Box fontSize={{ xs: '10px', sm: '20px', md: '30px' }} sx={{ mt: '5rem' }}>
           <TextField id="outlined-basic" label="Outlined" variant="outlined" multiline maxRows={6} />
         </Box>
 
-        <Stack direction={'row'} fontSize={'40px'} sx={{ mt: '300px', justifyContent: 'right', mr: '7rem' , mb:'20px'}}>
+        <Stack
+          direction={'row'}
+          fontSize={'40px'}
+          sx={{ mt: '300px', justifyContent: 'right', mr: '7rem', mb: '20px' }}
+        >
           <Button>
-            <CancelButton selectedChangeCancel={selectedChangeCancel} setSelectedChangeCancel={setSelectedChangeCalcel}/>
+            <CancelButton
+              selectedChangeCancel={selectedChangeCancel}
+              setSelectedChangeCancel={setSelectedChangeCalcel}
+            />
           </Button>
           <Button>
-          <DeleteYesButton selectedChangeOkey={selectedChangeOkey} setSelectedChangeOkey={setSelectedChangeOkey}/>
+            <DeleteYesButton selectedChangeOkey={selectedChangeOkey} setSelectedChangeOkey={setSelectedChangeOkey} />
           </Button>
         </Stack>
       </Stack>
