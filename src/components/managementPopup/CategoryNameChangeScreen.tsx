@@ -1,13 +1,13 @@
-import { Box, Button, Stack } from '@mui/material'
-import React, { useState } from 'react'
+import { Box, Button, Stack } from '@mui/material';
+import React, { useState } from 'react';
 import ClearIcon from '@mui/icons-material/Clear';
-import CancelButton from '../CancelButton';
-import DeleteYesButton from '../DeleteYesButton';
+import CancelButton from './CancelButton';
+import DeleteYesButton from './DeleteYesButton';
 import TextField from '@mui/material/TextField';
 
 const CategoryNameChangeScreen = () => {
   const [selectedChangeCancel, setSelectedChangeCalcel] = useState(true);
-  const [selectedChangeOkey,setSelectedChangeOkey] = useState(true);
+  const [selectedChangeOkey, setSelectedChangeOkey] = useState(true);
 
   return (
     <div>
@@ -30,22 +30,23 @@ const CategoryNameChangeScreen = () => {
         </Box>
 
         <Box fontSize={{ xs: '10px', sm: '20px', md: '30px' }} sx={{ mt: '1rem' }}>
-            
-        <TextField  id="outlined-basic" label="Outlined" variant="outlined" multiline maxRows={6}/>
-          
+          <TextField id="outlined-basic" label="Outlined" variant="outlined" multiline maxRows={6} />
         </Box>
 
-        <Stack direction={'row'} fontSize={'40px'} sx={{ mt: '5%', justifyContent: 'right', mr: '7rem' , mb:'20px'}}>
+        <Stack direction={'row'} fontSize={'40px'} sx={{ mt: '5%', justifyContent: 'right', mr: '7rem', mb: '20px' }}>
           <Button>
-            <CancelButton selectedChangeCancel={selectedChangeCancel} setSelectedChangeCancel={setSelectedChangeCalcel}/>
+            <CancelButton
+              selectedChangeCancel={selectedChangeCancel}
+              setSelectedChangeCancel={setSelectedChangeCalcel}
+            />
           </Button>
           <Button>
-            <DeleteYesButton selectedChangeOkey={selectedChangeOkey} setSelectedChangeOkey={setSelectedChangeOkey}/>
+            <DeleteYesButton selectedChangeOkey={selectedChangeOkey} setSelectedChangeOkey={setSelectedChangeOkey} />
           </Button>
         </Stack>
       </Stack>
     </div>
-  )
-}
+  );
+};
 
-export default CategoryNameChangeScreen
+export default CategoryNameChangeScreen;
