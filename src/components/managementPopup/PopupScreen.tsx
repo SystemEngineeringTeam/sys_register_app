@@ -1,12 +1,11 @@
 import { Box, Button, Card, Stack } from '@mui/material';
 import React, { useState } from 'react';
-import CancelButton from '../CancelButton';
-import DeleteYesButton from '../DeleteYesButton';
+import CancelButton from './CancelButton';
+import DeleteYesButton from './DeleteYesButton';
 import ClearIcon from '@mui/icons-material/Clear';
 import { processOrderChange } from '@/utils/processOrderChange';
 import { useOrderCollection } from '@/firebase/useOrderCollection';
 import { processOrderCollection } from '@/utils/processOrderCollection';
-
 
 const PopupScreen = () => {
   // const menuName = orders.map((value, index) => {
@@ -14,8 +13,8 @@ const PopupScreen = () => {
   //   console.log("selectMenu.name:",selectMenu.name);
   // })
 
-  const [selectedChangeCancel,setSelectedChangeCancel] = useState(true);
-  const [selectedChangeOkey,setSelectedChangeOkey] = useState(true);
+  const [selectedChangeCancel, setSelectedChangeCancel] = useState(true);
+  const [selectedChangeOkey, setSelectedChangeOkey] = useState(true);
 
   return (
     <div>
@@ -38,11 +37,14 @@ const PopupScreen = () => {
         </Box>
 
         <Stack direction={'row'} fontSize={'40px'} sx={{ mt: '10%', justifyContent: 'right', mr: '7rem', mb: '20px' }}>
-          <Button >
-            <CancelButton selectedChangeCancel={selectedChangeCancel} setSelectedChangeCancel={setSelectedChangeCancel}/>
+          <Button>
+            <CancelButton
+              selectedChangeCancel={selectedChangeCancel}
+              setSelectedChangeCancel={setSelectedChangeCancel}
+            />
           </Button>
           <Button>
-            <DeleteYesButton selectedChangeOkey={selectedChangeOkey} setSelectedChangeOkey={setSelectedChangeOkey}/>
+            <DeleteYesButton selectedChangeOkey={selectedChangeOkey} setSelectedChangeOkey={setSelectedChangeOkey} />
           </Button>
         </Stack>
       </Stack>
