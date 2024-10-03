@@ -1,15 +1,15 @@
-import { Box, Button, Stack } from '@mui/material'
-import React, { useState } from 'react'
-import CancelButton from '../CancelButton'
-import DeleteYesButton from '../DeleteYesButton'
+import { Box, Button, Stack } from '@mui/material';
+import React, { useState } from 'react';
+import CancelButton from './CancelButton';
+import DeleteYesButton from './DeleteYesButton';
 import ClearIcon from '@mui/icons-material/Clear';
 
 const CategoryAddPopupScreen = () => {
   const [selectedChangeCancel, setSelectedChangeCalcel] = useState(true);
-  const [selectedChangeOkey,setSelectedChangeOkey] = useState(true);
+  const [selectedChangeOkey, setSelectedChangeOkey] = useState(true);
   return (
     <div>
-     <Stack sx={{ textAlign: 'center' }}>
+      <Stack sx={{ textAlign: 'center' }}>
         <Box sx={{ textAlign: 'right' }}>
           <ClearIcon sx={{ fontSize: '80px' }} />
         </Box>
@@ -23,17 +23,20 @@ const CategoryAddPopupScreen = () => {
           変更は保存されません
         </Box>
 
-        <Stack direction={'row'} fontSize={'40px'} sx={{ mt: '15%', justifyContent: 'right', mr: '7rem' , mb:'20px'}}>
+        <Stack direction={'row'} fontSize={'40px'} sx={{ mt: '15%', justifyContent: 'right', mr: '7rem', mb: '20px' }}>
           <Button>
-            <CancelButton selectedChangeCancel={selectedChangeCancel} setSelectedChangeCancel={setSelectedChangeCalcel}/>
+            <CancelButton
+              selectedChangeCancel={selectedChangeCancel}
+              setSelectedChangeCancel={setSelectedChangeCalcel}
+            />
           </Button>
           <Button>
-          <DeleteYesButton selectedChangeOkey={selectedChangeOkey} setSelectedChangeOkey={setSelectedChangeOkey}/>
+            <DeleteYesButton selectedChangeOkey={selectedChangeOkey} setSelectedChangeOkey={setSelectedChangeOkey} />
           </Button>
         </Stack>
       </Stack>
     </div>
-  )
-}
+  );
+};
 
-export default CategoryAddPopupScreen
+export default CategoryAddPopupScreen;
