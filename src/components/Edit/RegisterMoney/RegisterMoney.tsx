@@ -6,6 +6,7 @@ import BackButton from '@/components/OrderPayments/BackButton';
 import SetMoneyButton from './SetMoneyButton';
 
 const RegisterMoney = () => {
+  // money型のState
   // undefindにならないように初期化
   const [registerMoney, setRegisterMoney] = useState<money>({
     date: 0,
@@ -41,14 +42,13 @@ const RegisterMoney = () => {
           >
             合計金額{registerMoney.total}
           </Box>
-
           <Box sx={{ display: 'flex', margin: '1rem' }}>
             <Box>
               {/* 戻るボタン */}
               <BackButton id="" to="/" />
             </Box>
             <Box sx={{ marginLeft: '4rem' }}>
-              {/* OKボタン  */}
+              {/* OKボタン 押したらRegisterMoneyのdateが更新される  */}
               <SetMoneyButton id="" setRegisterMoney={setRegisterMoney} to="/" />
             </Box>
           </Box>

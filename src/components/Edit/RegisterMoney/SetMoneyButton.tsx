@@ -12,6 +12,7 @@ interface SetMoneyButtonProps {
 
 const SetMoneyButton = ({ id, to, setRegisterMoney }: SetMoneyButtonProps) => {
   const handleChange = () => {
+    // ボタンを押した時にdateを更新
     const date = new Date();
     setMoneyFnc(date.getTime(), 'date', setRegisterMoney);
   };

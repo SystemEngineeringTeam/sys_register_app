@@ -28,7 +28,6 @@ const RegisterChenge = ({ image, moneyKind, setRegisterMoney }: RegisterChengePr
       >
         <CardMedia
           component="img"
-          image={image}
           sx={{
             display: 'flex',
             margin: 'auto',
@@ -37,6 +36,7 @@ const RegisterChenge = ({ image, moneyKind, setRegisterMoney }: RegisterChengePr
             objectFit: 'fill',
             position: 'relative',
           }}
+          image={image}
         />
         <Box
           sx={{
