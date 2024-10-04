@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Card, Stack } from '@mui/material';
+import { Box, Button, Card, Stack, Typography } from '@mui/material';
 import CancelButton from './CancelButton';
 import DeleteYesButton from './DeleteYesButton';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -18,16 +18,16 @@ const CategoryDeletePopupScreen = () => {
         </Box>
 
         {/* fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' */}
-        <Box fontSize={{ xs: '20px', sm: '40px', md: '60px' }} sx={{ mt: '30px' }}>
-          本当に消去しますか？
+        <Box sx={{ mt: '30px' }}>
+        <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 2.0vw, 4.2rem)' }}>本当に消去しますか？</Typography>
         </Box>
 
-        <Box fontSize={{ xs: '20px', sm: '40px', md: '60px' }} sx={{ mt: '5rem' }}>
-          カテゴリー:フード
+        <Box sx={{ mt: '5rem' }}>
+        <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 3.0vw, 5.0rem)' }}>カテゴリー:フード</Typography>
         </Box>
 
-        <Box fontSize={{ xs: '10px', sm: '20px', md: '30px' }} sx={{ mt: '5rem' }}>
-          そのカテゴリーにある商品は全て削除されます
+        <Box  sx={{ mt: '5rem' }}>
+        <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 1.4vw, 3rem)' }}>そのカテゴリーにある商品は全て削除されます</Typography>
         </Box>
 
         <Stack direction={'row'} fontSize={'40px'} sx={{ mt: '10%', justifyContent: 'right', mr: '7rem', mb: '20px' }}>
