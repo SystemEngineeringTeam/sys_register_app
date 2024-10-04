@@ -1,4 +1,4 @@
-import { Box, Button, Stack } from '@mui/material';
+import { Box, Button, Stack, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import CancelButton from './CancelButton';
 import DeleteYesButton from './DeleteYesButton';
@@ -15,12 +15,12 @@ const CategoryAddPopupScreen = () => {
         </Box>
 
         {/* fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' */}
-        <Box fontSize={{ xs: '20px', sm: '40px', md: '60px' }} sx={{ mt: '40px' }}>
-          本当に消去しますか？
+        <Box sx={{ mt: '40px' }}>
+        <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 2.5vw, 4.2rem)' }}>本当に消去しますか？</Typography>
         </Box>
 
         <Box fontSize={{ xs: '10px', sm: '20px', md: '30px' }} sx={{ mt: '5rem' }}>
-          変更は保存されません
+        <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 1.5vw, 3.7rem)' }}>変更は保存されません</Typography>
         </Box>
 
         <Stack direction={'row'} fontSize={'40px'} sx={{ mt: '15%', justifyContent: 'right', mr: '7rem', mb: '20px' }}>
