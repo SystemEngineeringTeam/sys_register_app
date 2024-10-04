@@ -32,17 +32,7 @@ const OrderMenuLeft = ({ id }: OrderMenueLeftProps) => {
 
   const customize = processCustomizeChange((data || []).flatMap((order) => order.order.flatMap((o) => o.options)));
 
-  // console.log('processedOptions:' + processedoptions);
-  // console.log('menuqty:' + menuqty);
 
-  // const menuname = menu[id];
-  // console.log('🚀 ~ menuname:', menuname);
-
-  // const menuqty2 = menuqty[id];
-  // console.log('🚀 ~ menuqty2:', menuqty2);
-
-  // const customize2 = customize[id];
-  // console.log('🚀 ~ customize2:', customize2);
   return (
     <div>
       <Box>
