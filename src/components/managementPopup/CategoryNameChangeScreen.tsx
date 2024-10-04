@@ -1,4 +1,4 @@
-import { Box, Button, Stack } from '@mui/material';
+import { Box, Button, Stack, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import ClearIcon from '@mui/icons-material/Clear';
 import CancelButton from './CancelButton';
@@ -17,16 +17,16 @@ const CategoryNameChangeScreen = () => {
         </Box>
 
         {/* fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' */}
-        <Box fontSize={{ xs: '20px', sm: '40px', md: '60px' }} sx={{ mt: '20px' }}>
-          現在の名前
+        <Box sx={{ mt: '20px' }}>
+          <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 2.0vw, 4.2rem)' }}>現在の名前</Typography>
         </Box>
 
-        <Box fontSize={{ xs: '10px', sm: '30px', md: '50px' }} sx={{ mt: '10px' }}>
-          フード
+        <Box sx={{ mt: '10px' }}>
+          <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 2.0vw, 3.2rem)' }}>フード</Typography>
         </Box>
 
-        <Box fontSize={{ xs: '20px', sm: '40px', md: '60px' }} sx={{ mt: '10rem' }}>
-          変更後の名前
+        <Box sx={{ mt: '10rem' }}>
+          <Typography sx={{ fontSize: 'clamp(1.0rem, 0.4rem + 2.0vw, 2.0rem)' }}>変更後の名前</Typography>
         </Box>
 
         <Box fontSize={{ xs: '10px', sm: '20px', md: '30px' }} sx={{ mt: '1rem' }}>
