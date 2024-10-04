@@ -10,7 +10,7 @@ interface SetMoneyButtonProps {
   setRegisterMoney: React.Dispatch<React.SetStateAction<money>>;
 }
 
-const SetMoneyButton = ({ id, to, setRegisterMoney }: SetMoneyButtonProps) => {
+const SetDateButton = ({ id, to, setRegisterMoney }: SetMoneyButtonProps) => {
   const handleChange = () => {
     // ボタンを押した時にdateを更新
     const date = new Date();
@@ -36,4 +36,4 @@ const SetMoneyButton = ({ id, to, setRegisterMoney }: SetMoneyButtonProps) => {
   );
 };
 
-export default SetMoneyButton;
+export default SetDateButton;

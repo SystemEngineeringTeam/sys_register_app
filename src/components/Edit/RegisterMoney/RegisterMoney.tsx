@@ -3,7 +3,7 @@ import CollectedRegisterChenge from './CollectedRegisterChenge';
 import { useEffect, useState } from 'react';
 import { type money } from '@/types';
 import BackButton from '@/components/OrderPayments/BackButton';
-import SetMoneyButton from './SetMoneyButton';
+import SetDateButton from './SetDateButton';
 
 const RegisterMoney = () => {
   // money型のState
@@ -49,7 +49,7 @@ const RegisterMoney = () => {
             </Box>
             <Box sx={{ marginLeft: '4rem' }}>
               {/* OKボタン 押したらRegisterMoneyのdateが更新される  */}
-              <SetMoneyButton id="" setRegisterMoney={setRegisterMoney} to="/" />
+              <SetDateButton id="" setRegisterMoney={setRegisterMoney} to="/" />
             </Box>
           </Box>
         </Box>
