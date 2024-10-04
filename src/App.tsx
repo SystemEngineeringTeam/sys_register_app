@@ -22,6 +22,7 @@ import CategoryNameChangeScreen from './components/managementPopup/CategoryNameC
 import CategoryNameChangeCard from './components/managementPopup/CategoryNameChangeCard';
 import CategoryNameAddScreen from './components/managementPopup/CategoryNameAddScreen';
 import CategoryNameAddCard from './components/managementPopup/CategoryNameAddCard';
+import CategoryEdit from './pages/CategoryEdit';
 
 const App = () => {
   return (
@@ -46,6 +47,7 @@ const App = () => {
             <Route path="popupcategoryadd" element={<CategoryAddPopupCard />} />
             <Route path="popupcategorychangename" element={<CategoryNameChangeCard />} />
             <Route path="categorynameadd" element={<CategoryNameAddCard />} />
+            <Route path="categoryedit" element={<CategoryEdit />} />
             <Route path="*" element={<div>Not Found</div>} />
           </Route>
         </Route>
