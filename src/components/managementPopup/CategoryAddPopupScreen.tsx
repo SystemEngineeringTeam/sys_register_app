@@ -23,7 +23,7 @@ const CategoryAddPopupScreen = () => {
         <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 1.5vw, 3.7rem)' }}>変更は保存されません</Typography>
         </Box>
 
-        <Stack direction={'row'} fontSize={'40px'} sx={{ mt: '15%', justifyContent: 'right', mr: '7rem', mb: '20px' }}>
+        <Stack direction={'row'} fontSize={'40px'} sx={{ mt: '15%', justifyContent: 'right', mr: '7rem'}}>
           <Button>
             <CancelButton
               selectedChangeCancel={selectedChangeCancel}
