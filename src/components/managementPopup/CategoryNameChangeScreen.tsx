@@ -33,7 +33,7 @@ const CategoryNameChangeScreen = () => {
           <TextField id="outlined-basic" label="Outlined" variant="outlined" multiline maxRows={6} />
         </Box>
 
-        <Stack direction={'row'} fontSize={'40px'} sx={{ mt: '5%', justifyContent: 'right', mr: '7rem', mb: '20px' }}>
+        <Stack direction={'row'} fontSize={'40px'} sx={{ mt: '5%', justifyContent: 'right', mr: '7rem' }}>
           <Button>
             <CancelButton
               selectedChangeCancel={selectedChangeCancel}
