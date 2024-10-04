@@ -27,7 +27,7 @@ function CategoryNameAddScreen() {
         <Stack
           direction={'row'}
           fontSize={'40px'}
-          sx={{ mt: '300px', justifyContent: 'right', mr: '7rem', mb: '20px' }}
+          sx={{ mt: '300px', justifyContent: 'right', mr: '7rem' }}
         >
           <Button>
             <CancelButton
