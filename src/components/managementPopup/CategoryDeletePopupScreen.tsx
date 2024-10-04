@@ -30,7 +30,7 @@ const CategoryDeletePopupScreen = () => {
         <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 1.4vw, 3rem)' }}>そのカテゴリーにある商品は全て削除されます</Typography>
         </Box>
 
-        <Stack direction={'row'} fontSize={'40px'} sx={{ mt: '10%', justifyContent: 'right', mr: '7rem', mb: '20px' }}>
+        <Stack direction={'row'} fontSize={'40px'} sx={{ mt: '10%', justifyContent: 'right', mr: '7rem' }}>
           <Button>
             <CancelButton
               selectedChangeCancel={selectedChangeCancel}
