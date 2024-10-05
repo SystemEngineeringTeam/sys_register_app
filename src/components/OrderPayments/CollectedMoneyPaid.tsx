@@ -44,7 +44,7 @@ const CollectedMoneyPaid = ({
 }: CollectedMoneyPaidProps) => {
   return (
     <div>
-      <Box sx={{ border: 1 }}>
+      <Box>
         <Box sx={{ display: 'flex' }}>
           <MoneyPaid image="/money_1.svg" count={moneyCount1} setCount={setMoneyCount1} />
           <MoneyPaid image="/money_5.svg" count={moneyCount5} setCount={setMoneyCount5} />
@@ -56,7 +56,7 @@ const CollectedMoneyPaid = ({
           <MoneyPaid image="/money_500.svg" count={moneyCount500} setCount={setMoneyCount500} />
         </Box>
       </Box>
-      <Box sx={{ display: 'flex', marginTop: '2rem', border: 1 }}>
+      <Box sx={{ display: 'flex', marginTop: '2rem' }}>
         <MoneyPaid image="/money_1000.svg" count={moneyCount1000} setCount={setMoneyCount1000} />
         <MoneyPaid image="/money_5000.svg" count={moneyCount5000} setCount={setMoneyCount5000} />
         <MoneyPaid image="/money_10000.svg" count={moneyCount10000} setCount={setMoneyCount10000} />

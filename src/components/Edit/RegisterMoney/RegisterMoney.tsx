@@ -33,7 +33,7 @@ const RegisterMoney = () => {
       <Box sx={{ display: { xs: 'block', sm: 'flex', margin: '1rem' } }}>
         {/* 通貨を表示 */}
         <CollectedRegisterChenge setRegisterMoney={setRegisterMoney} />
-        <Box sx={{}}>
+        <Box>
           {/* 合計金額 */}
           <Box sx={{ margin: '1rem', fontSize: '1.5rem', right: '2rem', position: 'fixed' }}>
             <Box sx={{ display: { xs: 'none', sm: 'block' } }}>

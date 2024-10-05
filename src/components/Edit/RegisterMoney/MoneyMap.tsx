@@ -7,7 +7,7 @@ interface MoneyMapProps {
 }
 const MoneyMap = ({ registerMoney }: MoneyMapProps) => {
   return (
-    <Box sx={{ textAlign: 'right' }}>
+    <Box sx={{ textAlign: 'right', userSelect: 'none' }}>
       <Box>
         1円×{registerMoney[1]}枚 = {registerMoney[1] * 1}円
       </Box>

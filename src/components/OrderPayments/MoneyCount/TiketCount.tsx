@@ -14,7 +14,8 @@ const TiketCount = ({ image, count, setCount, totalAmount }: MoneyPaidProps) => 
     <div>
       <Box
         sx={{
-          border: 1,
+          userSelect: 'none',
+          border: 0.5,
           width: { xs: '7rem', sm: '9rem' },
           height: { xs: '7rem', sm: '9rem' },
           opacity: count === 0 ? '0.5' : '1',
@@ -28,6 +29,11 @@ const TiketCount = ({ image, count, setCount, totalAmount }: MoneyPaidProps) => 
             }
           }}
         />
+        {/*   -ms-user-select: none; /* IE 10+
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none; */}
         <CardMedia
           component="img"
           image={image}
@@ -37,6 +43,9 @@ const TiketCount = ({ image, count, setCount, totalAmount }: MoneyPaidProps) => 
               setCount((prevState) => prevState + 1);
             }
           }}
+          onDragStart={(e) => {
+            e.preventDefault();
+          }} // ドラッグを無効化
           sx={{
             display: 'flex',
             margin: 'auto',

@@ -17,7 +17,7 @@ const MoneyCount = () => {
   const location = useLocation();
   const { totalAmount, totalPayment, id } = location.state as State;
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', userSelect: 'none' }}>
       {/* 注文番号 */}
       <Box
         sx={{

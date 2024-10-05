@@ -25,7 +25,7 @@ const CollectedChenge = ({ chenge }: CollectedChengeProps) => {
   const moneyCounter = chengeQty(chenge);
   return (
     <div>
-      <Box sx={{ border: 2 }}>
+      <Box>
         <Box sx={{ display: 'flex' }}>
           <MoneyChenge image="/money_1.svg" ChengeCount={moneyCounter[1]} />
           <MoneyChenge image="/money_5.svg" ChengeCount={moneyCounter[5]} />
@@ -37,7 +37,7 @@ const CollectedChenge = ({ chenge }: CollectedChengeProps) => {
           <MoneyChenge image="/money_500.svg" ChengeCount={moneyCounter[500]} />
         </Box>
       </Box>
-      <Box sx={{ display: 'flex', marginTop: '2rem', border: 2 }}>
+      <Box sx={{ display: 'flex', marginTop: '2rem' }}>
         <MoneyChenge image="/money_1000.svg" ChengeCount={moneyCounter[1000]} />
         <MoneyChenge image="/money_5000.svg" ChengeCount={moneyCounter[5000]} />
         <MoneyChenge image="/money_10000.svg" ChengeCount={0} />

@@ -11,10 +11,11 @@ const MoneyPaid = ({ image, count, setCount }: MoneyPaidProps) => {
     <div>
       <Box
         sx={{
-          border: 1,
+          border: 0.5,
           width: { xs: '7rem', sm: '9rem' },
           height: { xs: '7rem', sm: '9rem' },
           opacity: count === 0 ? '0.5' : '1',
+          userSelect: 'none',
         }}
       >
         {/* 0以上の値の場合、クリック時にcountを -1 */}
@@ -38,6 +39,9 @@ const MoneyPaid = ({ image, count, setCount }: MoneyPaidProps) => {
           onClick={() => {
             setCount((prevState) => prevState + 1);
           }}
+          onDragStart={(e) => {
+            e.preventDefault();
+          }} // ドラッグを無効化
           image={image}
         />
         <Box

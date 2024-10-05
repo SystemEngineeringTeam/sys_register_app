@@ -11,7 +11,7 @@ const MoneyChenge = ({ image, ChengeCount }: MoneyChengeProps) => {
     <div>
       <Box
         sx={{
-          border: 1,
+          border: 0.5,
           width: { xs: '7rem', sm: '9rem' },
           height: { xs: '7rem', sm: '9rem' },
           opacity: ChengeCount === 0 ? '0.3' : '1',

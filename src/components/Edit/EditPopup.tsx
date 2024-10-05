@@ -13,6 +13,7 @@ const EditPopup = ({ currentName, editName }: EditPopupProps) => {
       {/* 画面全体を半透明の黒で覆う */}
       <Box
         sx={{
+          userSelect: 'none',
           position: 'fixed',
           width: '100vw',
           height: '100vh',
