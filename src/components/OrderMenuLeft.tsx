@@ -1,40 +1,76 @@
-import { ReactElement, useState } from 'react';
-
 import { Box } from '@mui/material';
-import { useLocation } from 'react-router-dom';
-import OrderMenuLeft from '../components/OrderMenuLeft';
-import OrderMenuRight from '../components/OrderMenuRight';
-import { useMoney } from '../firebase/useMoney';
-import { useOrderCollection } from '../firebase/useOrderCollection';
-import { processOrderCollection } from '../utils/processOrderCollection';
+import OrderMenueContena from './OrderMenueContena';
+import { processOrderCollection } from '@/utils/processOrderCollection';
 import { processNumber, processOrderChange } from '@/utils/processOrderChange';
 import { processCustomizeChange } from '@/utils/processCustomizeChange';
+import { useOrderCollection } from '@/firebase/useOrderCollection';
+import { useState } from 'react';
+import { useMoney } from '@/firebase/useMoney';
+import { useLocation } from 'react-router-dom';
 
-export default function OrderChange(): ReactElement {
-  interface State {
-    ordersId: number;
-  }
+interface OrderMenueLeftProps {
+  id: number;
+}
 
-  const location = useLocation();
-  const { state } = location as { state: State };
+const OrderMenuLeft = ({ id }: OrderMenueLeftProps) => {
+  const { data } = useOrderCollection();
+
+  console.log('id', id);
+
+  const process = 'accounting';
+  const order = processOrderCollection(process);
+  console.log('🚀 ~ Order ~ order:', order);
+
+  const orders = order.map((order) => Number(order.id));
+  console.log('🚀 ~ OrderChange ~ orders:', orders);
+
+  const menu = processOrderChange((data || []).flatMap((order) => order.order.flatMap((o) => o.item)));
+  console.log('🚀 ~ menu:', menu);
+
+  const menuqty = processNumber((data || []).flatMap((order) => order.order));
+  console.log('🚀 ~ menuqty:', menuqty);
+
+  const customize = processCustomizeChange((data || []).flatMap((order) => order.order.flatMap((o) => o.options)));
 
 
   return (
-    
     <div>
-      <Box sx={{ display: 'flex' }}>
-        {/* 左側メニューリスト */}
-
-        <Box sx={{ flex: 4, overflowY: 'auto', mt:'20px', mr:'20px', ml:'20px'}}>
-          <OrderMenuLeft id={state.ordersId}/>
-        </Box>
-
-        {/* 右側注文情報 */}
-
-        <Box sx={{ flex: 1 }}>
-          <OrderMenuRight id={state.ordersId.toString()} />
+      <Box>
+        <Box>
+          {orders.map((orderId, index) => {
+            console.log("🚀 ~ {orders.map ~ index:", index)
+            console.log("🚀 ~ {orders.map ~ orderId:", orderId)
+            // idと一致するメニューを取得
+            if (orderId === id) {
+              const selectedMenu = menu[orderId] || {};
+              const qty = menuqty[orderId]?.qty || 0;
+              const custom = customize?.[orderId] || {};
+  
+              console.log("🚀 ~ selectedMenu:", selectedMenu.name);
+              console.log("🚀 ~ selectedMenu price:", selectedMenu.price);
+  
+              return (
+                <OrderMenueContena
+                  key={index} // keyを追加することで一意の要素とする
+                  selectMenuName={selectedMenu.name || ''}
+                  selectMenuPrice={selectedMenu.price || 0}
+                  selectMenuImg={selectedMenu.name || ''}
+                  selectMenuqty={qty || 0}
+                  selectCustomizeName={custom.name || ''}
+                  selectCustomizePrice={custom.price || 0}
+                  id={id}
+                />
+              );
+            }
+  
+            // idと一致しない場合は何も表示しない
+            return null;
+          })}
         </Box>
       </Box>
     </div>
   );
-}
+         
+};
+
+export default OrderMenuLeft;
