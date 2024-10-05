@@ -1,20 +1,15 @@
 import { Box } from '@mui/material';
 import React from 'react';
 import NumberButton from './NumberButton';
+import { items } from '../types';
+import { processNumber, processOrderChange } from '../utils/processOrderChange';
+import { useOrderCollection } from '@/firebase/useOrderCollection';
+import { processOrderCollection } from '@/utils/processOrderCollection';
+import { processCustomizeChange } from '@/utils/processCustomizeChange';
+import { useMoney } from '@/firebase/useMoney';
 
-interface NumberButtonBoxProps {
-  orders: number[];
-  menu: Array<{
-    name: string | null;
-    price: number | null;
-  }>;
-  menuqty: Array<{
-    qty: number | null;
-  }>;
-  customize: Array<{
-    name: string;
-    price: number;
-  }>;
+interface NumberButtonProps{
+  ordersId: number[];
 }
 
 const NumberButtonBox = ({ordersId}:NumberButtonProps) => {
@@ -33,10 +28,7 @@ const NumberButtonBox = ({ordersId}:NumberButtonProps) => {
         {ordersId.map((value) => {
           return (
             <NumberButton
-              menu={selectMenu ? [selectMenu] : []}
-              menuqty={selectQty ? [selectQty] : []}
-              orders={value}
-              selectCustomize={selectCustomize ? [selectCustomize] : []}
+              ordersId={value}
             />
           );
         })}
