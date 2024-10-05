@@ -49,7 +49,7 @@ const RegisterMoney = () => {
             >
               合計金額 : {registerMoney.total}円
             </Box>
-            <Box sx={{ display: 'flex', margin: '1rem', position: 'fixed', right: '4rem', bottom: '1rem' }}>
+            <Box sx={{ display: 'flex', margin: '1rem', position: 'fixed', right: '2rem', bottom: '1rem' }}>
               <Box>
                 {/* 戻るボタン */}
                 <BackButton id="" to="/" />
