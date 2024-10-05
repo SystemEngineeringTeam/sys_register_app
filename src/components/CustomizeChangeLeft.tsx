@@ -5,6 +5,7 @@ import CustmizeGraf from './CustmizeGraf';
 import { useAtom } from 'jotai';
 import { orderCollectionAtom } from '../firebase/FirebaseUtils';
 import { processCustomizeChange } from '../utils/processCustomizeChange';
+import { processOrderChange } from '../utils/processOrderChange';
 import { Link } from 'react-router-dom';
 import { useOrderCollection } from '@/firebase/useOrderCollection';
 
@@ -13,9 +14,8 @@ interface CustomizeChangeLeftProps {
   customizename: string;
 }
 
-
-const CustomizeChangeLeft = ({ processedoptions, customizename }: CustomizeChangeLeftProps) => {
-  // const customizechanges = ['カスタマイズ1', 'カスタマイズ2', 'カスタマイズ3'];\
+function CustomizeChangeLeft({ processedoptions, customizename }: CustomizeChangeLeftProps) {
+  //const customizechanges = ['カスタマイズ1', 'カスタマイズ2', 'カスタマイズ3'];
 
   const { data } = useOrderCollection();
 
@@ -49,5 +49,5 @@ const CustomizeChangeLeft = ({ processedoptions, customizename }: CustomizeChang
         </div>
       );
   }
-};
+
 export default CustomizeChangeLeft;
