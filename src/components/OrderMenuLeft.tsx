@@ -38,11 +38,13 @@ const OrderMenuLeft = ({ id }: OrderMenueLeftProps) => {
       <Box>
         <Box>
           {orders.map((orderId, index) => {
+            console.log("🚀 ~ {orders.map ~ index:", index)
+            console.log("🚀 ~ {orders.map ~ orderId:", orderId)
             // idと一致するメニューを取得
             if (orderId === id) {
-              const selectedMenu = menu[index] || {};
-              const qty = menuqty[index]?.qty || 0;
-              const custom = customize?.[index] || {};
+              const selectedMenu = menu[orderId] || {};
+              const qty = menuqty[orderId]?.qty || 0;
+              const custom = customize?.[orderId] || {};
   
               console.log("🚀 ~ selectedMenu:", selectedMenu.name);
               console.log("🚀 ~ selectedMenu price:", selectedMenu.price);
