@@ -3,21 +3,23 @@ import OrderMenueCustomize from './OrderMenueCustomize';
 import OrderMenueName from './OrderMenueName';
 
 interface OrderMenueContenaProps {
-  ordername: string;
-  orderprice: number;
-  orderimg: string;
-  menuqty: number;
-  customizename: string;
-  customizeprice: number;
+  selectMenuName: string;
+  selectMenuPrice: number;
+  selectMenuImg: string;
+  selectMenuqty: number;
+  selectCustomizeName: string;
+  selectCustomizePrice: number;
+  id:number;
 }
 
 const OrderMenueContena = ({
-  ordername,
-  orderprice,
-  orderimg,
-  menuqty,
-  customizename,
-  customizeprice,
+  selectMenuName,
+  selectMenuPrice,
+  selectMenuImg,
+  selectMenuqty,
+  selectCustomizeName,
+  selectCustomizePrice,
+  id,
 }: OrderMenueContenaProps) => {
   const imageDisplaySize = { width: 200, height: 200 };
   // const custommenus = [
@@ -28,9 +30,6 @@ const OrderMenueContena = ({
   //   { menu: '青のり', price: 10 },
   // ];
 
-  console.log(`menuqty:${menuqty}`);
-  console.log(`customizename:${customizename}`);
-  console.log(`customizeprice:${customizeprice}`);
 
   return (
     <div>

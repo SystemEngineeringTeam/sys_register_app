@@ -19,16 +19,12 @@ const OrderMenuRight = ({ id }: OrderMenuRightProps) => {
       <Box
         sx={{
           position: 'fixed', // スクロールしても固定
-          top: 0,
-          right: 0,
           height: '100vh',
           width: '20vw',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          justifyContent: 'space-between',
           textAlign: 'center',
-          padding: '2vh 0',
           boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
         }}
       >
@@ -36,13 +32,13 @@ const OrderMenuRight = ({ id }: OrderMenuRightProps) => {
         <Box sx={{ marginTop: '50px' }}>
           <OrderNumber id={id} />
         </Box>
-
         <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', mb: '50px' }}>
           {/* 合計金額表示 */}
           <Box
             sx={{
               display: 'flex',
               alignItems: 'flex-end',
+
             }}
           >
             <Typography
@@ -61,6 +57,7 @@ const OrderMenuRight = ({ id }: OrderMenuRightProps) => {
                 color: '#000',
                 lineHeight: '3rem',
                 marginLeft: '8px',
+                mt:'60px'
               }}
             >
               {totalAmount}円

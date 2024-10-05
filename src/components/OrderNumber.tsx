@@ -11,9 +11,10 @@ const OrderNumber = ({ id }: OrderNumberProps) => (
       container
       sx={{
         flexFlow: 'column',
-        textAlign: 'center',
         fontSize: { xs: '0.8rem', sm: '1rem', md: '1.5rem' },
         width: { xs: '6rem', sm: '8rem', md: '10rem' },
+        
+
         // 親要素で指定する内容
         // これを当てると右上に固定される
         // position:'fixed',
@@ -26,7 +27,7 @@ const OrderNumber = ({ id }: OrderNumberProps) => (
         sx={{
           backgroundColor: grey[300],
           fontSize: { xs: '3rem', sm: '4rem', md: '5rem' },
-          textAlign: 'center',
+
         }}
       >
         {/* 仮置き */}

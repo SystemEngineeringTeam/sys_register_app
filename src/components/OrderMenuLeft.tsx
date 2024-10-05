@@ -1,5 +1,12 @@
 import { Box } from '@mui/material';
 import OrderMenueContena from './OrderMenueContena';
+import { processOrderCollection } from '@/utils/processOrderCollection';
+import { processNumber, processOrderChange } from '@/utils/processOrderChange';
+import { processCustomizeChange } from '@/utils/processCustomizeChange';
+import { useOrderCollection } from '@/firebase/useOrderCollection';
+import { useState } from 'react';
+import { useMoney } from '@/firebase/useMoney';
+import { useLocation } from 'react-router-dom';
 
 interface OrderMenueLeftProps {
   processedoptions: Array<{
@@ -15,14 +22,25 @@ interface OrderMenueLeftProps {
   }>;
 }
 
-const OrderMenuLeft = ({ processedoptions, menuqty, customize }: OrderMenueLeftProps) => {
-  // const orders = [
-  //   1, 2, 3, 4, 4, 5, 4, 231, 3245, 324, 332, 344, 223, 421, 324, 321, 123, 242, 234, 231, 324, 23, 4, 234, 443, 244,
-  //   232,
-  // ];
+const OrderMenuLeft = ({ id }: OrderMenueLeftProps) => {
+  const { data } = useOrderCollection();
 
-  console.log(`processedOptions:${processedoptions}`);
-  console.log(`menuqty:${menuqty}`);
+  console.log('id', id);
+
+  const process = 'accounting';
+  const order = processOrderCollection(process);
+  console.log('🚀 ~ Order ~ order:', order);
+
+  const orders = order.map((order) => Number(order.id));
+  console.log('🚀 ~ OrderChange ~ orders:', orders);
+
+  const menu = processOrderChange((data || []).flatMap((order) => order.order.flatMap((o) => o.item)));
+  console.log('🚀 ~ menu:', menu);
+
+  const menuqty = processNumber((data || []).flatMap((order) => order.order));
+  console.log('🚀 ~ menuqty:', menuqty);
+
+  const customize = processCustomizeChange((data || []).flatMap((order) => order.order.flatMap((o) => o.options)));
 
   return (
     <div>
@@ -49,6 +67,7 @@ const OrderMenuLeft = ({ processedoptions, menuqty, customize }: OrderMenueLeftP
       </Box>
     </div>
   );
+         
 };
 
 export default OrderMenuLeft;

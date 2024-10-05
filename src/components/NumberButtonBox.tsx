@@ -17,7 +17,9 @@ interface NumberButtonBoxProps {
   }>;
 }
 
-const NumberButtonBox = ({ orders, menu, menuqty, customize }: NumberButtonBoxProps) => {
+const NumberButtonBox = ({ordersId}:NumberButtonProps) => {
+
+
   return (
     <div>
       <Box
@@ -28,19 +30,7 @@ const NumberButtonBox = ({ orders, menu, menuqty, customize }: NumberButtonBoxPr
           flexWrap: 'wrap',
         }}
       >
-        {orders.map((value, index) => {
-          console.log('🚀 ~ index:', index);
-          console.log('🚀 ~ {orders.map ~ value:', value);
-
-          const selectMenu = menu[index];
-          console.log('🚀 ~ {orders.map ~ selectMenu:', selectMenu);
-
-          const selectQty = menuqty[index];
-          console.log('🚀 ~ selectQty:', selectQty);
-
-          const selectCustomize = customize[index];
-          console.log('🚀 ~ selectCustomize:', selectCustomize);
-
+        {ordersId.map((value) => {
           return (
             <NumberButton
               menu={selectMenu ? [selectMenu] : []}
