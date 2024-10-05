@@ -1,4 +1,4 @@
-import { type ReactElement, useState } from 'react';
+import { ReactElement, useState } from 'react';
 
 import { Box } from '@mui/material';
 import { useLocation } from 'react-router-dom';
@@ -12,18 +12,7 @@ import { processCustomizeChange } from '@/utils/processCustomizeChange';
 
 export default function OrderChange(): ReactElement {
   interface State {
-    id: number;
-    menu: Array<{
-      name: string | null;
-      price: number | null;
-    }>;
-    menuqty: Array<{
-      qty: number | null;
-    }>;
-    selectCustomize: Array<{
-      name: string;
-      price: number;
-    }>;
+    ordersId: number;
   }
 
   const location = useLocation();
@@ -36,8 +25,8 @@ export default function OrderChange(): ReactElement {
       <Box sx={{ display: 'flex' }}>
         {/* 左側メニューリスト */}
 
-        <Box sx={{ flex: 4, overflowY: 'auto', mt: '20px', mr: '20px', ml: '20px' }}>
-          <OrderMenuLeft customize={state.selectCustomize} menuqty={state.menuqty} processedoptions={state.menu} />
+        <Box sx={{ flex: 4, overflowY: 'auto', mt:'20px', mr:'20px', ml:'20px'}}>
+          <OrderMenuLeft id={state.ordersId}/>
         </Box>
 
         {/* 右側注文情報 */}
