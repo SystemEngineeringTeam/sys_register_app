@@ -40,28 +40,26 @@ export interface shop_user {
   orderCollection: orderCollection[];
 }
 
-//categoryの型を定義
+// categoryの型を定義
 export interface category {
   id: string;
   name: string;
 }
 
-<<<<<<< Updated upstream
 //optionsの型を定義
-=======
+
 export interface categoryData {
   name: string;
 }
 
 // optionsの型を定義
->>>>>>> Stashed changes
 export interface options {
   id: string;
   name: string;
   price: number;
 }
 
-//orderの型を定義
+// orderの型を定義
 export interface order {
   id: string;
   item: items;
@@ -79,14 +77,14 @@ export interface UpdateOrder {
   items_id: items_id[];
 }
 
-//orderCollectionの型を定義
+// orderCollectionの型を定義
 export interface orderCollection {
   id: string;
   order: order[];
-  timestamp: number; //ミリ秒で保存
-  accounting: boolean; //会計
-  cooking: boolean; //調理
-  offer: boolean; //提供
+  timestamp: number; // ミリ秒で保存
+  accounting: boolean; // 会計
+  cooking: boolean; // 調理
+  offer: boolean; // 提供
 }
 
 // moneyの型を定義

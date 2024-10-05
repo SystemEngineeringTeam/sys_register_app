@@ -119,29 +119,32 @@ const AppLayout = () => {
     setOpen(false);
   };
 
-  const isDrawerOpen = open === true;
+  const isDrawerOpen = open;
 
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={isDrawerOpen}>
+      <AppBar open={isDrawerOpen} position="fixed">
         <Toolbar>
           <IconButton
-            color="inherit"
             aria-label="open drawer"
-            onClick={handleDrawerOpen}
+            color="inherit"
             edge="start"
+            onClick={handleDrawerOpen}
             sx={{ mr: 2, ...(isDrawerOpen && { display: 'none' }) }}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography component="div" noWrap variant="h6">
             <p>{listItems.find((item) => item.to === useLocation().pathname)?.text}</p>
           </Typography>
           <UserIcon />
         </Toolbar>
       </AppBar>
       <Drawer
+        anchor="left"
+        onClose={handleDrawerClose}
+        open={isDrawerOpen}
         sx={{
           width: drawerWidth,
           flexShrink: 0,
@@ -151,9 +154,6 @@ const AppLayout = () => {
           },
         }}
         variant="persistent"
-        anchor="left"
-        open={isDrawerOpen}
-        onClose={handleDrawerClose}
       >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>

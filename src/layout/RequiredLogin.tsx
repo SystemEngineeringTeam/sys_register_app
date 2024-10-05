@@ -1,9 +1,9 @@
 import { useAtomValue } from 'jotai';
-import { ReactElement } from 'react';
-import { Navigate, Outlet, useNavigate } from 'react-router-dom';
+import { type ReactElement } from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
 import { userAtom } from '../login/AdminLogin';
 
-export function RequiredLogin(): ReactElement {
+export const RequiredLogin = (): ReactElement => {
   const user = useAtomValue(userAtom);
 
   if (user === null) {
@@ -12,4 +12,4 @@ export function RequiredLogin(): ReactElement {
   }
 
   return <Outlet />;
-}
+};

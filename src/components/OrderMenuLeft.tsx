@@ -9,7 +9,17 @@ import { useMoney } from '@/firebase/useMoney';
 import { useLocation } from 'react-router-dom';
 
 interface OrderMenueLeftProps {
-  id: number;
+  processedoptions: Array<{
+    name: string | null;
+    price: number | null;
+  }>;
+  menuqty: Array<{
+    qty: number | null;
+  }>;
+  customize: Array<{
+    name: string;
+    price: number;
+  }>;
 }
 
 const OrderMenuLeft = ({ id }: OrderMenueLeftProps) => {
@@ -32,39 +42,26 @@ const OrderMenuLeft = ({ id }: OrderMenueLeftProps) => {
 
   const customize = processCustomizeChange((data || []).flatMap((order) => order.order.flatMap((o) => o.options)));
 
-
   return (
     <div>
       <Box>
         <Box>
-          {orders.map((orderId, index) => {
-            console.log("🚀 ~ {orders.map ~ index:", index)
-            console.log("🚀 ~ {orders.map ~ orderId:", orderId)
-            // idと一致するメニューを取得
-            if (orderId === id) {
-              const selectedMenu = menu[orderId] || {};
-              const qty = menuqty[orderId]?.qty || 0;
-              const custom = customize?.[orderId] || {};
-  
-              console.log("🚀 ~ selectedMenu:", selectedMenu.name);
-              console.log("🚀 ~ selectedMenu price:", selectedMenu.price);
-  
-              return (
-                <OrderMenueContena
-                  key={index} // keyを追加することで一意の要素とする
-                  selectMenuName={selectedMenu.name || ''}
-                  selectMenuPrice={selectedMenu.price || 0}
-                  selectMenuImg={selectedMenu.name || ''}
-                  selectMenuqty={qty || 0}
-                  selectCustomizeName={custom.name || ''}
-                  selectCustomizePrice={custom.price || 0}
-                  id={id}
-                />
-              );
-            }
-  
-            // idと一致しない場合は何も表示しない
-            return null;
+          {/* processedoptions をループして OrderMenueContena をレンダリング */}
+          {processedoptions.map((order, index) => {
+            const qty = menuqty[index].qty || 0; // menuqtyから該当する数量を取得
+            const custom = customize?.[index]; // カスタマイズ情報を取得（必要な場合）
+
+            return (
+              <OrderMenueContena
+                key={index}
+                customizename={custom.name || ''} // カスタマイズ名を渡す（カスタマイズがある場合）
+                customizeprice={custom.price || 0} // カスタマイズ価格を渡す（カスタマイズがある場合）
+                menuqty={qty} // menuqtyの値を渡す
+                orderimg={order.name || ''}
+                ordername={order.name || ''}
+                orderprice={order.price || 0}
+              />
+            );
           })}
         </Box>
       </Box>

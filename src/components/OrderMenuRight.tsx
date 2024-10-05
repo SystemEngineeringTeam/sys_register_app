@@ -9,7 +9,7 @@ interface OrderMenuRightProps {
   id: string;
 }
 
-function OrderMenuRight({ id }: OrderMenuRightProps) {
+const OrderMenuRight = ({ id }: OrderMenuRightProps) => {
   {
     const { data } = useOrderCollection();
 
@@ -32,17 +32,13 @@ function OrderMenuRight({ id }: OrderMenuRightProps) {
         <Box sx={{ marginTop: '50px' }}>
           <OrderNumber id={id} />
         </Box>
-
-        <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+        <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', mb: '50px' }}>
           {/* 合計金額表示 */}
           <Box
             sx={{
               display: 'flex',
               alignItems: 'flex-end',
-               mt:'140%',
-              fontSize: '1.5rem',
-              color: '#666',
-              lineHeight: '1.5rem',
+
             }}
           >
             <Typography
@@ -69,13 +65,13 @@ function OrderMenuRight({ id }: OrderMenuRightProps) {
           </Box>
 
           {/* ボタン */}
-          <Box sx={{ marginTop: '20px', mt: '100px' }}>
+          <Box sx={{ marginTop: '20px' }}>
             <OrderButton id={id} />
           </Box>
         </Box>
       </Box>
     );
   }
-}
+};
 
 export default OrderMenuRight;
