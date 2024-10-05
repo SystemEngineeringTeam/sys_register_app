@@ -18,6 +18,16 @@ export interface items {
   visible: boolean;
   category_id: string;
   options: options[];
+  imgUrl: string;
+}
+
+export interface itemsData {
+  name: string;
+  price: number;
+  visible: boolean;
+  category_id: string;
+  options: options[];
+  imgUrl: string;
 }
 
 //　shop_userの型を定義
@@ -36,7 +46,15 @@ export interface category {
   name: string;
 }
 
+<<<<<<< Updated upstream
 //optionsの型を定義
+=======
+export interface categoryData {
+  name: string;
+}
+
+// optionsの型を定義
+>>>>>>> Stashed changes
 export interface options {
   id: string;
   name: string;
@@ -46,6 +64,11 @@ export interface options {
 //orderの型を定義
 export interface order {
   id: string;
+  item: items;
+  options: options[];
+  qty: number;
+}
+export interface orderData {
   item: items;
   options: options[];
   qty: number;
@@ -79,4 +102,10 @@ export interface money {
   '5': number;
   '1': number;
   total: number;
+}
+
+// category
+export interface category {
+  id: string;
+  name: string;
 }

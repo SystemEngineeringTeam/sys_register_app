@@ -1,4 +1,14 @@
+<<<<<<< Updated upstream
 import { collection, onSnapshot, PartialWithFieldValue, QueryDocumentSnapshot } from 'firebase/firestore';
+=======
+import {
+  collection,
+  onSnapshot,
+  type PartialWithFieldValue,
+  type QueryDocumentSnapshot,
+  doc,
+} from 'firebase/firestore';
+>>>>>>> Stashed changes
 import { useAtomValue } from 'jotai';
 import { userAtom } from '../login/AdminLogin';
 import { money } from '../types';
@@ -13,6 +23,7 @@ function converter<T>() {
   };
 }
 
+// お金のデータをリアルタイムで取得する関数
 export function useMoney() {
   const user = useAtomValue(userAtom);
   // TODO (@SatooRu65536):
@@ -96,3 +107,20 @@ export function useMoney() {
     // getOnce,
   };
 }
+
+// money のデータを更新する関数
+export const updateMoney = async (newMoney: money) => {
+  const user = useAtomValue(userAtom);
+  if (!user) {
+    throw new Error('User is not logged in');
+  }
+
+ // 現在の日付の00:00:00のミリ秒を取得する
+  const today = new Date();
+  const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  const milliseconds = todayMidnight.getTime();
+
+  const colRef = collection(db, 'shop_user', user.uid, 'mony').withConverter(converter<money>());
+
+  console.log('money updated');
+};

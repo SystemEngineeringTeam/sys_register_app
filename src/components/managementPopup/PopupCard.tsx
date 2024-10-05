@@ -1,14 +1,14 @@
-import { Box, Card } from '@mui/material';
-import React, { useState } from 'react';
+import { Card } from '@mui/material';
 import PopupScreen from './PopupScreen';
 
-function PopupCard() {
+interface PopupCardProps {
+  iconClose: () => void;
+}
 
+function PopupCard({ iconClose }: PopupCardProps) {
   return (
     <div>
-      <Card sx={{ width:'70%' , ml:'15%' , mt:'5%' , height:'60%'}}>
-          <PopupScreen />
-      </Card>
+      <PopupScreen iconClose={iconClose} />
     </div>
   );
 }

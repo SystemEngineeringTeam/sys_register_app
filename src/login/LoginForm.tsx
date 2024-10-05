@@ -54,7 +54,7 @@ const LoginForm = () => {
   const handleLogin = async () => {
     try {
       if (id && password) {
-        // Firebaseの認証メソッドを使ってログインする処理を追加することが推奨されます。
+        // Firebaseの認証メソッドを使ってログインする処理を追加することが推奨される。
         const uid = id;
         setUser({ uid, password });
         navigate(redirectTo ?? '/');

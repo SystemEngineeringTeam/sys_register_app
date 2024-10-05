@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
-import { Box, Button, Card, Stack, Typography } from '@mui/material';
+import ClearIcon from '@mui/icons-material/Clear';
+import { Box, Button, Stack, Typography } from '@mui/material';
+import { useState } from 'react';
 import CancelButton from './CancelButton';
 import DeleteYesButton from './DeleteYesButton';
-import ClearIcon from '@mui/icons-material/Clear';
-import { processOrderChange } from '@/utils/processOrderChange';
-import { useOrderCollection } from '@/firebase/useOrderCollection';
-import { processOrderCollection } from '@/utils/processOrderCollection';
 
 const CategoryDeletePopupScreen = () => {
   const [selectedChangeCancel, setSelectedChangeCalcel] = useState(true);
