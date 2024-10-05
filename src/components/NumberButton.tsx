@@ -1,3 +1,5 @@
+import { Box, Button, Grid } from '@mui/material';
+import Order from '../pages/Order';
 import { Link } from 'react-router-dom';
 import DisplayNumber from './DisplayNumber/DisplayNumber';
 
@@ -6,27 +8,16 @@ import DisplayNumber from './DisplayNumber/DisplayNumber';
 //    return(values);
 // })
 interface NumberButtonProps {
-  orders: number;
-  menu: Array<{
-    name: string | null;
-    price: number | null;
-  }>;
-  menuqty: Array<{
-    qty: number | null;
-  }>;
-  selectCustomize: Array<{
-    name: string;
-    price: number;
-  }>;
+  ordersId: number;
 }
-const NumberButton = ({ orders, menu, menuqty, selectCustomize }: NumberButtonProps) => {
-  // console.log('🚀 ~ NumberButton ~ menu:', menu);
-  console.log('🚀 ~ NumberButton ~ orders:', orders);
+const NumberButton = ({ ordersId, }: NumberButtonProps) => {
+  //console.log('🚀 ~ NumberButton ~ menu:', menu);
+  console.log('🚀 ~ NumberButton ~ orders:', ordersId);
 
   return (
     <div>
-      <Link state={{ id: orders, menu, menuqty, selectCustomize }} to="/orderchange">
-        <DisplayNumber orders={orders} />
+      <Link to="/orderchange" state={{ ordersId: ordersId, }}>
+        <DisplayNumber ordersId={ordersId} />
       </Link>
     </div>
   );
