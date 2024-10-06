@@ -1,6 +1,7 @@
 import { useOrderCollection } from '../firebase/useOrderCollection';
 import { useState, useEffect } from 'react';
 
+// idと一致する注文情報を取得
 export const processOrderCollection = (process: string): Array<{ id: string | null }> => {
   const { data } = useOrderCollection();
   const orderCollections = data || [];
@@ -16,9 +17,6 @@ export const processOrderCollection = (process: string): Array<{ id: string | nu
     const newOfferIds = new Set<string | null>();
 
     orderCollections.forEach((orderCollection) => {
-      console.log(`id:${orderCollection.id}`);
-      console.log(`boolean:${orderCollection.accounting}`);
-
       switch (orderCollection.accounting) {
         case false:
           newAccountigIds.add(orderCollection.id);

@@ -1,4 +1,11 @@
-import { collection, onSnapshot, type PartialWithFieldValue, type QueryDocumentSnapshot } from 'firebase/firestore';
+import {
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  type PartialWithFieldValue,
+  type QueryDocumentSnapshot,
+} from 'firebase/firestore';
 import { useAtomValue } from 'jotai';
 import { useState, useEffect } from 'react';
 import { userAtom } from '../login/AdminLogin';
@@ -61,30 +68,26 @@ export function useOrderCollection() {
         // 修正（更新時）
         if (change.type === 'modified') {
           setData((prevData) => {
-            if (prevData) {
-              return prevData.map((data) => {
-                if (data.id === docSnapshot.id) {
-                  return newData;
-                }
-                return data;
-              });
-            }
-            return prevData;
+            if (!prevData) return prevData;
+            return prevData.map((data) => {
+              if (data.id === docSnapshot.id) {
+                return newData;
+              }
+              return data;
+            });
           });
         }
         // 完全削除時
         if (change.type === 'removed') {
           setData((prevData) => {
-            if (prevData) {
-              return prevData.filter((data) => data.id !== docSnapshot.id);
-            }
-            return prevData;
+            if (!prevData) return prevData;
+            return prevData.filter((data) => data.id !== docSnapshot.id);
           });
         }
       });
     });
 
-    console.log('Changed!!!');
+    console.log('ItemChanged!!!');
     // const newData = snapshot.docs.map((doc) => doc.data() as orderCollection);
     // setData(newData);
     return () => {
@@ -98,3 +101,14 @@ export function useOrderCollection() {
     // getOnce,
   };
 }
+
+//orderCollectionの消去
+export const deleteOrderCollection = async (orderCollectionId: string) => {
+  const user = useAtomValue(userAtom);
+
+  if (!user) {
+    throw new Error('User is not logged in');
+  }
+
+  await deleteDoc(doc(db, 'shop_user', user.uid, 'orderCollection', orderCollectionId));
+};

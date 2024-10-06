@@ -1,5 +1,4 @@
 import { Box } from '@mui/material';
-import React from 'react';
 
 interface OrderWaitPeopleProps {
   ordersId: number[];
@@ -10,10 +9,10 @@ const OrderWaitPeople = ({ ordersId }: OrderWaitPeopleProps) => {
     <div>
       <Box
         sx={{
-          position: 'fixed', // 下に固定する
+          position: 'fixed', //下に固定する
           bottom: '0px',
-          right: '0', // 横全体を写すため
-          left: '0', // 横全体を写すため
+          right: '0', //横全体を写すため
+          left: '0', //横全体を写すため
           background: '#c8c8c8',
           textAlign: 'center',
           fontSize: '60px',

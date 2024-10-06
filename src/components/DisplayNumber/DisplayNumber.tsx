@@ -1,7 +1,10 @@
-import React from 'react';
 import { Box, Button } from '@mui/material';
 
-const DisplayNumber = ({ ordersId }: { ordersId: number }) => {
+interface DisplayNumberProps {
+  ordersId: number;
+}
+
+const DisplayNumber = ({ ordersId }: DisplayNumberProps) => {
   return (
     <div>
       <Box>

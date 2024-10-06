@@ -13,41 +13,38 @@ interface CustomizeChangeLeftProps {
   customizename: string;
 }
 
-
 const CustomizeChangeLeft = ({ processedoptions, customizename }: CustomizeChangeLeftProps) => {
   // const customizechanges = ['カスタマイズ1', 'カスタマイズ2', 'カスタマイズ3'];\
 
   const { data } = useOrderCollection();
 
-  
-      const processCustmize = processCustomizeChange(
-        (data || []).flatMap((order) => order.order.flatMap((o) => o.options)),
-      );
+  const processCustmize = processCustomizeChange(
+    (data || []).flatMap((order) => order.order.flatMap((o) => o.options)),
+  );
 
-      // const processOrder = processOrderChange(
-      //   (orderCollectionData.data || [])
-      //   .flatMap((order) => order.order.flatMap((o) => o.item)),
-      // );
+  // const processOrder = processOrderChange(
+  //   (orderCollectionData.data || [])
+  //   .flatMap((order) => order.order.flatMap((o) => o.item)),
+  // );
 
-      console.log('🚀 ~ CustomizeChangeLeft ~ processCustmize:', processCustmize);
+  console.log('🚀 ~ CustomizeChangeLeft ~ processCustmize:', processCustmize);
 
-      return (
-        <div>
-          <Box sx={{ ml: '50px' }}>
-            <Link to="/orderchange">
-              <Box>
-                <CustomizeMenu ordername={processedoptions || ''} />
+  return (
+    <div>
+      <Box sx={{ ml: '50px' }}>
+        <Link to="/orderchange">
+          <Box>
+            <CustomizeMenu ordername={processedoptions || ''} />
 
-                {/* <CustomizeMenu  processedoptions={state.menu} orders={state.menu}/> */}
-              </Box>
-            </Link>
-            <Box sx={{ fontSize: '30px' }}>カスタマイズ</Box>
-            <Box>
-              <CustmizeGraf customize={customizename || ''} />
-            </Box>
+            {/* <CustomizeMenu  processedoptions={state.menu} orders={state.menu}/> */}
           </Box>
-        </div>
-      );
-  }
+        </Link>
+        <Box sx={{ fontSize: '30px' }}>カスタマイズ</Box>
+        <Box>
+          <CustmizeGraf customize={customizename || ''} />
+        </Box>
+      </Box>
+    </div>
+  );
 };
 export default CustomizeChangeLeft;

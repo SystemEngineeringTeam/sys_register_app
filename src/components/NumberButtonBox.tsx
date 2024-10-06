@@ -2,24 +2,11 @@ import { Box } from '@mui/material';
 import React from 'react';
 import NumberButton from './NumberButton';
 
-interface NumberButtonBoxProps {
-  orders: number[];
-  menu: Array<{
-    name: string | null;
-    price: number | null;
-  }>;
-  menuqty: Array<{
-    qty: number | null;
-  }>;
-  customize: Array<{
-    name: string;
-    price: number;
-  }>;
+interface NumberButtonProps {
+  ordersId: number[];
 }
 
-const NumberButtonBox = ({ordersId}:NumberButtonProps) => {
-
-
+const NumberButtonBox = ({ ordersId }: NumberButtonProps) => {
   return (
     <div>
       <Box
@@ -31,14 +18,7 @@ const NumberButtonBox = ({ordersId}:NumberButtonProps) => {
         }}
       >
         {ordersId.map((value) => {
-          return (
-            <NumberButton
-              menu={selectMenu ? [selectMenu] : []}
-              menuqty={selectQty ? [selectQty] : []}
-              orders={value}
-              selectCustomize={selectCustomize ? [selectCustomize] : []}
-            />
-          );
+          return <NumberButton orderId={value} ordersId = {ordersId}  />;
         })}
       </Box>
     </div>

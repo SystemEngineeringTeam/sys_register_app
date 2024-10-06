@@ -1,7 +1,15 @@
 import { userAtom } from '@/login/AdminLogin';
 import { useAtomValue } from 'jotai';
 import { db } from './firebase';
-import { collection, doc, onSnapshot, PartialWithFieldValue, QueryDocumentSnapshot, setDoc } from 'firebase/firestore';
+import {
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  PartialWithFieldValue,
+  QueryDocumentSnapshot,
+  setDoc,
+} from 'firebase/firestore';
 import { items, itemsData, options } from '@/types';
 import { useEffect, useState } from 'react';
 import { useOptions } from './useOptions';
@@ -60,6 +68,7 @@ export const getItems = () => {
   }
 
   const colRef = collection(db, 'shop_user', user.uid, 'items').withConverter(converter<items>());
+  
 
   useEffect(() => {
     const unsub = onSnapshot(colRef, (snapshot) => {
@@ -110,14 +119,27 @@ export const getItems = () => {
         }
       });
     });
-    console.log('itemChange');
 
     return () => {
       unsub();
     };
   }, []);
 
+  console.log('itemChange');
   return {
     items,
   };
+};
+
+// itemを消去する関数
+export const deleteItems = async (itemId: string) => {
+  const user = useAtomValue(userAtom);
+
+  if (!user) {
+    throw new Error('User is not logged in');
+  }
+
+  await deleteDoc(doc(db, 'shop_user', user.uid, 'items', itemId));
+
+  console.log('deleteItems');
 };
