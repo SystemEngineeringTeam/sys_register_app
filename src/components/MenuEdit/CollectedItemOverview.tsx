@@ -5,13 +5,13 @@ import ItemOverview from './ItemOverview';
 import { type items } from '../../types/index';
 
 interface CollectedItemOverviewProps {
-  OverviewItems: items[];
+  OverviewItems: items[] | null;
 }
 
 const CollectedItemOverview = ({ OverviewItems }: CollectedItemOverviewProps) => {
   return (
     <Box>
-      {OverviewItems.map((OverviewItem) => (
+      {OverviewItems?.map((OverviewItem) => (
         <Box key={OverviewItem.id}>
           <ItemOverview item={OverviewItem} />
         </Box>
