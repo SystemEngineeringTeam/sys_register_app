@@ -2,8 +2,6 @@ import { type ReactElement } from 'react';
 import NumberButtonBox from '../components/NumberButtonBox';
 import OrderWaitPeople from '../components/OrderWaitPeople';
 import { processOrderCollection } from '../utils/processOrderCollection';
-import { useOrderCollection } from '@/firebase/useOrderCollection';
-import { useMoney } from '@/firebase/useMoney';
 
 // const orders = [
 //   1, 2, 3, 4, 4, 5, 4, 231, 3245, 324, 332, 344, 223, 421, 324, 321, 123, 242, 234, 231, 324, 23, 4, 234, 443, 244,

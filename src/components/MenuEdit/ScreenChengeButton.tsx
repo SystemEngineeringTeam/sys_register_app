@@ -12,7 +12,6 @@ const ScreenChengeButton = ({ themeColor, text }: BackButtonProps) => {
   return (
     <ThemeProvider theme={theme}>
       <Button
-        variant="contained"
         color={themeColor}
         sx={{
           display: 'flex',
@@ -22,6 +21,7 @@ const ScreenChengeButton = ({ themeColor, text }: BackButtonProps) => {
           width: { xs: '8rem', sm: '10rem', md: '14rem' },
           height: { xs: '4rem', sm: '6rem', md: '8rem' },
         }}
+        variant="contained"
       >
         {text}
       </Button>

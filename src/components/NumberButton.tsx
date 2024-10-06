@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import DisplayNumber from './DisplayNumber/DisplayNumber';
-import { order } from '../types/index';
 
 // var order = [1,2,3,4,4];
 // const orderLoop = order.map(( values ) => {
@@ -11,12 +10,12 @@ interface NumberButtonProps {
   ordersId: number[];
 }
 const NumberButton = ({ orderId, ordersId }: NumberButtonProps) => {
-  //console.log('🚀 ~ NumberButton ~ menu:', menu);
+  // console.log('🚀 ~ NumberButton ~ menu:', menu);
   console.log('🚀 ~ NumberButton ~ orders:', orderId);
 
   return (
     <div>
-      <Link to="/orderchange" state={{ orderId: orderId, ordersId: ordersId }}>
+      <Link state={{ orderId, ordersId }} to="/orderchange">
         <DisplayNumber ordersId={orderId} />
       </Link>
     </div>

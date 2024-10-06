@@ -18,7 +18,7 @@ const NumberButtonBox = ({ ordersId }: NumberButtonProps) => {
         }}
       >
         {ordersId.map((value) => {
-          return <NumberButton orderId={value} ordersId = {ordersId}  />;
+          return <NumberButton orderId={value} ordersId={ordersId} />;
         })}
       </Box>
     </div>

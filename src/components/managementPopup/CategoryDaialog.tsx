@@ -1,21 +1,25 @@
-import { Button, Dialog, DialogContent, DialogTitle } from '@mui/material';
+import { Button, Dialog, DialogContent } from '@mui/material';
 import { useState } from 'react';
 import PopupCard from './PopupCard';
 
 const CategoryDaialog = () => {
   const [open, setOpen] = useState(false);
 
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    setOpen(true);
+  };
   const handleClose = () => {};
-  const iconClose = () => setOpen(false);
+  const iconClose = () => {
+    setOpen(false);
+  };
 
   return (
     <>
-      <Button variant="contained" color="primary" onClick={handleOpen}>
+      <Button color="primary" onClick={handleOpen} variant="contained">
         Open Product
       </Button>
 
-      <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
+      <Dialog fullWidth maxWidth="md" onClose={handleClose} open={open}>
         <DialogContent>
           <PopupCard iconClose={iconClose} />
         </DialogContent>

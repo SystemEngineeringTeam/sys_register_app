@@ -2,7 +2,6 @@ import { Box, Stack } from '@mui/material';
 
 import { useAtom } from 'jotai';
 import { orderCollectionAtom } from '../firebase/FirebaseUtils';
-import Yakitori from '/yakitori.png';
 
 interface CustomizeMenuProps {
   ordername: string;

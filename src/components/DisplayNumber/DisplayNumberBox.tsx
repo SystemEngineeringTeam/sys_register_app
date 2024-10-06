@@ -1,5 +1,6 @@
 import { Box, Grid } from '@mui/material';
 import DisplayNumber from './DisplayNumber';
+
 const DisplayNumberBox = ({ orders }: { orders: number[] }) => {
   return (
     <div>
@@ -7,7 +8,7 @@ const DisplayNumberBox = ({ orders }: { orders: number[] }) => {
         <Grid container rowSpacing={1}>
           {orders.map((order: number) => {
             return (
-              <Grid xs={4} display="flex" justifyContent="center" alignItems="center">
+              <Grid alignItems="center" display="flex" justifyContent="center" xs={4}>
                 <DisplayNumber ordersId={order} />
               </Grid>
             );

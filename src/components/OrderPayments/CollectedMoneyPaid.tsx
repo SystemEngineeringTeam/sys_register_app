@@ -57,10 +57,9 @@ const CollectedMoneyPaid = ({
         </Box>
       </Box>
       <Box sx={{ display: 'flex', marginTop: '2rem' }}>
-        <MoneyPaid image="/money_1000.svg" count={moneyCount1000} setCount={setMoneyCount1000} />
-        <MoneyPaid image="/money_5000.svg" count={moneyCount5000} setCount={setMoneyCount5000} />
-        <MoneyPaid image="/money_10000.svg" count={moneyCount10000} setCount={setMoneyCount10000} />
-
+        <MoneyPaid count={moneyCount1000} image="/money_1000.svg" setCount={setMoneyCount1000} />
+        <MoneyPaid count={moneyCount5000} image="/money_5000.svg" setCount={setMoneyCount5000} />
+        <MoneyPaid count={moneyCount10000} image="/money_10000.svg" setCount={setMoneyCount10000} />
       </Box>
     </div>
   );

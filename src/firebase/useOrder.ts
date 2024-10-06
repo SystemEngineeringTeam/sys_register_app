@@ -1,12 +1,12 @@
 import { userAtom } from '@/login/AdminLogin';
-import { order, orderData } from '@/types';
+import { type order, type orderData } from '@/types';
 import {
   addDoc,
   collection,
   deleteDoc,
   doc,
-  PartialWithFieldValue,
-  QueryDocumentSnapshot,
+  type PartialWithFieldValue,
+  type QueryDocumentSnapshot,
   setDoc,
 } from 'firebase/firestore';
 import { useAtomValue } from 'jotai';

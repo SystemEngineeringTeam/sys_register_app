@@ -1,13 +1,13 @@
 import { userAtom } from '@/login/AdminLogin';
-import { category, categoryData } from '@/types';
+import { type category, type categoryData } from '@/types';
 import {
   addDoc,
   collection,
   deleteDoc,
   doc,
   onSnapshot,
-  PartialWithFieldValue,
-  QueryDocumentSnapshot,
+  type PartialWithFieldValue,
+  type QueryDocumentSnapshot,
   setDoc,
 } from 'firebase/firestore';
 import { useAtomValue } from 'jotai';

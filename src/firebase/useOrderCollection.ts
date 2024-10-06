@@ -102,7 +102,7 @@ export function useOrderCollection() {
   };
 }
 
-//orderCollectionの消去
+// orderCollectionの消去
 export const deleteOrderCollection = async (orderCollectionId: string) => {
   const user = useAtomValue(userAtom);
 

@@ -1,11 +1,8 @@
-import { Box, Button, Card, Icon, IconButton, Stack, Typography } from '@mui/material';
+import { Box, Button, IconButton, Stack, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import CancelButton from './CancelButton';
 import DeleteYesButton from './DeleteYesButton';
 import ClearIcon from '@mui/icons-material/Clear';
-import { processOrderChange } from '@/utils/processOrderChange';
-import { useOrderCollection } from '@/firebase/useOrderCollection';
-import { processOrderCollection } from '@/utils/processOrderCollection';
 
 interface Props {
   iconClose: () => void;
@@ -42,7 +39,7 @@ const PopupScreen = ({ iconClose }: Props) => {
           <Typography sx={{ fontSize: 'clamp(1.0rem, 0.4rem + 2.0vw, 2.0rem)' }}>全ての設定から消されます</Typography>
         </Box>
 
-        <Stack direction={'row'} sx={{ mt: '10%', justifyContent: 'right', mr: '7rem' }}>
+        <Stack direction="row" sx={{ mt: '10%', justifyContent: 'right', mr: '7rem' }}>
           <Button>
             <CancelButton
               selectedChangeCancel={selectedChangeCancel}

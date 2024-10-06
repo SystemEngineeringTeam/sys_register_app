@@ -38,7 +38,6 @@ const OrderMenuRight = ({ id }: OrderMenuRightProps) => {
             sx={{
               display: 'flex',
               alignItems: 'flex-end',
-
             }}
           >
             <Typography
@@ -57,7 +56,7 @@ const OrderMenuRight = ({ id }: OrderMenuRightProps) => {
                 color: '#000',
                 lineHeight: '3rem',
                 marginLeft: '8px',
-                mt:'60px'
+                mt: '60px',
               }}
             >
               {totalAmount}円

@@ -2,8 +2,6 @@ import React from 'react';
 import CustomizeMenu from './CustomizeMenu';
 import { Box } from '@mui/material';
 import CustmizeGraf from './CustmizeGraf';
-import { useAtom } from 'jotai';
-import { orderCollectionAtom } from '../firebase/FirebaseUtils';
 import { processCustomizeChange } from '../utils/processCustomizeChange';
 import { Link } from 'react-router-dom';
 import { useOrderCollection } from '@/firebase/useOrderCollection';

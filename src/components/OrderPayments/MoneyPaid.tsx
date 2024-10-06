@@ -29,9 +29,16 @@ const MoneyPaid = ({ image, count, setCount }: MoneyPaidProps) => {
         <CardMedia
           component="img"
           image={image}
+          image={image}
           onClick={() => {
             setCount((prevState) => prevState + 1);
           }}
+          onClick={() => {
+            setCount((prevState) => prevState + 1);
+          }}
+          onDragStart={(e) => {
+            e.preventDefault();
+          }} // ドラッグを無効化
           sx={{
             display: 'flex',
             margin: 'auto',
@@ -40,13 +47,6 @@ const MoneyPaid = ({ image, count, setCount }: MoneyPaidProps) => {
             objectFit: 'fill',
             position: 'relative',
           }}
-          onClick={() => {
-            setCount((prevState) => prevState + 1);
-          }}
-          onDragStart={(e) => {
-            e.preventDefault();
-          }} // ドラッグを無効化
-          image={image}
         />
         <Box
           sx={{

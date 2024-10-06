@@ -6,11 +6,11 @@ import {
   deleteDoc,
   doc,
   onSnapshot,
-  PartialWithFieldValue,
-  QueryDocumentSnapshot,
+  type PartialWithFieldValue,
+  type QueryDocumentSnapshot,
   setDoc,
 } from 'firebase/firestore';
-import { items, itemsData, options } from '@/types';
+import { type items, type itemsData } from '@/types';
 import { useEffect, useState } from 'react';
 import { useOptions } from './useOptions';
 
@@ -68,7 +68,6 @@ export const getItems = () => {
   }
 
   const colRef = collection(db, 'shop_user', user.uid, 'items').withConverter(converter<items>());
-  
 
   useEffect(() => {
     const unsub = onSnapshot(colRef, (snapshot) => {

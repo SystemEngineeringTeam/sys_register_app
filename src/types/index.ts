@@ -46,7 +46,7 @@ export interface category {
   name: string;
 }
 
-//optionsの型を定義
+// optionsの型を定義
 
 export interface categoryData {
   name: string;

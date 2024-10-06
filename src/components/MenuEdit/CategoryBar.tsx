@@ -17,10 +17,10 @@ const CategoryBar = ({ categorys, selectcategoryId, setSelectcategoryId }: Categ
     <Box sx={{ display: 'flex', alignContent: 'center' }}>
       {categorys.map((cat) => (
         <Button
+          key={cat.id}
           onClick={() => {
             setSelectcategoryId(cat.id);
           }}
-          key={cat.id}
           sx={{
             display: 'flex',
             alignItems: 'center',

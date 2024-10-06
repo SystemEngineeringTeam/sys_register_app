@@ -38,9 +38,9 @@ const CollectedChenge = ({ chenge }: CollectedChengeProps) => {
         </Box>
       </Box>
       <Box sx={{ display: 'flex', marginTop: '2rem' }}>
-        <MoneyChenge image="/money_1000.svg" ChengeCount={moneyCounter[1000]} />
-        <MoneyChenge image="/money_5000.svg" ChengeCount={moneyCounter[5000]} />
-        <MoneyChenge image="/money_10000.svg" ChengeCount={0} />
+        <MoneyChenge ChengeCount={moneyCounter[1000]} image="/money_1000.svg" />
+        <MoneyChenge ChengeCount={moneyCounter[5000]} image="/money_5000.svg" />
+        <MoneyChenge ChengeCount={0} image="/money_10000.svg" />
       </Box>
     </div>
   );

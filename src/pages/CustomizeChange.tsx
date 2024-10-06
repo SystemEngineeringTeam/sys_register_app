@@ -6,8 +6,8 @@ import CustomizeChangeRight from '../components/CustomizeChangeRight';
 import { useMoney } from '../firebase/useMoney';
 import { useOrderCollection } from '../firebase/useOrderCollection';
 
-interface CustomizeChangeProps{
-  id:number;
+interface CustomizeChangeProps {
+  id: number;
 }
 
 export default function CustomizeChange(): ReactElement {
