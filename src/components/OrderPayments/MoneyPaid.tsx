@@ -29,10 +29,6 @@ const MoneyPaid = ({ image, count, setCount }: MoneyPaidProps) => {
         <CardMedia
           component="img"
           image={image}
-          image={image}
-          onClick={() => {
-            setCount((prevState) => prevState + 1);
-          }}
           onClick={() => {
             setCount((prevState) => prevState + 1);
           }}
