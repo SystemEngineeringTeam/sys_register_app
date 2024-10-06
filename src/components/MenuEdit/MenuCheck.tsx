@@ -1,26 +1,19 @@
 import { Box } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ScreenChengeButton from './ScreenChengeButton';
 import CategoryBar from './CategoryBar';
-import { type category, type items, type options } from '@/types';
-import CollectedItemOverview from './CollectedItemOverview';
 import { getCategory } from '@/firebase/useCategory';
-import { getItems } from '@/firebase/useItems';
-import { useMoney } from '@/firebase/useMoney';
+// import { getItems } from '@/firebase/useItems';
 
 const MenuCheck = () => {
   const categorysObject = getCategory();
-  const ItemsObject =  getItems();
-  console.log(categorysObject);
-  // console.log(ItemsObject);
+  // firebaseからitemがとってこれない
+  // const ItemsObject = getItems();
   const [selectCategoryId, setSelectcategoryId] = useState('');
   // useEffect(() => {
   //   // setSelectcategoryId();
 
   // }, []);
-
-  //   ここまでは仮置きデータ
-
   // category_idが選択中のもののみ表示させたい
   return (
     <Box>
