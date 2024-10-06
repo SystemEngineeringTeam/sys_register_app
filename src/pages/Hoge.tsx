@@ -1,6 +1,5 @@
-import { ReactElement } from 'react';
+import { type ReactElement } from 'react';
 import { useOrderCollection } from '../firebase/useOrderCollection';
-import { money } from '../types/index';
 import { useMoney } from '../firebase/useMoney';
 
 export default function Page(): ReactElement {

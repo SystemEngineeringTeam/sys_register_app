@@ -1,12 +1,12 @@
 import { Button } from '@mui/material';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 interface ChangeButtonProps {
   selectedChange: boolean;
   setSelectedChange: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function ChangeButton({ selectedChange, setSelectedChange }: ChangeButtonProps) {
+const ChangeButton = ({ selectedChange, setSelectedChange }: ChangeButtonProps) => {
   const handleChange = () => {
     setSelectedChange(!selectedChange);
   };
@@ -14,16 +14,16 @@ function ChangeButton({ selectedChange, setSelectedChange }: ChangeButtonProps) 
   return (
     <div>
       <Button
-        variant="contained"
         disableElevation
-        size="large"
         onClick={handleChange}
+        size="large"
         sx={{ backgroundColor: selectedChange ? '#adadad' : 'orange' }}
+        variant="contained"
       >
         {selectedChange ? 'なし' : 'あり'}
       </Button>
     </div>
   );
-}
+};
 
 export default ChangeButton;

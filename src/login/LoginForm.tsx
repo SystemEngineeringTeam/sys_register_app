@@ -10,7 +10,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { signInWithPopup, signOut } from 'firebase/auth';
+import { signInWithPopup } from 'firebase/auth';
 import { auth, googleProvider } from '../firebase/firebase';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { teal } from '@mui/material/colors';
@@ -54,7 +54,7 @@ const LoginForm = () => {
   const handleLogin = async () => {
     try {
       if (id && password) {
-        // Firebaseの認証メソッドを使ってログインする処理を追加することが推奨されます。
+        // Firebaseの認証メソッドを使ってログインする処理を追加することが推奨される。
         const uid = id;
         setUser({ uid, password });
         navigate(redirectTo ?? '/');
@@ -79,6 +79,7 @@ const LoginForm = () => {
   return (
     <Grid>
       <Paper
+        component="form"
         elevation={3}
         sx={{
           p: 4,
@@ -86,54 +87,57 @@ const LoginForm = () => {
           width: '280px',
           m: '20px auto',
         }}
-        component="form"
       >
-        <Grid container direction="column" alignItems="center">
+        <Grid alignItems="center" container direction="column">
           <Avatar sx={{ bgcolor: teal[400] }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography variant={'h5'} sx={{ m: '30px' }}>
+          <Typography sx={{ m: '30px' }} variant="h5">
             Sign In
           </Typography>
         </Grid>
         <TextField
-          label="Username"
-          variant="standard"
           fullWidth
+          label="Username"
+          onChange={(e) => {
+            setId(e.target.value);
+          }}
           required
           value={id ?? ''}
-          onChange={(e) => setId(e.target.value)}
+          variant="standard"
         />
         <TextField
-          type="password"
-          label="Password"
-          variant="standard"
-          fullWidth
-          required
           autoComplete="current-password"
+          fullWidth
+          label="Password"
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+          required
+          type="password"
           value={password ?? ''}
-          onChange={(e) => setPassword(e.target.value)}
+          variant="standard"
         />
         {/* ラベルとチェックボックス */}
         <FormControlLabel
-          labelPlacement="end"
+          control={<Checkbox color="primary" name="checkboxA" size="small" />}
           label="パスワードを忘れました"
-          control={<Checkbox name="checkboxA" size="small" color="primary" />}
+          labelPlacement="end"
         />
         <Box mt={3}>
           <Button
-            type="button" // 変更: "submit"から"button"に
             color="primary"
-            variant="contained"
             fullWidth
             onClick={handleLogin}
+            type="button" // 変更: "submit"から"button"に
+            variant="contained"
           >
             サインイン
           </Button>
           <Typography variant="caption">
             <Link href="#">パスワードを忘れましたか？</Link>
           </Typography>
-          <Typography variant="caption" display="block">
+          <Typography display="block" variant="caption">
             アカウントを持っていますか？
             <Link href="#">アカウントを作成</Link>
           </Typography>

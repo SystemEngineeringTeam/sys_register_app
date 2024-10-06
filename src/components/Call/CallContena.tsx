@@ -9,7 +9,7 @@ interface CallContenaProps {
 const CallContena: React.FC<CallContenaProps> = ({ call }) => {
   return (
     <div>
-      <Stack spacing={2} alignItems="center" divider={<Divider flexItem />}>
+      <Stack alignItems="center" divider={<Divider flexItem />} spacing={2}>
         {/* Dividerで区切り線を入れる */}
         {call.map((item, index) => (
           <ProductCallContena key={index} id={item} />

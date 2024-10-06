@@ -3,21 +3,23 @@ import OrderMenueCustomize from './OrderMenueCustomize';
 import OrderMenueName from './OrderMenueName';
 
 interface OrderMenueContenaProps {
-  ordername: string;
-  orderprice: number;
-  orderimg: string;
-  menuqty: number;
-  customizename: string;
-  customizeprice: number;
+  selectMenuName: string;
+  selectMenuPrice: number;
+  selectMenuImg: string;
+  selectMenuqty: number;
+  selectCustomizeName: string;
+  selectCustomizePrice: number;
+  id:number;
 }
 
 const OrderMenueContena = ({
-  ordername,
-  orderprice,
-  orderimg,
-  menuqty,
-  customizename,
-  customizeprice,
+  selectMenuName,
+  selectMenuPrice,
+  selectMenuImg,
+  selectMenuqty,
+  selectCustomizeName,
+  selectCustomizePrice,
+  id,
 }: OrderMenueContenaProps) => {
   const imageDisplaySize = { width: 200, height: 200 };
   // const custommenus = [
@@ -28,9 +30,9 @@ const OrderMenueContena = ({
   //   { menu: '青のり', price: 10 },
   // ];
 
-  console.log('menuqty:' + menuqty);
-  console.log('customizename:' + customizename);
-  console.log('customizeprice:' + customizeprice);
+  console.log('menuqty:' +  selectMenuName);
+  console.log('customizename:' + selectCustomizeName);
+  console.log('customizeprice:' + selectCustomizePrice);
 
   return (
     <div>
@@ -48,21 +50,22 @@ const OrderMenueContena = ({
         >
           {/* flexは幅の割合 */}
           <Box>
-            <img src={orderimg} className="yakitori" style={imageDisplaySize} />
+            <img src={selectMenuImg} className="yakitori" style={imageDisplaySize} />
           </Box>
         </Stack>
 
         <Stack sx={{ flex: 5 }}>
           <Stack sx={{mr:'20px'}}>
             <OrderMenueName
-              ordername={ordername}
-              orderprice={orderprice}
-              menuqty={menuqty}
-              customizename={customizename}
+              selectMenuName={selectMenuName}
+              selectMenuPrice={selectMenuPrice}
+              selectMenuqty={selectMenuqty}
+              selectCustomizeName={selectCustomizeName}
+              id={id}
             />
           </Stack>
           <Stack sx={{ml:'20px', mr:'20px'}}>
-            <OrderMenueCustomize custom={customizename} customprice={customizeprice} />
+            <OrderMenueCustomize selectCustomizeName={selectCustomizeName} selectCustomizePrice={selectCustomizePrice} />
           </Stack>
         </Stack>
       </Stack>

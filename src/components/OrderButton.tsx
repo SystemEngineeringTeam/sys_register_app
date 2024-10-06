@@ -1,4 +1,4 @@
-import { Box, Button, Grid } from '@mui/material';
+import { Button } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -6,7 +6,7 @@ interface OrderButtonProps {
   id: string;
 }
 
-function OrderButton({ id }: OrderButtonProps) {
+const OrderButton = ({ id }: OrderButtonProps) => {
   const handleClick = () => {
     // お支払い画面へ遷移
     // react-router-domのLinkコンポーネントを使って、リンクを設定
@@ -17,9 +17,8 @@ function OrderButton({ id }: OrderButtonProps) {
   ``;
   return (
     <div>
-      <Link to="/payment" state={{ id: id }}>
+      <Link state={{ id }} to="/payment">
         <Button
-          variant="contained"
           disableElevation
           size="large"
           sx={{
@@ -27,12 +26,13 @@ function OrderButton({ id }: OrderButtonProps) {
             py: '30px',
             width: '200px',
           }}
+          variant="contained"
         >
           お支払いへ
         </Button>
       </Link>
     </div>
   );
-}
+};
 
 export default OrderButton;

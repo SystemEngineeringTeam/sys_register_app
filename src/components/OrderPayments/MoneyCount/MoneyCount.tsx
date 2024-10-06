@@ -3,7 +3,7 @@ import OrderNumber from '../../OrderNumber';
 import { Box } from '@mui/material';
 // eslint-disable-next-line no-restricted-imports
 import WriteNotEnoughMoney from '../WriteNotEnoughMoney';
-// eslint-disable-next-line no-restricted-imports
+
 import OkButton from '../OkButton';
 import CollectedChenge from './CollectedChenge';
 import { useLocation } from 'react-router-dom';
@@ -28,7 +28,6 @@ const MoneyCount = () => {
       >
         <OrderNumber id={id} />
       </Box>
-
       {/* 通貨と合計金額、おつり */}
       <Box sx={{ display: { xs: 'block', sm: 'flex', margin: '1rem' } }}>
         {/* 通貨を表示 */}

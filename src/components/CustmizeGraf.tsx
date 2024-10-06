@@ -6,7 +6,7 @@ interface CustmizeGrafProps {
   customize: string;
 }
 
-function CustmizeGraf({ customize }: CustmizeGrafProps) {
+const CustmizeGraf = ({ customize }: CustmizeGrafProps) => {
   const [selectedChange, setSelectedChange] = useState(true);
 
   return (
@@ -31,6 +31,6 @@ function CustmizeGraf({ customize }: CustmizeGrafProps) {
       </Box>
     </div>
   );
-}
+};
 
 export default CustmizeGraf;

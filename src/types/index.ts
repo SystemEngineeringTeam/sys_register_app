@@ -18,6 +18,16 @@ export interface items {
   visible: boolean;
   category_id: string;
   options: options[];
+  imgUrl: string;
+}
+
+export interface itemsData {
+  name: string;
+  price: number;
+  visible: boolean;
+  category_id: string;
+  options: options[];
+  imgUrl: string;
 }
 
 //　shop_userの型を定義
@@ -30,22 +40,33 @@ export interface shop_user {
   orderCollection: orderCollection[];
 }
 
-//categoryの型を定義
+// categoryの型を定義
 export interface category {
   id: string;
   name: string;
 }
 
 //optionsの型を定義
+
+export interface categoryData {
+  name: string;
+}
+
+// optionsの型を定義
 export interface options {
   id: string;
   name: string;
   price: number;
 }
 
-//orderの型を定義
+// orderの型を定義
 export interface order {
   id: string;
+  item: items;
+  options: options[];
+  qty: number;
+}
+export interface orderData {
   item: items;
   options: options[];
   qty: number;
@@ -56,14 +77,14 @@ export interface UpdateOrder {
   items_id: items_id[];
 }
 
-//orderCollectionの型を定義
+// orderCollectionの型を定義
 export interface orderCollection {
   id: string;
   order: order[];
-  timestamp: number; //ミリ秒で保存
-  accounting: boolean; //会計
-  cooking: boolean; //調理
-  offer: boolean; //提供
+  timestamp: number; // ミリ秒で保存
+  accounting: boolean; // 会計
+  cooking: boolean; // 調理
+  offer: boolean; // 提供
 }
 
 // moneyの型を定義
@@ -79,4 +100,10 @@ export interface money {
   '5': number;
   '1': number;
   total: number;
+}
+
+// category
+export interface category {
+  id: string;
+  name: string;
 }

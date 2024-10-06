@@ -1,13 +1,14 @@
 import { Box } from '@mui/material';
-import React, { ReactElement, useEffect, useState } from 'react';
+import { type ReactElement, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import CustomizeChangeLeft from '../components/CustomizeChangeLeft';
 import CustomizeChangeRight from '../components/CustomizeChangeRight';
-import { useLocation } from 'react-router-dom';
-import { useAtom } from 'jotai';
-import { orderCollectionAtom } from '../firebase/FirebaseUtils';
-import { processCustomizeChange } from '../utils/processCustomizeChange';
-import { useOrderCollection } from '../firebase/useOrderCollection';
 import { useMoney } from '../firebase/useMoney';
+import { useOrderCollection } from '../firebase/useOrderCollection';
+
+interface CustomizeChangeProps{
+  id:number;
+}
 
 export default function CustomizeChange(): ReactElement {
   const { data } = useOrderCollection();
@@ -16,7 +17,7 @@ export default function CustomizeChange(): ReactElement {
   const [ordersList, setOrdersList] = useState<number[]>([]);
 
   useEffect(() => {
-    if (state && state.state) {
+    if (state?.state) {
       setOrdersList(state.state);
     }
   }, [state]);
@@ -29,10 +30,10 @@ export default function CustomizeChange(): ReactElement {
   return (
     <div>
       <Box sx={{ display: 'flex' }}>
-        <Box sx={{ flex: 4 ,overflowY:'auto'}}>
-          <CustomizeChangeLeft processedoptions={state.ordername} customizename={state.customizename} />
+        <Box sx={{ flex: 4, overflowY: 'auto' }}>
+          <CustomizeChangeLeft customizename={state.customizename} processedoptions={state.ordername} />
         </Box>
-        <Box sx={{ flex: 1 , textAlign:'center'}}>
+        <Box sx={{ flex: 1, textAlign: 'center' }}>
           <CustomizeChangeRight />
         </Box>
       </Box>

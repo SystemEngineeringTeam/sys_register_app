@@ -1,9 +1,11 @@
-import UploadImageContena from '@/components/Image/upload/UploadImage';
+import MenuEdit from '@/components/Edit/menuEdit';
 
 const Test = () => {
   return (
     <div>
-      <UploadImageContena />
+      {/* <UploadImageContena /> */}
+      {/* <InputFileUpload /> */}
+      <MenuEdit />
     </div>
   );
 };

@@ -5,55 +5,46 @@ import CustmizeGraf from './CustmizeGraf';
 import { useAtom } from 'jotai';
 import { orderCollectionAtom } from '../firebase/FirebaseUtils';
 import { processCustomizeChange } from '../utils/processCustomizeChange';
-import { processOrderChange } from '../utils/processOrderChange';
 import { Link } from 'react-router-dom';
+import { useOrderCollection } from '@/firebase/useOrderCollection';
 
 interface CustomizeChangeLeftProps {
   processedoptions: string;
   customizename: string;
 }
 
-function CustomizeChangeLeft({ processedoptions, customizename }: CustomizeChangeLeftProps) {
-  //const customizechanges = ['カスタマイズ1', 'カスタマイズ2', 'カスタマイズ3'];\
+const CustomizeChangeLeft = ({ processedoptions, customizename }: CustomizeChangeLeftProps) => {
+  // const customizechanges = ['カスタマイズ1', 'カスタマイズ2', 'カスタマイズ3'];\
 
-  const [orderCollectionData, setOrderCollectionData] = useAtom(orderCollectionAtom);
+  const { data } = useOrderCollection();
 
-  switch (orderCollectionData.state) {
-    case 'loading':
-      return <p>Loading...</p>;
+  const processCustmize = processCustomizeChange(
+    (data || []).flatMap((order) => order.order.flatMap((o) => o.options)),
+  );
 
-    case 'hasError':
-      return <p>Error</p>;
+  // const processOrder = processOrderChange(
+  //   (orderCollectionData.data || [])
+  //   .flatMap((order) => order.order.flatMap((o) => o.item)),
+  // );
 
-    case 'hasData':
-      const processCustmize = processCustomizeChange(
-        (orderCollectionData.data || []).flatMap((order) => order.order.flatMap((o) => o.options)),
-      );
+  console.log('🚀 ~ CustomizeChangeLeft ~ processCustmize:', processCustmize);
 
-      // const processOrder = processOrderChange(
-      //   (orderCollectionData.data || [])
-      //   .flatMap((order) => order.order.flatMap((o) => o.item)),
-      // );
+  return (
+    <div>
+      <Box sx={{ ml: '50px' }}>
+        <Link to="/orderchange">
+          <Box>
+            <CustomizeMenu ordername={processedoptions || ''} />
 
-      console.log('🚀 ~ CustomizeChangeLeft ~ processCustmize:', processCustmize);
-
-      return (
-        <div>
-          <Box sx={{ ml: '50px' }}>
-            <Link to="/orderchange">
-              <Box>
-                <CustomizeMenu ordername={processedoptions || ''} />
-
-                {/* <CustomizeMenu  processedoptions={state.menu} orders={state.menu}/> */}
-              </Box>
-            </Link>
-            <Box sx={{ fontSize: '30px' }}>カスタマイズ</Box>
-            <Box>
-              <CustmizeGraf customize={customizename || ''} />
-            </Box>
+            {/* <CustomizeMenu  processedoptions={state.menu} orders={state.menu}/> */}
           </Box>
-        </div>
-      );
-  }
-}
+        </Link>
+        <Box sx={{ fontSize: '30px' }}>カスタマイズ</Box>
+        <Box>
+          <CustmizeGraf customize={customizename || ''} />
+        </Box>
+      </Box>
+    </div>
+  );
+};
 export default CustomizeChangeLeft;

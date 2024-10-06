@@ -1,48 +1,41 @@
 import { Box, Stack } from '@mui/material';
-import React from 'react';
-import Yakitori from '/yakitori.png';
+
 import { useAtom } from 'jotai';
 import { orderCollectionAtom } from '../firebase/FirebaseUtils';
-import { processOrderChange } from '../utils/processOrderChange';
+import Yakitori from '/yakitori.png';
 
 interface CustomizeMenuProps {
   ordername: string;
 }
-function CustomizeMenu({ ordername }: CustomizeMenuProps) {
+const CustomizeMenu = ({ ordername }: CustomizeMenuProps) => {
   const [orderCollectionData, setOrderCollectionData] = useAtom(orderCollectionAtom);
 
-  switch (orderCollectionData.state) {
-    case 'loading':
-      return <p>Loading...</p>;
+  // const processedOptions = processOrderChange(
+  //   (orderCollectionData.data || [])
+  //   .flatMap((order) => order.order.flatMap((o) => o.item)),
+  // );
+  // console.log('🚀 ~ Order ~ order:', processedOptions);
 
-    case 'hasError':
-      return <p>Error</p>;
+  const imageDisplaySize = { width: 200, height: 200 };
 
-    case 'hasData':
-      // const processedOptions = processOrderChange(
-      //   (orderCollectionData.data || [])
-      //   .flatMap((order) => order.order.flatMap((o) => o.item)),
-      // );
-      //console.log('🚀 ~ Order ~ order:', processedOptions);
+  const image = '/yakitori.png';
 
-      const imageDisplaySize = { width: 200, height: 200 };
-      return (
-        <div>
-          <Stack direction="row" alignItems="center">
-            {/* alignItems="center"で真ん中に合わせて並べる */}
-            <Box>
-              <img src={Yakitori} className="yakitori" style={imageDisplaySize} />
-            </Box>
-            <Box sx={{ fontSize: '60px' }}>
-              {/* {processedOptions.map((order) => (
+  return (
+    <div>
+      <Stack alignItems="center" direction="row">
+        {/* alignItems="center"で真ん中に合わせて並べる */}
+        <Box>
+          <img className="yakitori" src={image} style={imageDisplaySize} />
+        </Box>
+        <Box sx={{ fontSize: '60px' }}>
+          {/* {processedOptions.map((order) => (
                  order.name
               ))} */}
-              {ordername}
-            </Box>
-          </Stack>
-        </div>
-      );
-  }
-}
+          {ordername}
+        </Box>
+      </Stack>
+    </div>
+  );
+};
 
 export default CustomizeMenu;

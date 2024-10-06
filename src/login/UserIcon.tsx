@@ -1,4 +1,4 @@
-import { Logout, PersonAdd, Settings } from '@mui/icons-material';
+import { Logout, Settings } from '@mui/icons-material';
 import { Avatar, Box, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip } from '@mui/material';
 import React from 'react';
 import { userAtom } from './AdminLogin';
@@ -33,22 +33,23 @@ const UserIcon = () => {
     <Box>
       <Tooltip title="アカウント設定">
         <IconButton
+          aria-controls={open ? 'account-menu' : undefined}
+          aria-expanded={open ? 'true' : undefined}
+          aria-haspopup="true"
           onClick={handleClick}
           size="small"
           sx={{ ml: 2 }}
-          aria-controls={open ? 'account-menu' : undefined}
-          aria-haspopup="true"
-          aria-expanded={open ? 'true' : undefined}
         >
           <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
         </IconButton>
       </Tooltip>
       <Menu
         anchorEl={anchorEl}
+        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         id="account-menu"
-        open={open}
-        onClose={handleClose}
         onClick={handleClose}
+        onClose={handleClose}
+        open={open}
         slotProps={{
           paper: {
             elevation: 0,
@@ -78,7 +79,6 @@ const UserIcon = () => {
           },
         }}
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem onClick={handleClose}>
           <Avatar /> プロフィール

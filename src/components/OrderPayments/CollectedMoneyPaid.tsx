@@ -46,20 +46,21 @@ const CollectedMoneyPaid = ({
     <div>
       <Box>
         <Box sx={{ display: 'flex' }}>
-          <MoneyPaid image="/money_1.svg" count={moneyCount1} setCount={setMoneyCount1} />
-          <MoneyPaid image="/money_5.svg" count={moneyCount5} setCount={setMoneyCount5} />
-          <MoneyPaid image="/money_10.svg" count={moneyCount10} setCount={setMoneyCount10} />
+          <MoneyPaid count={moneyCount1} image="/money_1.svg" setCount={setMoneyCount1} />
+          <MoneyPaid count={moneyCount5} image="/money_5.svg" setCount={setMoneyCount5} />
+          <MoneyPaid count={moneyCount10} image="/money_10.svg" setCount={setMoneyCount10} />
         </Box>
         <Box sx={{ display: 'flex' }}>
-          <MoneyPaid image="/money_50.svg" count={moneyCount50} setCount={setMoneyCount50} />
-          <MoneyPaid image="/money_100.svg" count={moneyCount100} setCount={setMoneyCount100} />
-          <MoneyPaid image="/money_500.svg" count={moneyCount500} setCount={setMoneyCount500} />
+          <MoneyPaid count={moneyCount50} image="/money_50.svg" setCount={setMoneyCount50} />
+          <MoneyPaid count={moneyCount100} image="/money_100.svg" setCount={setMoneyCount100} />
+          <MoneyPaid count={moneyCount500} image="/money_500.svg" setCount={setMoneyCount500} />
         </Box>
       </Box>
       <Box sx={{ display: 'flex', marginTop: '2rem' }}>
         <MoneyPaid image="/money_1000.svg" count={moneyCount1000} setCount={setMoneyCount1000} />
         <MoneyPaid image="/money_5000.svg" count={moneyCount5000} setCount={setMoneyCount5000} />
         <MoneyPaid image="/money_10000.svg" count={moneyCount10000} setCount={setMoneyCount10000} />
+
       </Box>
     </div>
   );
