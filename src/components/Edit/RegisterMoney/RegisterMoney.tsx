@@ -33,7 +33,7 @@ const RegisterMoney = () => {
       <Box sx={{ display: { xs: 'block', sm: 'flex', margin: '1rem' } }}>
         {/* 通貨を表示 */}
         <CollectedRegisterChenge setRegisterMoney={setRegisterMoney} />
-        <Box sx={{}}>
+        <Box>
           {/* 合計金額 */}
           <Box sx={{ margin: '1rem', fontSize: '1.5rem', right: '2rem', position: 'fixed' }}>
             <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
@@ -49,7 +49,7 @@ const RegisterMoney = () => {
             >
               合計金額 : {registerMoney.total}円
             </Box>
-            <Box sx={{ display: 'flex', margin: '1rem', position: 'fixed', right: '4rem', bottom: '1rem' }}>
+            <Box sx={{ display: 'flex', margin: '1rem', position: 'fixed', right: '2rem', bottom: '1rem' }}>
               <Box>
                 {/* 戻るボタン */}
                 <BackButton id="" to="/" />

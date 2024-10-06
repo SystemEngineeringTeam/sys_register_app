@@ -90,11 +90,9 @@ const OrderPayment = () => {
       >
         <OrderNumber id={id} />
       </Box>
-
-      {/* 通貨と合計金額、おつり */}
       <Box sx={{ display: { xs: 'block', sm: 'flex' } }}>
         {/* 通貨を表示 */}
-        <Stack spacing="2rem" sx={{ display: 'block' }}>
+        <Stack spacing="2rem" sx={{ display: 'block', margin: '1rem', marginLeft: '10%' }}>
           <CollectedMoneyPaid
             moneyCount1={moneyCount1}
             moneyCount10={moneyCount10}
@@ -115,7 +113,8 @@ const OrderPayment = () => {
             setMoneyCount500={setMoneyCount500}
             setMoneyCount5000={setMoneyCount5000}
           />
-          <Box sx={{ display: 'flex', border: 1 }}>
+          {/* チケット、割引 */}
+          <Box sx={{ display: 'flex' }}>
             <TiketCount
               count={tiketCount100}
               image="public/tiket_100.svg"
@@ -140,14 +139,21 @@ const OrderPayment = () => {
             />
           </Box>
         </Stack>
-
-        <Box sx={{ marginTop: { sm: '15rem', md: '10rem' } }}>
+        {/* 支払い、合計金額、お釣り、戻る・OKボタン */}
+        <Box
+          sx={{
+            fontSize: '1.5rem',
+            right: '2rem',
+            bottom: { xs: '3.5rem', sm: '5rem' },
+            position: 'fixed',
+          }}
+        >
           {/* お支払いと合計金額 */}
           <WritePaidSumMoney totalAmount={getTotalAmount()} totalPayment={totalPayment} />
           <Box sx={{ border: 1 }} />
           {/* おつり */}
           <WriteNotEnoughMoney totalAmount={getTotalAmount()} totalPayment={totalPayment} />
-          <Box sx={{ display: 'flex', margin: '1rem' }}>
+          <Box sx={{ display: 'flex', margin: '1rem', position: 'fixed', right: '2rem', bottom: '1rem' }}>
             <Box>
               {/* 戻るボタン */}
               <BackButton id={id} to="/order" />

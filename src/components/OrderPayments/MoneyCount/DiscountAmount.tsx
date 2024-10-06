@@ -15,7 +15,8 @@ const DiscountAmount = ({ discountAmount, count, setCount, totalAmount, tiketAmo
     <div>
       <Box
         sx={{
-          border: 1,
+          userSelect: 'none',
+          border: 0.5,
           width: { xs: '7rem', sm: '9rem' },
           height: { xs: '7rem', sm: '9rem' },
           opacity: count === 0 ? '0.5' : '1',

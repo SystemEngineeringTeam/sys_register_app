@@ -39,6 +39,7 @@ const RegisterChenge = ({ image, moneyKind, setRegisterMoney }: RegisterChengePr
     <div>
       <Box
         sx={{
+          userSelect: 'none',
           border: 1,
           width: { xs: '7rem', sm: '9rem' },
           height: { xs: '11rem', sm: '11rem' },
