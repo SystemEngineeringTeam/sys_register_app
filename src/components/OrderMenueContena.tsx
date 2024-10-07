@@ -1,15 +1,23 @@
+import { orderAtom } from '@/stores/orderAtom';
+import { options, order } from '@/types';
 import { Box, Stack } from '@mui/material';
+import { useAtom } from 'jotai';
 import OrderMenueCustomize from './OrderMenueCustomize';
 import OrderMenueName from './OrderMenueName';
+import { useEffect } from 'react';
 
 interface OrderMenueContenaProps {
   selectMenuName: string;
   selectMenuPrice: number;
   selectMenuImg: string;
   selectMenuqty: number;
-  selectCustomizeName: string;
-  selectCustomizePrice: number;
-  id:number;
+  selectOptions: options[];
+  selectId: string;
+  selectMenuId: string;
+  setNewOrderData: React.Dispatch<React.SetStateAction<order[]>>;
+  selectOrder: order;
+  index: number;
+  newOrderData: order[];
 }
 
 const OrderMenueContena = ({
@@ -17,19 +25,20 @@ const OrderMenueContena = ({
   selectMenuPrice,
   selectMenuImg,
   selectMenuqty,
-  selectCustomizeName,
-  selectCustomizePrice,
-  id,
+  selectOptions,
+  selectId,
+  selectMenuId,
+  selectOrder,
+  newOrderData,
 }: OrderMenueContenaProps) => {
   const imageDisplaySize = { width: 200, height: 200 };
-  // const custommenus = [
-  //   { menu: 'たれ', price: 30 },
-  //   { menu: '塩', price: 10 },
-  //   { menu: 'チーズ', price: 20 },
-  //   { menu: '辛い', price: 20 },
-  //   { menu: '青のり', price: 10 },
-  // ];
+  // const [newOrder, setNewOrder] = useState<order>(selectOrder);
 
+  const [newOrder, setNewOrder] = useAtom(orderAtom);
+
+  useEffect(() => {
+    setNewOrder(selectOrder);
+  }, [selectOrder]);
 
   return (
     <div>
@@ -47,21 +56,29 @@ const OrderMenueContena = ({
         >
           {/* flexは幅の割合 */}
           <Box>
-            <img className="yakitori" src={orderimg} style={imageDisplaySize} />
+            <img className="yakitori" src={selectMenuImg} style={imageDisplaySize} />
           </Box>
         </Stack>
 
         <Stack sx={{ flex: 5 }}>
           <Stack sx={{ mr: '20px' }}>
             <OrderMenueName
-              customizename={customizename}
-              menuqty={menuqty}
-              ordername={ordername}
-              orderprice={orderprice}
+              selectOptions={selectOptions}
+              selectMenuName={selectMenuName}
+              selectMenuPrice={selectMenuPrice}
+              selectMenuqty={selectMenuqty}
+              selectId={Number(selectId)}
+              selectMenuId={selectMenuId}
+              newOrderData={newOrderData}
+              newOrder={newOrder as order}
             />
           </Stack>
           <Stack sx={{ ml: '20px', mr: '20px' }}>
-            <OrderMenueCustomize custom={customizename} customprice={customizeprice} />
+            {selectOptions.map((option, index) => {
+              return (
+                <OrderMenueCustomize key={index} selectOptionName={option.name} selectOptionPrice={option.price} />
+              );
+            })}
           </Stack>
         </Stack>
       </Stack>

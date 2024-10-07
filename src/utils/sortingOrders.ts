@@ -1,7 +1,7 @@
 import { useOrderCollection } from '../firebase/useOrderCollection';
 import { type order, type orderCollection } from '../types';
 
-// IDが一致するorder[]を取得する
+// IDが一致するorder[]をorderCollectionから取得する関数
 export const sortingOrders = (id: number): order[] => {
   const { data } = useOrderCollection();
 
@@ -17,5 +17,5 @@ export const sortingOrders = (id: number): order[] => {
     return order ? order.order : [];
   };
 
-  return orders(data); // ここに処理を追加してください
+  return orders(data);
 };

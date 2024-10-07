@@ -1,53 +1,67 @@
-import React from 'react';
-import CustomizeMenu from './CustomizeMenu';
 import { Box } from '@mui/material';
-import CustmizeGraf from './CustmizeGraf';
-import { useAtom } from 'jotai';
-import { orderCollectionAtom } from '../firebase/FirebaseUtils';
-import { processCustomizeChange } from '../utils/processCustomizeChange';
-import { processOrderChange } from '../utils/processOrderChange';
 import { Link } from 'react-router-dom';
-import { useOrderCollection } from '@/firebase/useOrderCollection';
+import CustmizeGraf from './CustmizeGraf';
+import CustomizeMenu from './CustomizeMenu';
+import { items, options, order } from '@/types';
+import { sortingItems } from '@/utils/sortingItems';
+import { sortingOption } from '@/utils/sortingOption';
+import { useState } from 'react';
+import { useSetAtom } from 'jotai';
+import { orderAtom } from '@/stores/orderAtom';
 
 interface CustomizeChangeLeftProps {
-  processedoptions: string;
-  customizename: string;
+  selectId: number;
+  selectOptions: options[];
+  selectMenuqty: number;
+  selectMenuId: string;
 }
 
-function CustomizeChangeLeft({ processedoptions, customizename }: CustomizeChangeLeftProps) {
-  //const customizechanges = ['カスタマイズ1', 'カスタマイズ2', 'カスタマイズ3'];
+function CustomizeChangeLeft({ selectId, selectMenuqty, selectOptions, selectMenuId }: CustomizeChangeLeftProps) {
+  //選択しているoptionのstate
+  const [options, setOptions] = useState<options[]>(selectOptions);
 
-  const { data } = useOrderCollection();
+  const setNewOrder = useSetAtom(orderAtom);
 
-  
-      const processCustmize = processCustomizeChange(
-        (data || []).flatMap((order) => order.order.flatMap((o) => o.options)),
-      );
+  // selectIdからmenuのデータを取得
+  const item = sortingItems(selectMenuId);
 
-      // const processOrder = processOrderChange(
-      //   (orderCollectionData.data || [])
-      //   .flatMap((order) => order.order.flatMap((o) => o.item)),
-      // );
+  const itemName = item?.name ? item.name : '';
+  const itemImg = item?.imgUrl ? item.imgUrl : '';
 
-      console.log('🚀 ~ CustomizeChangeLeft ~ processCustmize:', processCustmize);
+  const itemOption = item?.options ? item.options : [];
 
-      return (
-        <div>
-          <Box sx={{ ml: '50px' }}>
-            <Link to="/orderchange">
-              <Box>
-                <CustomizeMenu ordername={processedoptions || ''} />
+  // selectしているoptionのid配列
+  const ids = selectOptions.map((option) => option.id);
 
-                {/* <CustomizeMenu  processedoptions={state.menu} orders={state.menu}/> */}
-              </Box>
-            </Link>
-            <Box sx={{ fontSize: '30px' }}>カスタマイズ</Box>
-            <Box>
-              <CustmizeGraf customize={customizename || ''} />
-            </Box>
-          </Box>
-        </div>
-      );
-  }
+  // selectしているoptionの配列を作成
+  // const options = sortingOption(ids, itemOption);
+
+  // newOrder
+  const newOrder: order = {
+    id: selectMenuId,
+    item: item ? item : ({} as items),
+    qty: selectMenuqty,
+    options: options,
+  };
+
+  // newOrderを更新
+  setNewOrder(newOrder);
+
+  return (
+    <div>
+      <Box sx={{ ml: '50px' }}>
+        <Box>
+          <CustomizeMenu itemName={itemName} itemImg={itemImg} />
+        </Box>
+        <Box sx={{ fontSize: '30px' }}>カスタマイズ</Box>
+        <Box>
+          {itemOption.map((itemOption: options, index) => {
+            return <CustmizeGraf key={index} itemOption={itemOption} options={options} setOptions={setOptions} />;
+          })}
+        </Box>
+      </Box>
+    </div>
+  );
+}
 
 export default CustomizeChangeLeft;

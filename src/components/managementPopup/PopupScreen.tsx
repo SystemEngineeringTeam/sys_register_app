@@ -1,11 +1,8 @@
-import { Box, Button, Card, Icon, IconButton, Stack, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import ClearIcon from '@mui/icons-material/Clear';
+import { Box, Button, IconButton, Stack, Typography } from '@mui/material';
+import { useState } from 'react';
 import CancelButton from './CancelButton';
 import DeleteYesButton from './DeleteYesButton';
-import ClearIcon from '@mui/icons-material/Clear';
-import { processOrderChange } from '@/utils/processOrderChange';
-import { useOrderCollection } from '@/firebase/useOrderCollection';
-import { processOrderCollection } from '@/utils/processOrderCollection';
 
 interface Props {
   iconClose: () => void;

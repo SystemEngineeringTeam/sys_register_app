@@ -1,7 +1,9 @@
-import { Box, Divider, Grid, Stack } from '@mui/material';
-import React from 'react';
+import { orderAtom } from '@/stores/orderAtom';
+import { options, order } from '@/types';
 import CreateIcon from '@mui/icons-material/Create';
-import { Link } from 'react-router-dom';
+import { Box } from '@mui/material';
+import { useSetAtom } from 'jotai';
+import { Link, useNavigate } from 'react-router-dom';
 
 // interface OrderMenueNameProps{
 //     menuname:string;
@@ -11,18 +13,45 @@ interface OrderMenueNameProps {
   selectMenuName: string;
   selectMenuPrice: number;
   selectMenuqty: number;
-  selectCustomizeName: string;
-  id:number;
+  selectOptions: options[];
+  selectId: number;
+  selectMenuId: string;
+  newOrderData: order[];
+  newOrder: order;
 }
 
-const OrderMenueName = ({ selectMenuName, selectMenuPrice, selectMenuqty, selectCustomizeName , id}: OrderMenueNameProps) => {
-  console.log('qty:', selectMenuqty);
-  console.log('menu:', selectMenuName);
-  console.log('customizename:', selectCustomizeName);
+const OrderMenueName = ({
+  selectMenuName,
+  selectMenuPrice,
+  selectMenuqty,
+  selectOptions,
+  selectId,
+  selectMenuId,
+  newOrderData,
+  newOrder,
+}: OrderMenueNameProps) => {
+  // const navigate = useNavigate()
+
+  // const handleNavigate = () => {
+
+  //   navigate('/customizechange',{state:{selectMenuName: selectMenuName,selectMenuqty:selectMenuqty ,selectOptions:selectOptions , selectId:selectId,selectMenuId:selectMenuId,setNewOrder:setNewOrder,updateOrderData:updateOrderData}});
+  // };
+
   return (
     <div style={{ display: 'flex' }}>
       {/* {menuname} */}
-      <Link to="/customizechange" state={{ ordername: selectMenuName, customizename: selectCustomizeName , id:id}}>
+      <Link
+        to="/customizechange"
+        state={{
+          selectMenuName: selectMenuName,
+          selectMenuqty: selectMenuqty,
+          selectOptions: selectOptions,
+          selectId: selectId,
+          selectMenuId: selectMenuId,
+          newOrderData: newOrderData,
+          newOrder: newOrder,
+        }}
+      >
         <Box sx={{ fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' } }}>
           <CreateIcon></CreateIcon>
         </Box>

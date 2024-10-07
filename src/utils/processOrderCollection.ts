@@ -1,6 +1,7 @@
 import { useOrderCollection } from '../firebase/useOrderCollection';
 import { useState, useEffect } from 'react';
 
+// orderの状態を取得する関数
 export const processOrderCollection = (process: string): Array<{ id: string | null }> => {
   const { data } = useOrderCollection();
   const orderCollections = data || [];

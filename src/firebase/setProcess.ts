@@ -14,8 +14,9 @@ export const useOrderUpdate = () => {
     const orderRef = doc(db, 'shop_user', user.uid, 'orderCollection', id);
 
     try {
+      // trueとfalseを切り替える
       await updateDoc(orderRef, {
-        [field]: true,
+
       });
       console.log(`${field} field updated successfully for order ${id}`);
     } catch (error) {

@@ -1,13 +1,28 @@
 import { Box, Stack } from '@mui/material';
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ChangeButton from './ChangeButton';
+import { options } from '@/types';
 
 interface CustmizeGrafProps {
-  customize: string;
+  itemOption: options;
+  options: options[];
+  setOptions: React.Dispatch<React.SetStateAction<options[]>>;
 }
 
-const CustmizeGraf = ({ customize }: CustmizeGrafProps) => {
-  const [selectedChange, setSelectedChange] = useState(true);
+const CustmizeGraf = ({ itemOption, options, setOptions }: CustmizeGrafProps) => {
+  // itemOption.idがoptionsの中にあるかどうか
+  const isSelected = options.some((option) => option.id === itemOption.id);
+
+  const [selectedChange, setSelectedChange] = useState(isSelected);
+
+  useEffect(() => {
+    // selectedChangeが変更されたときにoptionsに追加または削除
+    if (selectedChange) {
+      setOptions([...options, itemOption]);
+    } else {
+      setOptions(options.filter((option) => option.id !== itemOption.id));
+    }
+  }, [selectedChange]);
 
   return (
     <div>
@@ -23,7 +38,9 @@ const CustmizeGraf = ({ customize }: CustmizeGrafProps) => {
             width: '80%',
           }}
         >
-          <Box sx={{ flex: 3 }}>{customize}</Box>
+          <Box sx={{ flex: 3 }}>{itemOption.name}</Box>
+          {/*optionPriceが0より多いときに値段を表示 */}
+          {itemOption.price > 0 && <Box sx={{ flex: 1 }}>+{itemOption.price}</Box>}
           <Box sx={{ flex: 1 }}>
             <ChangeButton selectedChange={selectedChange} setSelectedChange={setSelectedChange} />
           </Box>
