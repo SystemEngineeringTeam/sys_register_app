@@ -2,6 +2,7 @@ import { userAtom } from '@/login/AdminLogin';
 import { type items, type itemsData, type options } from '@/types';
 import {
   collection,
+  deleteDoc,
   doc,
   type DocumentData,
   type DocumentReference,

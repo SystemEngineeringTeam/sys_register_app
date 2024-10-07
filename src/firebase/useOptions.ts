@@ -1,5 +1,5 @@
 import { type options } from '@/types';
-import { collection, onSnapshot, type PartialWithFieldValue, type QueryDocumentSnapshot } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, onSnapshot, setDoc, type PartialWithFieldValue, type QueryDocumentSnapshot } from 'firebase/firestore';
 
 import { useEffect, useState } from 'react';
 import { db } from './firebase';

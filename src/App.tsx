@@ -22,6 +22,7 @@ import OrderChange from './pages/OrderChange';
 import CategoryDaialog from './components/managementPopup/CategoryDaialog';
 import Test from './pages/Test';
 import MenuCheck from './components/MenuEdit/MenuCheck';
+import MenuEdit from './components/Edit/menuEdit';
 
 const App = () => {
   return (
@@ -41,7 +42,7 @@ const App = () => {
             <Route element={<CustomizeChange />} path="customizechange" />
             <Route element={<OrderPayment />} path="payment" />
             <Route element={<MoneyCount />} path="paychange" />
-            <Route element={<Test />} path="test" />
+            <Route element={<MenuEdit/>} path="test" />
             <Route element={<CategoryDaialog />} path="popup" />
             <Route element={<CategoryDeletePopupCard />} path="popupcategorydelete" />
             <Route element={<CategoryAddPopupCard />} path="popupcategoryadd" />
