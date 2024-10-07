@@ -1,7 +1,7 @@
 import { Box, Stack } from '@mui/material';
 import { useEffect, useState } from 'react';
 import ChangeButton from './ChangeButton';
-import { options } from '@/types';
+import { type options } from '@/types';
 
 interface CustmizeGrafProps {
   itemOption: options;
@@ -39,7 +39,7 @@ const CustmizeGraf = ({ itemOption, options, setOptions }: CustmizeGrafProps) =>
           }}
         >
           <Box sx={{ flex: 3 }}>{itemOption.name}</Box>
-          {/*optionPriceが0より多いときに値段を表示 */}
+          {/* optionPriceが0より多いときに値段を表示 */}
           {itemOption.price > 0 && <Box sx={{ flex: 1 }}>+{itemOption.price}</Box>}
           <Box sx={{ flex: 1 }}>
             <ChangeButton selectedChange={selectedChange} setSelectedChange={setSelectedChange} />

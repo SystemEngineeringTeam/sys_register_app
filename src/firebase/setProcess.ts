@@ -15,9 +15,7 @@ export const useOrderUpdate = () => {
 
     try {
       // trueとfalseを切り替える
-      await updateDoc(orderRef, {
-
-      });
+      await updateDoc(orderRef, {});
       console.log(`${field} field updated successfully for order ${id}`);
     } catch (error) {
       console.error(`Failed to update ${field} for order ${id}:`, error);

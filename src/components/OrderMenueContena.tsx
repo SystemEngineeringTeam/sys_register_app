@@ -1,5 +1,5 @@
 import { orderAtom } from '@/stores/orderAtom';
-import { options, order } from '@/types';
+import { type options, type order } from '@/types';
 import { Box, Stack } from '@mui/material';
 import { useAtom } from 'jotai';
 import OrderMenueCustomize from './OrderMenueCustomize';
@@ -63,14 +63,14 @@ const OrderMenueContena = ({
         <Stack sx={{ flex: 5 }}>
           <Stack sx={{ mr: '20px' }}>
             <OrderMenueName
-              selectOptions={selectOptions}
+              newOrder={newOrder!}
+              newOrderData={newOrderData}
+              selectId={Number(selectId)}
+              selectMenuId={selectMenuId}
               selectMenuName={selectMenuName}
               selectMenuPrice={selectMenuPrice}
               selectMenuqty={selectMenuqty}
-              selectId={Number(selectId)}
-              selectMenuId={selectMenuId}
-              newOrderData={newOrderData}
-              newOrder={newOrder as order}
+              selectOptions={selectOptions}
             />
           </Stack>
           <Stack sx={{ ml: '20px', mr: '20px' }}>

@@ -1,4 +1,4 @@
-import { Box, Button } from '@mui/material';
+import { Button } from '@mui/material';
 import React from 'react';
 
 interface CancelButtonProps {
@@ -13,11 +13,11 @@ const CancelButton = ({ selectedChangeCancel, setSelectedChangeCancel }: CancelB
   return (
     <div>
       <Button
-        variant="contained"
         disableElevation
-        size="large"
         onClick={ClickChangeButton}
+        size="large"
         sx={{ backgroundColor: selectedChangeCancel ? 'orange' : 'gray', borderRadius: '20px', fontSize: '30px' }}
+        variant="contained"
       >
         Cancel
       </Button>

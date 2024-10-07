@@ -1,10 +1,8 @@
 import { Box } from '@mui/material';
-import { Link } from 'react-router-dom';
 import CustmizeGraf from './CustmizeGraf';
 import CustomizeMenu from './CustomizeMenu';
-import { items, options, order } from '@/types';
+import { type items, type options, type order } from '@/types';
 import { sortingItems } from '@/utils/sortingItems';
-import { sortingOption } from '@/utils/sortingOption';
 import { useState } from 'react';
 import { useSetAtom } from 'jotai';
 import { orderAtom } from '@/stores/orderAtom';
@@ -16,8 +14,8 @@ interface CustomizeChangeLeftProps {
   selectMenuId: string;
 }
 
-function CustomizeChangeLeft({ selectId, selectMenuqty, selectOptions, selectMenuId }: CustomizeChangeLeftProps) {
-  //選択しているoptionのstate
+const CustomizeChangeLeft = ({ selectId, selectMenuqty, selectOptions, selectMenuId }: CustomizeChangeLeftProps) => {
+  // 選択しているoptionのstate
   const [options, setOptions] = useState<options[]>(selectOptions);
 
   const setNewOrder = useSetAtom(orderAtom);
@@ -39,9 +37,9 @@ function CustomizeChangeLeft({ selectId, selectMenuqty, selectOptions, selectMen
   // newOrder
   const newOrder: order = {
     id: selectMenuId,
-    item: item ? item : ({} as items),
+    item: item || ({} as items),
     qty: selectMenuqty,
-    options: options,
+    options,
   };
 
   // newOrderを更新
@@ -51,7 +49,7 @@ function CustomizeChangeLeft({ selectId, selectMenuqty, selectOptions, selectMen
     <div>
       <Box sx={{ ml: '50px' }}>
         <Box>
-          <CustomizeMenu itemName={itemName} itemImg={itemImg} />
+          <CustomizeMenu itemImg={itemImg} itemName={itemName} />
         </Box>
         <Box sx={{ fontSize: '30px' }}>カスタマイズ</Box>
         <Box>
@@ -62,6 +60,6 @@ function CustomizeChangeLeft({ selectId, selectMenuqty, selectOptions, selectMen
       </Box>
     </div>
   );
-}
+};
 
 export default CustomizeChangeLeft;

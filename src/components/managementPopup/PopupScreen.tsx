@@ -39,7 +39,7 @@ const PopupScreen = ({ iconClose }: Props) => {
           <Typography sx={{ fontSize: 'clamp(1.0rem, 0.4rem + 2.0vw, 2.0rem)' }}>全ての設定から消されます</Typography>
         </Box>
 
-        <Stack direction={'row'} sx={{ mt: '10%', justifyContent: 'right', mr: '7rem' }}>
+        <Stack direction="row" sx={{ mt: '10%', justifyContent: 'right', mr: '7rem' }}>
           <Button>
             <CancelButton
               selectedChangeCancel={selectedChangeCancel}

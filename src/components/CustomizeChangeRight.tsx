@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import OkeyButton from './OkeyButton';
 import OrderDelete from './OrderDelete';
 import OrderNumber from './OrderNumber';
-import { order } from '@/types';
+import { type order } from '@/types';
 
 interface CustomizeChangeRightProps {
   selectId: number;
@@ -34,7 +34,7 @@ const CustomizeChangeRight = ({ selectId, newOrder, newOrderData }: CustomizeCha
             <OrderDelete />
           </Box>
           <Box sx={{ mt: '40px' }}>
-            <OkeyButton selectId={selectId} newOrderData={newOrderData} newOrder={newOrder} />
+            <OkeyButton newOrder={newOrder} newOrderData={newOrderData} selectId={selectId} />
           </Box>
         </Box>
       </Box>

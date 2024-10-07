@@ -1,9 +1,9 @@
 import { orderDataAtom } from '@/stores/orderAtom';
-import { order } from '@/types';
+import { type order } from '@/types';
 import { updateOrderData } from '@/utils/updateSelectOrder';
 import { Button } from '@mui/material';
 import { useSetAtom } from 'jotai';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface OkeyButtonProps {
   selectId: number;

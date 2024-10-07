@@ -1,7 +1,7 @@
 import { userAtom } from '@/login/AdminLogin';
 import { doc, updateDoc } from 'firebase/firestore';
 import { useAtomValue } from 'jotai';
-import { order } from '../types/index';
+import { type order } from '../types/index';
 import { db } from './firebase';
 
 interface UpdateOrderProps {

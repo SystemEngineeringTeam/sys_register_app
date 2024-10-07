@@ -1,10 +1,9 @@
-import { options, order } from '@/types';
+import { type options, type order } from '@/types';
 import { Box } from '@mui/material';
 import { type ReactElement } from 'react';
 import { useLocation } from 'react-router-dom';
 import CustomizeChangeLeft from '../components/CustomizeChangeLeft';
 import CustomizeChangeRight from '../components/CustomizeChangeRight';
-
 
 export default function CustomizeChange(): ReactElement {
   interface State {
@@ -13,8 +12,8 @@ export default function CustomizeChange(): ReactElement {
     selectOptions: options[];
     selectId: number;
     selectMenuId: string;
-    newOrderData:order[];
-    newOrder:order;
+    newOrderData: order[];
+    newOrder: order;
   }
 
   const location = useLocation();
@@ -26,13 +25,13 @@ export default function CustomizeChange(): ReactElement {
         <Box sx={{ flex: 4, overflowY: 'auto' }}>
           <CustomizeChangeLeft
             selectId={state.selectId}
-            selectOptions={state.selectOptions}
-            selectMenuqty={state.selectMenuqty}
             selectMenuId={state.selectMenuId}
+            selectMenuqty={state.selectMenuqty}
+            selectOptions={state.selectOptions}
           />
         </Box>
         <Box sx={{ flex: 1, textAlign: 'center' }}>
-          <CustomizeChangeRight selectId={state.selectId}   newOrderData = {state.newOrderData} newOrder = {state.newOrder}  />
+          <CustomizeChangeRight newOrder={state.newOrder} newOrderData={state.newOrderData} selectId={state.selectId} />
         </Box>
       </Box>
     </div>

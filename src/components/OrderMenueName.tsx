@@ -1,9 +1,7 @@
-import { orderAtom } from '@/stores/orderAtom';
-import { options, order } from '@/types';
+import { type options, type order } from '@/types';
 import CreateIcon from '@mui/icons-material/Create';
 import { Box } from '@mui/material';
-import { useSetAtom } from 'jotai';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // interface OrderMenueNameProps{
 //     menuname:string;
@@ -41,19 +39,19 @@ const OrderMenueName = ({
     <div style={{ display: 'flex' }}>
       {/* {menuname} */}
       <Link
-        to="/customizechange"
         state={{
-          selectMenuName: selectMenuName,
-          selectMenuqty: selectMenuqty,
-          selectOptions: selectOptions,
-          selectId: selectId,
-          selectMenuId: selectMenuId,
-          newOrderData: newOrderData,
-          newOrder: newOrder,
+          selectMenuName,
+          selectMenuqty,
+          selectOptions,
+          selectId,
+          selectMenuId,
+          newOrderData,
+          newOrder,
         }}
+        to="/customizechange"
       >
         <Box sx={{ fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' } }}>
-          <CreateIcon></CreateIcon>
+          <CreateIcon />
         </Box>
       </Link>
       <Box flex={3} sx={{ ml: '30px', wordBreak: 'break-word', fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' } }}>

@@ -1,5 +1,3 @@
-
-
 import { collection, onSnapshot, type PartialWithFieldValue, type QueryDocumentSnapshot } from 'firebase/firestore';
 import { useAtomValue } from 'jotai';
 import { userAtom } from '../login/AdminLogin';
@@ -107,7 +105,7 @@ export const updateMoney = async (newMoney: money) => {
     throw new Error('User is not logged in');
   }
 
- // 現在の日付の00:00:00のミリ秒を取得する
+  // 現在の日付の00:00:00のミリ秒を取得する
   const today = new Date();
   const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
   const milliseconds = todayMidnight.getTime();

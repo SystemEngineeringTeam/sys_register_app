@@ -1,14 +1,14 @@
 import { userAtom } from '@/login/AdminLogin';
-import { items, itemsData, options } from '@/types';
+import { type items, type itemsData, type options } from '@/types';
 import {
   collection,
   doc,
-  DocumentData,
-  DocumentReference,
+  type DocumentData,
+  type DocumentReference,
   getDoc,
   onSnapshot,
-  PartialWithFieldValue,
-  QueryDocumentSnapshot,
+  type PartialWithFieldValue,
+  type QueryDocumentSnapshot,
   setDoc,
 } from 'firebase/firestore';
 import { useAtomValue } from 'jotai';
@@ -91,7 +91,7 @@ export const getItems = () => {
           price: Docdata.price as number,
           category_id: Docdata.category_id as string,
           visible: Docdata.visible as boolean,
-          options: optionData as options[],
+          options: optionData,
           imgUrl: Docdata.imgUrl as string,
         };
 

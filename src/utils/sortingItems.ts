@@ -5,7 +5,7 @@ export const sortingItems = (id: string) => {
 
   console.log('sortingItems', items);
 
-  const itemsArray = items ? items : [];
+  const itemsArray = items || [];
 
   // idが一致するitemを取得
   const item = itemsArray.find((item) => item.id === id);
@@ -13,5 +13,5 @@ export const sortingItems = (id: string) => {
   console.log('itemsArray', itemsArray);
   console.log('id', id);
   console.log('item', item);
-  return item ? item : null;
+  return item || null;
 };

@@ -8,11 +8,11 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  SelectChangeEvent,
+  type SelectChangeEvent,
   Stack,
 } from '@mui/material';
 import ItemOptions from '../OrderPayments/ItemOptions';
-import { options } from '@/types';
+import { type options } from '@/types';
 import { useState } from 'react';
 import InputFileUpload from '../Image/upload/InputFileUpload';
 
@@ -37,13 +37,13 @@ const MenuEdit = () => {
   // オプション
   const [option, setOption] = useState(options);
 
-  //itemNameのEdit
+  // itemNameのEdit
   const handleNameChange = () => {
     // ここで商品名の変更popupを出す
     setItemName('商品名');
   };
 
-  //priceのEdit
+  // priceのEdit
   const handlePriceChange = () => {
     // ここで値段の変更popupを出す
     setItemPrice(100);
@@ -60,17 +60,17 @@ const MenuEdit = () => {
 
   // カテゴリーの選択
   const handleChange = (event: SelectChangeEvent) => {
-    setCategory(event.target.value as string);
+    setCategory(event.target.value);
   };
   // 表示の選択
   const handleDisplayChange = (event: SelectChangeEvent) => {
-    setDisplay(event.target.value as string);
+    setDisplay(event.target.value);
   };
 
   return (
     <div>
       <Box>
-        <Stack spacing={2} divider={<Divider />}>
+        <Stack divider={<Divider />} spacing={2}>
           {/* 商品名 */}
           <Box>
             <Stack direction="row" sx={{ justifyContent: 'space-between' }}>
@@ -121,11 +121,11 @@ const MenuEdit = () => {
                 <FormControl fullWidth>
                   <InputLabel id="demo-simple-select-label">カテゴリー</InputLabel>
                   <Select
-                    labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    value={category}
                     label="カテゴリー"
+                    labelId="demo-simple-select-label"
                     onChange={handleChange}
+                    value={category}
                   >
                     <MenuItem value={10}>Ten</MenuItem>
                     <MenuItem value={20}>Twenty</MenuItem>
@@ -144,11 +144,11 @@ const MenuEdit = () => {
                 <FormControl fullWidth>
                   <InputLabel id="demo-simple-select-label">表示</InputLabel>
                   <Select
-                    labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    value={display}
                     label="表示"
+                    labelId="demo-simple-select-label"
                     onChange={handleDisplayChange}
+                    value={display}
                   >
                     <MenuItem value={10}>販売中</MenuItem>
                     <MenuItem value={20}>休止中</MenuItem>

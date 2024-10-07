@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from 'react';
+import { type ReactElement, useEffect } from 'react';
 
 import { useOrderCollection } from '@/firebase/useOrderCollection';
 import { sortingOrders } from '@/utils/sortingOrders';
@@ -25,9 +25,7 @@ export default function OrderChange(): ReactElement {
   const [newOrderData, setNewOrderData] = useAtom(orderDataAtom);
 
   useEffect(() => {
-
     setNewOrderData(orderData);
-
   }, [orderData]);
 
   return (
@@ -35,12 +33,17 @@ export default function OrderChange(): ReactElement {
       <Box sx={{ display: 'flex' }}>
         {/* 左側メニューリスト */}
         <Box sx={{ flex: 4, overflowY: 'auto', mt: '20px', mr: '20px', ml: '20px' }}>
-          <OrderMenuLeft setNewOrderData={setNewOrderData} newOrderData={newOrderData} selectId={selectId} orderData={orderData} />
+          <OrderMenuLeft
+            newOrderData={newOrderData}
+            orderData={orderData}
+            selectId={selectId}
+            setNewOrderData={setNewOrderData}
+          />
         </Box>
 
         {/* 右側注文情報 */}
         <Box sx={{ flex: 1 }}>
-          <OrderMenuRight selectId={selectId}  />
+          <OrderMenuRight selectId={selectId} />
         </Box>
       </Box>
     </div>

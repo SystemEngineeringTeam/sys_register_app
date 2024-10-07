@@ -3,10 +3,9 @@ import { Box, Stack } from '@mui/material';
 interface OrderMenueCustomizeProps {
   selectOptionName: string;
   selectOptionPrice: number;
-
 }
 
-const OrderMenueCustomize = ({ selectOptionName,selectOptionPrice }: OrderMenueCustomizeProps) => {
+const OrderMenueCustomize = ({ selectOptionName, selectOptionPrice }: OrderMenueCustomizeProps) => {
   return (
     <div>
       <Stack direction="row" sx={{ borderBottom: '1px solid #2b2b2b' }}>

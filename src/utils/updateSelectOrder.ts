@@ -1,5 +1,4 @@
-import { order } from '@/types';
-import { SetStateAction, useSetAtom } from 'jotai';
+import { type order } from '@/types';
 
 export const updateOrderData = (newOrderData: order[], newOrder: order | undefined, setNewOrderData: any) => {
   const newOrderDataCopy = newOrderData.slice();
@@ -10,9 +9,8 @@ export const updateOrderData = (newOrderData: order[], newOrder: order | undefin
     }
     if (order.item.id === newOrder.item.id) {
       return newOrder;
-    } else {
-      return order;
     }
+    return order;
   });
   setNewOrderData(setData);
 };

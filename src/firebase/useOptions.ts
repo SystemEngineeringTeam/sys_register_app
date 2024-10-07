@@ -1,5 +1,5 @@
-import { options } from '@/types';
-import { collection, onSnapshot, PartialWithFieldValue, QueryDocumentSnapshot } from 'firebase/firestore';
+import { type options } from '@/types';
+import { collection, onSnapshot, type PartialWithFieldValue, type QueryDocumentSnapshot } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from './firebase';
 import { useAtomValue } from 'jotai';
