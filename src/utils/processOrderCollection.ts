@@ -1,7 +1,6 @@
 import { useOrderCollection } from '../firebase/useOrderCollection';
 import { useState, useEffect } from 'react';
 
-// idと一致する注文情報を取得
 export const processOrderCollection = (process: string): Array<{ id: string | null }> => {
   const { data } = useOrderCollection();
   const orderCollections = data || [];

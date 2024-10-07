@@ -18,6 +18,7 @@ export const useOrderUpdate = () => {
     const orderData = docSnap.data() as orderCollection;
     const booleanField = orderData[tmpField];
     try {
+
       await updateDoc(orderRef, {
         [field]: !booleanField,
       });

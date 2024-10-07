@@ -1,40 +1,37 @@
+import { type options, type order } from '@/types';
 import { Box } from '@mui/material';
-import { type ReactElement, useEffect, useState } from 'react';
+import { type ReactElement } from 'react';
 import { useLocation } from 'react-router-dom';
 import CustomizeChangeLeft from '../components/CustomizeChangeLeft';
 import CustomizeChangeRight from '../components/CustomizeChangeRight';
-import { useMoney } from '../firebase/useMoney';
-import { useOrderCollection } from '../firebase/useOrderCollection';
-
-interface CustomizeChangeProps {
-  id: number;
-}
 
 export default function CustomizeChange(): ReactElement {
-  const { data } = useOrderCollection();
-  const { money } = useMoney();
-  const { state } = useLocation();
-  const [ordersList, setOrdersList] = useState<number[]>([]);
+  interface State {
+    selectMenuName: string;
+    selectMenuqty: number;
+    selectOptions: options[];
+    selectId: number;
+    selectMenuId: string;
+    newOrderData: order[];
+    newOrder: order;
+  }
 
-  useEffect(() => {
-    if (state?.state) {
-      setOrdersList(state.state);
-    }
-  }, [state]);
-
-  console.log('🚀 ~ use Effect ~ state:', state);
-  console.log('🚀 ~ use Effect ~ state.ordername:', state.ordername);
-  console.log('🚀 ~ use Effect ~ ordername:', state.name);
-  console.log('🚀 ~ use Effect ~ cusotomizename:', state.customizename);
+  const location = useLocation();
+  const { state } = location as { state: State };
 
   return (
     <div>
       <Box sx={{ display: 'flex' }}>
         <Box sx={{ flex: 4, overflowY: 'auto' }}>
-          <CustomizeChangeLeft customizename={state.customizename} processedoptions={state.ordername} />
+          <CustomizeChangeLeft
+            selectId={state.selectId}
+            selectMenuId={state.selectMenuId}
+            selectMenuqty={state.selectMenuqty}
+            selectOptions={state.selectOptions}
+          />
         </Box>
         <Box sx={{ flex: 1, textAlign: 'center' }}>
-          <CustomizeChangeRight />
+          <CustomizeChangeRight newOrder={state.newOrder} newOrderData={state.newOrderData} selectId={state.selectId} />
         </Box>
       </Box>
     </div>

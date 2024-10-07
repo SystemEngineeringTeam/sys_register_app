@@ -1,6 +1,6 @@
-import { Box } from '@mui/material';
-import React from 'react';
+import { type options, type order } from '@/types';
 import CreateIcon from '@mui/icons-material/Create';
+import { Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 // interface OrderMenueNameProps{
@@ -11,24 +11,45 @@ interface OrderMenueNameProps {
   selectMenuName: string;
   selectMenuPrice: number;
   selectMenuqty: number;
-  selectCustomizeName: string;
-  id: number;
+  selectOptions: options[];
+  selectId: number;
+  selectMenuId: string;
+  newOrderData: order[];
+  newOrder: order;
 }
 
 const OrderMenueName = ({
   selectMenuName,
   selectMenuPrice,
   selectMenuqty,
-  selectCustomizeName,
-  id,
+  selectOptions,
+  selectId,
+  selectMenuId,
+  newOrderData,
+  newOrder,
 }: OrderMenueNameProps) => {
-  console.log('qty:', selectMenuqty);
-  console.log('menu:', selectMenuName);
-  console.log('customizename:', selectCustomizeName);
+  // const navigate = useNavigate()
+
+  // const handleNavigate = () => {
+
+  //   navigate('/customizechange',{state:{selectMenuName: selectMenuName,selectMenuqty:selectMenuqty ,selectOptions:selectOptions , selectId:selectId,selectMenuId:selectMenuId,setNewOrder:setNewOrder,updateOrderData:updateOrderData}});
+  // };
+
   return (
     <div style={{ display: 'flex' }}>
       {/* {menuname} */}
-      <Link state={{ ordername: selectMenuName, customizename: selectCustomizeName, id }} to="/customizechange">
+      <Link
+        state={{
+          selectMenuName,
+          selectMenuqty,
+          selectOptions,
+          selectId,
+          selectMenuId,
+          newOrderData,
+          newOrder,
+        }}
+        to="/customizechange"
+      >
         <Box sx={{ fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' } }}>
           <CreateIcon />
         </Box>

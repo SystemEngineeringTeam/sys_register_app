@@ -1,18 +1,19 @@
 import { userAtom } from '@/login/AdminLogin';
-import { useAtomValue } from 'jotai';
-import { db } from './firebase';
+import { type items, type itemsData, type options } from '@/types';
 import {
   collection,
-  deleteDoc,
   doc,
+  type DocumentData,
+  type DocumentReference,
+  getDoc,
   onSnapshot,
   type PartialWithFieldValue,
   type QueryDocumentSnapshot,
   setDoc,
 } from 'firebase/firestore';
-import { type items, type itemsData } from '@/types';
+import { useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
-import { useOptions } from './useOptions';
+import { db } from './firebase';
 
 function converter<T>() {
   return {
@@ -59,15 +60,12 @@ export const setItems = async (data: itemsData) => {
 };
 
 export const getItems = () => {
-  const [items, setItems] = useState<items[] | null>(null);
-
   const user = useAtomValue(userAtom);
-
   if (!user) {
     throw new Error('User is not logged in');
   }
-
-  const colRef = collection(db, 'shop_user', user.uid, 'items').withConverter(converter<items>());
+  const [data, setData] = useState<items[]>();
+  const colRef = collection(db, 'shop_user', user.uid, 'item').withConverter(converter<items>());
 
   useEffect(() => {
     const unsub = onSnapshot(colRef, (snapshot) => {
@@ -75,26 +73,36 @@ export const getItems = () => {
         const docSnapshot = change.doc;
         const Docdata = docSnapshot.data();
 
-        const optionData = useOptions();
+        const itemData = docSnapshot.data() as DocumentData;
+        const optionsArray = itemData.options ?? [];
+        const optionData: options[] = await Promise.all(
+          optionsArray.map(async (optionRef: DocumentReference) => {
+            const optionSnap = await getDoc(optionRef);
+            if (optionSnap.exists()) {
+              return optionSnap.data() as options;
+            }
+            return { id: null, name: null, price: null };
+          }),
+        );
 
         const newData: items = {
           id: docSnapshot.id,
           name: Docdata.name as string,
-          category_id: Docdata.category_id as string,
           price: Docdata.price as number,
+          category_id: Docdata.category_id as string,
           visible: Docdata.visible as boolean,
-          options: optionData.options,
+          options: optionData,
           imgUrl: Docdata.imgUrl as string,
         };
 
         // 追加時
         if (change.type === 'added') {
-          setItems((prevData) => [...(prevData || []), newData]);
+          setData((prevData) => [...(prevData || []), newData]);
         }
 
         // 修正（更新時）
         if (change.type === 'modified') {
-          setItems((prevData) => {
+          setData((prevData) => {
             if (prevData) {
               return prevData.map((data) => {
                 if (data.id === docSnapshot.id) {
@@ -106,10 +114,9 @@ export const getItems = () => {
             return prevData;
           });
         }
-
         // 完全削除時
         if (change.type === 'removed') {
-          setItems((prevData) => {
+          setData((prevData) => {
             if (prevData) {
               return prevData.filter((data) => data.id !== docSnapshot.id);
             }
@@ -119,15 +126,15 @@ export const getItems = () => {
       });
     });
 
+    console.log('Changed!!!');
+    // const newData = snapshot.docs.map((doc) => doc.data() as orderCollection);
+    // setData(newData);
     return () => {
       unsub();
     };
   }, []);
+  return data;
 
-  console.log('itemChange');
-  return {
-    items,
-  };
 };
 
 // itemを消去する関数

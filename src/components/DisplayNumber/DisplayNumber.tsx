@@ -1,10 +1,7 @@
 import { Box, Button } from '@mui/material';
 
-interface DisplayNumberProps {
-  ordersId: number;
-}
+const DisplayNumber = ({ orderId }: { orderId: number }) => {
 
-const DisplayNumber = ({ ordersId }: DisplayNumberProps) => {
   return (
     <div>
       <Box>
@@ -21,7 +18,7 @@ const DisplayNumber = ({ ordersId }: DisplayNumberProps) => {
             color: 'black',
           }}
         >
-          {ordersId}
+          {orderId}
         </Button>
       </Box>
     </div>

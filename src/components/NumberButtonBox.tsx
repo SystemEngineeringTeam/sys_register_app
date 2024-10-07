@@ -1,5 +1,4 @@
 import { Box } from '@mui/material';
-import React from 'react';
 import NumberButton from './NumberButton';
 
 interface NumberButtonProps {
@@ -17,8 +16,8 @@ const NumberButtonBox = ({ ordersId }: NumberButtonProps) => {
           flexWrap: 'wrap',
         }}
       >
-        {ordersId.map((value) => {
-          return <NumberButton orderId={value} ordersId={ordersId} />;
+        {ordersId.map((orderId) => {
+          return <NumberButton orderId={orderId} />;
         })}
       </Box>
     </div>

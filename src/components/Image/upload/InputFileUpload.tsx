@@ -2,7 +2,7 @@ import { Box, Button, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useState } from 'react';
-import LoadingButton from '@mui/lab/LoadingButton';
+
 import SendIcon from '@mui/icons-material/Send';
 import { deleteImage, getImageUrl, uploadImage } from '@/firebase/firebaseStorage';
 import { useAtomValue } from 'jotai';

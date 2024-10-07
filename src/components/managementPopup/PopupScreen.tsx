@@ -1,8 +1,8 @@
+import ClearIcon from '@mui/icons-material/Clear';
 import { Box, Button, IconButton, Stack, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import CancelButton from './CancelButton';
 import DeleteYesButton from './DeleteYesButton';
-import ClearIcon from '@mui/icons-material/Clear';
 
 interface Props {
   iconClose: () => void;

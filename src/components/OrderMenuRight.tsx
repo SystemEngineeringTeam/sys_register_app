@@ -1,18 +1,18 @@
 import { Box, Typography } from '@mui/material';
-import React from 'react';
+import { useOrderCollection } from '../firebase/useOrderCollection';
+import { idToTotalAmount } from '../utils/accountingUtils';
 import OrderButton from './OrderButton';
 import OrderNumber from './OrderNumber';
-import { idToTotalAmount } from '../utils/accountingUtils';
-import { useOrderCollection } from '../firebase/useOrderCollection';
 
 interface OrderMenuRightProps {
-  id: string;
+  selectId: number;
 }
 
-const OrderMenuRight = ({ id }: OrderMenuRightProps) => {
+const OrderMenuRight = ({ selectId }: OrderMenuRightProps) => {
   {
     const { data } = useOrderCollection();
 
+    const id = selectId.toString();
     const totalAmount = data ? idToTotalAmount(id, data) : 0;
 
     return (

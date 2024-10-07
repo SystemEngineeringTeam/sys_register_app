@@ -26,6 +26,8 @@ import { type orderCollection } from '../types/index';
 export function idToTotalAmount(orderCollectionId: string, orderCollections: orderCollection[]) {
   let totalAmount = 0;
   let optionPrices = 0;
+
+  // orderCollectionIdに一致するorderCollectionを取得
   const orderColl = orderCollections.find((oc) => {
     return oc.id === orderCollectionId;
   });

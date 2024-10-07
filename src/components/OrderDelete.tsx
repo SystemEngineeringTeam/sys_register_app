@@ -6,10 +6,8 @@ const OrderDelete = () => {
     <div>
       <Button
         disableElevation
-        onClick={() => {
-          console.log('お支払いへ');
-        }}
-        size="large"
+        onClick={() => {}}
+        size="medium"
         sx={{
           background: '#FF4337',
           width: '200px',

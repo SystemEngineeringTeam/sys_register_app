@@ -1,15 +1,23 @@
+import { orderAtom } from '@/stores/orderAtom';
+import { type options, type order } from '@/types';
 import { Box, Stack } from '@mui/material';
+import { useAtom } from 'jotai';
 import OrderMenueCustomize from './OrderMenueCustomize';
 import OrderMenueName from './OrderMenueName';
+import { useEffect } from 'react';
 
 interface OrderMenueContenaProps {
   selectMenuName: string;
   selectMenuPrice: number;
   selectMenuImg: string;
   selectMenuqty: number;
-  selectCustomizeName: string;
-  selectCustomizePrice: number;
-  id: number;
+  selectOptions: options[];
+  selectId: string;
+  selectMenuId: string;
+  setNewOrderData: React.Dispatch<React.SetStateAction<order[]>>;
+  selectOrder: order;
+  index: number;
+  newOrderData: order[];
 }
 
 const OrderMenueContena = ({
@@ -17,22 +25,20 @@ const OrderMenueContena = ({
   selectMenuPrice,
   selectMenuImg,
   selectMenuqty,
-  selectCustomizeName,
-  selectCustomizePrice,
-  id,
+  selectOptions,
+  selectId,
+  selectMenuId,
+  selectOrder,
+  newOrderData,
 }: OrderMenueContenaProps) => {
   const imageDisplaySize = { width: 200, height: 200 };
-  // const custommenus = [
-  //   { menu: 'たれ', price: 30 },
-  //   { menu: '塩', price: 10 },
-  //   { menu: 'チーズ', price: 20 },
-  //   { menu: '辛い', price: 20 },
-  //   { menu: '青のり', price: 10 },
-  // ];
+  // const [newOrder, setNewOrder] = useState<order>(selectOrder);
 
-  console.log(`menuqty:${selectMenuName}`);
-  console.log(`customizename:${selectCustomizeName}`);
-  console.log(`customizeprice:${selectCustomizePrice}`);
+  const [newOrder, setNewOrder] = useAtom(orderAtom);
+
+  useEffect(() => {
+    setNewOrder(selectOrder);
+  }, [selectOrder]);
 
   return (
     <div>
@@ -57,18 +63,22 @@ const OrderMenueContena = ({
         <Stack sx={{ flex: 5 }}>
           <Stack sx={{ mr: '20px' }}>
             <OrderMenueName
-              id={id}
-              selectCustomizeName={selectCustomizeName}
+              newOrder={newOrder!}
+              newOrderData={newOrderData}
+              selectId={Number(selectId)}
+              selectMenuId={selectMenuId}
               selectMenuName={selectMenuName}
               selectMenuPrice={selectMenuPrice}
               selectMenuqty={selectMenuqty}
+              selectOptions={selectOptions}
             />
           </Stack>
           <Stack sx={{ ml: '20px', mr: '20px' }}>
-            <OrderMenueCustomize
-              selectCustomizeName={selectCustomizeName}
-              selectCustomizePrice={selectCustomizePrice}
-            />
+            {selectOptions.map((option, index) => {
+              return (
+                <OrderMenueCustomize key={index} selectOptionName={option.name} selectOptionPrice={option.price} />
+              );
+            })}
           </Stack>
         </Stack>
       </Stack>

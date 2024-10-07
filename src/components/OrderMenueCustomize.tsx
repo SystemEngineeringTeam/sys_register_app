@@ -1,17 +1,16 @@
 import { Box, Stack } from '@mui/material';
-import React from 'react';
 
 interface OrderMenueCustomizeProps {
-  selectCustomizeName: string;
-  selectCustomizePrice: number;
+  selectOptionName: string;
+  selectOptionPrice: number;
 }
 
-const OrderMenueCustomize = ({ selectCustomizeName, selectCustomizePrice }: OrderMenueCustomizeProps) => {
+const OrderMenueCustomize = ({ selectOptionName, selectOptionPrice }: OrderMenueCustomizeProps) => {
   return (
     <div>
       <Stack direction="row" sx={{ borderBottom: '1px solid #2b2b2b' }}>
-        <Box sx={{ ml: '10px' }}>{selectCustomizeName}</Box>
-        <Box sx={{ ml: 'auto' }}>+{selectCustomizePrice}</Box>
+        <Box sx={{ ml: '10px' }}>{selectOptionName}</Box>
+        <Box sx={{ ml: 'auto' }}>+{selectOptionPrice}</Box>
       </Stack>
     </div>
   );
