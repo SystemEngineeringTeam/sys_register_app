@@ -3,6 +3,7 @@ import { type category, type categoryData } from '@/types';
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
   onSnapshot,
   type PartialWithFieldValue,
@@ -109,4 +110,15 @@ export const updateCategory = async (newCategory: category) => {
 
   await setDoc(doc(colRef, newCategory.id), data);
   console.log('category updated');
+};
+
+// 削除する関数
+export const deleteCategory = async (categoryId: string) => {
+  const user = useAtomValue(userAtom);
+  if (!user) {
+    throw new Error('User is not logged in');
+  }
+
+  await deleteDoc(doc(db, 'shop_user', user.uid, 'category', categoryId));
+  console.log('category deleted');
 };

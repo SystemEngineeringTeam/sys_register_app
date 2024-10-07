@@ -1,6 +1,8 @@
 import { Button, ThemeProvider } from '@mui/material';
 import { Link } from 'react-router-dom';
+// eslint-disable-next-line no-restricted-imports
 import { useOrderUpdate } from '../../firebase/setProcess';
+// eslint-disable-next-line no-restricted-imports
 import { theme } from '../../themes/theme';
 
 interface OkButtonProps {
@@ -14,7 +16,7 @@ const OkButton = ({ id, totalAmount, totalPayment, to }: OkButtonProps) => {
   const { updateOrderStatus } = useOrderUpdate();
 
   const handleChange = () => {
-    updateOrderStatus(id.toString(), 'accounting');
+    void updateOrderStatus(id.toString(), 'accounting');
   };
 
   const payChange = () => {
@@ -39,6 +41,7 @@ const OkButton = ({ id, totalAmount, totalPayment, to }: OkButtonProps) => {
           color="ok"
           onClick={clickhandle}
           sx={{
+            userSelect: 'none',
             fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
             width: { xs: '6rem', sm: '8rem', md: '10rem' },
             height: { xs: '2.5rem', sm: '3rem', md: '3.5rem' },

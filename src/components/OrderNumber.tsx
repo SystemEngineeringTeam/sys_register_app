@@ -10,6 +10,7 @@ const OrderNumber = ({ id }: OrderNumberProps) => (
     <Grid
       container
       sx={{
+        userSelect: 'none',
         flexFlow: 'column',
         fontSize: { xs: '0.8rem', sm: '1rem', md: '1.5rem' },
         width: { xs: '6rem', sm: '8rem', md: '10rem' },

@@ -1,21 +1,25 @@
-import { Box, CardMedia } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
 interface MoneyPaidProps {
-  image: string;
+  // 割引金額
+  discountAmount: number;
   count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
+  totalAmount: number;
+  // チケットの合計金額
+  tiketAmount: number;
 }
-const MoneyPaid = ({ image, count, setCount }: MoneyPaidProps) => {
+const DiscountAmount = ({ discountAmount, count, setCount, totalAmount, tiketAmount }: MoneyPaidProps) => {
   return (
     <div>
       <Box
         sx={{
+          userSelect: 'none',
           border: 0.5,
           width: { xs: '7rem', sm: '9rem' },
           height: { xs: '7rem', sm: '9rem' },
           opacity: count === 0 ? '0.5' : '1',
-          userSelect: 'none',
         }}
       >
         {/* 0以上の値の場合、クリック時にcountを -1 */}
@@ -26,15 +30,15 @@ const MoneyPaid = ({ image, count, setCount }: MoneyPaidProps) => {
             }
           }}
         />
-        <CardMedia
-          component="img"
-          image={image}
+        <Button
+          //
           onClick={() => {
-            setCount((prevState) => prevState + 1);
+            // totalAmountは値引き後の値段なので、商品の合計金額-値引き金額 =  totalAmount
+            // totalAmount - tiketAmount は値引き後の金額が、チケットの合計金額を超えていないとき
+            if (totalAmount - tiketAmount - discountAmount >= 0) {
+              setCount((prevState) => prevState + 1);
+            }
           }}
-          onDragStart={(e) => {
-            e.preventDefault();
-          }} // ドラッグを無効化
           sx={{
             display: 'flex',
             margin: 'auto',
@@ -43,7 +47,9 @@ const MoneyPaid = ({ image, count, setCount }: MoneyPaidProps) => {
             objectFit: 'fill',
             position: 'relative',
           }}
-        />
+        >
+          {discountAmount}円割引
+        </Button>
         <Box
           sx={{
             textAlign: 'center',
@@ -58,4 +64,4 @@ const MoneyPaid = ({ image, count, setCount }: MoneyPaidProps) => {
   );
 };
 
-export default MoneyPaid;
+export default DiscountAmount;

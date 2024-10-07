@@ -1,5 +1,6 @@
 import { ThemeProvider } from '@emotion/react';
 import { Button } from '@mui/material';
+// eslint-disable-next-line no-restricted-imports
 import { theme } from '../../themes/theme';
 import { Link } from 'react-router-dom';
 
@@ -15,6 +16,7 @@ const BackButton = ({ to, id }: BackButtonProps) => {
         <Button
           color="back"
           sx={{
+            userSelect: 'none',
             fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
             width: { xs: '6rem', sm: '8rem', md: '10rem' },
             height: { xs: '2.5rem', sm: '3rem', md: '3.5rem' },

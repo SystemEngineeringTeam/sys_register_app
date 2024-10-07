@@ -1,5 +1,5 @@
-import { type ReactElement, useEffect } from 'react';
 
+import { type ReactElement, useEffect } from 'react';
 import { useOrderCollection } from '@/firebase/useOrderCollection';
 import { sortingOrders } from '@/utils/sortingOrders';
 import { Box } from '@mui/material';
@@ -8,6 +8,7 @@ import OrderMenuLeft from '../components/OrderMenuLeft';
 import OrderMenuRight from '../components/OrderMenuRight';
 import { useAtom } from 'jotai';
 import { orderDataAtom } from '@/stores/orderAtom';
+
 
 export default function OrderChange(): ReactElement {
   interface State {

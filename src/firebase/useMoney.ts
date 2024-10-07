@@ -1,4 +1,12 @@
-import { collection, onSnapshot, type PartialWithFieldValue, type QueryDocumentSnapshot } from 'firebase/firestore';
+import {
+  collection,
+  onSnapshot,
+  type PartialWithFieldValue,
+  type QueryDocumentSnapshot,
+  doc,
+  setDoc,
+  deleteDoc,
+} from 'firebase/firestore';
 import { useAtomValue } from 'jotai';
 import { userAtom } from '../login/AdminLogin';
 import { type money } from '../types';
@@ -99,7 +107,27 @@ export function useMoney() {
 }
 
 // money のデータを更新する関数
-export const updateMoney = async (newMoney: money) => {
+// export const updateMoney = async (newMoney: money) => {
+//   const user = useAtomValue(userAtom);
+//   if (!user) {
+//     throw new Error('User is not logged in');
+//   }
+
+//   // 現在の日付の00:00:00のミリ秒を取得する
+//   const today = new Date();
+//   const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+//   const milliseconds = todayMidnight.getTime();
+
+//   const colRef = collection(db, 'shop_user', user.uid, 'mony').withConverter(converter<money>());
+
+//   await setDoc(doc(colRef, String(milliseconds)), newMoney);
+
+//   console.log('money updated');
+
+// };
+
+// money のデータを追加する関数
+export const addMoney = async (newMoney: money) => {
   const user = useAtomValue(userAtom);
   if (!user) {
     throw new Error('User is not logged in');
@@ -112,5 +140,22 @@ export const updateMoney = async (newMoney: money) => {
 
   const colRef = collection(db, 'shop_user', user.uid, 'mony').withConverter(converter<money>());
 
-  console.log('money updated');
+  await setDoc(doc(colRef, String(milliseconds)), newMoney);
+
+  console.log('money added');
+};
+
+// money のデータを削除する関数
+export const deleteMoney = async (day: Date) => {
+  const user = useAtomValue(userAtom);
+  if (!user) {
+    throw new Error('User is not logged in');
+  }
+
+  const dayMidnight = new Date(day.getFullYear(), day.getMonth(), day.getDate());
+  const milliseconds = dayMidnight.getTime();
+
+  await deleteDoc(doc(db, 'shop_user', user.uid, 'mony', String(milliseconds)));
+
+  console.log('money deleted');
 };

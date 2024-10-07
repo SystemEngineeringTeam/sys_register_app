@@ -1,5 +1,6 @@
 import { type options } from '@/types';
 import { collection, onSnapshot, type PartialWithFieldValue, type QueryDocumentSnapshot } from 'firebase/firestore';
+
 import { useEffect, useState } from 'react';
 import { db } from './firebase';
 import { useAtomValue } from 'jotai';
@@ -66,4 +67,54 @@ export const useOptions = () => {
     };
   }, []);
   return { options };
+};
+
+// Optionsを追加する関数
+
+export const addOptions = async (newOption: options) => {
+  const user = useAtomValue(userAtom);
+
+  if (!user) {
+    throw new Error('User is not logged in');
+  }
+
+  const data = {
+    name: newOption.name,
+    price: newOption.price,
+  };
+
+  const colRef = collection(db, 'shop_user', user.uid, 'options').withConverter(converter<options>());
+
+  await addDoc(colRef, data);
+};
+
+// Optionsを更新する関数
+export const updateOptions = async (newOption: options) => {
+  const user = useAtomValue(userAtom);
+
+  if (!user) {
+    throw new Error('User is not logged in');
+  }
+
+  const data = {
+    name: newOption.name,
+    price: newOption.price,
+  };
+
+  const colRef = doc(db, 'shop_user', user.uid, 'options').withConverter(converter<options>());
+
+  await setDoc(doc(colRef, newOption.id), data);
+};
+
+// Optionsを削除する関数
+export const deleteOptions = async (optionId: string) => {
+  const user = useAtomValue(userAtom);
+
+  if (!user) {
+    throw new Error('User is not logged in');
+  }
+
+  await deleteDoc(doc(db, 'shop_user', user.uid, 'options', optionId));
+
+  console.log('options deleted');
 };

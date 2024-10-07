@@ -21,6 +21,7 @@ import Order from './pages/Order';
 import OrderChange from './pages/OrderChange';
 import CategoryDaialog from './components/managementPopup/CategoryDaialog';
 import Test from './pages/Test';
+import MenuCheck from './components/MenuEdit/MenuCheck';
 
 const App = () => {
   return (
@@ -34,7 +35,7 @@ const App = () => {
             <Route element={<Cooking />} path="cooking" />
             <Route element={<Delivery />} path="delivery" />
             <Route element={<Call />} path="call" />
-            <Route element={<Admin />} path="admin" />
+            <Route element={<MenuCheck />} path="admin" />
             <Route element={<Hoge />} path="hoge" />
             <Route element={<OrderChange />} path="orderchange" />
             <Route element={<CustomizeChange />} path="customizechange" />

@@ -1,31 +1,37 @@
 import { Box, Typography, Card, CardContent, Button, Stack } from '@mui/material';
 
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DoNotDisturbOnTotalSilenceOutlined } from '@mui/icons-material';
-import Ordercard from '../OrderList/Ordercard';
-import { useOrderUpdate } from '../../firebase/setProcess';
-import { useOrderCollection } from '../../firebase/useOrderCollection';
+import Ordercard from '@/components/OrderList/Ordercard';
+import { useOrderUpdate } from '@/firebase/setProcess';
+import { type orderCollection } from '@/types';
 
 interface ProductCallContenaProps {
-  key: number;
   id: number;
+  data: orderCollection[] | undefined;
 }
 
-const ProductCallContena = ({ key, id }: ProductCallContenaProps) => {
-  const { data } = useOrderCollection();
-  const orders = (data ?? []).filter((order) => order.id === id.toString());
-  const order = orders.flatMap((data) => {
-    return data.order;
+const ProductCallContena = ({ id, data }: ProductCallContenaProps) => {
+  const orderCollections = (data ?? []).filter((orderColl) => orderColl.id === id.toString());
+  const order = orderCollections.flatMap((ordersData) => {
+    return ordersData.order;
   });
-
+  const targetOrderCollection = (data ?? []).find((orderColl) => orderColl.id === id.toString());
   const [status, setStatus] = useState(false);
-
+  useEffect(() => {
+    if (targetOrderCollection !== undefined) {
+      setStatus(targetOrderCollection?.offer);
+    }
+  }, []);
+  // if (targetOrderCollection !== undefined) {
+  //   setStatus(targetOrderCollection?.offer);
+  // }
   const { updateOrderStatus } = useOrderUpdate();
 
   const handleChange = () => {
     setStatus(!status);
-    updateOrderStatus(id.toString(), 'offer');
+    void updateOrderStatus(id.toString(), 'offer');
   };
 
   return (

@@ -11,6 +11,7 @@ interface UpdateOrderProps {
 
 export const updateOrder = async ({ orderCollectionId, orders }: UpdateOrderProps) => {
   const user = useAtomValue(userAtom);
+
   if (!user) {
     throw new Error('User is not logged in');
   }

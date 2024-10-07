@@ -9,6 +9,7 @@ const WriteNotEnoughMoney = ({ totalAmount, totalPayment }: WriteNotEnoughMoneyP
   return (
     <Box
       sx={{
+        userSelect: 'none',
         fontSize: { xs: '1.5rem', sm: '2rem', md: '3rem' },
         // 文字の色を不足金額なら赤、おつりなら黒で出す
         color: totalPayment - totalAmount < 0 ? red[500] : grey,

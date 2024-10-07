@@ -134,4 +134,18 @@ export const getItems = () => {
     };
   }, []);
   return data;
+
+};
+
+// itemを消去する関数
+export const deleteItems = async (itemId: string) => {
+  const user = useAtomValue(userAtom);
+
+  if (!user) {
+    throw new Error('User is not logged in');
+  }
+
+  await deleteDoc(doc(db, 'shop_user', user.uid, 'items', itemId));
+
+  console.log('deleteItems');
 };

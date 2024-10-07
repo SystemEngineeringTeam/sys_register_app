@@ -5,17 +5,20 @@ interface MoneyPaidProps {
   image: string;
   count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
+  totalAmount: number;
 }
-const MoneyPaid = ({ image, count, setCount }: MoneyPaidProps) => {
+// チケット1つの値段
+const tiketAmount = 100;
+const TiketCount = ({ image, count, setCount, totalAmount }: MoneyPaidProps) => {
   return (
     <div>
       <Box
         sx={{
+          userSelect: 'none',
           border: 0.5,
           width: { xs: '7rem', sm: '9rem' },
           height: { xs: '7rem', sm: '9rem' },
           opacity: count === 0 ? '0.5' : '1',
-          userSelect: 'none',
         }}
       >
         {/* 0以上の値の場合、クリック時にcountを -1 */}
@@ -26,11 +29,19 @@ const MoneyPaid = ({ image, count, setCount }: MoneyPaidProps) => {
             }
           }}
         />
+        {/*   -ms-user-select: none; /* IE 10+
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none; */}
         <CardMedia
           component="img"
           image={image}
+          //   チケットの合計金額 が 注文の合計金額 以下になるように
           onClick={() => {
-            setCount((prevState) => prevState + 1);
+            if ((count + 1) * tiketAmount <= totalAmount) {
+              setCount((prevState) => prevState + 1);
+            }
           }}
           onDragStart={(e) => {
             e.preventDefault();
@@ -58,4 +69,4 @@ const MoneyPaid = ({ image, count, setCount }: MoneyPaidProps) => {
   );
 };
 
-export default MoneyPaid;
+export default TiketCount;

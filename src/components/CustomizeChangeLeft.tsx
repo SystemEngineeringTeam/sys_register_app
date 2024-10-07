@@ -56,6 +56,7 @@ const CustomizeChangeLeft = ({ selectId, selectMenuqty, selectOptions, selectMen
           {itemOption.map((itemOption: options, index) => {
             return <CustmizeGraf key={index} itemOption={itemOption} options={options} setOptions={setOptions} />;
           })}
+
         </Box>
       </Box>
     </div>
