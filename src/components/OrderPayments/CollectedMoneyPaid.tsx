@@ -1,65 +1,30 @@
 import React from 'react';
 import MoneyPaid from './MoneyPaid';
 import { Box } from '@mui/material';
+import { type money } from '@/types';
 
 interface CollectedMoneyPaidProps {
-  moneyCount1: number;
-  setMoneyCount1: React.Dispatch<React.SetStateAction<number>>;
-  moneyCount5: number;
-  setMoneyCount5: React.Dispatch<React.SetStateAction<number>>;
-  moneyCount10: number;
-  setMoneyCount10: React.Dispatch<React.SetStateAction<number>>;
-  moneyCount50: number;
-  setMoneyCount50: React.Dispatch<React.SetStateAction<number>>;
-  moneyCount100: number;
-  setMoneyCount100: React.Dispatch<React.SetStateAction<number>>;
-  moneyCount500: number;
-  setMoneyCount500: React.Dispatch<React.SetStateAction<number>>;
-  moneyCount1000: number;
-  setMoneyCount1000: React.Dispatch<React.SetStateAction<number>>;
-  moneyCount5000: number;
-  setMoneyCount5000: React.Dispatch<React.SetStateAction<number>>;
-  moneyCount10000: number;
-  setMoneyCount10000: React.Dispatch<React.SetStateAction<number>>;
+  setPaymentMoney: React.Dispatch<React.SetStateAction<money>>;
 }
-const CollectedMoneyPaid = ({
-  moneyCount1,
-  setMoneyCount1,
-  moneyCount5,
-  setMoneyCount5,
-  moneyCount10,
-  setMoneyCount10,
-  moneyCount50,
-  setMoneyCount50,
-  moneyCount100,
-  setMoneyCount100,
-  moneyCount500,
-  setMoneyCount500,
-  moneyCount1000,
-  setMoneyCount1000,
-  moneyCount5000,
-  setMoneyCount5000,
-  moneyCount10000,
-  setMoneyCount10000,
-}: CollectedMoneyPaidProps) => {
+const CollectedMoneyPaid = ({ setPaymentMoney }: CollectedMoneyPaidProps) => {
   return (
     <div>
       <Box>
         <Box sx={{ display: 'flex' }}>
-          <MoneyPaid count={moneyCount1} image="/money_1.svg" setCount={setMoneyCount1} />
-          <MoneyPaid count={moneyCount5} image="/money_5.svg" setCount={setMoneyCount5} />
-          <MoneyPaid count={moneyCount10} image="/money_10.svg" setCount={setMoneyCount10} />
+          <MoneyPaid image="/money_1.svg" num={1} setPaymentMoney={setPaymentMoney} />
+          <MoneyPaid image="/money_5.svg" num={5} setPaymentMoney={setPaymentMoney} />
+          <MoneyPaid image="/money_10.svg" num={10} setPaymentMoney={setPaymentMoney} />
         </Box>
         <Box sx={{ display: 'flex' }}>
-          <MoneyPaid count={moneyCount50} image="/money_50.svg" setCount={setMoneyCount50} />
-          <MoneyPaid count={moneyCount100} image="/money_100.svg" setCount={setMoneyCount100} />
-          <MoneyPaid count={moneyCount500} image="/money_500.svg" setCount={setMoneyCount500} />
+          <MoneyPaid image="/money_50.svg" num={50} setPaymentMoney={setPaymentMoney} />
+          <MoneyPaid image="/money_100.svg" num={100} setPaymentMoney={setPaymentMoney} />
+          <MoneyPaid image="/money_500.svg" num={500} setPaymentMoney={setPaymentMoney} />
         </Box>
       </Box>
       <Box sx={{ display: 'flex', marginTop: '2rem' }}>
-        <MoneyPaid count={moneyCount1000} image="/money_1000.svg" setCount={setMoneyCount1000} />
-        <MoneyPaid count={moneyCount5000} image="/money_5000.svg" setCount={setMoneyCount5000} />
-        <MoneyPaid count={moneyCount10000} image="/money_10000.svg" setCount={setMoneyCount10000} />
+        <MoneyPaid image="/money_1000.svg" num={1000} setPaymentMoney={setPaymentMoney} />
+        <MoneyPaid image="/money_5000.svg" num={5000} setPaymentMoney={setPaymentMoney} />
+        <MoneyPaid image="/money_10000.svg" num={10000} setPaymentMoney={setPaymentMoney} />
       </Box>
     </div>
   );
