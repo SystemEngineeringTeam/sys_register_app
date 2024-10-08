@@ -45,10 +45,6 @@ const App = () => {
             <Route element={<MoneyCount />} path="paychange" />
             <Route element={<MenuEdit/>} path="test" />
             <Route element={<CategoryDaialog />} path="popup" />
-            <Route element={<CategoryDeletePopupCard />} path="popupcategorydelete" />
-            {/* <Route element={<CategoryAddPopupCard />} path="popupcategoryadd" /> */}
-            <Route element={<CategoryNameChangeCard />} path="popupcategorychangename" />
-            <Route element={<CategoryNameAddCard />} path="categorynameadd" />
             <Route element={<CategoryEdit />} path="categoryedit" />
             <Route element={<MenuCheck />} path="menucheck" />
             <Route element={<div>Not Found</div>} path="*" />
