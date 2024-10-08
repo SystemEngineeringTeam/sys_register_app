@@ -2,14 +2,35 @@ import React from 'react';
 import CategoryAddPopupScreen from './CategoryAddPopupScreen';
 import { Card } from '@mui/material';
 
-const CategoryAddPopupCard = () => {
+interface CategoryAddPopupCardProps {
+  iconClose: () => void;
+}
+
+const CategoryAddPopupCard = ({ iconClose }: CategoryAddPopupCardProps) => {
   return (
     <div>
-      <Card sx={{ width: '70%', ml: '15%', mt: '5%', height: '60%' }}>
-        <CategoryAddPopupScreen />
-      </Card>
+      <div>
+        <CategoryAddPopupScreen iconColse={iconClose} />
+      </div>
     </div>
   );
 };
 
 export default CategoryAddPopupCard;
+
+// import PopupScreen from './PopupScreen';
+
+// interface PopupCardProps {
+//   iconClose: () => void;
+// }
+
+// const PopupCard = ({ iconClose }: PopupCardProps) => {
+//   return (
+//     <div>
+//       いいいいい
+//       <PopupScreen iconClose={iconClose} />
+//     </div>
+//   );
+// };
+
+// export default PopupCard;
