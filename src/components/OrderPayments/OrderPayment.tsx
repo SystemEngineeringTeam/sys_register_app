@@ -46,18 +46,6 @@ const OrderPayment = () => {
   const [tiketCount100, setTiketCount100] = useState(0);
   const [discount100, setDiscount100] = useState(0);
   const [discount50, setDiscount50] = useState(0);
-  // const [totalAmount, setTotalAmount] = useState(0);
-  // // お客様が支払ったお金を管理するuseEffect
-  // useEffect(() => {
-  //   // setMoneyFncを使うための下準備
-  //   type moneyKeyType = 'date' | 1 | 5 | 10 | 50 | 100 | 500 | 1000 | 5000 | 10000 | 'total';
-  //   // mapで展開したい要素
-  //   const moneyKey: moneyKeyType[] = [1, 5, 10, 50, 100, 1000, 5000, 10000, 'total'];
-  //   moneyKey.forEach((e) => {
-  //     // setMoneyFnc(, e, setPaymentMoney);
-  //   });
-  // }, []);
-
   // 注文から合計金額を算出する関数 DiscountAmount
   function getTotalAmount() {
     // data: orderCollection[] | undefinedの型整形
