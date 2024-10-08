@@ -5,7 +5,11 @@ import CancelButton from './CancelButton';
 import DeleteYesButton from './DeleteYesButton';
 import TextField from '@mui/material/TextField';
 
-const CategoryNameChangeScreen = () => {
+interface CategoryNameChangeScreen {
+  iconClose: () => void;
+}
+
+const CategoryNameChangeScreen = ({ iconClose }: CategoryNameChangeScreen) => {
   const [selectedChangeCancel, setSelectedChangeCalcel] = useState(true);
   const [selectedChangeOkey, setSelectedChangeOkey] = useState(true);
 
@@ -13,7 +17,7 @@ const CategoryNameChangeScreen = () => {
     <div>
       <Stack sx={{ textAlign: 'center' }}>
         <Box sx={{ textAlign: 'right' }}>
-          <ClearIcon sx={{ fontSize: '80px' }} />
+          <ClearIcon onClick={iconClose} sx={{ fontSize: '80px' }} />
         </Box>
 
         {/* fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' */}
