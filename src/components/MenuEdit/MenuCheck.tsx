@@ -15,13 +15,25 @@ const MenuCheck = () => {
 
   // }, []);
   // category_idが選択中のもののみ表示させたい
+
+  const [selectAdd, setSelectAdd] = useState("add");
+
+  const [selectEdit, setSelectEdit] = useState("edit");
+
   return (
     <Box>
       <Box sx={{ margin: '1.5rem' }}>
         {/* カテゴリー編集、商品追加ボタン */}
         <Box sx={{ display: 'flex', alignContent: 'center', justifyContent: 'space-evenly' }}>
-          <ScreenChengeButton text="カテゴリー編集" themeColor="categoryEdit" />
-          <ScreenChengeButton text="商品追加" themeColor="addItem" />
+          <ScreenChengeButton text="カテゴリー編集" themeColor="categoryEdit" 
+          
+            selectAdd={selectAdd} selectEdit={selectEdit} 
+            //setSelectAdd={setSelectAdd} setSelectEdit={setSelectEdit}
+          />
+          <ScreenChengeButton text="商品追加" themeColor="addItem" 
+          selectAdd={selectAdd} selectEdit={selectEdit} 
+          //setSelectAdd={setSelectAdd} setSelectEdit={setSelectEdit}
+          />
         </Box>
         {/* カテゴリー遷移バー */}
         <Box sx={{ margin: '0.5rem' }}>
