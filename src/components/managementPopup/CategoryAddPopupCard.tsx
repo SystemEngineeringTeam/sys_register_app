@@ -9,9 +9,7 @@ interface CategoryAddPopupCardProps {
 const CategoryAddPopupCard = ({ iconClose }: CategoryAddPopupCardProps) => {
   return (
     <div>
-      <div>
         <CategoryAddPopupScreen iconColse={iconClose} />
-      </div>
     </div>
   );
 };
