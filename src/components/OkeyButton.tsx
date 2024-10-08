@@ -1,3 +1,4 @@
+import { updateOrder } from '@/firebase/useOrder';
 import { orderDataAtom } from '@/stores/orderAtom';
 import { type order } from '@/types';
 import { updateOrderData } from '@/utils/updateSelectOrder';
@@ -17,6 +18,7 @@ const OkeyButton = ({ selectId, newOrderData, newOrder }: OkeyButtonProps) => {
 
   const handleClick = () => {
     updateOrderData(newOrderData, newOrder, setNewOrderData);
+    updateOrder(selectId.toString(), newOrderData);
     navigate('/orderchange', { state: { orderId: selectId } });
   };
 

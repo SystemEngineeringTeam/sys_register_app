@@ -163,8 +163,14 @@ export const fetchOrder = async (
         const optionData: options[] = await Promise.all(
           optionsArray.map(async (optionRef: DocumentReference) => {
             const optionSnap = await getDoc(optionRef);
+            const optionData = optionSnap.data();
             if (optionSnap.exists()) {
-              return optionSnap.data() as options;
+              console.log('getItemDATA!!!!!!!!' + optionSnap.id);
+              return {
+                id: optionSnap.id,
+                name: optionData?.name as string,
+                price: optionData?.price as number,
+              };
             }
             return { id: null, name: null, price: null };
           }),
@@ -184,8 +190,13 @@ export const fetchOrder = async (
       const optionData: options[] = await Promise.all(
         orderData.options.map(async (optionRef: DocumentReference) => {
           const optionDoc = await getDoc(optionRef);
+          const optionData = optionDoc.data();
           if (optionDoc.exists()) {
-            return optionDoc.data() as options;
+            return {
+              id: optionDoc.id,
+              name: optionData?.name as string,
+              price: optionData?.price as number,
+            };
           }
           return { id: null, name: null, price: null };
         }),

@@ -5,22 +5,52 @@ import { type options } from '@/types';
 
 interface CustmizeGrafProps {
   itemOption: options;
-  options: options[];
-  setOptions: React.Dispatch<React.SetStateAction<options[]>>;
+  choiceOptions: options[];
+  setChoiceOptions: React.Dispatch<React.SetStateAction<options[]>>;
+  selectOptions: options[];
 }
 
-const CustmizeGraf = ({ itemOption, options, setOptions }: CustmizeGrafProps) => {
+const CustmizeGraf = ({ itemOption, choiceOptions, setChoiceOptions, selectOptions }: CustmizeGrafProps) => {
   // itemOption.idがoptionsの中にあるかどうか
-  const isSelected = options.some((option) => option.id === itemOption.id);
+  // 同じidがある場合はtrue
 
+  console.log ('selectOptionsID:'+selectOptions.map((option) => option.id));
+
+  const Selected = selectOptions.find((option) => option.id === itemOption.id);
+
+  console.log('itemOption.id:' + itemOption.id);
+  console.log('itemOption.name:' + itemOption.name);
+  console.log('Selected.id:' + Selected?.id);
+  console.log('Selected.name:' + Selected?.name);
+
+  const isSelected = () => {
+    if (Selected?.id === undefined) {
+      console.log('true');
+      return true;
+    } else {
+      console.log('false');
+      return false;
+    }
+  };
+
+  // 選択しているかどうかのstate
   const [selectedChange, setSelectedChange] = useState(isSelected);
 
+  console.log('selectedChange:' + selectedChange);
+
   useEffect(() => {
-    // selectedChangeが変更されたときにoptionsに追加または削除
-    if (selectedChange) {
-      setOptions([...options, itemOption]);
+    // selectedChangeが変更されたときにchoiceOptionsを更新
+    // ありの場合
+    if (!selectedChange) {
+      // choiceOptionsを変更
+      setChoiceOptions(choiceOptions.filter((option) => option.id !== itemOption.id));
+
+      setChoiceOptions([...choiceOptions, itemOption]);
     } else {
-      setOptions(options.filter((option) => option.id !== itemOption.id));
+      // なしの場合
+      // optionsからitemOptionを削除
+      const newOptions = choiceOptions.filter((option) => option.id !== itemOption.id);
+      setChoiceOptions(newOptions);
     }
   }, [selectedChange]);
 
