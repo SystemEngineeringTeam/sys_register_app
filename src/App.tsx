@@ -24,6 +24,7 @@ import Test from './pages/Test';
 import MenuCheck from './components/MenuEdit/MenuCheck';
 import MenuEdit from './components/Edit/menuEdit';
 
+
 const App = () => {
   return (
     <Router>
@@ -45,10 +46,11 @@ const App = () => {
             <Route element={<MenuEdit/>} path="test" />
             <Route element={<CategoryDaialog />} path="popup" />
             <Route element={<CategoryDeletePopupCard />} path="popupcategorydelete" />
-            <Route element={<CategoryAddPopupCard />} path="popupcategoryadd" />
+            {/* <Route element={<CategoryAddPopupCard />} path="popupcategoryadd" /> */}
             <Route element={<CategoryNameChangeCard />} path="popupcategorychangename" />
             <Route element={<CategoryNameAddCard />} path="categorynameadd" />
             <Route element={<CategoryEdit />} path="categoryedit" />
+            <Route element={<MenuCheck />} path="menucheck" />
             <Route element={<div>Not Found</div>} path="*" />
           </Route>
         </Route>
