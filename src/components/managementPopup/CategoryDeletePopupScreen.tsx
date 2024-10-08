@@ -1,18 +1,28 @@
 import ClearIcon from '@mui/icons-material/Clear';
-import { Box, Button, Stack, Typography } from '@mui/material';
+import { Box, Button, IconButton, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
 import CancelButton from './CancelButton';
 import DeleteYesButton from './DeleteYesButton';
 
-const CategoryDeletePopupScreen = () => {
+interface CategoryAddPopupScreenProp {
+  iconClose: () => void;
+}
+
+const CategoryDeletePopupScreen = ({ iconClose }: CategoryAddPopupScreenProp) => {
   const [selectedChangeCancel, setSelectedChangeCalcel] = useState(true);
   const [selectedChangeOkey, setSelectedChangeOkey] = useState(true);
   return (
     <div>
       <Stack sx={{ textAlign: 'center' }}>
         <Box sx={{ textAlign: 'right' }}>
-          <ClearIcon sx={{ fontSize: '80px' }} />
+          <ClearIcon onClick={iconClose} sx={{ fontSize: '80px' }} />
         </Box>
+
+        {/* <Box sx={{ textAlign: 'right' }}>
+          <IconButton onClick={iconClose}>
+            <ClearIcon sx={{ fontSize: '80px' }} />
+          </IconButton>
+        </Box> */}
 
         {/* fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' */}
         <Box sx={{ mt: '30px' }}>
