@@ -4,15 +4,17 @@ import { Link } from 'react-router-dom';
 import { useOrderUpdate } from '../../firebase/setProcess';
 // eslint-disable-next-line no-restricted-imports
 import { theme } from '../../themes/theme';
+import { type money } from '@/types';
 
 interface OkButtonProps {
   id: string;
   totalPayment: number;
   totalAmount: number;
   to: string;
+  paymentMoney: money;
 }
 
-const OkButton = ({ id, totalAmount, totalPayment, to }: OkButtonProps) => {
+const OkButton = ({ id, totalAmount, totalPayment, to, paymentMoney }: OkButtonProps) => {
   const { updateOrderStatus } = useOrderUpdate();
 
   const handleChange = () => {
@@ -27,6 +29,7 @@ const OkButton = ({ id, totalAmount, totalPayment, to }: OkButtonProps) => {
     if (!payChange()) {
       alert('お金が足りません');
     } else {
+      // eslint-disable-next-line no-console
       console.log('🚀 ~ OkButton ~ clickhandle ~ payChange', payChange());
     }
     if (to === '/order') {
@@ -36,7 +39,7 @@ const OkButton = ({ id, totalAmount, totalPayment, to }: OkButtonProps) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Link state={{ id, totalAmount, totalPayment }} to={payChange() ? to : '#'}>
+      <Link state={{ id, totalAmount, totalPayment, paymentMoney }} to={payChange() ? to : '#'}>
         <Button
           color="ok"
           onClick={clickhandle}
