@@ -4,15 +4,19 @@ import ClearIcon from '@mui/icons-material/Clear';
 import CancelButton from './CancelButton';
 import DeleteYesButton from './DeleteYesButton';
 
-const CategoryNameAddScreen = () => {
+interface CategoryNameAddScreen{
+  iconClose: () => void;
+}
+
+const CategoryNameAddScreen = ({iconClose}:CategoryNameAddScreen) => {
   const [selectedChangeCancel, setSelectedChangeCalcel] = useState(true);
   const [selectedChangeOkey, setSelectedChangeOkey] = useState(true);
 
   return (
     <div>
       <Stack sx={{ textAlign: 'center' }}>
-        <Box sx={{ textAlign: 'right' }}>
-          <ClearIcon sx={{ fontSize: '80px' }} />
+      <Box sx={{ textAlign: 'right' }}>
+          <ClearIcon onClick={iconClose} sx={{ fontSize: '80px' }} />
         </Box>
 
         {/* fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' */}
