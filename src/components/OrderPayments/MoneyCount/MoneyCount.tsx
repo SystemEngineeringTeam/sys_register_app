@@ -64,18 +64,11 @@ const MoneyCount = () => {
   // お釣りが決まったらnewMoneyをセット
   useEffect(() => {
     if (todayMoney !== undefined) {
-      console.log('pay!', paymentMoney);
-      console.log('today', todayMoney);
-      console.log('oturi', oturiMoney);
       moneyKey.forEach((e) => {
         setMoneyFnc(todayMoney[e] + paymentMoney[e] - oturiMoney[e], e, setNewMoney);
       });
     }
   }, [oturiMoney, todayMoney]);
-  useEffect(() => {
-    console.log('updateNewMoney', newMoney);
-  }, [newMoney]);
-
   return (
     <Box sx={{ display: 'flex', userSelect: 'none' }}>
       {/* 注文番号 */}

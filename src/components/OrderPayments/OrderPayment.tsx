@@ -7,11 +7,9 @@ import WriteNotEnoughMoney from './WriteNotEnoughMoney';
 import BackButton from './BackButton';
 import OkButton from './OkButton';
 import { useState } from 'react';
-// eslint-disable-next-line no-restricted-imports
-import { useOrderCollection } from '../../firebase/useOrderCollection';
+import { useOrderCollection } from '@/firebase/useOrderCollection';
 import { useLocation } from 'react-router-dom';
-// eslint-disable-next-line no-restricted-imports
-import { idToTotalAmount } from '../../utils/accountingUtils';
+import { idToTotalAmount } from '@/utils/accountingUtils';
 import TiketCount from './MoneyCount/TiketCount';
 import DiscountAmount from './MoneyCount/DiscountAmount';
 import { type money } from '@/types';
