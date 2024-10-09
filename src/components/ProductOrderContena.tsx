@@ -3,28 +3,26 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { useState } from 'react';
 import { DoNotDisturbOnTotalSilenceOutlined } from '@mui/icons-material';
 import Ordercard from './OrderList/Ordercard';
-import { useOrderUpdate } from '../firebase/setProcess';
-import { useOrderCollection } from '../firebase/useOrderCollection';
+import { useOrderUpdate } from '@/firebase/setProcess';
+import { useOrderCollection } from '@/firebase/useOrderCollection';
 
 interface ProductOrderContenaProps {
-  key: number;
   id: number;
 }
 
-const ProductOrderContena = ({ key, id }: ProductOrderContenaProps) => {
+const ProductOrderContena = ({ id }: ProductOrderContenaProps) => {
   const { data } = useOrderCollection();
   const orders = (data ?? []).filter((order) => order.id === id.toString());
-  const order = orders.flatMap((data) => {
-    return data.order;
+  const order = orders.flatMap((orderData) => {
+    return orderData.order;
   });
-
   const [status, setStatus] = useState(false);
 
   const { updateOrderStatus } = useOrderUpdate();
 
   const handleChange = () => {
     setStatus(!status);
-    updateOrderStatus(id.toString(), 'cooking');
+    void updateOrderStatus(id.toString(), 'cooking');
   };
 
   return (

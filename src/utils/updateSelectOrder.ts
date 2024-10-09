@@ -1,16 +1,27 @@
 import { type order } from '@/types';
 
 export const updateOrderData = (newOrderData: order[], newOrder: order | undefined, setNewOrderData: any) => {
-  const newOrderDataCopy = newOrderData.slice();
-  const setData = newOrderDataCopy.map((order) => {
+  console.log('newOrderData!!:', newOrderData);
+
+  // newOrderと一致するorderをnewOrderDataから探す
+  const newOrderID = newOrderData.findIndex((order) => order.id === newOrder?.id);
+
+  // newOrderの型安全を保証
+  try {
     if (newOrder === undefined) {
-      console.log('newOrder is undefined');
-      return order;
+      console.error('newOrderがundefinedです');
+      return;
     }
-    if (order.item.id === newOrder.item.id) {
-      return newOrder;
-    }
-    return order;
-  });
-  setNewOrderData(setData);
+  } catch (e) {
+    console.error('newOrderの型が不正です');
+    return;
+  }
+
+  // newOrderDataのnewOrderID番目をnewOrderに更新
+  const setOrderData = (newOrderData[newOrderID] = newOrder);
+
+  // newOrderDataを更新
+  setNewOrderData(setOrderData);
+  console.log('newOrderData!!!%^:', setOrderData);
+  console.log('newOrderData!!698759!:', newOrderData);
 };

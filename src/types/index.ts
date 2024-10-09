@@ -1,5 +1,7 @@
 // 型定義する
 
+import { type CollectionReference, type DocumentData } from 'firebase/firestore';
+
 export type options_id = string;
 export type items_id = string;
 export type user_props = string | null;
@@ -30,7 +32,7 @@ export interface itemsData {
   imgUrl: string;
 }
 
-//　shop_userの型を定義
+// shop_userの型を定義
 export interface shop_user {
   id: string;
   name: string;
@@ -99,11 +101,27 @@ export interface money {
   '10': number;
   '5': number;
   '1': number;
+  tiket100: number;
   total: number;
 }
 
-// category
-export interface category {
-  id: string;
-  name: string;
+// moneyのData型を定義
+export interface moneyData {
+  '10000': number;
+  '5000': number;
+  '1000': number;
+  '500': number;
+  '100': number;
+  '50': number;
+  '10': number;
+  '5': number;
+  '1': number;
+  tiket100: number;
+  total: number;
+}
+
+export interface Data {
+  item: CollectionReference<DocumentData, DocumentData>;
+  options: Array<CollectionReference<DocumentData, DocumentData>>;
+  qty: number;
 }

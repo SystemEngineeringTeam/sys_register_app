@@ -31,7 +31,7 @@ export default function CustomizeChange(): ReactElement {
           />
         </Box>
         <Box sx={{ flex: 1, textAlign: 'center' }}>
-          <CustomizeChangeRight newOrder={state.newOrder} newOrderData={state.newOrderData} selectId={state.selectId} />
+          <CustomizeChangeRight  newOrderData={state.newOrderData} selectId={state.selectId} />
         </Box>
       </Box>
     </div>

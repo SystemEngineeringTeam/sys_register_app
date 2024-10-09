@@ -1,4 +1,3 @@
-
 import { type ReactElement, useEffect } from 'react';
 import { useOrderCollection } from '@/firebase/useOrderCollection';
 import { sortingOrders } from '@/utils/sortingOrders';
@@ -8,7 +7,6 @@ import OrderMenuLeft from '../components/OrderMenuLeft';
 import OrderMenuRight from '../components/OrderMenuRight';
 import { useAtom } from 'jotai';
 import { orderDataAtom } from '@/stores/orderAtom';
-
 
 export default function OrderChange(): ReactElement {
   interface State {
@@ -21,13 +19,24 @@ export default function OrderChange(): ReactElement {
   // orderCollectionのIDを取得
   const orderCollection = useOrderCollection();
   const selectId = state.orderId;
+  // selectIDに一致するorderを取得
   const orderData = sortingOrders(selectId);
+
+  console.log('orderData:', orderData);
+
+  const optData = orderData.map((order) => {
+    order.options.map((option) => option.id);
+  });
+
+  console.log('optData:', optData);
 
   const [newOrderData, setNewOrderData] = useAtom(orderDataAtom);
 
   useEffect(() => {
     setNewOrderData(orderData);
   }, [orderData]);
+
+  console.log('orderData@@@@@@@@@@@@@@@@:', orderData);
 
   return (
     <div>

@@ -3,14 +3,18 @@ import OkeyButton from './OkeyButton';
 import OrderDelete from './OrderDelete';
 import OrderNumber from './OrderNumber';
 import { type order } from '@/types';
+import { useAtom } from 'jotai';
+import { orderAtom } from '@/stores/orderAtom';
 
 interface CustomizeChangeRightProps {
   selectId: number;
   newOrderData: order[];
-  newOrder: order;
 }
 
-const CustomizeChangeRight = ({ selectId, newOrder, newOrderData }: CustomizeChangeRightProps) => {
+const CustomizeChangeRight = ({ selectId, newOrderData }: CustomizeChangeRightProps) => {
+
+
+
   return (
     <div>
       <Box
@@ -34,7 +38,7 @@ const CustomizeChangeRight = ({ selectId, newOrder, newOrderData }: CustomizeCha
             <OrderDelete />
           </Box>
           <Box sx={{ mt: '40px' }}>
-            <OkeyButton newOrder={newOrder} newOrderData={newOrderData} selectId={selectId} />
+            <OkeyButton  selectId={selectId} />
           </Box>
         </Box>
       </Box>

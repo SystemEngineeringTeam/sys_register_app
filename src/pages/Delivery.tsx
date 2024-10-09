@@ -1,19 +1,18 @@
-import { processOrderCollection } from '../utils/processOrderCollection';
-import DisplayNumberBox from '../components/DisplayNumber/DisplayNumberBox';
+import { processOrderCollection } from '@/utils/processOrderCollection';
+import DisplayNumberBox from '@/components/DisplayNumber/DisplayNumberBox';
 import { Box, Divider } from '@mui/material';
 
-export default function Delivery() {
+const Delivery = () => {
   // const { data } = useOrderCollection();
   // const { money} = useMoney();
 
   // const order = processOrderCollection(data || []);
 
   const cooking = processOrderCollection('cooking');
-  const cookings = cooking.map((cooking) => Number(cooking.id));
+  const cookings = cooking.map((cookElm) => Number(cookElm.id));
 
   const offer = processOrderCollection('offer');
-  const offers = offer.map((offer) => Number(offer.id));
-
+  const offers = offer.map((offerElm) => Number(offerElm.id));
   // 配列を順番に表示する
 
   // const orders = order.map((order) => Number(order.id));
@@ -27,7 +26,7 @@ export default function Delivery() {
           <DisplayNumberBox orders={cookings} />
           {/* <OrderWaitPeople orders={orders} /> */}
         </Box>
-        <Divider flexItem orientation="vertical" />
+        <Divider flexItem orientation="vertical" sx={{ height: '90Vh' }} />
         <Box sx={{ width: '50%' }}>
           <Box sx={{ fontSize: 58, textAlign: 'center', backgroundColor: '#ff6f00' }}>呼び出し番号</Box>
           <Box sx={{ width: 'auto' }}>
@@ -37,4 +36,5 @@ export default function Delivery() {
       </Box>
     </div>
   );
-}
+};
+export default Delivery;

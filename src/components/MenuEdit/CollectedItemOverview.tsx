@@ -3,17 +3,20 @@ import React from 'react';
 import ItemOverview from './ItemOverview';
 // eslint-disable-next-line no-restricted-imports
 import { type items } from '../../types/index';
+import { cateforyIdToItems } from '@/utils/CategoryIdToItem';
 
 interface CollectedItemOverviewProps {
-  OverviewItems: items[] | null;
+  allItems: items[] | undefined;
+  selectCategoryId: string;
 }
 
-const CollectedItemOverview = ({ OverviewItems }: CollectedItemOverviewProps) => {
+const CollectedItemOverview = ({ allItems, selectCategoryId }: CollectedItemOverviewProps) => {
+  const selectItems = cateforyIdToItems(allItems, selectCategoryId);
   return (
     <Box>
-      {OverviewItems?.map((OverviewItem) => (
-        <Box key={OverviewItem.id}>
-          <ItemOverview item={OverviewItem} />
+      {selectItems?.map((selectItem) => (
+        <Box key={selectItem.id}>
+          <ItemOverview item={selectItem} />
         </Box>
       ))}
     </Box>

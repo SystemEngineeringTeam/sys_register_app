@@ -8,10 +8,10 @@ import {
   deleteDoc,
 } from 'firebase/firestore';
 import { useAtomValue } from 'jotai';
-import { userAtom } from '../login/AdminLogin';
-import { type money } from '../types';
+import { userAtom } from '@/login/AdminLogin';
 import { useEffect, useState } from 'react';
 import { db } from './firebase';
+import { type money, type moneyData } from '@/types/index';
 
 // ref: https://stackoverflow.com/questions/74486413
 function converter<T>() {
@@ -54,6 +54,7 @@ export function useMoney() {
           '50': changeData['50'] as number,
           '5': changeData['5'] as number,
           '1': changeData['1'] as number,
+          'tiket100':changeData['tiket100'] as number,
           total: changeData.total as number,
         };
 
@@ -70,7 +71,7 @@ export function useMoney() {
         // 修正（更新時）
         if (change.type === 'modified') {
           setMoney((prevData) => {
-            if (prevData) {
+            if (prevData != null) {
               return prevData.map((data) => {
                 if (data.date === newData.date) {
                   return newData;
@@ -84,7 +85,7 @@ export function useMoney() {
         // 完全削除時
         if (change.type === 'removed') {
           setMoney((prevData) => {
-            if (prevData) {
+            if (prevData != null) {
               return prevData.filter((data) => data.date !== newData.date);
             }
             return prevData;
@@ -106,30 +107,10 @@ export function useMoney() {
   };
 }
 
-// money のデータを更新する関数
-// export const updateMoney = async (newMoney: money) => {
-//   const user = useAtomValue(userAtom);
-//   if (!user) {
-//     throw new Error('User is not logged in');
-//   }
-
-//   // 現在の日付の00:00:00のミリ秒を取得する
-//   const today = new Date();
-//   const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-//   const milliseconds = todayMidnight.getTime();
-
-//   const colRef = collection(db, 'shop_user', user.uid, 'mony').withConverter(converter<money>());
-
-//   await setDoc(doc(colRef, String(milliseconds)), newMoney);
-
-//   console.log('money updated');
-
-// };
-
 // money のデータを追加する関数
-export const addMoney = async (newMoney: money) => {
+export const addMoney = async (newMoney: moneyData) => {
   const user = useAtomValue(userAtom);
-  if (!user) {
+  if (user == null) {
     throw new Error('User is not logged in');
   }
 
@@ -143,6 +124,36 @@ export const addMoney = async (newMoney: money) => {
   await setDoc(doc(colRef, String(milliseconds)), newMoney);
 
   console.log('money added');
+};
+
+// money のデータを更新する関数
+export const updateMoney = async (newMoney: money) => {
+  const user = useAtomValue(userAtom);
+  if (user == null) {
+    throw new Error('User is not logged in');
+  }
+
+  const moneyID = newMoney.date;
+
+  const moneyData: moneyData = {
+    '1000': newMoney['1000'],
+    '5000': newMoney['5000'],
+    '10000': newMoney['10000'],
+    '500': newMoney['500'],
+    '100': newMoney['100'],
+    '10': newMoney['10'],
+    '50': newMoney['50'],
+    '5': newMoney['5'],
+    '1': newMoney['1'],
+    tiket100: newMoney.tiket100,
+    total: newMoney.total,
+  };
+
+  const colRef = collection(db, 'shop_user', user.uid, 'mony').withConverter(converter<money>());
+
+  await setDoc(doc(colRef, String(moneyID)), moneyData);
+
+  console.log('money updated');
 };
 
 // money のデータを削除する関数

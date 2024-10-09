@@ -1,12 +1,20 @@
 import { Box, CardMedia } from '@mui/material';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import { setMoneyFnc } from '@/utils/setRegisterMoney';
+import { useEffect, useState } from 'react';
+import { type money } from '@/types';
 
 interface MoneyPaidProps {
   image: string;
-  count: number;
-  setCount: React.Dispatch<React.SetStateAction<number>>;
+  num: 1 | 5 | 10 | 50 | 100 | 500 | 1000 | 5000 | 10000;
+  setPaymentMoney: React.Dispatch<React.SetStateAction<money>>;
 }
-const MoneyPaid = ({ image, count, setCount }: MoneyPaidProps) => {
+const MoneyPaid = ({ image, num, setPaymentMoney }: MoneyPaidProps) => {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    setMoneyFnc(count, num, setPaymentMoney);
+  }, [count]);
+
   return (
     <div>
       <Box

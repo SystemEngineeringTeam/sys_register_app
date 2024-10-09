@@ -79,8 +79,13 @@ export const getItems = () => {
         const optionData: options[] = await Promise.all(
           optionsArray.map(async (optionRef: DocumentReference) => {
             const optionSnap = await getDoc(optionRef);
+            const optionData = optionSnap.data();
             if (optionSnap.exists()) {
-              return optionSnap.data() as options;
+              return {
+                id: optionSnap.id,
+                name: optionData?.name as string,
+                price: optionData?.price as number,
+              };
             }
             return { id: null, name: null, price: null };
           }),
@@ -135,7 +140,6 @@ export const getItems = () => {
     };
   }, []);
   return data;
-
 };
 
 // itemを消去する関数

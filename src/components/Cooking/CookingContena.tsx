@@ -1,6 +1,6 @@
 import React from 'react';
-import { Divider, Stack } from '@mui/material';
-import ProductOrderContena from '../ProductOrderContena';
+import { Box, Divider, Stack } from '@mui/material';
+import ProductOrderContena from '@/components/ProductOrderContena';
 
 interface CookingContenaProps {
   cooking: number[];
@@ -11,8 +11,11 @@ const CookingContena: React.FC<CookingContenaProps> = ({ cooking }) => {
     <div>
       <Stack alignItems="center" divider={<Divider flexItem />} spacing={2}>
         {/* Dividerで区切り線を入れる */}
-        {cooking.map((item, index) => (
-          <ProductOrderContena key={index} id={item} />
+        {/* ここのcookingは注文番号の配列 = orderCollectionのid */}
+        {cooking.map((orderCollectionId) => (
+          <Box key={orderCollectionId}>
+            <ProductOrderContena id={orderCollectionId} />
+          </Box>
         ))}
       </Stack>
     </div>

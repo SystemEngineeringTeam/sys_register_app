@@ -13,7 +13,7 @@ export const sortingOrders = (id: number): order[] => {
 
   // orderCollectionからIDが一致するorderを取得
   const orders = (data: orderCollection[]): order[] => {
-    const order = data.find((order) => order.id === idToString);
+    const order = data.find((orderData) => orderData.id === idToString);
     return order ? order.order : [];
   };
 
