@@ -22,7 +22,6 @@ const CollectedChenge = ({ chenge, oturiMoney, setOturiMoney, todayMoney }: Coll
       const count = Math.floor(chengeAmount / e);
       if (todayMoney !== undefined) {
         if (count > todayMoney[e]) {
-          console.log('e Non', e);
           setMoneyFnc(todayMoney[e], e, setOturiMoney);
           // eslint-disable-next-line no-param-reassign
           chengeAmount -= todayMoney[e] * e; // 残りのおつりを次に回す
@@ -31,7 +30,6 @@ const CollectedChenge = ({ chenge, oturiMoney, setOturiMoney, todayMoney }: Coll
             alert('お釣りが払えません');
           }
         } else {
-          console.log('e Ok', e);
           setMoneyFnc(count, e, setOturiMoney);
           // eslint-disable-next-line no-param-reassign
           chengeAmount %= e; // 残りのおつりを次に回す
