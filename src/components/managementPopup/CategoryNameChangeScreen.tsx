@@ -7,9 +7,10 @@ import TextField from '@mui/material/TextField';
 
 interface CategoryNameChangeScreen {
   iconClose: () => void;
+  orderName:string;
 }
 
-const CategoryNameChangeScreen = ({ iconClose }: CategoryNameChangeScreen) => {
+const CategoryNameChangeScreen = ({ iconClose , orderName}: CategoryNameChangeScreen) => {
   const [selectedChangeCancel, setSelectedChangeCalcel] = useState(true);
   const [selectedChangeOkey, setSelectedChangeOkey] = useState(true);
 
@@ -26,7 +27,7 @@ const CategoryNameChangeScreen = ({ iconClose }: CategoryNameChangeScreen) => {
         </Box>
 
         <Box sx={{ mt: '10px' }}>
-          <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 2.0vw, 3.2rem)' }}>フード</Typography>
+          <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 2.0vw, 3.2rem)' }}>{orderName}</Typography>
         </Box>
 
         <Box sx={{ mt: '10rem' }}>
@@ -38,10 +39,11 @@ const CategoryNameChangeScreen = ({ iconClose }: CategoryNameChangeScreen) => {
         </Box>
 
         <Stack direction="row" fontSize="40px" sx={{ mt: '5%', justifyContent: 'right', mr: '7rem' }}>
-          <Button>
+          <Button onClick={iconClose}>
             <CancelButton
               selectedChangeCancel={selectedChangeCancel}
               setSelectedChangeCancel={setSelectedChangeCalcel}
+              
             />
           </Button>
           <Button>
