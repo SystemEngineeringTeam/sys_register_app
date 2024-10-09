@@ -9,27 +9,24 @@ import { getItems } from '@/firebase/useItems';
 
 const MenuCheck = () => {
   const categorysObject = getCategory();
-  console.log("🚀 ~ MenuCheck ~ categorysObject:", categorysObject)
-  console.log("🚀 ~ MenuCheck ~ categorysObject:", categorysObject.category)
+  console.log('🚀 ~ MenuCheck ~ categorysObject:', categorysObject);
+  console.log('🚀 ~ MenuCheck ~ categorysObject:', categorysObject.category);
   const [selectCategoryId, setSelectcategoryId] = useState('');
-  const [selectAdd, setSelectAdd] = useState("add");
-  const [selectEdit, setSelectEdit] = useState("edit");
+  const [selectAdd, setSelectAdd] = useState('add');
+  const [selectEdit, setSelectEdit] = useState('edit');
   const allItems = getItems();
   return (
     <Box>
       <Box sx={{ margin: '1.5rem' }}>
         {/* カテゴリー編集、商品追加ボタン */}
         <Box sx={{ display: 'flex', alignContent: 'center', justifyContent: 'space-evenly' }}>
-          <ScreenChengeButton text="カテゴリー編集" themeColor="categoryEdit" 
-          
-            selectAdd={selectAdd} 
-            selectEdit={selectEdit} 
+          <ScreenChengeButton
+            text="カテゴリー編集"
+            themeColor="categoryEdit"
+            selectAdd={selectAdd}
+            selectEdit={selectEdit}
           />
-          <ScreenChengeButton text="商品追加" themeColor="addItem" 
-          selectAdd={selectAdd} 
-          selectEdit={selectEdit} 
-
-          />
+          <ScreenChengeButton text="商品追加" themeColor="addItem" selectAdd={selectAdd} selectEdit={selectEdit} />
         </Box>
         {/* カテゴリー遷移バー */}
         <Box sx={{ margin: '0.5rem' }}>
