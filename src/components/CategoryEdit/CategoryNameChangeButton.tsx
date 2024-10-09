@@ -3,32 +3,15 @@ import React, { useState } from 'react';
 import CategoryDeletePopupCard from '../managementPopup/CategoryDeletePopupCard';
 import CategoryNameChangeCard from '../managementPopup/CategoryNameChangeCard';
 
-// interface CategoryNameChangeButtonProp{
-//   iconClose: () => void;
-//   handleClose: () => void;
-//   open: boolean;
-//   handleOpen: () => void
-// }
-const CategoryNameChangeButton = () => {
+interface CategoryNameChangeButtonProp {
+  orderName: string;
+}
+const CategoryNameChangeButton = ({ orderName }: CategoryNameChangeButtonProp) => {
   const ClickButton = () => {
     setSelectedChange(!selectedChange);
   };
 
   const [selectedChange, setSelectedChange] = useState(true);
-
-  // 表示の状態
-  const [display, setDisplay] = useState('');
-
-  // カテゴリーの状態
-  const [category, setCategory] = useState('');
-  // カテゴリーの選択
-  const handleChange = (event: SelectChangeEvent) => {
-    setCategory(event.target.value);
-  };
-  // 表示の選択
-  const handleDisplayChange = (event: SelectChangeEvent) => {
-    setDisplay(event.target.value);
-  };
 
   const [open, setOpen] = useState(false);
 
@@ -53,7 +36,7 @@ const CategoryNameChangeButton = () => {
 
       <Dialog fullWidth maxWidth="md" onClose={handleClose} open={open}>
         <DialogContent sx={{ p: 0 }}>
-          <CategoryNameChangeCard iconClose={iconClose} />
+          <CategoryNameChangeCard iconClose={iconClose} orderName={orderName}/>
         </DialogContent>
       </Dialog>
     </div>
