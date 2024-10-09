@@ -28,7 +28,7 @@ const CategoryAddPopupScreen = ({iconColse}:CategoryAddPopupCardProps) => {
         </Box>
 
         <Stack direction="row" fontSize="40px" sx={{ mt: '15%', justifyContent: 'right', mr: '7rem' }}>
-          <Button>
+          <Button onClick={iconColse}>
             <CancelButton
               selectedChangeCancel={selectedChangeCancel}
               setSelectedChangeCancel={setSelectedChangeCalcel}

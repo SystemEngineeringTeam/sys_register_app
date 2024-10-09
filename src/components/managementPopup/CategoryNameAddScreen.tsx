@@ -6,6 +6,7 @@ import DeleteYesButton from './DeleteYesButton';
 
 interface CategoryNameAddScreen{
   iconClose: () => void;
+  
 }
 
 const CategoryNameAddScreen = ({iconClose}:CategoryNameAddScreen) => {
@@ -29,7 +30,7 @@ const CategoryNameAddScreen = ({iconClose}:CategoryNameAddScreen) => {
         </Box>
 
         <Stack direction="row" fontSize="40px" sx={{ mt: '300px', justifyContent: 'right', mr: '7rem' }}>
-          <Button>
+          <Button onClick={iconClose}>
             <CancelButton
               selectedChangeCancel={selectedChangeCancel}
               setSelectedChangeCancel={setSelectedChangeCalcel}
