@@ -6,9 +6,10 @@ import DeleteYesButton from './DeleteYesButton';
 
 interface CategoryAddPopupScreenProp {
   iconClose: () => void;
+  orderName: string
 }
 
-const CategoryDeletePopupScreen = ({ iconClose }: CategoryAddPopupScreenProp) => {
+const CategoryDeletePopupScreen = ({ iconClose , orderName}: CategoryAddPopupScreenProp) => {
   const [selectedChangeCancel, setSelectedChangeCalcel] = useState(true);
   const [selectedChangeOkey, setSelectedChangeOkey] = useState(true);
   return (
@@ -30,7 +31,7 @@ const CategoryDeletePopupScreen = ({ iconClose }: CategoryAddPopupScreenProp) =>
         </Box>
 
         <Box sx={{ mt: '5rem' }}>
-          <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 3.0vw, 5.0rem)' }}>カテゴリー:フード</Typography>
+          <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 3.0vw, 5.0rem)' }}>カテゴリー:{orderName}</Typography>
         </Box>
 
         <Box sx={{ mt: '5rem' }}>
@@ -40,14 +41,17 @@ const CategoryDeletePopupScreen = ({ iconClose }: CategoryAddPopupScreenProp) =>
         </Box>
 
         <Stack direction="row" fontSize="40px" sx={{ mt: '10%', justifyContent: 'right', mr: '7rem' }}>
-          <Button>
+          <Button onClick={iconClose}>
             <CancelButton
               selectedChangeCancel={selectedChangeCancel}
               setSelectedChangeCancel={setSelectedChangeCalcel}
+              
             />
           </Button>
           <Button>
-            <DeleteYesButton selectedChangeOkey={selectedChangeOkey} setSelectedChangeOkey={setSelectedChangeOkey} />
+            <DeleteYesButton selectedChangeOkey={selectedChangeOkey} setSelectedChangeOkey={setSelectedChangeOkey}
+            //orderName={orderName}
+            />
           </Button>
         </Stack>
       </Stack>

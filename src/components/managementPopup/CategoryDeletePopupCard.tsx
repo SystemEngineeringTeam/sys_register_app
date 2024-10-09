@@ -4,13 +4,14 @@ import { Card } from '@mui/material';
 
 interface PopupCardProps {
   iconClose: () => void;
+  orderName: string;
 }
 
-const CategoryDeletePopupCard = ({iconClose}:PopupCardProps) => {
+const CategoryDeletePopupCard = ({iconClose, orderName}:PopupCardProps) => {
   return (
     <div>
       <Card >
-        <CategoryDeletePopupScreen iconClose={iconClose}/>
+        <CategoryDeletePopupScreen iconClose={iconClose} orderName={orderName}/>
       </Card>
     </div>
   );
