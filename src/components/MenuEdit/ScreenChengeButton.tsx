@@ -12,12 +12,18 @@ interface BackButtonProps {
 }
 
 const ScreenChengeButton = ({ themeColor, text, 
-  selectAdd, selectEdit 
+  selectAdd
+  //, selectEdit 
 }: BackButtonProps) => {
 
-const state = (
-  (text === "カテゴリー編集" ? {selectEdit} : {selectAdd})
+const link = (
+  (text === "カテゴリー編集" ?  "/categoryedit" : "/test" )
 )
+
+const state = (
+  (link === "/test" ? selectAdd : undefined)
+)
+
 
 
   return (
@@ -25,7 +31,7 @@ const state = (
       <Button
         color={themeColor}
         component={Link}
-        to="/test"
+        to={link}
         state={{state}}
         sx={{
           display: 'flex',
