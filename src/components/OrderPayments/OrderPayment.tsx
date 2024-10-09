@@ -32,6 +32,7 @@ const OrderPayment = () => {
     '10': 0,
     '5': 0,
     '1': 0,
+    tiket100: 0,
     total: 0,
   });
   const orderCollectionId = id;
@@ -40,8 +41,6 @@ const OrderPayment = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { data } = useOrderCollection();
   // 貨幣の数を数えるuseState
-
-  const [tiketCount100, setTiketCount100] = useState(0);
   const [discount100, setDiscount100] = useState(0);
   const [discount50, setDiscount50] = useState(0);
   // 注文から合計金額を算出する関数 DiscountAmount
@@ -73,9 +72,9 @@ const OrderPayment = () => {
           {/* チケット、割引 */}
           <Box sx={{ display: 'flex' }}>
             <TiketCount
-              count={tiketCount100}
               image="tiket_100.svg"
-              setCount={setTiketCount100}
+              paymentMoney={paymentMoney}
+              setPaymentMoney={setPaymentMoney}
               totalAmount={getTotalAmount()}
             />
             <DiscountAmount
@@ -83,7 +82,7 @@ const OrderPayment = () => {
               discountAmount={50}
               setCount={setDiscount50}
               // チケットで支払った値段
-              tiketAmount={tiketCount100 * 100}
+              tiketAmount={paymentMoney.tiket100 * 100}
               totalAmount={getTotalAmount()}
             />
             <DiscountAmount
@@ -91,7 +90,7 @@ const OrderPayment = () => {
               discountAmount={100}
               setCount={setDiscount100}
               // チケットで支払った値段
-              tiketAmount={tiketCount100 * 100}
+              tiketAmount={paymentMoney.tiket100 * 100}
               totalAmount={getTotalAmount()}
             />
           </Box>
@@ -106,10 +105,10 @@ const OrderPayment = () => {
           }}
         >
           {/* お支払いと合計金額 */}
-          <WritePaidSumMoney totalAmount={getTotalAmount()} totalPayment={paymentMoney.total + tiketCount100 * 100} />
+          <WritePaidSumMoney totalAmount={getTotalAmount()} totalPayment={paymentMoney.total} />
           <Box sx={{ border: 1 }} />
           {/* おつり */}
-          <WriteNotEnoughMoney totalAmount={getTotalAmount()} totalPayment={paymentMoney.total + tiketCount100 * 100} />
+          <WriteNotEnoughMoney totalAmount={getTotalAmount()} totalPayment={paymentMoney.total} />
           <Box sx={{ display: 'flex', margin: '1rem', position: 'fixed', right: '2rem', bottom: '1rem' }}>
             <Box>
               {/* 戻るボタン */}
@@ -122,7 +121,7 @@ const OrderPayment = () => {
                 paymentMoney={paymentMoney}
                 to="/paychange"
                 totalAmount={getTotalAmount()}
-                totalPayment={paymentMoney.total + tiketCount100 * 100}
+                totalPayment={paymentMoney.total}
               />
             </Box>
           </Box>
