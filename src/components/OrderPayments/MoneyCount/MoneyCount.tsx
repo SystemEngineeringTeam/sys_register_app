@@ -25,7 +25,7 @@ const MoneyCount = () => {
   const today = new Date();
   const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
   const milliseconds = todayMidnight.getTime();
-  console.log(milliseconds);
+  // console.log(milliseconds);
   const todayMoney = money?.find((e) => {
     return e.date === milliseconds;
   });
@@ -41,6 +41,7 @@ const MoneyCount = () => {
     '10': 0,
     '5': 0,
     '1': 0,
+    tiket100: 0,
     total: 0,
   });
   // お釣りを数えるためのもの
@@ -55,12 +56,13 @@ const MoneyCount = () => {
     '10': 0,
     '5': 0,
     '1': 0,
+    tiket100: 0,
     total: 0,
   });
   // setMoneyFncを使うための下準備
-  type moneyKeyType = 'date' | 1 | 5 | 10 | 50 | 100 | 500 | 1000 | 5000 | 10000 | 'total';
+  type moneyKeyType = 'date' | 1 | 5 | 10 | 50 | 100 | 500 | 1000 | 5000 | 10000 | 'tiket100' | 'total';
   // mapで展開したい要素
-  const moneyKey: moneyKeyType[] = [1, 5, 10, 50, 500, 100, 1000, 5000, 10000, 'total'];
+  const moneyKey: moneyKeyType[] = [1, 5, 10, 50, 500, 100, 1000, 5000, 10000, 'tiket100', 'total'];
   // お釣りが決まったらnewMoneyをセット
   useEffect(() => {
     if (todayMoney !== undefined) {
