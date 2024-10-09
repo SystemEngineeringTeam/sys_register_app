@@ -40,7 +40,7 @@ const PopupScreen = ({ iconClose }: Props) => {
         </Box>
 
         <Stack direction="row" sx={{ mt: '10%', justifyContent: 'right', mr: '7rem' }}>
-          <Button>
+          <Button onClick={iconClose}>
             <CancelButton
               selectedChangeCancel={selectedChangeCancel}
               setSelectedChangeCancel={setSelectedChangeCancel}

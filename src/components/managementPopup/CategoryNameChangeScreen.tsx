@@ -5,7 +5,12 @@ import CancelButton from './CancelButton';
 import DeleteYesButton from './DeleteYesButton';
 import TextField from '@mui/material/TextField';
 
-const CategoryNameChangeScreen = () => {
+interface CategoryNameChangeScreen {
+  iconClose: () => void;
+  orderName:string;
+}
+
+const CategoryNameChangeScreen = ({ iconClose , orderName}: CategoryNameChangeScreen) => {
   const [selectedChangeCancel, setSelectedChangeCalcel] = useState(true);
   const [selectedChangeOkey, setSelectedChangeOkey] = useState(true);
 
@@ -13,7 +18,7 @@ const CategoryNameChangeScreen = () => {
     <div>
       <Stack sx={{ textAlign: 'center' }}>
         <Box sx={{ textAlign: 'right' }}>
-          <ClearIcon sx={{ fontSize: '80px' }} />
+          <ClearIcon onClick={iconClose} sx={{ fontSize: '80px' }} />
         </Box>
 
         {/* fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' */}
@@ -22,7 +27,7 @@ const CategoryNameChangeScreen = () => {
         </Box>
 
         <Box sx={{ mt: '10px' }}>
-          <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 2.0vw, 3.2rem)' }}>フード</Typography>
+          <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 2.0vw, 3.2rem)' }}>{orderName}</Typography>
         </Box>
 
         <Box sx={{ mt: '10rem' }}>
@@ -34,10 +39,11 @@ const CategoryNameChangeScreen = () => {
         </Box>
 
         <Stack direction="row" fontSize="40px" sx={{ mt: '5%', justifyContent: 'right', mr: '7rem' }}>
-          <Button>
+          <Button onClick={iconClose}>
             <CancelButton
               selectedChangeCancel={selectedChangeCancel}
               setSelectedChangeCancel={setSelectedChangeCalcel}
+              
             />
           </Button>
           <Button>

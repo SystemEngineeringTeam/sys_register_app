@@ -4,19 +4,23 @@ import CancelButton from './CancelButton';
 import DeleteYesButton from './DeleteYesButton';
 import ClearIcon from '@mui/icons-material/Clear';
 
-const CategoryAddPopupScreen = () => {
+interface CategoryAddPopupCardProps{
+  iconColse: () => void;
+}
+
+const CategoryAddPopupScreen = ({iconColse}:CategoryAddPopupCardProps) => {
   const [selectedChangeCancel, setSelectedChangeCalcel] = useState(true);
   const [selectedChangeOkey, setSelectedChangeOkey] = useState(true);
   return (
     <div>
       <Stack sx={{ textAlign: 'center' }}>
         <Box sx={{ textAlign: 'right' }}>
-          <ClearIcon sx={{ fontSize: '80px' }} />
+          <ClearIcon onClick={iconColse} sx={{ fontSize: '80px' }} />
         </Box>
 
         {/* fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' */}
         <Box sx={{ mt: '40px' }}>
-          <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 2.5vw, 4.2rem)' }}>本当に消去しますか？</Typography>
+          <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 2.5vw, 4.2rem)' }}>本当に取り消しますか？</Typography>
         </Box>
 
         <Box fontSize={{ xs: '10px', sm: '20px', md: '30px' }} sx={{ mt: '5rem' }}>
@@ -24,7 +28,7 @@ const CategoryAddPopupScreen = () => {
         </Box>
 
         <Stack direction="row" fontSize="40px" sx={{ mt: '15%', justifyContent: 'right', mr: '7rem' }}>
-          <Button>
+          <Button onClick={iconColse}>
             <CancelButton
               selectedChangeCancel={selectedChangeCancel}
               setSelectedChangeCancel={setSelectedChangeCalcel}
