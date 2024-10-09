@@ -1,19 +1,23 @@
-import { Box, Grid } from '@mui/material';
+import { Box, Grid2 } from '@mui/material';
 import DisplayNumber from './DisplayNumber';
 
 const DisplayNumberBox = ({ orders }: { orders: number[] }) => {
   return (
     <div>
       <Box>
-        <Grid container rowSpacing={1}>
+        <Grid2 container rowSpacing={1}>
           {orders.map((order: number) => {
             return (
-              <Grid alignItems="center" display="flex" justifyContent="center" xs={4}>
-                <DisplayNumber ordersId={order} />
-              </Grid>
+              <Grid2
+                key={order}
+                size={{ xs: 6 }}
+                sx={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}
+              >
+                <DisplayNumber orderId={order} />
+              </Grid2>
             );
           })}
-        </Grid>
+        </Grid2>
       </Box>
     </div>
   );
