@@ -4,13 +4,14 @@ import { Card } from '@mui/material';
 
 interface CategoryNameAddCard{
   iconClose: () => void;
+  orderName: string;
 }
 
-const CategoryNameChangeCard = ({iconClose}:CategoryNameAddCard) => {
+const CategoryNameChangeCard = ({iconClose, orderName}:CategoryNameAddCard) => {
   return (
     <div>
       <Card sx={{}}>
-        <CategoryNameChangeScreen iconClose={iconClose}/>
+        <CategoryNameChangeScreen iconClose={iconClose} orderName={orderName}/>
       </Card>
     </div>
   );
