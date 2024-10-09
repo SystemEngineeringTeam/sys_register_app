@@ -7,6 +7,8 @@ import { getCategory } from '@/firebase/useCategory';
 
 const MenuCheck = () => {
   const categorysObject = getCategory();
+  console.log("🚀 ~ MenuCheck ~ categorysObject:", categorysObject)
+  console.log("🚀 ~ MenuCheck ~ categorysObject:", categorysObject.category)
   // firebaseからitemがとってこれない
   // const ItemsObject = getItems();
   const [selectCategoryId, setSelectcategoryId] = useState('');
@@ -20,6 +22,8 @@ const MenuCheck = () => {
 
   const [selectEdit, setSelectEdit] = useState("edit");
 
+
+
   return (
     <Box>
       <Box sx={{ margin: '1.5rem' }}>
@@ -27,12 +31,13 @@ const MenuCheck = () => {
         <Box sx={{ display: 'flex', alignContent: 'center', justifyContent: 'space-evenly' }}>
           <ScreenChengeButton text="カテゴリー編集" themeColor="categoryEdit" 
           
-            selectAdd={selectAdd} selectEdit={selectEdit} 
-            //setSelectAdd={setSelectAdd} setSelectEdit={setSelectEdit}
+            selectAdd={selectAdd} 
+            selectEdit={selectEdit} 
           />
           <ScreenChengeButton text="商品追加" themeColor="addItem" 
-          selectAdd={selectAdd} selectEdit={selectEdit} 
-          //setSelectAdd={setSelectAdd} setSelectEdit={setSelectEdit}
+          selectAdd={selectAdd} 
+          selectEdit={selectEdit} 
+
           />
         </Box>
         {/* カテゴリー遷移バー */}
@@ -41,6 +46,8 @@ const MenuCheck = () => {
             categorys={categorysObject.category}
             selectcategoryId={selectCategoryId}
             setSelectcategoryId={setSelectcategoryId}
+            selectEdit={selectEdit}
+            selectAdd={selectAdd}
           />
         </Box>
 
