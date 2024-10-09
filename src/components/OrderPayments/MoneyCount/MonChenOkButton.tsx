@@ -1,26 +1,24 @@
+import { useOrderUpdate } from '@/firebase/setProcess';
+import { updateMoney } from '@/firebase/useMoney';
+import { theme } from '@/themes/theme';
+import { type money } from '@/types';
 import { Button, ThemeProvider } from '@mui/material';
 import { Link } from 'react-router-dom';
 // eslint-disable-next-line no-restricted-imports
-import { useOrderUpdate } from '../../firebase/setProcess';
-// eslint-disable-next-line no-restricted-imports
-import { theme } from '../../themes/theme';
-import { type money } from '@/types';
 
-interface OkButtonProps {
+interface MonChenOkButtonProps {
   id: string;
   totalPayment: number;
   totalAmount: number;
   to: string;
-  paymentMoney: money;
+  newMoney: money;
 }
 
-const OkButton = ({ id, totalAmount, totalPayment, to, paymentMoney }: OkButtonProps) => {
+const MonChenOkButton = ({ id, totalAmount, totalPayment, to, newMoney }: MonChenOkButtonProps) => {
   const { updateOrderStatus } = useOrderUpdate();
-
   const handleChange = () => {
     void updateOrderStatus(id.toString(), 'accounting');
   };
-
   const payChange = () => {
     return totalPayment - totalAmount >= 0;
   };
@@ -39,10 +37,12 @@ const OkButton = ({ id, totalAmount, totalPayment, to, paymentMoney }: OkButtonP
 
   return (
     <ThemeProvider theme={theme}>
-      <Link state={{ id, totalAmount, totalPayment, paymentMoney }} to={payChange() ? to : '#'}>
+      <Link state={{ newMoney }} to={payChange() ? to : '#'}>
         <Button
           color="ok"
-          onClick={clickhandle}
+          onClick={() => {
+            clickhandle();
+          }}
           sx={{
             userSelect: 'none',
             fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
@@ -58,4 +58,4 @@ const OkButton = ({ id, totalAmount, totalPayment, to, paymentMoney }: OkButtonP
   );
 };
 
-export default OkButton;
+export default MonChenOkButton;

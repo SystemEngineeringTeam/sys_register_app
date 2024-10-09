@@ -1,12 +1,12 @@
 import React from 'react';
-import { processOrderCollection } from '../utils/processOrderCollection';
+import { processOrderCollection } from '@/utils/processOrderCollection';
 import CookingContena from '@/components/Cooking/CookingContena';
 
 const Cooking: React.FC = () => {
   const process = 'cooking';
   const cooking = processOrderCollection(process);
 
-  const cookings = cooking.map((cooking) => Number(cooking.id));
+  const cookings = cooking.map((cookingElem) => Number(cookingElem.id));
 
   return (
     <div>
