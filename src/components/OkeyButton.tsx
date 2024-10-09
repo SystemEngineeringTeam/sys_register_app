@@ -1,23 +1,30 @@
 import { updateOrder } from '@/firebase/useOrder';
-import { orderDataAtom } from '@/stores/orderAtom';
+import { orderAtom, orderDataAtom } from '@/stores/orderAtom';
 import { type order } from '@/types';
 import { updateOrderData } from '@/utils/updateSelectOrder';
 import { Button } from '@mui/material';
-import { useSetAtom } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom';
 
 interface OkeyButtonProps {
   selectId: number;
-  newOrderData: order[];
-  newOrder: order;
 }
 
-const OkeyButton = ({ selectId, newOrderData, newOrder }: OkeyButtonProps) => {
-  const setNewOrderData = useSetAtom(orderDataAtom);
+const OkeyButton = ({ selectId }: OkeyButtonProps) => {
+  const [newOrder, setNewOrder] = useAtom(orderAtom);
+  const [newOrderData, setNewOrderData] = useAtom(orderDataAtom);
+
+  console.log('newOrder2@@@@@$$:', newOrder);
+
   const navigate = useNavigate();
 
   const handleClick = () => {
+    // ここでNewOrderDataを更新
     updateOrderData(newOrderData, newOrder, setNewOrderData);
+
+    console.log('newOrderData)))))))))):', newOrderData);
+
+    // ここでfirebaseのデータを更新
     updateOrder(selectId.toString(), newOrderData);
     navigate('/orderchange', { state: { orderId: selectId } });
   };

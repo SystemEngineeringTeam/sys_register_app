@@ -36,6 +36,8 @@ export default function OrderChange(): ReactElement {
     setNewOrderData(orderData);
   }, [orderData]);
 
+  console.log('orderData@@@@@@@@@@@@@@@@:', orderData);
+
   return (
     <div>
       <Box sx={{ display: 'flex' }}>

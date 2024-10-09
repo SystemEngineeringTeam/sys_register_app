@@ -5,11 +5,15 @@ import { Data, type order } from '../types/index';
 import { db } from './firebase';
 
 export const updateOrder = async (orderCollectionId: string, orders: order[]) => {
+  console.log('Updating order' + 'orderCollectionId:' + orderCollectionId + 'orders:' + orders);
+
   const user = useAtomValue(userAtom);
 
   if (!user) {
     throw new Error('User is not logged in');
   }
+
+  console.log('Updating order' + 'orderCollectionId:' + orderCollectionId + 'orders:' + orders);
 
   const cartData = orders.map((order) => {
     const orderData = createOrderData(

@@ -1,6 +1,8 @@
 import { type order } from '@/types';
 
 export const updateOrderData = (newOrderData: order[], newOrder: order | undefined, setNewOrderData: any) => {
+  console.log('newOrderData!!:', newOrderData);
+
   // newOrderと一致するorderをnewOrderDataから探す
   const newOrderID = newOrderData.findIndex((order) => order.id === newOrder?.id);
 
@@ -20,4 +22,6 @@ export const updateOrderData = (newOrderData: order[], newOrder: order | undefin
 
   // newOrderDataを更新
   setNewOrderData(setOrderData);
+  console.log('newOrderData!!!%^:', setOrderData);
+  console.log('newOrderData!!698759!:', newOrderData);
 };

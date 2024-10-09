@@ -18,6 +18,8 @@ const CustomizeChangeLeft = ({ selectId, selectMenuqty, selectOptions, selectMen
   // 選択しているoption
   const [choiceOptions, setChoiceOptions] = useState<options[]>(selectOptions);
 
+  console.log('selectOptions5742682768972368:' + selectOptions);
+
   const setNewOrder = useSetAtom(orderAtom);
 
   // selectIdからmenuのデータを取得
@@ -57,6 +59,7 @@ const CustomizeChangeLeft = ({ selectId, selectMenuqty, selectOptions, selectMen
 
   useEffect(() => {
     setNewOrder(newOrder);
+    console.log('newOrder!!!!!:', newOrder);
   }, [choiceOptions]);
 
   return (

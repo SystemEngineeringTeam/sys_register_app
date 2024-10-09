@@ -14,7 +14,7 @@ const CustmizeGraf = ({ itemOption, choiceOptions, setChoiceOptions, selectOptio
   // itemOption.idがoptionsの中にあるかどうか
   // 同じidがある場合はtrue
 
-  console.log ('selectOptionsID:'+selectOptions.map((option) => option.id));
+  console.log('selectOptionsID:' + selectOptions.map((option) => option.id));
 
   const Selected = selectOptions.find((option) => option.id === itemOption.id);
 
@@ -37,6 +37,7 @@ const CustmizeGraf = ({ itemOption, choiceOptions, setChoiceOptions, selectOptio
   const [selectedChange, setSelectedChange] = useState(isSelected);
 
   console.log('selectedChange:' + selectedChange);
+  console.log('choiceOptions&&&&&&&&&&&:' + choiceOptions);
 
   useEffect(() => {
     // selectedChangeが変更されたときにchoiceOptionsを更新
@@ -45,12 +46,16 @@ const CustmizeGraf = ({ itemOption, choiceOptions, setChoiceOptions, selectOptio
       // choiceOptionsを変更
       setChoiceOptions(choiceOptions.filter((option) => option.id !== itemOption.id));
 
+      console.log('choiceOptions!!!!!!!!!!!!:' + choiceOptions);
+
       setChoiceOptions([...choiceOptions, itemOption]);
     } else {
       // なしの場合
       // optionsからitemOptionを削除
       const newOptions = choiceOptions.filter((option) => option.id !== itemOption.id);
       setChoiceOptions(newOptions);
+
+      console.log('choiceOptions2222222222:' + choiceOptions);
     }
   }, [selectedChange]);
 
