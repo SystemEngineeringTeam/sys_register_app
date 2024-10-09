@@ -11,7 +11,7 @@ import { useOrderCollection } from '@/firebase/useOrderCollection';
 import { useLocation } from 'react-router-dom';
 import { idToTotalAmount } from '@/utils/accountingUtils';
 import TiketCount from './MoneyCount/TiketCount';
-import DiscountAmount from './MoneyCount/DiscountAmount';
+// import DiscountAmount from './MoneyCount/DiscountAmount';
 import { type money } from '@/types';
 
 interface State {
@@ -41,14 +41,15 @@ const OrderPayment = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { data } = useOrderCollection();
   // 貨幣の数を数えるuseState
-  const [discount100, setDiscount100] = useState(0);
-  const [discount50, setDiscount50] = useState(0);
+  // const [discount100, setDiscount100] = useState(0);
+  // const [discount50, setDiscount50] = useState(0);
   // 注文から合計金額を算出する関数 DiscountAmount
   function getTotalAmount() {
     // data: orderCollection[] | undefinedの型整形
     if (data !== undefined) {
       // 割引関係はここに-していく
-      return idToTotalAmount(orderCollectionId, data) - discount100 * 100 - discount50 * 50;
+      // return idToTotalAmount(orderCollectionId, data) - discount100 * 100 - discount50 * 50;
+      return idToTotalAmount(orderCollectionId, data);
     }
     // orderCollectionIdから合計金額を出す関数
     return -1;
@@ -77,7 +78,7 @@ const OrderPayment = () => {
               setPaymentMoney={setPaymentMoney}
               totalAmount={getTotalAmount()}
             />
-            <DiscountAmount
+            {/* <DiscountAmount
               count={discount50}
               discountAmount={50}
               setCount={setDiscount50}
@@ -92,7 +93,7 @@ const OrderPayment = () => {
               // チケットで支払った値段
               tiketAmount={paymentMoney.tiket100 * 100}
               totalAmount={getTotalAmount()}
-            />
+            /> */}
           </Box>
         </Stack>
         {/* 支払い、合計金額、お釣り、戻る・OKボタン */}

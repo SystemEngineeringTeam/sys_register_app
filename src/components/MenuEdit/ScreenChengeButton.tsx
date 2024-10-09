@@ -8,31 +8,25 @@ interface BackButtonProps {
   text: string;
   themeColor: 'categoryEdit' | 'addItem';
   selectAdd: string;
-  selectEdit: string;
+  // selectEdit: string;
 }
 
-const ScreenChengeButton = ({ themeColor, text, 
-  selectAdd
-  //, selectEdit 
+const ScreenChengeButton = ({
+  themeColor,
+  text,
+  selectAdd,
+  //, selectEdit
 }: BackButtonProps) => {
+  const link = text === 'カテゴリー編集' ? '/categoryedit' : '/test';
 
-const link = (
-  (text === "カテゴリー編集" ?  "/categoryedit" : "/test" )
-)
-
-const state = (
-  (link === "/test" ? selectAdd : undefined)
-)
-
-
+  const state = link === '/test' ? selectAdd : undefined;
 
   return (
     <ThemeProvider theme={theme}>
       <Button
         color={themeColor}
         component={Link}
-        to={link}
-        state={{state}}
+        state={{ state }}
         sx={{
           display: 'flex',
           alignItems: 'center',
@@ -41,6 +35,7 @@ const state = (
           width: { xs: '8rem', sm: '10rem', md: '14rem' },
           height: { xs: '4rem', sm: '6rem', md: '8rem' },
         }}
+        to={link}
         variant="contained"
       >
         {text}
