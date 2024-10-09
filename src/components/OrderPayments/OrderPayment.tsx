@@ -74,7 +74,7 @@ const OrderPayment = () => {
           <Box sx={{ display: 'flex' }}>
             <TiketCount
               count={tiketCount100}
-              image="public/tiket_100.svg"
+              image="tiket_100.svg"
               setCount={setTiketCount100}
               totalAmount={getTotalAmount()}
             />
