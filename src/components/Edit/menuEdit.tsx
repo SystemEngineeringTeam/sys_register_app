@@ -59,6 +59,10 @@ const MenuEdit = () => {
   // ポップアップ表示用
   const [onScreenPopUpItem, setOnScreenPopUpItem] = useState(false);
   const [onScreenPopUpAmount, setOnScreenPopUpAmount] = useState(false);
+  const ItemNameBoolean = getItemNameDuplication(state.state.allIitems, state.state.item?.name);
+  const [allCategory, setAllCategory] = useState(state.state.categorys);
+  // 表示の状態
+  const [display, setDisplay] = useState('');
   // itemNameのEdit
   const handleNameChange = () => {
     // ここで商品名の変更popupを出す
@@ -79,14 +83,8 @@ const MenuEdit = () => {
   };
   // カテゴリーの状態
   const [categoryName, setCategoryName] = useState(
-    categoryIdToCategoryName(state.state.categorys, state.state.item?.category_id)
+    categoryIdToCategoryName(state.state.categorys, state.state.item?.category_id),
   );
- console.log("catName",categoryName);
-  const ItemNameBoolean = getItemNameDuplication(state.state.allIitems, state.state.item?.name);
-  const [allCategory, setAllCategory] = useState(state.state.categorys);
-  // 表示の状態
-  const [display, setDisplay] = useState('');
-
   // カテゴリーの選択
   const handleChange = (event: SelectChangeEvent) => {
     setCategoryName(event.target.value);
@@ -184,21 +182,22 @@ const MenuEdit = () => {
                   <EditIcon />
                 </IconButton>
                 {onScreenPopUpAmount ? (
-                  // <Controller
-                  //   name="itemPrice"
-                  //   control={control}
-                  //   render={({ field }) => {
-                  //     return (
-                  //       <EditPopup
-
-                  //         currentName={`${state.state.item?.name}`}
-                  //         editName="値段"
-                  //         setOnScreen={setOnScreenPopUpItem}
-                  //       />
-                  //     );
-                  //   }}
-                  // />
-                  <Box />
+                  <Controller
+                    name="itemPrice"
+                    control={control}
+                    render={({ field }) => {
+                      return (
+                        <EditPopup
+                          setValue={setValue}
+                          errors={errors}
+                          field={field}
+                          currentName={`${state.state.item?.price}`}
+                          editName="値段"
+                          setOnScreen={setOnScreenPopUpAmount}
+                        />
+                      );
+                    }}
+                  />
                 ) : (
                   <Box />
                 )}
@@ -268,12 +267,8 @@ const MenuEdit = () => {
                     onChange={handleDisplayChange}
                     value={visible ? '販売中' : '休止中'}
                   >
-                    <MenuItem value={'休止中'} >
-                      休止中
-                    </MenuItem>
-                    <MenuItem value={'販売中'} >
-                      販売中
-                    </MenuItem>
+                    <MenuItem value={'休止中'}>休止中</MenuItem>
+                    <MenuItem value={'販売中'}>販売中</MenuItem>
                   </Select>
                 </FormControl>
               </Box>

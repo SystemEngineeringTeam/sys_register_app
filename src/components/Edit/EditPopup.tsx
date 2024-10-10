@@ -16,7 +16,7 @@ interface EditPopupProps {
       itemName: string;
       itemPrice: number;
     },
-    'itemName'
+    'itemName' | 'itemPrice'
   >;
   errors: FieldErrors<{
     itemName: string;
@@ -31,24 +31,6 @@ interface EditPopupProps {
   // Schema: z.ZodString | z.ZodEffects<z.ZodString, string, string>;
 }
 const EditPopup = ({ currentName, editName, setOnScreen, field, errors, setValue }: EditPopupProps) => {
-  // // スキーマに合っているかを管理するState
-  // const [schemeError, setSchemeError] = useState<boolean>(false);
-  // const handleChange = (event: { target: { value: string } }) => {
-  //   const inputText = event.target.value;
-  //   try {
-  //     // moneyCountSchemeの形に合うかどうか判断
-  //     Schema.parse(inputText);
-  //     // テキストフィールドを通常表示
-  //     setSchemeError(false);
-  //     // 入力フィールドの値を入力値にする
-  //     setValue(inputText);
-  //   } catch (error) {
-  //     // moneyCountSchemeの形に合わない場合はこちらを実行
-  //     // テキストフィールドをエラー表示
-  //     setSchemeError(true);
-  //   }
-  //   return inputText;
-  // };
   return (
     <Box>
       {/* 画面全体を半透明の黒で覆う */}
@@ -97,13 +79,14 @@ const EditPopup = ({ currentName, editName, setOnScreen, field, errors, setValue
             <TextField
               // booleanでtrueなら赤くエラー表示
               {...field}
-              error={!!errors.itemName}
-              helperText={errors.itemName?.message}
-              label="商品名"
+              // (?? はnullかundefindが入ったら...) !!は二重否定のはずだけど、なぜか型が変わる わかる人教えて...
+              error={field.name === 'itemName' ? !!errors.itemName : !!errors.itemPrice}
+              helperText={field.name === 'itemName' ? errors.itemName?.message : errors.itemPrice?.message}
+              label={editName}
               onChange={(e) => {
                 //Nanだったときは０を入れる  10進数で
                 // field.onChange(e);
-                setValue("itemName",`${e.target.value}`,{shouldValidate: true});
+                setValue(field.name, `${e.target.value}`, { shouldValidate: true });
                 console.log('field', field.value);
               }}
               style={{ fontSize: '10rem' }}
@@ -113,7 +96,7 @@ const EditPopup = ({ currentName, editName, setOnScreen, field, errors, setValue
             {/* キャンセル、保存ボタン */}
             {/* 他のコンポーネントから持ってくるまで仮置き */}
             <CancelButton selectedChangeCancel setSelectedChangeCancel={setOnScreen} />
-            <Button >保存</Button>
+            <Button>保存</Button>
           </Box>
         </Box>
       </Card>
