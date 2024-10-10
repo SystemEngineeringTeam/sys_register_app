@@ -30,7 +30,7 @@ const CustomizeChangeRight = ({ selectId, newOrderData }: CustomizeChangeRightPr
 
         <Box sx={{ mt: '40px' }}>
           <Box>
-            <OrderDelete />
+            <OrderDelete  />
           </Box>
           <Box sx={{ mt: '40px' }}>
             <OkeyButton selectId={selectId} />
