@@ -1,20 +1,24 @@
+import { deleteCategory } from '@/firebase/useCategory';
 import { Button } from '@mui/material';
 import React from 'react';
 
 interface DeleteYesButtonProps {
   selectedChangeOkey: boolean;
   setSelectedChangeOkey: React.Dispatch<React.SetStateAction<boolean>>;
+
 }
 
-const DeleteYesButton = ({ selectedChangeOkey, setSelectedChangeOkey }: DeleteYesButtonProps) => {
+const DeleteYesButton = ({ selectedChangeOkey, setSelectedChangeOkey}: DeleteYesButtonProps) => {
   const ClickYesButton = () => {
     setSelectedChangeOkey(!selectedChangeOkey);
   };
+
   return (
     <div>
       <Button
         disableElevation
         onClick={ClickYesButton}
+        
         size="large"
         sx={{
           bgcolor: selectedChangeOkey ? 'red' : 'gray',
@@ -28,6 +32,7 @@ const DeleteYesButton = ({ selectedChangeOkey, setSelectedChangeOkey }: DeleteYe
       >
         はい
       </Button>
+      
     </div>
   );
 };
