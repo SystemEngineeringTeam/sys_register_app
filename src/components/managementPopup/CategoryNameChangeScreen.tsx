@@ -10,7 +10,7 @@ interface CategoryNameChangeScreen {
   orderName:string;
 }
 
-const CategoryNameChangeScreen = ({ iconClose , orderName}: CategoryNameChangeScreen) => {
+const CategoryNameChangeScreen = ({ iconClose , orderName }: CategoryNameChangeScreen) => {
   const [selectedChangeCancel, setSelectedChangeCalcel] = useState(true);
   const [selectedChangeOkey, setSelectedChangeOkey] = useState(true);
 
@@ -47,7 +47,7 @@ const CategoryNameChangeScreen = ({ iconClose , orderName}: CategoryNameChangeSc
             />
           </Button>
           <Button>
-            <DeleteYesButton selectedChangeOkey={selectedChangeOkey} setSelectedChangeOkey={setSelectedChangeOkey} />
+            <DeleteYesButton selectedChangeOkey={selectedChangeOkey} setSelectedChangeOkey={setSelectedChangeOkey}/>
           </Button>
         </Stack>
       </Stack>
