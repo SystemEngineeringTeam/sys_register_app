@@ -12,9 +12,16 @@ interface CustomizeChangeLeftProps {
   selectOptions: options[];
   selectMenuqty: number;
   selectMenuId: string;
+  selectOrder: order;
 }
 
-const CustomizeChangeLeft = ({ selectId, selectMenuqty, selectOptions, selectMenuId }: CustomizeChangeLeftProps) => {
+const CustomizeChangeLeft = ({
+  selectId,
+  selectMenuqty,
+  selectOptions,
+  selectMenuId,
+  selectOrder,
+}: CustomizeChangeLeftProps) => {
   // 選択しているoption
   const [choiceOptions, setChoiceOptions] = useState<options[]>(selectOptions);
 
@@ -51,7 +58,7 @@ const CustomizeChangeLeft = ({ selectId, selectMenuqty, selectOptions, selectMen
   // const options = sortingOption(ids, itemOption);
   // newOrder
   const newOrder: order = {
-    id: selectMenuId,
+    id: selectOrder.id,
     item: item as items,
     qty: selectMenuqty,
     options: choiceOptions,
