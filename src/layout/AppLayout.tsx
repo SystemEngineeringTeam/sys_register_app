@@ -20,6 +20,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import UserIcon from '../login/UserIcon';
 
 const drawerWidth = 240;
 
@@ -27,12 +28,13 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
   open: boolean;
 }>(({ theme, open }) => ({
   flexGrow: 1,
-  padding: theme.spacing(3),
+  paddingTop: theme.spacing(1),
   transition: theme.transitions.create('margin', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   marginLeft: `-${drawerWidth}px`,
+  marginTop: theme.mixins.toolbar.minHeight, // AppBarの高さ分のマージンを追加
   ...(open && {
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
@@ -84,28 +86,32 @@ const AppLayout = () => {
     setOpen(false);
   };
 
-  const isDrawerOpen = open === true;
+  const isDrawerOpen = open;
 
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={isDrawerOpen && !isSmallScreen}>
+      <AppBar open={isDrawerOpen} position="fixed">
         <Toolbar>
           <IconButton
-            color="inherit"
             aria-label="open drawer"
-            onClick={handleDrawerOpen}
+            color="inherit"
             edge="start"
+            onClick={handleDrawerOpen}
             sx={{ mr: 2, ...(isDrawerOpen && { display: 'none' }) }}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Responsive drawer
+          <Typography component="div" noWrap variant="h6">
+            <p>{listItems.find((item) => item.to === useLocation().pathname)?.text}</p>
           </Typography>
+          <UserIcon />
         </Toolbar>
       </AppBar>
       <Drawer
+        anchor="left"
+        onClose={handleDrawerClose}
+        open={isDrawerOpen}
         sx={{
           width: drawerWidth,
           flexShrink: 0,
@@ -114,10 +120,7 @@ const AppLayout = () => {
             boxSizing: 'border-box',
           },
         }}
-        variant={isSmallScreen ? 'temporary' : 'persistent'}
-        anchor="left"
-        open={isDrawerOpen}
-        onClose={handleDrawerClose}
+        variant="persistent"
       >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
@@ -147,10 +150,8 @@ const AppLayout = () => {
           ))}
         </List>
       </Drawer>
-      <Main open={isDrawerOpen && !isSmallScreen}>
-        <DrawerHeader />
-        <Typography paragraph>test</Typography>
-        <Typography paragraph>test2</Typography>
+      <Main open={isDrawerOpen}>
+        <Outlet /> {/* ここにルートで指定されたコンテンツが表示される */}
       </Main>
     </Box>
   );
