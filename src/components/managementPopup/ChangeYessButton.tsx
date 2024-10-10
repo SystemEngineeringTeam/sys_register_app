@@ -35,7 +35,7 @@ const ChangeYessButton = ({ selectedChangeOkey, addCategory, iconClose }: Change
         setCategoty(updateddata, user);
     }
     if (filterupdateddata.length > 0) {
-      console.log('error');
+      alert('error');
     }
 
     //ポップアップ閉じる処理
