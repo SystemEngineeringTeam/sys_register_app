@@ -71,6 +71,7 @@ const OrderMenueContena = ({
               selectMenuPrice={selectMenuPrice}
               selectMenuqty={selectMenuqty}
               selectOptions={selectOptions}
+              selectOrder={selectOrder}
             />
           </Stack>
           <Stack sx={{ ml: '20px', mr: '20px' }}>

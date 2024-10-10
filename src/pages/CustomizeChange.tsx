@@ -14,6 +14,7 @@ export default function CustomizeChange(): ReactElement {
     selectMenuId: string;
     newOrderData: order[];
     newOrder: order;
+    selectOrder: order;
   }
 
   const location = useLocation();
@@ -28,10 +29,11 @@ export default function CustomizeChange(): ReactElement {
             selectMenuId={state.selectMenuId}
             selectMenuqty={state.selectMenuqty}
             selectOptions={state.selectOptions}
+            selectOrder={state.selectOrder}
           />
         </Box>
         <Box sx={{ flex: 1, textAlign: 'center' }}>
-          <CustomizeChangeRight  newOrderData={state.newOrderData} selectId={state.selectId} />
+          <CustomizeChangeRight newOrderData={state.newOrderData} selectId={state.selectId} />
         </Box>
       </Box>
     </div>

@@ -9,7 +9,6 @@ import CategoryNameChangeCard from './components/managementPopup/CategoryNameCha
 import AppLayout from './layout/AppLayout';
 import { RequiredLogin } from './layout/RequiredLogin';
 import LoginForm from './login/LoginForm';
-import Admin from './pages/Admin';
 import Call from './pages/Call';
 
 import Cooking from './pages/Cooking';
@@ -20,7 +19,6 @@ import Home from './pages/Home';
 import Order from './pages/Order';
 import OrderChange from './pages/OrderChange';
 import CategoryDaialog from './components/managementPopup/CategoryDaialog';
-import Test from './pages/Test';
 import MenuCheck from './components/MenuEdit/MenuCheck';
 import MenuEdit from './components/Edit/menuEdit';
 import CollectedItemOverview from './components/MenuEdit/CollectedItemOverview';
@@ -45,7 +43,7 @@ const App = () => {
             <Route element={<CustomizeChange />} path="customizechange" />
             <Route element={<OrderPayment />} path="payment" />
             <Route element={<MoneyCount />} path="paychange" />
-            <Route element={<MenuEdit/>} path="test" />
+            <Route element={<MenuEdit />} path="test" />
             <Route element={<CategoryDaialog />} path="popup" />
             <Route element={<CategoryEdit />} path="categoryedit" />
             <Route element={<MenuCheck />} path="menucheck" />

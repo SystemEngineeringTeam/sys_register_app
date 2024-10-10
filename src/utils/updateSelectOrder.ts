@@ -4,7 +4,7 @@ export const updateOrderData = (newOrderData: order[], newOrder: order | undefin
   console.log('newOrderData!!:', newOrderData);
 
   // newOrderと一致するorderをnewOrderDataから探す
-  const newOrderID = newOrderData.findIndex((order) => order.id === newOrder?.id);
+  const newOrderIndex = newOrderData.findIndex((order) => order.id === newOrder?.id);
 
   // newOrderの型安全を保証
   try {
@@ -17,11 +17,11 @@ export const updateOrderData = (newOrderData: order[], newOrder: order | undefin
     return;
   }
 
-  // newOrderDataのnewOrderID番目をnewOrderに更新
-  const setOrderData = (newOrderData[newOrderID] = newOrder);
+  // newOrderDataのindex番目をnewOrderに更新して配列に格納
+  const setOrderData: order[] = newOrderData.splice(newOrderIndex, 1, newOrder);
 
   // newOrderDataを更新
   setNewOrderData(setOrderData);
-  console.log('newOrderData!!!%^:', setOrderData);
+  console.log('setOrderData!!!%^:', setOrderData);
   console.log('newOrderData!!698759!:', newOrderData);
 };
