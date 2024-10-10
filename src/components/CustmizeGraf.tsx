@@ -37,27 +37,31 @@ const CustmizeGraf = ({ itemOption, choiceOptions, setChoiceOptions, selectOptio
   const [selectedChange, setSelectedChange] = useState(isSelected);
 
   console.log('selectedChange:' + selectedChange);
-  console.log('choiceOptions&&&&&&&&&&&:' + choiceOptions);
+  console.log('choiceOptions&&&&&&&&&&&:' + choiceOptions.map((option) => option.name));
 
   useEffect(() => {
     // selectedChangeが変更されたときにchoiceOptionsを更新
-    // ありの場合
     if (!selectedChange) {
       // choiceOptionsを変更
-      setChoiceOptions(choiceOptions.filter((option) => option.id !== itemOption.id));
+      setChoiceOptions((prevOptions) => {
+        // まず、itemOption.id と一致するものを削除
+        const filteredOptions = prevOptions.filter((option) => option.id !== itemOption.id);
+        // その後、itemOption を追加
+        return [...filteredOptions, itemOption];
+      });
 
-      console.log('choiceOptions!!!!!!!!!!!!:' + choiceOptions);
-
-      setChoiceOptions([...choiceOptions, itemOption]);
+      console.log('choiceOptions!!!!!!!!!!!!:', choiceOptions);
     } else {
       // なしの場合
-      // optionsからitemOptionを削除
-      const newOptions = choiceOptions.filter((option) => option.id !== itemOption.id);
-      setChoiceOptions(newOptions);
+      setChoiceOptions((prevOptions) => {
+        // optionsからitemOptionを削除
+        const newOptions = prevOptions.filter((option) => option.id !== itemOption.id);
+        return newOptions;
+      });
 
-      console.log('choiceOptions2222222222:' + choiceOptions);
+      console.log('choiceOptions2222222222:', choiceOptions);
     }
-  }, [selectedChange]);
+  }, [selectedChange, itemOption]);
 
   return (
     <div>
