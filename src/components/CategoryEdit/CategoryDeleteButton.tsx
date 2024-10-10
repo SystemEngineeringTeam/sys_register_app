@@ -24,9 +24,6 @@ const CategoryDeleteButton = ({ categoryName, categoryId }: CategoryDeleteButton
     setOpen(false);
   };
 
-
-  console.log('handleOpen', handleOpen);
-
   return (
     <div>
       <Button
