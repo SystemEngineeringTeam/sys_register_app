@@ -26,7 +26,7 @@ export default function CategoryEdit() {
     setOpen(false);
   };
 
-  const orderData = getCategory();
+  const categoryData = getCategory();
 
 
   return (
@@ -43,17 +43,17 @@ export default function CategoryEdit() {
         </Dialog>
       </Box>
 
-      {orderData.category.map((orderName) => (
+      {categoryData.category.map((categorydata) => (
 
           <Stack alignItems="center" border="solid" direction="row" height="20vh">
-            <Box sx={{ fontSize: '50px', ml: '70px' }}>{orderName.name}</Box>
+            <Box sx={{ fontSize: '50px', ml: '70px' }}>{categorydata.name}</Box>
 
             <Stack direction="row" sx={{ ml: 'auto' }}>
               <Box sx={{ mr: '10px' }}>
-                <CategoryDeleteButton orderName={orderName.name} orderId={orderName.id} order={"aiue"}/>
+                <CategoryDeleteButton categoryName={categorydata.name} categoryId={categorydata.id}  />
               </Box>
               <Box sx={{ ml: 'auto', mr: '10px' }}>
-                <CategoryNameChangeButton orderName={orderName.name} />
+                <CategoryNameChangeButton categoryName={categorydata.name} categoryId={categorydata.id} categorydata={categorydata}/>
               </Box>
             </Stack>
           </Stack>
