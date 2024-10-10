@@ -36,7 +36,7 @@ const CategoryNameChangeButton = ({ orderName }: CategoryNameChangeButtonProp) =
 
       <Dialog fullWidth maxWidth="md" onClose={handleClose} open={open}>
         <DialogContent sx={{ p: 0 }}>
-          <CategoryNameChangeCard iconClose={iconClose} orderName={orderName}/>
+          <CategoryNameChangeCard iconClose={iconClose} orderName={orderName} />
         </DialogContent>
       </Dialog>
     </div>
