@@ -5,12 +5,11 @@ import CategoryDeletePopupCard from '../managementPopup/CategoryDeletePopupCard'
 import { category } from '@/types';
 
 interface CategoryDeleteButton {
-  orderName: string;
-  orderId: string;
-  order: string;
+  categoryName: string;
+  categoryId: string;
 }
 
-const CategoryDeleteButton = ({ orderName, orderId, order }: CategoryDeleteButton) => {
+const CategoryDeleteButton = ({ categoryName, categoryId }: CategoryDeleteButton) => {
   const [selectedChange, setSelectedChange] = useState(true);
 
   const [open, setOpen] = useState(false);
@@ -20,16 +19,11 @@ const CategoryDeleteButton = ({ orderName, orderId, order }: CategoryDeleteButto
     setOpen(true);
   };
 
-  const handleClose = () => {
-
-  };
+  const handleClose = () => {};
   const iconClose = () => {
     setOpen(false);
   };
 
-  useEffect(() => {
-    console.log('1 order', order);
-  }, [order]);
 
   console.log('handleOpen', handleOpen);
 
@@ -46,7 +40,7 @@ const CategoryDeleteButton = ({ orderName, orderId, order }: CategoryDeleteButto
 
       <Dialog fullWidth maxWidth="md" onClose={handleClose} open={open}>
         <DialogContent sx={{ p: 0 }}>
-          <CategoryDeletePopupCard iconClose={iconClose} orderName={orderName} orderId={orderId} order={order} />
+          <CategoryDeletePopupCard iconClose={iconClose} categoryName={categoryName} categoryId={categoryId}  />
         </DialogContent>
       </Dialog>
     </div>
