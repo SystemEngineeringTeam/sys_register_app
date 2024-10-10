@@ -1,10 +1,8 @@
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import EditIcon from '@mui/icons-material/Edit';
+import { Controller, useForm } from 'react-hook-form';
 import {
   Box,
-  Button,
-  Dialog,
-  DialogContent,
   Divider,
   FormControl,
   IconButton,
@@ -14,74 +12,82 @@ import {
   type SelectChangeEvent,
   Stack,
 } from '@mui/material';
+// eslint-disable-next-line no-restricted-imports
 import ItemOptions from '../OrderPayments/ItemOptions';
-import { type options } from '@/types';
+import { category, type items, type options } from '@/types';
 import { useState } from 'react';
+// eslint-disable-next-line no-restricted-imports
 import InputFileUpload from '../Image/upload/InputFileUpload';
 
 import AddButton from './AddButton';
-import CategoryAddPopupCard from '../managementPopup/CategoryAddPopupCard';
 import EditButton from './EditButton';
 import { useLocation } from 'react-router-dom';
+import EditPopup from './EditPopup';
+import { MenuEditSchema, menuEditType } from '@/validations/schema';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { getItemNameDuplication } from '../../utils/zodUtils';
+import { categoryIdToCategoryName } from '@/utils/CategoryIdToItem';
 
 // state , statecomponents
 interface State {
-  state:
-    | {
-        selectEdit: string;
-        selectAdd?: undefined;
-      }
-    | {
-        selectAdd: string;
-        selectEdit?: undefined;
-      };
+  state: {
+    item?: items;
+    allIitems?: items[];
+    categorys?: category[];
+  };
 }
 
 const MenuEdit = () => {
-  const options: options[] = [
-    {
-      id: '1',
-      name: '塩',
-      price: 100,
-    },
-    {
-      id: '2',
-      name: 'ケチャップ',
-      price: 0,
-    },
-  ];
+  const location = useLocation();
+  const { state } = location as { state: State };
+  // const options: options[] = [
+  //   {
+  //     id: '1',
+  //     name: '塩',
+  //     price: 100,
+  //   },
+  //   {
+  //     id: '2',
+  //     name: 'ケチャップ',
+  //     price: 0,
+  //   },
+  // ];
 
-  // 商品名
-  const [itemName, setItemName] = useState('');
-  // 商品の値段
-  const [ItemPrice, setItemPrice] = useState(0);
   // オプション
-  const [option, setOption] = useState(options);
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [option, setOption] = useState(state.state.item?.options);
+  // ポップアップ表示用
+  const [onScreenPopUpItem, setOnScreenPopUpItem] = useState(false);
+  const [onScreenPopUpAmount, setOnScreenPopUpAmount] = useState(false);
+  const ItemNameBoolean = getItemNameDuplication(state.state.allIitems, state.state.item?.name);
+  const [allCategory, setAllCategory] = useState(state.state.categorys);
+  // 表示の状態
+  const [display, setDisplay] = useState('');
   // itemNameのEdit
   const handleNameChange = () => {
     // ここで商品名の変更popupを出す
-    setItemName('商品名');
+    setItemName('');
+    setOnScreenPopUpItem(true);
   };
 
   // priceのEdit
   const handlePriceChange = () => {
+    // setItemPrice(100);
     // ここで値段の変更popupを出す
-    setItemPrice(100);
+    setOnScreenPopUpAmount(true);
   };
   // optionを追加
   const handleOptionChange = () => {
     // ここでオプションの変更popupを出す
-    setOption(options);
+    // setOption(options);
   };
   // カテゴリーの状態
-  const [category, setCategory] = useState('');
-  // 表示の状態
-  const [display, setDisplay] = useState('');
-
+  const [categoryName, setCategoryName] = useState(
+    categoryIdToCategoryName(state.state.categorys, state.state.item?.category_id),
+  );
   // カテゴリーの選択
   const handleChange = (event: SelectChangeEvent) => {
-    setCategory(event.target.value);
+    setCategoryName(event.target.value);
   };
   // 表示の選択
   const handleDisplayChange = (event: SelectChangeEvent) => {
@@ -98,11 +104,35 @@ const MenuEdit = () => {
     setOpen(false);
   };
 
-  const location = useLocation();
-  const { state } = location as { state: State };
-
-  console.log('selectAdd', state.state.selectAdd);
-  console.log('selectAdd', state.state.selectEdit);
+  // // eslint-disable-next-line no-console
+  // console.log('selectAdd', state.state?.selectAdd);
+  // // eslint-disable-next-line no-console
+  // console.log('selectAdd', state.state?.selectEdit);
+  // eslint-disable-next-line no-console
+  console.log('item', state.state?.item?.name);
+  // // 商品名
+  const [itemName, setItemName] = useState(state.state?.item?.name);
+  // 商品の値段
+  const [itemPrice, setItemPrice] = useState(0);
+  const [visible, setVisible] = useState(state.state?.item?.visible);
+  const {
+    control,
+    setValue,
+    watch,
+    formState: { errors },
+    // 保存時の処理
+    handleSubmit,
+    // リセットしたい時に使う関数
+    reset,
+  } = useForm<menuEditType>({
+    // デフォルトはこれを入れる
+    defaultValues: {
+      itemName,
+      itemPrice,
+    },
+    // zodのバリテーションチェックをreact-hooks-formと連携
+    resolver: zodResolver(MenuEditSchema),
+  });
 
   return (
     <div>
@@ -114,10 +144,30 @@ const MenuEdit = () => {
               <Box>商品名</Box>
 
               <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                <Box> {itemName}</Box>
+                <Box> {state.state.item?.name}</Box>
                 <IconButton onClick={handleNameChange}>
                   <EditIcon />
                 </IconButton>
+                {onScreenPopUpItem ? (
+                  <Controller
+                    name="itemName"
+                    control={control}
+                    render={({ field }) => {
+                      return (
+                        <EditPopup
+                          setValue={setValue}
+                          errors={errors}
+                          field={field}
+                          currentName={`${state.state.item?.name}`}
+                          editName="商品名"
+                          setOnScreen={setOnScreenPopUpItem}
+                        />
+                      );
+                    }}
+                  />
+                ) : (
+                  <Box />
+                )}
               </Box>
             </Stack>
           </Box>
@@ -127,10 +177,30 @@ const MenuEdit = () => {
               <Box>値段</Box>
 
               <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                <Box> ￥{ItemPrice}</Box>
+                <Box> ￥{state.state.item?.price}</Box>
                 <IconButton onClick={handlePriceChange}>
                   <EditIcon />
                 </IconButton>
+                {onScreenPopUpAmount ? (
+                  <Controller
+                    name="itemPrice"
+                    control={control}
+                    render={({ field }) => {
+                      return (
+                        <EditPopup
+                          setValue={setValue}
+                          errors={errors}
+                          field={field}
+                          currentName={`${state.state.item?.price}`}
+                          editName="値段"
+                          setOnScreen={setOnScreenPopUpAmount}
+                        />
+                      );
+                    }}
+                  />
+                ) : (
+                  <Box />
+                )}
               </Box>
             </Stack>
           </Box>
@@ -141,7 +211,7 @@ const MenuEdit = () => {
 
               <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                 <Box>
-                  <ItemOptions options={options} />
+                  <ItemOptions options={option} />
                 </Box>
                 <IconButton onClick={handleOptionChange}>
                   <AddCircleOutlineIcon />
@@ -160,13 +230,23 @@ const MenuEdit = () => {
                   <Select
                     id="demo-simple-select"
                     label="カテゴリー"
-                    labelId="demo-simple-select-label"
+                    labelId="category-select-label"
                     onChange={handleChange}
-                    value={category}
+                    value={categoryName !== undefined ? categoryName : ''}
                   >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
+                    {state.state.categorys?.map((categoryElm) => {
+                      return (
+                        <MenuItem
+                          key={categoryElm.id}
+                          value={categoryElm.name}
+                          onSubmit={(e) => {
+                            // setCategoryName(categoryElm.name);
+                          }}
+                        >
+                          {categoryElm.name}
+                        </MenuItem>
+                      );
+                    })}
                   </Select>
                 </FormControl>
               </Box>
@@ -181,14 +261,14 @@ const MenuEdit = () => {
                 <FormControl fullWidth>
                   <InputLabel id="demo-simple-select-label">表示</InputLabel>
                   <Select
-                    id="demo-simple-select"
+                    id="visible-select"
                     label="表示"
-                    labelId="demo-simple-select-label"
+                    labelId="visible-select-label"
                     onChange={handleDisplayChange}
-                    value={display}
+                    value={visible ? '販売中' : '休止中'}
                   >
-                    <MenuItem value={10}>販売中</MenuItem>
-                    <MenuItem value={20}>休止中</MenuItem>
+                    <MenuItem value={'休止中'}>休止中</MenuItem>
+                    <MenuItem value={'販売中'}>販売中</MenuItem>
                   </Select>
                 </FormControl>
               </Box>
@@ -198,13 +278,13 @@ const MenuEdit = () => {
             <InputFileUpload />
 
             <Stack direction="row" sx={{ justifyContent: 'right', mr: '7rem' }}>
-              <EditButton
+              {/* <EditButton
                 iconClose={iconClose}
                 handleClose={handleClose}
                 open={open}
                 handleOpen={handleOpen}
                 state={state.state}
-              />
+              /> */}
               <AddButton />
             </Stack>
           </Stack>

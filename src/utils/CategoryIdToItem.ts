@@ -1,4 +1,4 @@
-import { type items } from '@/types';
+import { category, type items } from '@/types';
 
 export function cateforyIdToItems(allItems: items[] | undefined, categoryId: string) {
   if (allItems !== undefined) {
@@ -9,4 +9,14 @@ export function cateforyIdToItems(allItems: items[] | undefined, categoryId: str
   }
   const item: items[] = [];
   return item;
+}
+export function categoryIdToCategoryName(allCategorys:category[] | undefined,categoryId: string | undefined) {
+  if (allCategorys !== undefined) {
+    const selectCategory = allCategorys?.find((e) => {
+      return categoryId === e.id;
+    });
+    console.log("selectCategory!",selectCategory?.name);
+    return selectCategory?.name;
+  }
+  return '';
 }

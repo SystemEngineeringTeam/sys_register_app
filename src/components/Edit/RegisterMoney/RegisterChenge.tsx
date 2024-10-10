@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { type money } from '@/types';
 import { setMoneyFnc } from '@/utils/setRegisterMoney';
 import { Box, CardMedia, TextField } from '@mui/material';
+import { moneyCountSchema } from '@/validations/schema';
 // eslint-disable-next-line no-restricted-imports
-import { moneyCountScheme } from '../../../validations/schema';
 
 interface RegisterChengeProps {
   image: string;
@@ -21,7 +21,7 @@ const RegisterChenge = ({ image, moneyKind, setRegisterMoney }: RegisterChengePr
     const inputText = event.target.value;
     try {
       // moneyCountSchemeの形に合うかどうか判断
-      moneyCountScheme.parse(inputText);
+      moneyCountSchema.parse(inputText);
       // テキストフィールドを通常表示
       setSchemeError(false);
       // number型にしたinputTextの値をmoneyオブジェクトにセットする
