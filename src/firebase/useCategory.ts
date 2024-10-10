@@ -121,4 +121,11 @@ export const deleteCategory = async (categoryId: string) => {
 
   await deleteDoc(doc(db, 'shop_user', user.uid, 'category', categoryId));
   console.log('category deleted');
+
+  console.log("🚀 ~ deleteCategory ~ db:", db)
+  console.log("🚀 ~ deleteCategory ~ uid:", user.uid)
+  console.log("🚀 ~ deleteCategory ~ categoryId:", categoryId)
 };
+  
+  
+  

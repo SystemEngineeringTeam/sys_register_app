@@ -1,25 +1,37 @@
 import { Button, Dialog, DialogContent, SelectChangeEvent } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CategoryDeletePopupCard from '../managementPopup/CategoryDeletePopupCard';
+import { category } from '@/types';
 
 interface CategoryDeleteButton {
   orderName: string;
-
+  orderId: string;
+  order: string;
 }
 
-const CategoryDeleteButton = ({ orderName }: CategoryDeleteButton) => {
+const CategoryDeleteButton = ({ orderName, orderId, order }: CategoryDeleteButton) => {
   const [selectedChange, setSelectedChange] = useState(true);
 
   const [open, setOpen] = useState(false);
 
+  // モーダルを開く処理
   const handleOpen = () => {
     setOpen(true);
   };
-  const handleClose = () => {};
+
+  const handleClose = () => {
+
+  };
   const iconClose = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    console.log('1 order', order);
+  }, [order]);
+
+  console.log('handleOpen', handleOpen);
 
   return (
     <div>
@@ -34,7 +46,7 @@ const CategoryDeleteButton = ({ orderName }: CategoryDeleteButton) => {
 
       <Dialog fullWidth maxWidth="md" onClose={handleClose} open={open}>
         <DialogContent sx={{ p: 0 }}>
-          <CategoryDeletePopupCard iconClose={iconClose}  orderName={orderName}/>
+          <CategoryDeletePopupCard iconClose={iconClose} orderName={orderName} orderId={orderId} order={order} />
         </DialogContent>
       </Dialog>
     </div>

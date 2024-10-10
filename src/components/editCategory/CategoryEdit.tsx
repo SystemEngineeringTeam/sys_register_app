@@ -28,10 +28,11 @@ export default function CategoryEdit() {
 
   const orderData = getCategory();
 
+
   return (
     <div>
       <Box sx={{ mr: '50px', textAlign: 'right', mt: '40px', mb: '90px' }}>
-        <Button sx={{ fontSize: '30px', width: '20rem' ,py:'40px',  bgcolor:'orange' , color:'black'}} variant="outlined" onClick={handleOpen}>
+        <Button sx={{ fontSize: '30px', width: '20rem' ,py:'40px',  bgcolor:'orange' , color:'white'}} onClick={handleOpen}>
           カテゴリ追加
         </Button>
 
@@ -43,20 +44,20 @@ export default function CategoryEdit() {
       </Box>
 
       {orderData.category.map((orderName) => (
-        <div>
+
           <Stack alignItems="center" border="solid" direction="row" height="20vh">
             <Box sx={{ fontSize: '50px', ml: '70px' }}>{orderName.name}</Box>
 
             <Stack direction="row" sx={{ ml: 'auto' }}>
               <Box sx={{ mr: '10px' }}>
-                <CategoryDeleteButton orderName={orderName.name} />
+                <CategoryDeleteButton orderName={orderName.name} orderId={orderName.id} order={"aiue"}/>
               </Box>
               <Box sx={{ ml: 'auto', mr: '10px' }}>
-                <CategoryNameChangeButton orderName={orderName.name}/>
+                <CategoryNameChangeButton orderName={orderName.name} />
               </Box>
             </Stack>
           </Stack>
-        </div>
+
       ))}
     </div>
   );

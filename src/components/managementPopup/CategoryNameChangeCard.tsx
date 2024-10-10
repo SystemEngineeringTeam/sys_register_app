@@ -5,9 +5,10 @@ import { Card } from '@mui/material';
 interface CategoryNameAddCard{
   iconClose: () => void;
   orderName: string;
+
 }
 
-const CategoryNameChangeCard = ({iconClose, orderName}:CategoryNameAddCard) => {
+const CategoryNameChangeCard = ({iconClose, orderName }:CategoryNameAddCard) => {
   return (
     <div>
       <Card sx={{}}>

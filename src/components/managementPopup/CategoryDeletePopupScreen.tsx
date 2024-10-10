@@ -3,15 +3,21 @@ import { Box, Button, IconButton, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
 import CancelButton from './CancelButton';
 import DeleteYesButton from './DeleteYesButton';
+import DeleteCategoryYesButton from './DeleteCategoryYesButton';
+import { category } from '@/types';
 
 interface CategoryAddPopupScreenProp {
   iconClose: () => void;
-  orderName: string
+  orderName: string;
+  orderId:string;
+  order:string;
 }
 
-const CategoryDeletePopupScreen = ({ iconClose , orderName}: CategoryAddPopupScreenProp) => {
+const CategoryDeletePopupScreen = ({ iconClose , orderName , orderId , order}: CategoryAddPopupScreenProp) => {
   const [selectedChangeCancel, setSelectedChangeCalcel] = useState(true);
   const [selectedChangeOkey, setSelectedChangeOkey] = useState(true);
+
+  console.log("3 order", order);
   return (
     <div>
       <Stack sx={{ textAlign: 'center' }}>
@@ -49,9 +55,8 @@ const CategoryDeletePopupScreen = ({ iconClose , orderName}: CategoryAddPopupScr
             />
           </Button>
           <Button>
-            <DeleteYesButton selectedChangeOkey={selectedChangeOkey} setSelectedChangeOkey={setSelectedChangeOkey}
-            //orderName={orderName}
-            />
+            
+            <DeleteCategoryYesButton selectedChangeOkey={selectedChangeOkey} setSelectedChangeOkey={setSelectedChangeOkey} orderId={orderId} order={order}/>
           </Button>
         </Stack>
       </Stack>
