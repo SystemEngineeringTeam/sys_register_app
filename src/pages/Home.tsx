@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-const Home = () => (
-  <div>
-    <h1>Home</h1>
-    <p>Homeページです</p>
-  </div>
-);
-=======
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 
@@ -24,6 +16,5 @@ const Home = () => {
     </Box>
   );
 };
->>>>>>> develop
 
 export default Home;
