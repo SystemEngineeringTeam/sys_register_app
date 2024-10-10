@@ -8,16 +8,14 @@ import { category } from '@/types';
 
 interface CategoryAddPopupScreenProp {
   iconClose: () => void;
-  orderName: string;
-  orderId:string;
-  order:string;
+  categoryName: string;
+  categoryId:string;
 }
 
-const CategoryDeletePopupScreen = ({ iconClose , orderName , orderId , order}: CategoryAddPopupScreenProp) => {
+const CategoryDeletePopupScreen = ({ iconClose , categoryName , categoryId }: CategoryAddPopupScreenProp) => {
   const [selectedChangeCancel, setSelectedChangeCalcel] = useState(true);
   const [selectedChangeOkey, setSelectedChangeOkey] = useState(true);
 
-  console.log("3 order", order);
   return (
     <div>
       <Stack sx={{ textAlign: 'center' }}>
@@ -37,7 +35,7 @@ const CategoryDeletePopupScreen = ({ iconClose , orderName , orderId , order}: C
         </Box>
 
         <Box sx={{ mt: '5rem' }}>
-          <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 3.0vw, 5.0rem)' }}>カテゴリー:{orderName}</Typography>
+          <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 3.0vw, 5.0rem)' }}>カテゴリー:{categoryName}</Typography>
         </Box>
 
         <Box sx={{ mt: '5rem' }}>
@@ -56,7 +54,7 @@ const CategoryDeletePopupScreen = ({ iconClose , orderName , orderId , order}: C
           </Button>
           <Button>
             
-            <DeleteCategoryYesButton selectedChangeOkey={selectedChangeOkey} setSelectedChangeOkey={setSelectedChangeOkey} orderId={orderId} order={order}/>
+            <DeleteCategoryYesButton selectedChangeOkey={selectedChangeOkey} setSelectedChangeOkey={setSelectedChangeOkey} categoryId={categoryId} iconClose={iconClose}/>
           </Button>
         </Stack>
       </Stack>

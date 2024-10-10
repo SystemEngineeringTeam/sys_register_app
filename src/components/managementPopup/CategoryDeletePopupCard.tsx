@@ -5,19 +5,16 @@ import { category, order } from '@/types';
 
 interface PopupCardProps {
   iconClose: () => void;
-  orderName: string;
-  orderId:string;
-  order: string;
+  categoryName: string;
+  categoryId:string;
 }
 
-const CategoryDeletePopupCard = ({iconClose, orderName , orderId , order}:PopupCardProps) => {
-  console.log("2 order", order)
-console.log("iconClose", iconClose);
+const CategoryDeletePopupCard = ({iconClose, categoryName , categoryId}:PopupCardProps) => {
 
   return (
     <div>
       <Card >
-        <CategoryDeletePopupScreen iconClose={iconClose} orderName={orderName} orderId={orderId} order={order}/>
+        <CategoryDeletePopupScreen iconClose={iconClose} categoryName={categoryName} categoryId={categoryId} />
       </Card>
     </div>
   );
