@@ -1,17 +1,16 @@
 import { updateOrder } from '@/firebase/useOrder';
 import { userAtom } from '@/login/AdminLogin';
 import { orderAtom, orderDataAtom } from '@/stores/orderAtom';
-import { type order } from '@/types';
 import { updateOrderData } from '@/utils/updateSelectOrder';
 import { Button } from '@mui/material';
-import { useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { useNavigate } from 'react-router-dom';
 
 interface OkeyButtonProps {
   selectId: number;
 }
 
-const  OkeyButton = ({ selectId }: OkeyButtonProps) => {
+const OkeyButton = ({ selectId }: OkeyButtonProps) => {
   const [newOrder, setNewOrder] = useAtom(orderAtom);
   const [newOrderData, setNewOrderData] = useAtom(orderDataAtom);
   const user = useAtomValue(userAtom);

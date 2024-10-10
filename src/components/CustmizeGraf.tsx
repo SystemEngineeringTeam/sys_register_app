@@ -14,30 +14,29 @@ const CustmizeGraf = ({ itemOption, choiceOptions, setChoiceOptions, selectOptio
   // itemOption.idがoptionsの中にあるかどうか
   // 同じidがある場合はtrue
 
-  console.log('selectOptionsID:' + selectOptions.map((option) => option.id));
+  console.log(`selectOptionsID:${selectOptions.map((option) => option.id)}`);
 
   const Selected = selectOptions.find((option) => option.id === itemOption.id);
 
-  console.log('itemOption.id:' + itemOption.id);
-  console.log('itemOption.name:' + itemOption.name);
-  console.log('Selected.id:' + Selected?.id);
-  console.log('Selected.name:' + Selected?.name);
+  console.log(`itemOption.id:${itemOption.id}`);
+  console.log(`itemOption.name:${itemOption.name}`);
+  console.log(`Selected.id:${Selected?.id}`);
+  console.log(`Selected.name:${Selected?.name}`);
 
   const isSelected = () => {
     if (Selected?.id === undefined) {
       console.log('true');
       return true;
-    } else {
-      console.log('false');
-      return false;
     }
+    console.log('false');
+    return false;
   };
 
   // 選択しているかどうかのstate
   const [selectedChange, setSelectedChange] = useState(isSelected);
 
-  console.log('selectedChange:' + selectedChange);
-  console.log('choiceOptions&&&&&&&&&&&:' + choiceOptions.map((option) => option.name));
+  console.log(`selectedChange:${selectedChange}`);
+  console.log(`choiceOptions&&&&&&&&&&&:${choiceOptions.map((option) => option.name)}`);
 
   useEffect(() => {
     // selectedChangeが変更されたときにchoiceOptionsを更新

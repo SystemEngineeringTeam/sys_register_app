@@ -1,5 +1,5 @@
 import { orderAtom } from '@/stores/orderAtom';
-import { type items, type options, type order } from '@/types';
+import { type options, type order } from '@/types';
 import { sortingItems } from '@/utils/sortingItems';
 import { Box } from '@mui/material';
 import { useSetAtom } from 'jotai';
@@ -25,7 +25,7 @@ const CustomizeChangeLeft = ({
   // 選択しているoption
   const [choiceOptions, setChoiceOptions] = useState<options[]>(selectOptions);
 
-  console.log('selectOptions5742682768972368:' + selectOptions);
+  console.log(`selectOptions5742682768972368:${selectOptions}`);
 
   const setNewOrder = useSetAtom(orderAtom);
 
@@ -48,8 +48,8 @@ const CustomizeChangeLeft = ({
   });
 
   console.log('itemOptionData:', itemOptionData);
-  console.log('itemOptionData.mapID:' + itemOptionData.map((option) => option.id));
-  console.log('itemOptionData.mapName' + itemOptionData.map((option) => option.name));
+  console.log(`itemOptionData.mapID:${itemOptionData.map((option) => option.id)}`);
+  console.log(`itemOptionData.mapName${itemOptionData.map((option) => option.name)}`);
 
   // selectしているoptionのid配列
   const ids = selectOptions.map((option) => option.id);
@@ -59,7 +59,7 @@ const CustomizeChangeLeft = ({
   // newOrder
   const newOrder: order = {
     id: selectOrder.id,
-    item: item as items,
+    item: item!,
     qty: selectMenuqty,
     options: choiceOptions,
   };
@@ -81,10 +81,10 @@ const CustomizeChangeLeft = ({
             return (
               <CustmizeGraf
                 key={index}
-                itemOption={itemOption}
                 choiceOptions={choiceOptions}
-                setChoiceOptions={setChoiceOptions}
+                itemOption={itemOption}
                 selectOptions={selectOptions}
+                setChoiceOptions={setChoiceOptions}
               />
             );
           })}

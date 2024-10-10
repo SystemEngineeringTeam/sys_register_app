@@ -1,6 +1,6 @@
-import { User } from 'firebase/auth';
-import { collection, doc, PartialWithFieldValue, QueryDocumentSnapshot, setDoc } from 'firebase/firestore';
-import { Data, developer, type order } from '../types/index';
+import { type User } from 'firebase/auth';
+import { collection, doc, type PartialWithFieldValue, type QueryDocumentSnapshot, setDoc } from 'firebase/firestore';
+import { type Data, type developer, type order } from '../types/index';
 import { db } from './firebase';
 
 function converter<T>() {
