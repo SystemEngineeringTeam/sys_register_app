@@ -1,4 +1,4 @@
-import { deleteCategory, updateCategory } from '@/firebase/useCategory';
+import { deleteCategory, getCategory, updateCategory } from '@/firebase/useCategory';
 import { userAtom } from '@/login/AdminLogin';
 import { category } from '@/types';
 import { Button } from '@mui/material';
@@ -20,13 +20,28 @@ const CategorySaveButton = ({ selectedChangeOkey, setSelectedChangeOkey,  catego
       throw new Error('User is not logged in');
     }
 
+    const categoryData = getCategory();
     
     const ClickSaveButton = () => {
         const updatecategorydata  = {
             id:categoryId,
             name:categoryName,
         }
-    updateCategory(updatecategorydata,user);
+
+        //もし被っていたら配列に入れる
+    const filterupdateddata = categoryData.category.filter((categorydata) => {
+        console.log('categorydata.name', categorydata.name);
+        return categorydata.name === updatecategorydata.name;
+      });
+      //被っている数が0だったら配列に入れる
+    if (filterupdateddata.length === 0) {
+        updateCategory(updatecategorydata,user);
+    }
+    if (filterupdateddata.length > 0) {
+      console.log('error');
+    }
+
+
     iconClose();
     }
     
