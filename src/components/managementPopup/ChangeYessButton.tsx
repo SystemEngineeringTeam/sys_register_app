@@ -35,7 +35,7 @@ const ChangeYessButton = ({ selectedChangeOkey, addCategory, iconClose }: Change
         setCategoty(updateddata, user);
     }
     if (filterupdateddata.length > 0) {
-      alert('error');
+      alert("同じ名前は登録できません。");
     }
 
     //ポップアップ閉じる処理

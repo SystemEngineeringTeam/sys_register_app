@@ -38,7 +38,7 @@ const CategorySaveButton = ({ selectedChangeOkey, setSelectedChangeOkey,  catego
         updateCategory(updatecategorydata,user);
     }
     if (filterupdateddata.length > 0) {
-      alert("error");
+      alert("同じ名前は登録できません。");
     }
 
 
