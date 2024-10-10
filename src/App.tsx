@@ -24,7 +24,7 @@ import Test from './pages/Test';
 import MenuCheck from './components/MenuEdit/MenuCheck';
 import MenuEdit from './components/Edit/menuEdit';
 import CollectedItemOverview from './components/MenuEdit/CollectedItemOverview';
-import CategoryEdit from './components/editCategory/CategoryEdit';
+import CategoryEdit from './components/CategoryEdit/CategoryEdit';
 
 
 const App = () => {
