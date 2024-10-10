@@ -1,13 +1,15 @@
 import { Box, Button, Card, TextField } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
+import CancelButton from '@/components/managementPopup/CancelButton';
 
 interface EditPopupProps {
   //  現在の名前
   currentName: string;
   // 商品名、値段などの変更したいもの
   editName: string;
+  setOnScreen: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const EditPopup = ({ currentName, editName }: EditPopupProps) => {
+const EditPopup = ({ currentName, editName, setOnScreen }: EditPopupProps) => {
   return (
     <Box>
       {/* 画面全体を半透明の黒で覆う */}
@@ -32,12 +34,17 @@ const EditPopup = ({ currentName, editName }: EditPopupProps) => {
           transform: 'translate(-50%, -50%)',
           // 半透明の要素よりも前に配置
           zIndex: '1',
-          minHeight: { xs: '15rem', sm: '18rem' },
-          minWidth: { xs: '20rem', sm: '25rem' },
+          minHeight: { xs: '25rem', sm: '25rem' },
+          minWidth: { xs: '25rem', sm: '30rem' },
         }}
       >
         {/* バツボタン */}
-        <Button sx={{ position: 'fixed', right: '0' }}>
+        <Button
+          onClick={() => {
+            setOnScreen(false);
+          }}
+          sx={{ position: 'fixed', right: '0' }}
+        >
           <ClearIcon style={{ fontSize: '2.5rem' }} />
         </Button>
         <Box sx={{ fontSize: { xs: '1.5rem', sm: '2rem' }, margin: { xs: '1.5rem', sm: '3rem' } }}>
@@ -50,10 +57,10 @@ const EditPopup = ({ currentName, editName }: EditPopupProps) => {
           <Box sx={{ marginLeft: '2rem' }}>
             <TextField fullWidth inputProps={{ style: { fontSize: '1.5rem' } }} label="必須" />
           </Box>
-          <Box sx={{ display: 'flex', position: 'fixed', right: '0' }}>
+          <Box sx={{ display: 'flex', position: 'fixed', right: '0', padding: '1rem' }}>
             {/* キャンセル、保存ボタン */}
             {/* 他のコンポーネントから持ってくるまで仮置き */}
-            <Button>仮置き</Button>
+            <CancelButton selectedChangeCancel setSelectedChangeCancel={setOnScreen} />
             <Button>仮置き</Button>
           </Box>
         </Box>

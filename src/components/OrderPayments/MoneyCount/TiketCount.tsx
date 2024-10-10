@@ -1,15 +1,17 @@
 import { Box, CardMedia } from '@mui/material';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import { type money } from '@/types';
+import { setMoneyFnc } from '@/utils/setRegisterMoney';
 
 interface MoneyPaidProps {
   image: string;
-  count: number;
-  setCount: React.Dispatch<React.SetStateAction<number>>;
+  paymentMoney: money;
+  setPaymentMoney: React.Dispatch<React.SetStateAction<money>>;
   totalAmount: number;
 }
 // チケット1つの値段
 const tiketAmount = 100;
-const TiketCount = ({ image, count, setCount, totalAmount }: MoneyPaidProps) => {
+const TiketCount = ({ image, paymentMoney, setPaymentMoney, totalAmount }: MoneyPaidProps) => {
   return (
     <div>
       <Box
@@ -18,14 +20,14 @@ const TiketCount = ({ image, count, setCount, totalAmount }: MoneyPaidProps) => 
           border: 0.5,
           width: { xs: '7rem', sm: '9rem' },
           height: { xs: '7rem', sm: '9rem' },
-          opacity: count === 0 ? '0.5' : '1',
+          opacity: paymentMoney.tiket100 === 0 ? '0.5' : '1',
         }}
       >
         {/* 0以上の値の場合、クリック時にcountを -1 */}
         <RemoveCircleIcon
           onClick={() => {
-            if (count > 0) {
-              setCount((prevState) => prevState - 1);
+            if (paymentMoney.tiket100 > 0) {
+              setMoneyFnc(paymentMoney.tiket100 - 1, 'tiket100', setPaymentMoney);
             }
           }}
         />
@@ -39,8 +41,8 @@ const TiketCount = ({ image, count, setCount, totalAmount }: MoneyPaidProps) => 
           image={image}
           //   チケットの合計金額 が 注文の合計金額 以下になるように
           onClick={() => {
-            if ((count + 1) * tiketAmount <= totalAmount) {
-              setCount((prevState) => prevState + 1);
+            if ((paymentMoney.tiket100 + 1) * tiketAmount <= totalAmount) {
+              setMoneyFnc(paymentMoney.tiket100 + 1, 'tiket100', setPaymentMoney);
             }
           }}
           onDragStart={(e) => {
@@ -62,7 +64,7 @@ const TiketCount = ({ image, count, setCount, totalAmount }: MoneyPaidProps) => 
             position: 'relative',
           }}
         >
-          {count}
+          {paymentMoney.tiket100}
         </Box>
       </Box>
     </div>

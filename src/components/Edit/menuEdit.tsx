@@ -2,6 +2,9 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import EditIcon from '@mui/icons-material/Edit';
 import {
   Box,
+  Button,
+  Dialog,
+  DialogContent,
   Divider,
   FormControl,
   IconButton,
@@ -15,6 +18,24 @@ import ItemOptions from '../OrderPayments/ItemOptions';
 import { type options } from '@/types';
 import { useState } from 'react';
 import InputFileUpload from '../Image/upload/InputFileUpload';
+
+import AddButton from './AddButton';
+import CategoryAddPopupCard from '../managementPopup/CategoryAddPopupCard';
+import EditButton from './EditButton';
+import { useLocation } from 'react-router-dom';
+
+// state , statecomponents
+interface State {
+  state:
+    | {
+        selectEdit: string;
+        selectAdd?: undefined;
+      }
+    | {
+        selectAdd: string;
+        selectEdit?: undefined;
+      };
+}
 
 const MenuEdit = () => {
   const options: options[] = [
@@ -66,6 +87,22 @@ const MenuEdit = () => {
   const handleDisplayChange = (event: SelectChangeEvent) => {
     setDisplay(event.target.value);
   };
+
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {};
+  const iconClose = () => {
+    setOpen(false);
+  };
+
+  const location = useLocation();
+  const { state } = location as { state: State };
+
+  console.log('selectAdd', state.state.selectAdd);
+  console.log('selectAdd', state.state.selectEdit);
 
   return (
     <div>
@@ -157,7 +194,20 @@ const MenuEdit = () => {
               </Box>
             </Stack>
           </Box>
-          <InputFileUpload />
+          <Stack>
+            <InputFileUpload />
+
+            <Stack direction="row" sx={{ justifyContent: 'right', mr: '7rem' }}>
+              <EditButton
+                iconClose={iconClose}
+                handleClose={handleClose}
+                open={open}
+                handleOpen={handleOpen}
+                state={state.state}
+              />
+              <AddButton />
+            </Stack>
+          </Stack>
         </Stack>
       </Box>
     </div>

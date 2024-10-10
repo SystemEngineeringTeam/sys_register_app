@@ -8,7 +8,7 @@ import {
   deleteDoc,
 } from 'firebase/firestore';
 import { useAtomValue } from 'jotai';
-import { userAtom } from '../login/AdminLogin';
+import { userAtom } from '@/login/AdminLogin';
 import { useEffect, useState } from 'react';
 import { db } from './firebase';
 import { type money, type moneyData } from '../types/index';
@@ -54,6 +54,7 @@ export function useMoney() {
           '50': changeData['50'] as number,
           '5': changeData['5'] as number,
           '1': changeData['1'] as number,
+          'tiket100':changeData['tiket100'] as number,
           total: changeData.total as number,
         };
 
@@ -70,7 +71,7 @@ export function useMoney() {
         // 修正（更新時）
         if (change.type === 'modified') {
           setMoney((prevData) => {
-            if (prevData) {
+            if (prevData != null) {
               return prevData.map((data) => {
                 if (data.date === newData.date) {
                   return newData;
@@ -84,7 +85,7 @@ export function useMoney() {
         // 完全削除時
         if (change.type === 'removed') {
           setMoney((prevData) => {
-            if (prevData) {
+            if (prevData != null) {
               return prevData.filter((data) => data.date !== newData.date);
             }
             return prevData;
@@ -109,7 +110,7 @@ export function useMoney() {
 // money のデータを追加する関数
 export const addMoney = async (newMoney: moneyData) => {
   const user = useAtomValue(userAtom);
-  if (!user) {
+  if (user == null) {
     throw new Error('User is not logged in');
   }
 
@@ -128,7 +129,7 @@ export const addMoney = async (newMoney: moneyData) => {
 // money のデータを更新する関数
 export const updateMoney = async (newMoney: money) => {
   const user = useAtomValue(userAtom);
-  if (!user) {
+  if (user == null) {
     throw new Error('User is not logged in');
   }
 
@@ -144,6 +145,7 @@ export const updateMoney = async (newMoney: money) => {
     '50': newMoney['50'],
     '5': newMoney['5'],
     '1': newMoney['1'],
+    tiket100: newMoney.tiket100,
     total: newMoney.total,
   };
 

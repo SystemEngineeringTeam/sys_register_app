@@ -20,6 +20,7 @@ const RegisterMoney = () => {
     '10': 0,
     '5': 0,
     '1': 0,
+    tiket100: 0,
     total: 0,
   });
   // // 確認用のuseEffect

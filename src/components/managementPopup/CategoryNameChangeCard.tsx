@@ -2,11 +2,16 @@ import React from 'react';
 import CategoryNameChangeScreen from './CategoryNameChangeScreen';
 import { Card } from '@mui/material';
 
-const CategoryNameChangeCard = () => {
+interface CategoryNameAddCard{
+  iconClose: () => void;
+  orderName: string;
+}
+
+const CategoryNameChangeCard = ({iconClose, orderName}:CategoryNameAddCard) => {
   return (
     <div>
-      <Card sx={{ width: '70%', ml: '15%', mt: '5%', height: '50%' }}>
-        <CategoryNameChangeScreen />
+      <Card sx={{}}>
+        <CategoryNameChangeScreen iconClose={iconClose} orderName={orderName}/>
       </Card>
     </div>
   );

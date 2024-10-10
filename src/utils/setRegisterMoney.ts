@@ -2,7 +2,7 @@ import { type money } from '@/types';
 
 export function setMoneyFnc(
   num: number,
-  moneyKind: 'date' | 1 | 5 | 10 | 50 | 100 | 500 | 1000 | 5000 | 10000 | 'total',
+  moneyKind: 'date' | 1 | 5 | 10 | 50 | 100 | 500 | 1000 | 5000 | 10000 | 'tiket100' | 'total',
   setRegisterMoney: React.Dispatch<React.SetStateAction<money>>,
 ) {
   // NaNが入らないようにする処理
@@ -50,6 +50,13 @@ export function setMoneyFnc(
         ...prev,
         '10000': tmpNum,
         total: prev.total - (prev[10000] - tmpNum) * moneyKind,
+      }));
+      break;
+    case 'tiket100':
+      setRegisterMoney((prev) => ({
+        ...prev,
+        tiket100: tmpNum,
+        total: prev.total - (prev[moneyKind] - tmpNum) * 100,
       }));
       break;
     default:

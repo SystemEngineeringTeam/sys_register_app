@@ -3,25 +3,28 @@ import { useState } from 'react';
 import ScreenChengeButton from './ScreenChengeButton';
 import CategoryBar from './CategoryBar';
 import { getCategory } from '@/firebase/useCategory';
+import CollectedItemOverview from './CollectedItemOverview';
+import { getItems } from '@/firebase/useItems';
 // import { getItems } from '@/firebase/useItems';
 
 const MenuCheck = () => {
   const categorysObject = getCategory();
-  // firebaseからitemがとってこれない
-  // const ItemsObject = getItems();
+  // console.log('🚀 ~ MenuCheck ~ categorysObject:', categorysObject);
+  // console.log('🚀 ~ MenuCheck ~ categorysObject:', categorysObject.category);
   const [selectCategoryId, setSelectcategoryId] = useState('');
-  // useEffect(() => {
-  //   // setSelectcategoryId();
-
-  // }, []);
-  // category_idが選択中のもののみ表示させたい
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [selectAdd, setSelectAdd] = useState('add');
+  // const [selectEdit, setSelectEdit] = useState('edit');
+  const allItems = getItems();
   return (
     <Box>
       <Box sx={{ margin: '1.5rem' }}>
         {/* カテゴリー編集、商品追加ボタン */}
         <Box sx={{ display: 'flex', alignContent: 'center', justifyContent: 'space-evenly' }}>
-          <ScreenChengeButton text="カテゴリー編集" themeColor="categoryEdit" />
-          <ScreenChengeButton text="商品追加" themeColor="addItem" />
+          {/* カテゴリー追加ボタン */}
+          <ScreenChengeButton selectAdd={selectAdd} text="カテゴリー編集" themeColor="categoryEdit" />
+          {/* 商品追加ボタン */}
+          <ScreenChengeButton selectAdd={selectAdd} text="商品追加" themeColor="addItem" />
         </Box>
         {/* カテゴリー遷移バー */}
         <Box sx={{ margin: '0.5rem' }}>
@@ -35,10 +38,7 @@ const MenuCheck = () => {
         <Box>
           {/* 商品概要 */}
           <Box>
-            {/* <CollectedItemOverview
-              // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
-              OverviewItems={ItemsObject.items}
-            /> */}
+            <CollectedItemOverview allItems={allItems} selectCategoryId={selectCategoryId} />
           </Box>
         </Box>
       </Box>

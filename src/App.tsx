@@ -10,7 +10,7 @@ import AppLayout from './layout/AppLayout';
 import { RequiredLogin } from './layout/RequiredLogin';
 import LoginForm from './login/LoginForm';
 import Call from './pages/Call';
-import CategoryEdit from './pages/CategoryEdit';
+
 import Cooking from './pages/Cooking';
 import CustomizeChange from './pages/CustomizeChange';
 import Delivery from './pages/Delivery';
@@ -21,6 +21,9 @@ import OrderChange from './pages/OrderChange';
 import CategoryDaialog from './components/managementPopup/CategoryDaialog';
 import MenuCheck from './components/MenuEdit/MenuCheck';
 import MenuEdit from './components/Edit/menuEdit';
+import CollectedItemOverview from './components/MenuEdit/CollectedItemOverview';
+import CategoryEdit from './components/editCategory/CategoryEdit';
+
 
 const App = () => {
   return (
@@ -42,11 +45,9 @@ const App = () => {
             <Route element={<MoneyCount />} path="paychange" />
             <Route element={<MenuEdit />} path="test" />
             <Route element={<CategoryDaialog />} path="popup" />
-            <Route element={<CategoryDeletePopupCard />} path="popupcategorydelete" />
-            <Route element={<CategoryAddPopupCard />} path="popupcategoryadd" />
-            <Route element={<CategoryNameChangeCard />} path="popupcategorychangename" />
-            <Route element={<CategoryNameAddCard />} path="categorynameadd" />
             <Route element={<CategoryEdit />} path="categoryedit" />
+            <Route element={<MenuCheck />} path="menucheck" />
+            {/* <Route element={<CollectedItemOverview />} path="collecteditem" /> */}
             <Route element={<div>Not Found</div>} path="*" />
           </Route>
         </Route>
