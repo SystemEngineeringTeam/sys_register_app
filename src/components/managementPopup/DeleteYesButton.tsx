@@ -5,10 +5,9 @@ import React from 'react';
 interface DeleteYesButtonProps {
   selectedChangeOkey: boolean;
   setSelectedChangeOkey: React.Dispatch<React.SetStateAction<boolean>>;
-
 }
 
-const DeleteYesButton = ({ selectedChangeOkey, setSelectedChangeOkey}: DeleteYesButtonProps) => {
+const DeleteYesButton = ({ selectedChangeOkey, setSelectedChangeOkey }: DeleteYesButtonProps) => {
   const ClickYesButton = () => {
     setSelectedChangeOkey(!selectedChangeOkey);
   };
@@ -18,7 +17,6 @@ const DeleteYesButton = ({ selectedChangeOkey, setSelectedChangeOkey}: DeleteYes
       <Button
         disableElevation
         onClick={ClickYesButton}
-        
         size="large"
         sx={{
           bgcolor: selectedChangeOkey ? 'red' : 'gray',
@@ -32,7 +30,6 @@ const DeleteYesButton = ({ selectedChangeOkey, setSelectedChangeOkey}: DeleteYes
       >
         はい
       </Button>
-      
     </div>
   );
 };
