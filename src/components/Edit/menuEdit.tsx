@@ -18,7 +18,6 @@ import { category, type items, type options } from '@/types';
 import { useState } from 'react';
 // eslint-disable-next-line no-restricted-imports
 import InputFileUpload from '../Image/upload/InputFileUpload';
-
 import AddButton from './AddButton';
 import EditButton from './EditButton';
 import { useLocation } from 'react-router-dom';
@@ -27,7 +26,6 @@ import { MenuEditSchema, menuEditType } from '@/validations/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { getItemNameDuplication } from '../../utils/zodUtils';
 import { categoryIdToCategoryName } from '@/utils/CategoryIdToItem';
-
 // state , statecomponents
 interface State {
   state: {
@@ -36,7 +34,6 @@ interface State {
     categorys?: category[];
   };
 }
-
 const MenuEdit = () => {
   const location = useLocation();
   const { state } = location as { state: State };
@@ -52,7 +49,6 @@ const MenuEdit = () => {
   //     price: 0,
   //   },
   // ];
-
   // オプション
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [option, setOption] = useState(state.state.item?.options);
@@ -69,7 +65,6 @@ const MenuEdit = () => {
     setItemName('');
     setOnScreenPopUpItem(true);
   };
-
   // priceのEdit
   const handlePriceChange = () => {
     // setItemPrice(100);
@@ -93,33 +88,18 @@ const MenuEdit = () => {
   const handleDisplayChange = (event: SelectChangeEvent) => {
     setDisplay(event.target.value);
   };
-
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {};
-  const iconClose = () => {
-    setOpen(false);
-  };
-
-  // // eslint-disable-next-line no-console
-  // console.log('selectAdd', state.state?.selectAdd);
-  // // eslint-disable-next-line no-console
-  // console.log('selectAdd', state.state?.selectEdit);
-  // eslint-disable-next-line no-console
-  console.log('item', state.state?.item?.name);
-  // // 商品名
+  // // 商品名 zodでバリテーションチェック済み
   const [itemName, setItemName] = useState(state.state?.item?.name);
-  // 商品の値段
-  const [itemPrice, setItemPrice] = useState(0);
+  // 商品の値段 zodでバリテーションチェック済み
+  const [itemPrice, setItemPrice] = useState(state.state?.item?.price);
+  // 販売中かどうか　販売中ならtrue
   const [visible, setVisible] = useState(state.state?.item?.visible);
+  // handleSubmitは送信する時に使う 今は未実装
   const {
     control,
     setValue,
     watch,
-    formState: { errors },
+    formState: { errors, isValid },
     // 保存時の処理
     handleSubmit,
     // リセットしたい時に使う関数
@@ -133,7 +113,6 @@ const MenuEdit = () => {
     // zodのバリテーションチェックをreact-hooks-formと連携
     resolver: zodResolver(MenuEditSchema),
   });
-
   return (
     <div>
       <Box>
@@ -142,9 +121,8 @@ const MenuEdit = () => {
           <Box>
             <Stack direction="row" sx={{ justifyContent: 'space-between' }}>
               <Box>商品名</Box>
-
               <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                <Box> {state.state.item?.name}</Box>
+                <Box> {itemName}</Box>
                 <IconButton onClick={handleNameChange}>
                   <EditIcon />
                 </IconButton>
@@ -155,9 +133,14 @@ const MenuEdit = () => {
                     render={({ field }) => {
                       return (
                         <EditPopup
+                          isValid={isValid}
+                          setItemPrice={setItemPrice}
+                          setItemName={setItemName}
+                          state={itemName}
                           setValue={setValue}
                           errors={errors}
                           field={field}
+                          watch={watch}
                           currentName={`${state.state.item?.name}`}
                           editName="商品名"
                           setOnScreen={setOnScreenPopUpItem}
@@ -175,9 +158,8 @@ const MenuEdit = () => {
           <Box>
             <Stack direction="row" sx={{ justifyContent: 'space-between' }}>
               <Box>値段</Box>
-
               <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                <Box> ￥{state.state.item?.price}</Box>
+                <Box> ￥{itemPrice}</Box>
                 <IconButton onClick={handlePriceChange}>
                   <EditIcon />
                 </IconButton>
@@ -188,9 +170,14 @@ const MenuEdit = () => {
                     render={({ field }) => {
                       return (
                         <EditPopup
+                          isValid={isValid}
+                          setItemPrice={setItemPrice}
+                          setItemName={setItemName}
+                          state={itemPrice}
                           setValue={setValue}
                           errors={errors}
                           field={field}
+                          watch={watch}
                           currentName={`${state.state.item?.price}`}
                           editName="値段"
                           setOnScreen={setOnScreenPopUpAmount}
@@ -208,7 +195,6 @@ const MenuEdit = () => {
           <Box>
             <Stack direction="row" sx={{ justifyContent: 'space-between' }}>
               <Box>オプション</Box>
-
               <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                 <Box>
                   <ItemOptions options={option} />
@@ -223,7 +209,6 @@ const MenuEdit = () => {
           <Box>
             <Stack direction="row" sx={{ justifyContent: 'space-between' }}>
               <Box>カテゴリー</Box>
-
               <Box sx={{ display: 'flex', flexDirection: 'row', minWidth: 130 }}>
                 <FormControl fullWidth>
                   <InputLabel id="demo-simple-select-label">カテゴリー</InputLabel>
@@ -256,7 +241,6 @@ const MenuEdit = () => {
           <Box>
             <Stack direction="row" sx={{ justifyContent: 'space-between' }}>
               <Box>表示</Box>
-
               <Box sx={{ display: 'flex', flexDirection: 'row', minWidth: 130 }}>
                 <FormControl fullWidth>
                   <InputLabel id="demo-simple-select-label">表示</InputLabel>
@@ -276,7 +260,6 @@ const MenuEdit = () => {
           </Box>
           <Stack>
             <InputFileUpload />
-
             <Stack direction="row" sx={{ justifyContent: 'right', mr: '7rem' }}>
               {/* <EditButton
                 iconClose={iconClose}
