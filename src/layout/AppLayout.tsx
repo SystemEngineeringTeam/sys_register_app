@@ -1,6 +1,6 @@
 import React from 'react';
-import { Outlet, Link, useLocation } from 'react-router-dom';
 import { styled, useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -22,41 +22,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import UserIcon from '../login/UserIcon';
 
-interface ListItems {
-  text: string;
-  icon: React.ReactNode;
-  to: string;
-}
-
 const drawerWidth = 240;
-// listItemのリスト
-const listItems: ListItems[] = [
-  {
-    text: '注文',
-    icon: <InboxIcon />,
-    to: '/order',
-  },
-  {
-    text: '調理',
-    icon: <MailIcon />,
-    to: '/cooking',
-  },
-  {
-    text: '提供',
-    icon: <MailIcon />,
-    to: '/delivery',
-  },
-  {
-    text: '呼び出し',
-    icon: <MailIcon />,
-    to: '/call',
-  },
-  {
-    text: '管理',
-    icon: <MailIcon />,
-    to: '/admin',
-  },
-];
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
   open: boolean;
@@ -109,7 +75,8 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 const AppLayout = () => {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState<boolean | null>(null);
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -161,19 +128,27 @@ const AppLayout = () => {
           </IconButton>
         </DrawerHeader>
         <Divider />
-
         <List>
-          {listItems.map((item) => (
-            <ListItem key={item.text} component={Link} to={item.to}>
-              <ListItemButton onClick={handleDrawerClose}>
-                <ListItemIcon>{item.icon}</ListItemIcon>
-                <ListItemText primary={item.text} />
+          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                <ListItemText primary={text} />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
-
         <Divider />
+        <List>
+          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
       </Drawer>
       <Main open={isDrawerOpen}>
         <Outlet /> {/* ここにルートで指定されたコンテンツが表示される */}

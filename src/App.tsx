@@ -25,8 +25,10 @@ import CollectedItemOverview from './components/MenuEdit/CollectedItemOverview';
 import RegisterMoney from './components/Edit/RegisterMoney/RegisterMoney';
 import CategoryEdit from './components/editCategory/CategoryEdit';
 
+
 const App = () => {
   return (
+
     <Router>
       <Routes>
         <Route element={<AppLayout />} path="/">
@@ -55,7 +57,7 @@ const App = () => {
         </Route>
       </Routes>
     </Router>
-  );
-};
+  </div>
+);
 
 export default App;
