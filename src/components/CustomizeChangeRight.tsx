@@ -28,7 +28,7 @@ const CustomizeChangeRight = ({ selectId, newOrderData }: CustomizeChangeRightPr
           <OrderNumber id={selectId.toString()} />
         </Box>
 
-        <Box sx={{ mt: '40px' }}>
+        <Box sx={{ mt: '340px' }}>
           <Box>
             <OrderDelete  />
           </Box>
