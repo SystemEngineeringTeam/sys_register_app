@@ -8,7 +8,7 @@ const Home = () => {
         SysPay
       </Typography>
       <Typography gutterBottom variant="body1">
-        システム工学研究会のPOSシステム
+        システム工学研究会の支払い管理システム
       </Typography>
 
       {/* おしゃれなメインロゴ */}
