@@ -1,12 +1,20 @@
-import { Button, Dialog, DialogContent, SelectChangeEvent } from '@mui/material';
+import { Button, Dialog, DialogContent } from '@mui/material';
 import React, { useState } from 'react';
-import CategoryDeletePopupCard from '../managementPopup/CategoryDeletePopupCard';
 import CategoryNameChangeCard from '../managementPopup/CategoryNameChangeCard';
+import { category } from '@/types';
 
 interface CategoryNameChangeButtonProp {
-  orderName: string;
+  categoryName: string;
+  categoryId: string;
+  categorydata: category;
+  setCategoryName: React.Dispatch<React.SetStateAction<string>>;
 }
-const CategoryNameChangeButton = ({ orderName }: CategoryNameChangeButtonProp) => {
+const CategoryNameChangeButton = ({
+  categoryName,
+  categoryId,
+  categorydata,
+  setCategoryName,
+}: CategoryNameChangeButtonProp) => {
   const ClickButton = () => {
     setSelectedChange(!selectedChange);
   };
@@ -36,7 +44,13 @@ const CategoryNameChangeButton = ({ orderName }: CategoryNameChangeButtonProp) =
 
       <Dialog fullWidth maxWidth="md" onClose={handleClose} open={open}>
         <DialogContent sx={{ p: 0 }}>
-          <CategoryNameChangeCard iconClose={iconClose} orderName={orderName}/>
+          <CategoryNameChangeCard
+            iconClose={iconClose}
+            categoryName={categoryName}
+            categoryId={categoryId}
+            categorydata={categorydata}
+            setCategoryName={setCategoryName}
+          />
         </DialogContent>
       </Dialog>
     </div>

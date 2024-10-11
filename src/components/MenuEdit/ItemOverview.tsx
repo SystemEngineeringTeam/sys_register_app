@@ -23,12 +23,8 @@ const ItemOverview = ({ item, allItems, categorys }: ItemOverviewProps) => {
   return (
     <Box sx={{ display: 'flex', borderTop: '1px solid #2b2b2b' }}>
       <Box sx={{ display: 'flex', margin: '0.5rem' }}>
-        <img
-          alt={item.imgUrl}
-          className="yakitori"
-          src="/yakitori.png"
-          style={{ maxWidth: '8rem', maxHeight: '8rem' }}
-        />
+        <img alt={item.imgUrl} className="yakitori" src={item.imgUrl} style={{ maxWidth: '8rem', maxHeight: '8rem' }} />
+
         <Box sx={{ marginLeft: '1rem', alignContent: 'center' }}>
           <Box>{item.name}</Box>
           <Box>{item.price}円</Box>

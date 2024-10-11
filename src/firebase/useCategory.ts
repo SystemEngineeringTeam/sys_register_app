@@ -1,5 +1,5 @@
 import { userAtom } from '@/login/AdminLogin';
-import { type category, type categoryData } from '@/types';
+import { developer, type category, type categoryData } from '@/types';
 import {
   addDoc,
   collection,
@@ -13,6 +13,7 @@ import {
 import { useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
 import { db } from './firebase';
+import { User } from 'firebase/auth';
 
 function converter<T>() {
   return {
@@ -97,12 +98,7 @@ export const setCategoty = async (data: categoryData) => {
 };
 
 // 更新する関数
-export const updateCategory = async (newCategory: category) => {
-  const user = useAtomValue(userAtom);
-  if (!user) {
-    throw new Error('User is not logged in');
-  }
-
+export const updateCategory = async (newCategory: category ,user: User | developer) => {
   const data = {
     name: newCategory.name,
   };
@@ -113,12 +109,7 @@ export const updateCategory = async (newCategory: category) => {
 };
 
 // 削除する関数
-export const deleteCategory = async (categoryId: string) => {
-  const user = useAtomValue(userAtom);
-  if (!user) {
-    throw new Error('User is not logged in');
-  }
-
+export const deleteCategory = async (categoryId: string, user: User | developer) => {
   await deleteDoc(doc(db, 'shop_user', user.uid, 'category', categoryId));
   console.log('category deleted');
 };

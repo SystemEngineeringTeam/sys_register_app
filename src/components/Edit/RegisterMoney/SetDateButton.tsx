@@ -5,20 +5,24 @@ import { Button, ThemeProvider } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 interface SetMoneyButtonProps {
-  id: string;
   to: string;
   setRegisterMoney: React.Dispatch<React.SetStateAction<money>>;
+  registerMoney: money;
 }
 
-const SetDateButton = ({ id, to, setRegisterMoney }: SetMoneyButtonProps) => {
+const SetDateButton = ({ to, setRegisterMoney, registerMoney }: SetMoneyButtonProps) => {
   const handleChange = () => {
     // ボタンを押した時にdateを更新
-    const date = new Date();
-    setMoneyFnc(date.getTime(), 'date', setRegisterMoney);
+    // 現在の日付の00:00:00のミリ秒を取得する
+    const today = new Date();
+    const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    const milliseconds = todayMidnight.getTime();
+    setMoneyFnc(milliseconds, 'date', setRegisterMoney);
+    console.log('money??', registerMoney);
   };
   return (
     <ThemeProvider theme={theme}>
-      <Link state={{ id }} to={to}>
+      <Link state={{ registerMoney }} to={to}>
         <Button
           color="ok"
           onClick={handleChange}

@@ -41,8 +41,8 @@ const OkeyButton = ({ selectId }: OkeyButtonProps) => {
         size="large"
         sx={{
           background: '#F68B1F',
-          py: '30px', // 必要に応じてパディングを調整
           width: '200px',
+          fontSize: { xs: '2rem', sm: '2.5rem', md: '2rem' },
         }}
         variant="contained"
       >
