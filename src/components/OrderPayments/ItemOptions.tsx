@@ -1,16 +1,18 @@
 import Chip from '@mui/material/Chip';
 import { type options } from '../../types/index';
+import { theme } from '@/themes/theme';
+import ItemColor from './ItemColor';
 
 interface ItemOptionsProps {
-  options: options[] | undefined;
+  options: options[] ;
 }
 
 const ItemOptions = ({ options }: ItemOptionsProps) => {
   return (
     <div>
-      {options.map((option) => (
-        <Chip sx={{ bgcolor:'#f26c4f'}} component="button" label={option.name} />
-      ))}
+
+        <ItemColor options={options}/>
+
     </div>
   );
 };
