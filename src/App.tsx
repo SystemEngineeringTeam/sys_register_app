@@ -48,8 +48,6 @@ const App = () => {
             <Route element={<CategoryEdit />} path="categoryedit" />
             <Route element={<MenuCheck />} path="menucheck" />
             <Route element={<RegisterMoney />} path="registerMoney" />
-
-            {/* <Route element={<CollectedItemOverview />} path="collecteditem" /> */}
             <Route element={<div>Not Found</div>} path="*" />
           </Route>
         </Route>
