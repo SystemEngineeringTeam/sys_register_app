@@ -3,23 +3,18 @@ import CategoryNameChangeScreen from './CategoryNameChangeScreen';
 import { Card } from '@mui/material';
 import { category } from '@/types';
 
-interface CategoryNameAddCard {
+interface CategoryNameAddCard{
   iconClose: () => void;
-  orderName: string;
   categoryName: string;
-  setCategoryName: React.Dispatch<React.SetStateAction<string>>;
+  categoryId: string;
+  categorydata: category;
 }
 
-const CategoryNameChangeCard = ({ iconClose, orderName, categoryName, setCategoryName }: CategoryNameAddCard) => {
+const CategoryNameChangeCard = ({iconClose, categoryName , categoryId , categorydata}:CategoryNameAddCard) => {
   return (
     <div>
       <Card sx={{}}>
-        <CategoryNameChangeScreen
-          iconClose={iconClose}
-          orderName={orderName}
-          setCategoryName={setCategoryName}
-          categoryName={categoryName}
-        />
+        <CategoryNameChangeScreen iconClose={iconClose} categoryName={categoryName} categoryId={categoryId} categorydata={categorydata}/>
       </Card>
     </div>
   );
