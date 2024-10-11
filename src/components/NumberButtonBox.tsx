@@ -14,7 +14,8 @@ const NumberButtonBox = ({ ordersId }: NumberButtonProps) => {
           flexDirection: 'row',
           wordBreak: 'break-word',
           flexWrap: 'wrap',
-          mb:'100px'
+          mb:'100px',
+          
         }}
       >
         

@@ -57,16 +57,15 @@ const OrderMenueName = ({
           <CreateIcon />
         </Box>
       </Link>
-      <Box flex={3} sx={{ ml: '30px', wordBreak: 'break-word', fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' } }}>
+      <Box sx={{ width:'calc(100vh / 1.3)' , ml: '30px', wordBreak: 'break-word', fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' } }}>
         {selectMenuName}
       </Box>
       <Box
-        flex={1.5}
-        sx={{ ml: { xs: '30px', sm: '50px', md: '520px' }, fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' } }}
+        sx={{  fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' } }}
       >
         x{selectMenuqty}
       </Box>
-      <Box sx={{ ml: 'auto', fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' } }}>{selectMenuPrice}</Box>
+      <Box sx={{ ml:'40px' , fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' } }}>{selectMenuPrice}</Box>
     </div>
   );
 };

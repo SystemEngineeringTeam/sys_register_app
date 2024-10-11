@@ -11,9 +11,10 @@ const OrderDelete = () => {
         sx={{
           background: '#FF4337',
           width: '200px',
-          py: '30px',
+          fontSize: { xs: '2rem', sm: '2.5rem', md: '2rem' },
         }}
         variant="contained"
+        
       >
         注文取消
       </Button>

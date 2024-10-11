@@ -20,11 +20,11 @@ const OrderButton = ({ id }: OrderButtonProps) => {
       <Link state={{ id }} to="/payment">
         <Button
           disableElevation
-          size="large"
+
           sx={{
             background: '#F68B1F',
-            py: '30px',
-            width: '200px',
+ 
+            fontSize: { xs: '2rem', sm: '2.5rem', md: '2rem' },
           }}
           variant="contained"
         >

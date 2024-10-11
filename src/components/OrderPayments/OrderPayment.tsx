@@ -101,15 +101,18 @@ const OrderPayment = () => {
           sx={{
             fontSize: '1.5rem',
             right: '2rem',
-            bottom: { xs: '3.5rem', sm: '5rem' },
+            bottom: { xs: '3.5rem', sm: '8rem' },
             position: 'fixed',
           }}
         >
+          
           {/* お支払いと合計金額 */}
           <WritePaidSumMoney totalAmount={getTotalAmount()} totalPayment={paymentMoney.total} />
           <Box sx={{ border: 1 }} />
           {/* おつり */}
           <WriteNotEnoughMoney totalAmount={getTotalAmount()} totalPayment={paymentMoney.total} />
+
+
           <Box sx={{ display: 'flex', margin: '1rem', position: 'fixed', right: '2rem', bottom: '1rem' }}>
             <Box>
               {/* 戻るボタン */}
