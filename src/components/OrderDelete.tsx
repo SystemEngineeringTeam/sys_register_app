@@ -1,21 +1,22 @@
 import { deleteOrder } from '@/firebase/useOrder';
+import { userAtom } from '@/login/AdminLogin';
 import { Button } from '@mui/material';
+import { useAtomValue } from 'jotai';
 import React from 'react';
+import { order, orderCollection } from '../types/index';
 
 const OrderDelete = () => {
-
   const user = useAtomValue(userAtom);
   if (user == null) {
     throw new Error('User is not logged in');
   }
-
 
   return (
     <div>
       <Button
         disableElevation
         onClick={() => {
-          deleteOrder();
+          // deleteOrder( orderCollection.id, orderId ,user);
         }}
         size="medium"
         sx={{
