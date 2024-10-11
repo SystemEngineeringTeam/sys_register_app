@@ -1,6 +1,5 @@
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import EditIcon from '@mui/icons-material/Edit';
-import { Controller, useForm } from 'react-hook-form';
 import {
   Box,
   Divider,
@@ -12,23 +11,26 @@ import {
   type SelectChangeEvent,
   Stack,
 } from '@mui/material';
-// eslint-disable-next-line no-restricted-imports
+import { Controller, useForm } from 'react-hook-form';
 import ItemOptions from '../OrderPayments/ItemOptions';
-import { category, type items, type options } from '@/types';
+import { category, items, type options } from '@/types';
 import { useState } from 'react';
-// eslint-disable-next-line no-restricted-imports
 import InputFileUpload from '../Image/upload/InputFileUpload';
+import { zodResolver } from '@hookform/resolvers/zod';
 import AddButton from './AddButton';
 import EditButton from './EditButton';
 import { useLocation } from 'react-router-dom';
-import EditPopup from './EditPopup';
-import { MenuEditSchema, menuEditType } from '@/validations/schema';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { getItemNameDuplication } from '../../utils/zodUtils';
+import { getItemNameDuplication } from '@/utils/zodUtils';
 import { categoryIdToCategoryName } from '@/utils/CategoryIdToItem';
+import { MenuEditSchema, menuEditType } from '@/validations/schema';
+import { ZodObject, ZodString, ZodNumber, ZodTypeAny } from 'zod';
+import EditPopup from './EditPopup';
+
 // state , statecomponents
 interface State {
   state: {
+    selectEdit?: string;
+    selectAdd?: string;
     item?: items;
     allIitems?: items[];
     categorys?: category[];
@@ -37,20 +39,7 @@ interface State {
 const MenuEdit = () => {
   const location = useLocation();
   const { state } = location as { state: State };
-  // const options: options[] = [
-  //   {
-  //     id: '1',
-  //     name: '塩',
-  //     price: 100,
-  //   },
-  //   {
-  //     id: '2',
-  //     name: 'ケチャップ',
-  //     price: 0,
-  //   },
-  // ];
   // オプション
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [option, setOption] = useState(state.state.item?.options);
   // ポップアップ表示用
   const [onScreenPopUpItem, setOnScreenPopUpItem] = useState(false);
@@ -73,8 +62,8 @@ const MenuEdit = () => {
   };
   // optionを追加
   const handleOptionChange = () => {
-    // ここでオプションの変更popupを出す
-    // setOption(options);
+    // // ここで値段の変更popupを出す
+    // setOnScreenPopUpAmount(true);
   };
   // カテゴリーの状態
   const [categoryName, setCategoryName] = useState(
@@ -87,6 +76,20 @@ const MenuEdit = () => {
   // 表示の選択
   const handleDisplayChange = (event: SelectChangeEvent) => {
     setDisplay(event.target.value);
+  };
+
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {};
+  const iconClose = () => {
+    setOpen(false);
+  };
+  // カテゴリーの選択
+  const handleCategoryChange = (event: SelectChangeEvent) => {
+    setCategoryName(event.target.value);
   };
   // // 商品名 zodでバリテーションチェック済み
   const [itemName, setItemName] = useState(state.state?.item?.name);
@@ -261,13 +264,14 @@ const MenuEdit = () => {
           <Stack>
             <InputFileUpload />
             <Stack direction="row" sx={{ justifyContent: 'right', mr: '7rem' }}>
-              {/* <EditButton
+              <EditButton
                 iconClose={iconClose}
                 handleClose={handleClose}
                 open={open}
                 handleOpen={handleOpen}
-                state={state.state}
-              /> */}
+                selectEdit={state.state?.selectEdit}
+                selectAdd={state.state?.selectAdd}
+              />
               <AddButton />
             </Stack>
           </Stack>
