@@ -22,8 +22,8 @@ import CategoryDaialog from './components/managementPopup/CategoryDaialog';
 import MenuCheck from './components/MenuEdit/MenuCheck';
 import MenuEdit from './components/Edit/menuEdit';
 import CollectedItemOverview from './components/MenuEdit/CollectedItemOverview';
-import CategoryEdit from './components/CategoryEdit/CategoryEdit';
 import RegisterMoney from './components/Edit/RegisterMoney/RegisterMoney';
+import CategoryEdit from './components/editCategory/CategoryEdit';
 
 const App = () => {
   return (
