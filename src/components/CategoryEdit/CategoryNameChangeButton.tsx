@@ -6,10 +6,10 @@ import { category } from '@/types';
 
 interface CategoryNameChangeButtonProp {
   categoryName: string;
-  categoryId:string;
-  categorydata: category;
+  setCategoryName: React.Dispatch<React.SetStateAction<string>>;
+  orderName: string;
 }
-const CategoryNameChangeButton = ({ categoryName , categoryId , categorydata}: CategoryNameChangeButtonProp) => {
+const CategoryNameChangeButton = ({ categoryName, setCategoryName, orderName }: CategoryNameChangeButtonProp) => {
   const ClickButton = () => {
     setSelectedChange(!selectedChange);
   };
@@ -39,7 +39,12 @@ const CategoryNameChangeButton = ({ categoryName , categoryId , categorydata}: C
 
       <Dialog fullWidth maxWidth="md" onClose={handleClose} open={open}>
         <DialogContent sx={{ p: 0 }}>
-          <CategoryNameChangeCard iconClose={iconClose} categoryName={categoryName} categoryId={categoryId} categorydata={categorydata}/>
+          <CategoryNameChangeCard
+            iconClose={iconClose}
+            orderName={orderName}
+            setCategoryName={setCategoryName}
+            categoryName={categoryName}
+          />
         </DialogContent>
       </Dialog>
     </div>
