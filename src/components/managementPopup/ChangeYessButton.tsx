@@ -1,33 +1,18 @@
-import { deleteCategory, getCategory, updateCategory } from '@/firebase/useCategory';
+import { deleteCategory, getCategory, setCategoty } from '@/firebase/useCategory';
 import { userAtom } from '@/login/AdminLogin';
-import { category } from '@/types';
 import { Button } from '@mui/material';
 import { useAtomValue } from 'jotai';
-import React from 'react';
+import React, { useEffect } from 'react';
 
-interface CategorySaveButtonProps {
+interface ChangeYessButton {
   selectedChangeOkey: boolean;
-  setSelectedChangeOkey: React.Dispatch<React.SetStateAction<boolean>>;
-  categoryName: string;
-  categorydata: category;
-  categoryId: string;
+  addCategory: string;
   iconClose: () => void;
-  setCategoryName: React.Dispatch<React.SetStateAction<string>>;
-  value: string;
-  schemeError: boolean;
 }
 
-const CategorySaveButton = ({
-  selectedChangeOkey,
-  setSelectedChangeOkey,
-  categorydata,
-  categoryName,
-  categoryId,
-  iconClose,
-  setCategoryName,
-  value,
-  schemeError,
-}: CategorySaveButtonProps) => {
+const ChangeYessButton = ({ selectedChangeOkey, addCategory, iconClose }: ChangeYessButton) => {
+  
+
   const user = useAtomValue(userAtom);
   if (!user) {
     throw new Error('User is not logged in');
@@ -35,37 +20,37 @@ const CategorySaveButton = ({
 
   const categoryData = getCategory();
 
-  const ClickSaveButton = () => {
-    const updatecategorydata = {
-      id: categoryId,
-      name: categoryName,
+//ボタン押した時の処理
+  const AddButton = () => {
+    const updateddata = {
+      name: addCategory,
     };
 
     //もし被っていたら配列に入れる
     const filterupdateddata = categoryData.category.filter((categorydata) => {
       console.log('categorydata.name', categorydata.name);
-      return categorydata.name === updatecategorydata.name;
+      return categorydata.name === updateddata.name;
     });
+
     //被っている数が0だったら配列に入れる
     if (filterupdateddata.length === 0) {
-      updateCategory(updatecategorydata, user);
+        setCategoty(updateddata, user);
     }
     if (filterupdateddata.length > 0) {
       alert('error');
     }
 
+    //ポップアップ閉じる処理
     iconClose();
   };
+
+
 
   return (
     <div>
       <Button
         disableElevation
-        disabled={schemeError}
-        onClick={() => {
-          setCategoryName(value);
-          ClickSaveButton();
-        }}
+        onClick={AddButton}
         size="large"
         sx={{
           bgcolor: selectedChangeOkey ? 'red' : 'gray',
@@ -77,10 +62,10 @@ const CategorySaveButton = ({
         }}
         variant="contained"
       >
-        保存
+        はい
       </Button>
     </div>
   );
 };
 
-export default CategorySaveButton;
+export default ChangeYessButton;
