@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { type money } from '@/types';
 import { setMoneyFnc } from '@/utils/setRegisterMoney';
 import { Box, CardMedia, TextField } from '@mui/material';
-import { moneyCountSchema } from '@/validations/schema';
 // eslint-disable-next-line no-restricted-imports
+import { moneyCountSchema } from '../../../validations/schema';
 
 interface RegisterChengeProps {
   image: string;

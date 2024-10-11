@@ -1,27 +1,31 @@
-import { Box, Button, Stack, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import ClearIcon from '@mui/icons-material/Clear';
-import CancelButton from './CancelButton';
-import DeleteYesButton from './DeleteYesButton';
-import TextField from '@mui/material/TextField';
+import { category } from '@/types';
 import { categorySchema } from '@/validations/schema';
+import ClearIcon from '@mui/icons-material/Clear';
+import { Box, Button, Stack, Typography } from '@mui/material';
+import TextField from '@mui/material/TextField';
+import React, { useState } from 'react';
 import { z } from 'zod';
+import CancelButton from './CancelButton';
+import CategorySaveButton from './CategorySaveButton';
 
 interface CategoryNameChangeScreen {
   iconClose: () => void;
-  orderName: string;
   categoryName: string;
+  categoryId: string;
+  categorydata: category;
   setCategoryName: React.Dispatch<React.SetStateAction<string>>;
 }
-
 const CategoryNameChangeScreen = ({
   iconClose,
-  orderName,
   categoryName,
+  categoryId,
+  categorydata,
   setCategoryName,
 }: CategoryNameChangeScreen) => {
   const [selectedChangeCancel, setSelectedChangeCalcel] = useState(true);
   const [selectedChangeOkey, setSelectedChangeOkey] = useState(true);
+  const [categoryNameSave, setCategoryNameSave] = useState(categorydata.name);
+  const [categoryIdSave, setCategoryIdSave] = useState(categorydata.id);
   const [value, setValue] = useState(categoryName);
   const [errorMessage, setErrorMessage] = useState('');
   const [schemeError, setSchemeError] = useState<boolean>(false);
@@ -38,8 +42,8 @@ const CategoryNameChangeScreen = ({
     } catch (error) {
       if (error instanceof z.ZodError) {
         // moneyCountSchemeの形に合わない場合はこちらを実行
-        
-        error.errors.forEach((e)=>{
+
+        error.errors.forEach((e) => {
           setErrorMessage(e.message);
         });
         // テキストフィールドをエラー表示
@@ -61,7 +65,7 @@ const CategoryNameChangeScreen = ({
         </Box>
 
         <Box sx={{ mt: '10px' }}>
-          <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 2.0vw, 3.2rem)' }}>{categoryName}</Typography>
+          <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 2.0vw, 3.2rem)' }}>{categorydata.name}</Typography>
         </Box>
 
         <Box sx={{ mt: '10rem' }}>
@@ -77,9 +81,10 @@ const CategoryNameChangeScreen = ({
             helperText={errorMessage}
             multiline
             variant="outlined"
-            value={value}
+            value={categoryNameSave}
             onChange={(e) => {
               handleChange(e);
+              setCategoryNameSave(e.target.value);
             }}
           />
         </Box>
@@ -97,9 +102,13 @@ const CategoryNameChangeScreen = ({
             />
           </Button>
           <Button>
-            <DeleteYesButton
+            <CategorySaveButton
               selectedChangeOkey={selectedChangeOkey}
               setSelectedChangeOkey={setSelectedChangeOkey}
+              categorydata={categorydata}
+              categoryName={categoryNameSave}
+              categoryId={categoryId}
+              iconClose={iconClose}
               setCategoryName={setCategoryName}
               value={value}
               schemeError={schemeError}

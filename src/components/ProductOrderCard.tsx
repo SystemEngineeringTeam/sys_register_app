@@ -26,15 +26,6 @@ const ProductOrderCard = ({ items, qty, options }: ProductOrderCardProps) => {
             <Grid item xs={6}>
               <ItemOptions options={options} />
             </Grid>
-            {/* <Grid item xs={6}>
-              <ItemOptions />
-            </Grid>
-            <Grid item xs={6}>
-              <ItemOptions />
-            </Grid>
-            <Grid item xs={6}>
-              <ItemOptions />
-            </Grid> */}
           </Grid>
         </Card>
       </Box>

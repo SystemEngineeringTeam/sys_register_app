@@ -1,6 +1,8 @@
+import { Fullscreen } from '@mui/icons-material';
 import { Box, Button } from '@mui/material';
 
 const DisplayNumber = ({ orderId }: { orderId: number }) => {
+
   return (
     <div>
       <Box>
@@ -11,7 +13,7 @@ const DisplayNumber = ({ orderId }: { orderId: number }) => {
             textAlign: 'center',
             padding: '3px',
             borderRadius: '1vh',
-            width: '165px',
+            width: 'calc(100vw / 7)', // Fullscreenを正しい計算に変更
             fontSize: '60px',
             margin: '10px',
             color: 'black',

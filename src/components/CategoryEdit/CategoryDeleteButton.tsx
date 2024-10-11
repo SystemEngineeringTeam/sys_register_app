@@ -1,24 +1,20 @@
-import { Button, Dialog, DialogContent, SelectChangeEvent } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Button, Dialog, DialogContent } from '@mui/material';
+import { useState } from 'react';
 import CategoryDeletePopupCard from '../managementPopup/CategoryDeletePopupCard';
-import { category } from '@/types';
 
 interface CategoryDeleteButton {
-  categoryName: string;
-  categoryId: string;
+  orderName: string;
+
 }
 
-const CategoryDeleteButton = ({ categoryName, categoryId }: CategoryDeleteButton) => {
+const CategoryDeleteButton = ({ orderName }: CategoryDeleteButton) => {
   const [selectedChange, setSelectedChange] = useState(true);
 
   const [open, setOpen] = useState(false);
 
-  // モーダルを開く処理
   const handleOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {};
   const iconClose = () => {
     setOpen(false);
@@ -37,7 +33,7 @@ const CategoryDeleteButton = ({ categoryName, categoryId }: CategoryDeleteButton
 
       <Dialog fullWidth maxWidth="md" onClose={handleClose} open={open}>
         <DialogContent sx={{ p: 0 }}>
-          <CategoryDeletePopupCard iconClose={iconClose} categoryName={categoryName} categoryId={categoryId}  />
+          <CategoryDeletePopupCard iconClose={iconClose}  orderName={orderName}/>
         </DialogContent>
       </Dialog>
     </div>
