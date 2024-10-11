@@ -23,7 +23,7 @@ import MenuCheck from './components/MenuEdit/MenuCheck';
 import MenuEdit from './components/Edit/menuEdit';
 import CollectedItemOverview from './components/MenuEdit/CollectedItemOverview';
 import CategoryEdit from './components/CategoryEdit/CategoryEdit';
-
+import RegisterMoney from './components/Edit/RegisterMoney/RegisterMoney';
 
 const App = () => {
   return (
@@ -47,6 +47,8 @@ const App = () => {
             <Route element={<CategoryDaialog />} path="popup" />
             <Route element={<CategoryEdit />} path="categoryedit" />
             <Route element={<MenuCheck />} path="menucheck" />
+            <Route element={<RegisterMoney />} path="registerMoney" />
+
             {/* <Route element={<CollectedItemOverview />} path="collecteditem" /> */}
             <Route element={<div>Not Found</div>} path="*" />
           </Route>

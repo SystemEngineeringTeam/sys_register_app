@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 // eslint-disable-next-line no-restricted-imports
 import ItemOptions from '../OrderPayments/ItemOptions';
-import { category, type items, type options } from '@/types';
+import { category, money, type items, type options } from '@/types';
 import { useState } from 'react';
 // eslint-disable-next-line no-restricted-imports
 import InputFileUpload from '../Image/upload/InputFileUpload';
@@ -26,17 +26,24 @@ import { MenuEditSchema, menuEditType } from '@/validations/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { getItemNameDuplication } from '../../utils/zodUtils';
 import { categoryIdToCategoryName } from '@/utils/CategoryIdToItem';
+import { updateMoney } from '@/firebase/useMoney';
 // state , statecomponents
 interface State {
   state: {
     item?: items;
     allIitems?: items[];
     categorys?: category[];
+    registerMoney?: money;
   };
 }
 const MenuEdit = () => {
   const location = useLocation();
   const { state } = location as { state: State };
+  console.log('updateMoney?',state.state.registerMoney);
+  if(state.state.registerMoney !== undefined){
+    updateMoney(state.state.registerMoney);
+    console.log('updateMoney!');
+  }
   // const options: options[] = [
   //   {
   //     id: '1',

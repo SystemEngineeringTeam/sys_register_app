@@ -8,7 +8,8 @@ interface ItemOptionsProps {
 const ItemOptions = ({ options }: ItemOptionsProps) => {
   return (
     <div>
-      {options.map((option) => (
+      {/* undefindが入る場合も対応 */}
+      {options?.map((option) => (
         <Chip sx={{ bgcolor:'#f26c4f'}} component="button" label={option.name} />
       ))}
     </div>
