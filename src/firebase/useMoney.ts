@@ -11,7 +11,7 @@ import { useAtomValue } from 'jotai';
 import { userAtom } from '@/login/AdminLogin';
 import { useEffect, useState } from 'react';
 import { db } from './firebase';
-import { type money, type moneyData } from '@/types/index';
+import { type money, type moneyData } from '../types/index';
 
 // ref: https://stackoverflow.com/questions/74486413
 function converter<T>() {

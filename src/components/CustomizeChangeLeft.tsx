@@ -1,5 +1,5 @@
 import { orderAtom } from '@/stores/orderAtom';
-import { type items, type options, type order } from '@/types';
+import { type options, type order } from '@/types';
 import { sortingItems } from '@/utils/sortingItems';
 import { Box } from '@mui/material';
 import { useSetAtom } from 'jotai';
@@ -12,13 +12,20 @@ interface CustomizeChangeLeftProps {
   selectOptions: options[];
   selectMenuqty: number;
   selectMenuId: string;
+  selectOrder: order;
 }
 
-const CustomizeChangeLeft = ({ selectId, selectMenuqty, selectOptions, selectMenuId }: CustomizeChangeLeftProps) => {
+const CustomizeChangeLeft = ({
+  selectId,
+  selectMenuqty,
+  selectOptions,
+  selectMenuId,
+  selectOrder,
+}: CustomizeChangeLeftProps) => {
   // 選択しているoption
   const [choiceOptions, setChoiceOptions] = useState<options[]>(selectOptions);
 
-  console.log('selectOptions5742682768972368:' + selectOptions);
+  console.log(`selectOptions5742682768972368:${selectOptions}`);
 
   const setNewOrder = useSetAtom(orderAtom);
 
@@ -41,8 +48,8 @@ const CustomizeChangeLeft = ({ selectId, selectMenuqty, selectOptions, selectMen
   });
 
   console.log('itemOptionData:', itemOptionData);
-  console.log('itemOptionData.mapID:' + itemOptionData.map((option) => option.id));
-  console.log('itemOptionData.mapName' + itemOptionData.map((option) => option.name));
+  console.log(`itemOptionData.mapID:${itemOptionData.map((option) => option.id)}`);
+  console.log(`itemOptionData.mapName${itemOptionData.map((option) => option.name)}`);
 
   // selectしているoptionのid配列
   const ids = selectOptions.map((option) => option.id);
@@ -51,8 +58,8 @@ const CustomizeChangeLeft = ({ selectId, selectMenuqty, selectOptions, selectMen
   // const options = sortingOption(ids, itemOption);
   // newOrder
   const newOrder: order = {
-    id: selectMenuId,
-    item: item as items,
+    id: selectOrder.id,
+    item: item!,
     qty: selectMenuqty,
     options: choiceOptions,
   };
@@ -74,10 +81,10 @@ const CustomizeChangeLeft = ({ selectId, selectMenuqty, selectOptions, selectMen
             return (
               <CustmizeGraf
                 key={index}
-                itemOption={itemOption}
                 choiceOptions={choiceOptions}
-                setChoiceOptions={setChoiceOptions}
+                itemOption={itemOption}
                 selectOptions={selectOptions}
+                setChoiceOptions={setChoiceOptions}
               />
             );
           })}

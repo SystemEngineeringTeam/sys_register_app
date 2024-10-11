@@ -1,7 +1,6 @@
 import { Box, Button } from '@mui/material';
 
 const DisplayNumber = ({ orderId }: { orderId: number }) => {
-
   return (
     <div>
       <Box>

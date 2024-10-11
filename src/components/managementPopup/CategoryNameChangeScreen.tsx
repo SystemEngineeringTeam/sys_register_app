@@ -1,13 +1,12 @@
-import { Box, Button, Stack, Typography } from '@mui/material';
-import React, { useState } from 'react';
-import ClearIcon from '@mui/icons-material/Clear';
-import CancelButton from './CancelButton';
-import DeleteYesButton from './DeleteYesButton';
-import TextField from '@mui/material/TextField';
-import CategorySaveButton from './CategorySaveButton';
 import { category } from '@/types';
 import { categorySchema } from '@/validations/schema';
+import ClearIcon from '@mui/icons-material/Clear';
+import { Box, Button, Stack, Typography } from '@mui/material';
+import TextField from '@mui/material/TextField';
+import React, { useState } from 'react';
 import { z } from 'zod';
+import CancelButton from './CancelButton';
+import CategorySaveButton from './CategorySaveButton';
 
 interface CategoryNameChangeScreen {
   iconClose: () => void;

@@ -1,8 +1,5 @@
 import { Button, Dialog, DialogContent } from '@mui/material';
-import React, { useState } from 'react';
-import CategoryAddPopupScreen from '../managementPopup/CategoryAddPopupScreen';
 import CategoryAddPopupCard from '../managementPopup/CategoryAddPopupCard';
-import CategoryDaialog from '../managementPopup/CategoryDaialog';
 import PopupCard from '../managementPopup/PopupCard';
 
 interface EditButtonProps {

@@ -2,9 +2,6 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import EditIcon from '@mui/icons-material/Edit';
 import {
   Box,
-  Button,
-  Dialog,
-  DialogContent,
   Divider,
   FormControl,
   IconButton,
@@ -39,7 +36,6 @@ interface State {
     categorys?: category[];
   };
 }
-
 const MenuEdit = () => {
   const location = useLocation();
   const { state } = location as { state: State };
@@ -50,7 +46,9 @@ const MenuEdit = () => {
   const [onScreenPopUpAmount, setOnScreenPopUpAmount] = useState(false);
   const ItemNameBoolean = getItemNameDuplication(state.state.allIitems, state.state.item?.name);
   const [allCategory, setAllCategory] = useState(state.state.categorys);
-  // priceのEdit
+  // 表示の状態
+  const [display, setDisplay] = useState('');
+  // itemNameのEdit
   const handleNameChange = () => {
     // ここで商品名の変更popupを出す
     setItemName('');
@@ -68,13 +66,12 @@ const MenuEdit = () => {
     // setOnScreenPopUpAmount(true);
   };
   // カテゴリーの状態
-  const [category, setCategory] = useState('');
-  // 表示の状態
-  const [display, setDisplay] = useState('');
-
+  const [categoryName, setCategoryName] = useState(
+    categoryIdToCategoryName(state.state.categorys, state.state.item?.category_id),
+  );
   // カテゴリーの選択
   const handleChange = (event: SelectChangeEvent) => {
-    setCategory(event.target.value);
+    setCategoryName(event.target.value);
   };
   // 表示の選択
   const handleDisplayChange = (event: SelectChangeEvent) => {
@@ -90,10 +87,6 @@ const MenuEdit = () => {
   const iconClose = () => {
     setOpen(false);
   };
-  // カテゴリーの状態
-  const [categoryName, setCategoryName] = useState(
-    categoryIdToCategoryName(state.state.categorys, state.state.item?.category_id),
-  );
   // カテゴリーの選択
   const handleCategoryChange = (event: SelectChangeEvent) => {
     setCategoryName(event.target.value);
@@ -131,7 +124,6 @@ const MenuEdit = () => {
           <Box>
             <Stack direction="row" sx={{ justifyContent: 'space-between' }}>
               <Box>商品名</Box>
-
               <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                 <Box> {itemName}</Box>
                 <IconButton onClick={handleNameChange}>
@@ -169,12 +161,36 @@ const MenuEdit = () => {
           <Box>
             <Stack direction="row" sx={{ justifyContent: 'space-between' }}>
               <Box>値段</Box>
-
               <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                 <Box> ￥{itemPrice}</Box>
                 <IconButton onClick={handlePriceChange}>
                   <EditIcon />
                 </IconButton>
+                {onScreenPopUpAmount ? (
+                  <Controller
+                    name="itemPrice"
+                    control={control}
+                    render={({ field }) => {
+                      return (
+                        <EditPopup
+                          isValid={isValid}
+                          setItemPrice={setItemPrice}
+                          setItemName={setItemName}
+                          state={itemPrice}
+                          setValue={setValue}
+                          errors={errors}
+                          field={field}
+                          watch={watch}
+                          currentName={`${state.state.item?.price}`}
+                          editName="値段"
+                          setOnScreen={setOnScreenPopUpAmount}
+                        />
+                      );
+                    }}
+                  />
+                ) : (
+                  <Box />
+                )}
               </Box>
             </Stack>
           </Box>
@@ -182,7 +198,6 @@ const MenuEdit = () => {
           <Box>
             <Stack direction="row" sx={{ justifyContent: 'space-between' }}>
               <Box>オプション</Box>
-
               <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                 <Box>
                   <ItemOptions options={option} />
@@ -197,14 +212,13 @@ const MenuEdit = () => {
           <Box>
             <Stack direction="row" sx={{ justifyContent: 'space-between' }}>
               <Box>カテゴリー</Box>
-
               <Box sx={{ display: 'flex', flexDirection: 'row', minWidth: 130 }}>
                 <FormControl fullWidth>
                   <InputLabel id="demo-simple-select-label">カテゴリー</InputLabel>
                   <Select
                     id="demo-simple-select"
                     label="カテゴリー"
-                    labelId="demo-simple-select-label"
+                    labelId="category-select-label"
                     onChange={handleChange}
                     value={categoryName !== undefined ? categoryName : ''}
                   >
@@ -230,14 +244,13 @@ const MenuEdit = () => {
           <Box>
             <Stack direction="row" sx={{ justifyContent: 'space-between' }}>
               <Box>表示</Box>
-
               <Box sx={{ display: 'flex', flexDirection: 'row', minWidth: 130 }}>
                 <FormControl fullWidth>
                   <InputLabel id="demo-simple-select-label">表示</InputLabel>
                   <Select
-                    id="demo-simple-select"
+                    id="visible-select"
                     label="表示"
-                    labelId="demo-simple-select-label"
+                    labelId="visible-select-label"
                     onChange={handleDisplayChange}
                     value={visible ? '販売中' : '休止中'}
                   >
@@ -250,7 +263,6 @@ const MenuEdit = () => {
           </Box>
           <Stack>
             <InputFileUpload />
-
             <Stack direction="row" sx={{ justifyContent: 'right', mr: '7rem' }}>
               <EditButton
                 iconClose={iconClose}

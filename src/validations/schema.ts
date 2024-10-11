@@ -1,5 +1,7 @@
 // zodによるバリテーションチェック
 // バリテーションチェックとは入力値が正しい形式や範囲に合致しているかどうかを検証すること
+import { getItems } from '@/firebase/useItems';
+import { getItemNameDuplication } from '@/utils/zodUtils';
 import { z } from 'zod';
 // RegisterChenge.tsxにて使用
 // 入力フィールドに入れられたお金の枚数をバリテーションチェックする
