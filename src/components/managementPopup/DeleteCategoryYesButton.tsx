@@ -1,15 +1,34 @@
 import { deleteCategory } from '@/firebase/useCategory';
+import { userAtom } from '@/login/AdminLogin';
+import { category } from '@/types';
 import { Button } from '@mui/material';
-import React from 'react';
+import { useAtomValue } from 'jotai';
+import React, { useEffect } from 'react';
 
-interface DeleteYesButtonProps {
+interface DeleteCategoryYesButtonProp {
   selectedChangeOkey: boolean;
   setSelectedChangeOkey: React.Dispatch<React.SetStateAction<boolean>>;
+  categoryId: string;
+  iconClose: () => void;
 }
 
-const DeleteYesButton = ({ selectedChangeOkey, setSelectedChangeOkey }: DeleteYesButtonProps) => {
+function DeleteCategoryYesButton({
+  selectedChangeOkey,
+  setSelectedChangeOkey,
+  categoryId,
+  iconClose,
+}: DeleteCategoryYesButtonProp) {
+
+  const user = useAtomValue(userAtom);
+  if (!user) {
+    throw new Error('User is not logged in');
+  }
+
   const ClickYesButton = () => {
     setSelectedChangeOkey(!selectedChangeOkey);
+
+    deleteCategory(categoryId,user);
+    iconClose();
   };
 
   return (
@@ -32,6 +51,6 @@ const DeleteYesButton = ({ selectedChangeOkey, setSelectedChangeOkey }: DeleteYe
       </Button>
     </div>
   );
-};
+}
 
-export default DeleteYesButton;
+export default DeleteCategoryYesButton;

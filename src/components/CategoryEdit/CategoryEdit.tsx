@@ -26,12 +26,13 @@ export default function CategoryEdit() {
     setOpen(false);
   };
 
-  const orderData = getCategory();
+  const categoryData = getCategory();
+
 
   return (
     <div>
       <Box sx={{ mr: '50px', textAlign: 'right', mt: '40px', mb: '90px' }}>
-        <Button sx={{ fontSize: '30px', width: '20rem' ,py:'40px',  bgcolor:'orange' , color:'black'}} variant="outlined" onClick={handleOpen}>
+        <Button sx={{ fontSize: '30px', width: '20rem' ,py:'40px',  bgcolor:'orange' , color:'white'}} onClick={handleOpen}>
           カテゴリ追加
         </Button>
 
@@ -42,21 +43,21 @@ export default function CategoryEdit() {
         </Dialog>
       </Box>
 
-      {orderData.category.map((orderName) => (
-        <div>
+      {categoryData.category.map((categorydata) => (
+
           <Stack alignItems="center" border="solid" direction="row" height="20vh">
-            <Box sx={{ fontSize: '50px', ml: '70px' }}>{orderName.name}</Box>
+            <Box sx={{ fontSize: '50px', ml: '70px' }}>{categorydata.name}</Box>
 
             <Stack direction="row" sx={{ ml: 'auto' }}>
               <Box sx={{ mr: '10px' }}>
-                <CategoryDeleteButton orderName={orderName.name} />
+                <CategoryDeleteButton categoryName={categorydata.name} categoryId={categorydata.id}  />
               </Box>
               <Box sx={{ ml: 'auto', mr: '10px' }}>
-                <CategoryNameChangeButton orderName={orderName.name}/>
+                <CategoryNameChangeButton categoryName={categorydata.name} categoryId={categorydata.id} categorydata={categorydata}/>
               </Box>
             </Stack>
           </Stack>
-        </div>
+
       ))}
     </div>
   );
