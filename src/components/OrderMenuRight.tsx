@@ -3,17 +3,20 @@ import { useOrderCollection } from '../firebase/useOrderCollection';
 import { idToTotalAmount } from '../utils/accountingUtils';
 import OrderButton from './OrderButton';
 import OrderNumber from './OrderNumber';
+import { order } from '@/types';
 
 interface OrderMenuRightProps {
   selectId: number;
+  orderData: order[];
 }
 
-const OrderMenuRight = ({ selectId }: OrderMenuRightProps) => {
+const OrderMenuRight = ({ selectId, orderData }: OrderMenuRightProps) => {
   {
     const { data } = useOrderCollection();
 
     const id = selectId.toString();
     const totalAmount = data ? idToTotalAmount(id, data) : 0;
+    console.log("orderData",orderData)
 
     return (
       <Box
@@ -74,3 +77,22 @@ const OrderMenuRight = ({ selectId }: OrderMenuRightProps) => {
 };
 
 export default OrderMenuRight;
+
+// {orderData.map((order: order, index) => {
+//   return (
+//     <OrderMenueContena
+//       key={index} // keyを追加することで一意の要素とする
+//       index={index}
+//       newOrderData={newOrderData}
+//       selectId={selectId.toString()}
+//       selectMenuId={order.item.id}
+//       selectMenuImg={order.item.imgUrl}
+//       selectMenuName={order.item.name}
+//       selectMenuPrice={order.item.price}
+//       selectMenuqty={order.qty}
+//       selectOptions={order.options}
+//       selectOrder={order}
+//       setNewOrderData={setNewOrderData}
+//     />
+//   );
+// })}

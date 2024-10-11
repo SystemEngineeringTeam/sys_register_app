@@ -13,22 +13,23 @@ export default function OrderChange(): ReactElement {
     orderId: number;
   }
 
+  
+
   const location = useLocation();
   const { state } = location as { state: State };
 
   // orderCollectionのIDを取得
   const orderCollection = useOrderCollection();
   const selectId = state.orderId;
+  console.log("🚀 ~ OrderChange ~ orderId:", state.orderId)
   // selectIDに一致するorderを取得
   const orderData = sortingOrders(selectId);
-
-  console.log('orderData:', orderData);
 
   const optData = orderData.map((order) => {
     order.options.map((option) => option.id);
   });
 
-  console.log('optData:', optData);
+  
 
   const [newOrderData, setNewOrderData] = useAtom(orderDataAtom);
 
@@ -48,12 +49,13 @@ export default function OrderChange(): ReactElement {
             orderData={orderData}
             selectId={selectId}
             setNewOrderData={setNewOrderData}
+
           />
         </Box>
 
         {/* 右側注文情報 */}
         <Box sx={{ flex: 1 }}>
-          <OrderMenuRight selectId={selectId} />
+          <OrderMenuRight selectId={selectId} orderData={orderData}/>
         </Box>
       </Box>
     </div>

@@ -18,7 +18,7 @@ const OkeyButton = ({ selectId }: OkeyButtonProps) => {
     throw new Error('User is not logged in');
   }
 
-  console.log('newOrder2@@@@@$$:', newOrder);
+  // console.log('newOrder2@@@@@$$:', newOrder);
 
   const navigate = useNavigate();
 
@@ -26,7 +26,7 @@ const OkeyButton = ({ selectId }: OkeyButtonProps) => {
     // ここでNewOrderDataを更新
     updateOrderData(newOrderData, newOrder, setNewOrderData);
 
-    console.log('newOrderData)))))))))):', newOrderData);
+    // console.log('newOrderData)))))))))):', newOrderData);
 
     // ここでfirebaseのデータを更新
     updateOrder(selectId.toString(), newOrderData, user);
@@ -41,8 +41,9 @@ const OkeyButton = ({ selectId }: OkeyButtonProps) => {
         size="large"
         sx={{
           background: '#F68B1F',
-          py: '30px', // 必要に応じてパディングを調整
+
           width: '200px',
+          fontSize: { xs: '2rem', sm: '2.5rem', md: '2rem' },
         }}
         variant="contained"
       >

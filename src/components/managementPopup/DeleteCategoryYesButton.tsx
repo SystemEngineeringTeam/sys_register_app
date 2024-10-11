@@ -26,8 +26,8 @@ function DeleteCategoryYesButton({
 
   const ClickYesButton = () => {
     setSelectedChangeOkey(!selectedChangeOkey);
-
-    deleteCategory(categoryId,user);
+    console.log("categoryId",categoryId);
+    // deleteCategory(categoryId,user);
     iconClose();
   };
 

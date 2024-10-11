@@ -7,9 +7,17 @@ import { type order } from '@/types';
 interface CustomizeChangeRightProps {
   selectId: number;
   newOrderData: order[];
+  selectMenuId: string;
+  selectOrderItemId:string;
+  selectOrderItemCategoryId:string;
+  orderData: order[];
 }
+  
 
-const CustomizeChangeRight = ({ selectId, newOrderData }: CustomizeChangeRightProps) => {
+const CustomizeChangeRight = ({ selectId, newOrderData , selectMenuId , selectOrderItemId , selectOrderItemCategoryId ,  orderData}: CustomizeChangeRightProps) => {
+  // console.log("🚀 ~ selectId:", selectId)
+  // console.log("🚀 ~ selectMenuId:", selectMenuId)
+
   return (
     <div>
       <Box
@@ -28,9 +36,9 @@ const CustomizeChangeRight = ({ selectId, newOrderData }: CustomizeChangeRightPr
           <OrderNumber id={selectId.toString()} />
         </Box>
 
-        <Box sx={{ mt: '40px' }}>
+        <Box sx={{ mt: '340px' }}>
           <Box>
-            <OrderDelete />
+            <OrderDelete id={selectId.toString()} selectId={selectId}  selectMenuId={selectMenuId} selectOrderItemId={selectOrderItemId} selectOrderItemCategoryId={selectOrderItemCategoryId}  orderData={orderData}/>
           </Box>
           <Box sx={{ mt: '40px' }}>
             <OkeyButton selectId={selectId} />

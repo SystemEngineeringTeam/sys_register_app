@@ -10,18 +10,18 @@ interface CustmizeGrafProps {
   selectOptions: options[];
 }
 
-const CustmizeGraf = ({ itemOption, choiceOptions, setChoiceOptions, selectOptions }: CustmizeGrafProps) => {
+const CustmizeGraf = ({ itemOption, choiceOptions, setChoiceOptions, selectOptions}: CustmizeGrafProps) => {
   // itemOption.idがoptionsの中にあるかどうか
   // 同じidがある場合はtrue
 
-  console.log(`selectOptionsID:${selectOptions.map((option) => option.id)}`);
+  //console.log(`selectOptionsID:${selectOptions.map((option) => option.id)}`);
 
   const Selected = selectOptions.find((option) => option.id === itemOption.id);
 
-  console.log(`itemOption.id:${itemOption.id}`);
-  console.log(`itemOption.name:${itemOption.name}`);
-  console.log(`Selected.id:${Selected?.id}`);
-  console.log(`Selected.name:${Selected?.name}`);
+  // console.log(`itemOption.id:${itemOption.id}`);
+  // console.log(`itemOption.name:${itemOption.name}`);
+  // console.log(`Selected.id:${Selected?.id}`);
+  // console.log(`Selected.name:${Selected?.name}`);
 
   const isSelected = () => {
     if (Selected?.id === undefined) {
@@ -35,8 +35,8 @@ const CustmizeGraf = ({ itemOption, choiceOptions, setChoiceOptions, selectOptio
   // 選択しているかどうかのstate
   const [selectedChange, setSelectedChange] = useState(isSelected);
 
-  console.log(`selectedChange:${selectedChange}`);
-  console.log(`choiceOptions&&&&&&&&&&&:${choiceOptions.map((option) => option.name)}`);
+  // console.log(`selectedChange:${selectedChange}`);
+  // console.log(`choiceOptions&&&&&&&&&&&:${choiceOptions.map((option) => option.name)}`);
 
   useEffect(() => {
     // selectedChangeが変更されたときにchoiceOptionsを更新
@@ -49,7 +49,7 @@ const CustmizeGraf = ({ itemOption, choiceOptions, setChoiceOptions, selectOptio
         return [...filteredOptions, itemOption];
       });
 
-      console.log('choiceOptions!!!!!!!!!!!!:', choiceOptions);
+      //console.log('choiceOptions!!!!!!!!!!!!:', choiceOptions);
     } else {
       // なしの場合
       setChoiceOptions((prevOptions) => {
@@ -58,7 +58,7 @@ const CustmizeGraf = ({ itemOption, choiceOptions, setChoiceOptions, selectOptio
         return newOptions;
       });
 
-      console.log('choiceOptions2222222222:', choiceOptions);
+      //console.log('choiceOptions2222222222:', choiceOptions);
     }
   }, [selectedChange, itemOption]);
 
