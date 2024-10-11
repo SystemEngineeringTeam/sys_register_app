@@ -27,6 +27,12 @@ interface EditButtonProps {
 
 function EditButton({ iconClose, open, handleClose , handleOpen , state}: EditButtonProps) {
 
+console.log("🚀 ~ EditButton ~ handleOpen:", handleOpen)
+console.log("🚀 ~ EditButton ~ handleClose:", handleClose)
+console.log("🚀 ~ EditButton ~ open:", open)
+console.log("🚀 ~ EditButton ~ iconClose:", iconClose)
+console.log("state",state);
+
 
   return (
     <div>

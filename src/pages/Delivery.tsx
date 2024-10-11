@@ -22,7 +22,7 @@ const Delivery = () => {
     <div>
       <Box sx={{ display: 'flex', alignContent: 'center', justifyContent: 'space-between' }}>
         <Box sx={{ width: '50%' }}>
-          <Box sx={{ fontSize: 58, textAlign: 'center', backgroundColor: '#ffd800' }}>お待ちの番号</Box>
+          <Box sx={{ fontSize: 58, textAlign: 'center', backgroundColor: '#ffc570' }}>お待ちの番号</Box>
           <DisplayNumberBox orders={cookings} />
           {/* <OrderWaitPeople orders={orders} /> */}
         </Box>

@@ -1,20 +1,17 @@
 import React from 'react';
 import CategoryDeletePopupScreen from './CategoryDeletePopupScreen';
 import { Card } from '@mui/material';
-import { category, order } from '@/types';
 
 interface PopupCardProps {
   iconClose: () => void;
-  categoryName: string;
-  categoryId:string;
+  orderName: string;
 }
 
-const CategoryDeletePopupCard = ({iconClose, categoryName , categoryId}:PopupCardProps) => {
-
+const CategoryDeletePopupCard = ({iconClose, orderName}:PopupCardProps) => {
   return (
     <div>
       <Card >
-        <CategoryDeletePopupScreen iconClose={iconClose} categoryName={categoryName} categoryId={categoryId} />
+        <CategoryDeletePopupScreen iconClose={iconClose} orderName={orderName}/>
       </Card>
     </div>
   );
