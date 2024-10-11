@@ -4,22 +4,15 @@ import ClearIcon from '@mui/icons-material/Clear';
 import CancelButton from './CancelButton';
 import DeleteYesButton from './DeleteYesButton';
 import TextField from '@mui/material/TextField';
-import CategorySaveButton from './CategorySaveButton';
-import { category } from '@/types';
 
 interface CategoryNameChangeScreen {
   iconClose: () => void;
-  categoryName:string;
-  categoryId:string;
-  categorydata:category;
+  orderName:string;
 }
 
-const CategoryNameChangeScreen = ({ iconClose , categoryName , categoryId , categorydata}: CategoryNameChangeScreen) => {
+const CategoryNameChangeScreen = ({ iconClose , orderName}: CategoryNameChangeScreen) => {
   const [selectedChangeCancel, setSelectedChangeCalcel] = useState(true);
   const [selectedChangeOkey, setSelectedChangeOkey] = useState(true);
-  const [categoryNameSave,setCategoryNameSave] = useState(categorydata.name);
-  const [categoryIdSave,setCategoryIdSave] = useState(categorydata.id);
-
 
   return (
     <div>
@@ -34,7 +27,7 @@ const CategoryNameChangeScreen = ({ iconClose , categoryName , categoryId , cate
         </Box>
 
         <Box sx={{ mt: '10px' }}>
-          <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 2.0vw, 3.2rem)' }}>{categoryNameSave}</Typography>
+          <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 2.0vw, 3.2rem)' }}>{orderName}</Typography>
         </Box>
 
         <Box sx={{ mt: '10rem' }}>
@@ -42,7 +35,7 @@ const CategoryNameChangeScreen = ({ iconClose , categoryName , categoryId , cate
         </Box>
 
         <Box fontSize={{ xs: '10px', sm: '20px', md: '30px' }} sx={{ mt: '1rem' }}>
-          <TextField id="outlined-basic" label="Outlined" maxRows={6} multiline variant="outlined" value={categoryNameSave} onChange={(e) => setCategoryNameSave(e.target.value)}/>
+          <TextField id="outlined-basic" label="Outlined" maxRows={6} multiline variant="outlined" />
         </Box>
 
         <Stack direction="row" fontSize="40px" sx={{ mt: '5%', justifyContent: 'right', mr: '7rem' }}>
@@ -54,7 +47,7 @@ const CategoryNameChangeScreen = ({ iconClose , categoryName , categoryId , cate
             />
           </Button>
           <Button>
-            <CategorySaveButton selectedChangeOkey={selectedChangeOkey} setSelectedChangeOkey={setSelectedChangeOkey}  categorydata={categorydata}  categoryName={categoryNameSave} categoryId={categoryId} iconClose={iconClose}/>
+            <DeleteYesButton selectedChangeOkey={selectedChangeOkey} setSelectedChangeOkey={setSelectedChangeOkey} />
           </Button>
         </Stack>
       </Stack>

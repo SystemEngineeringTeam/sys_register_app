@@ -1,4 +1,3 @@
-import { deleteCategory } from '@/firebase/useCategory';
 import { Button } from '@mui/material';
 import React from 'react';
 
@@ -11,7 +10,6 @@ const DeleteYesButton = ({ selectedChangeOkey, setSelectedChangeOkey }: DeleteYe
   const ClickYesButton = () => {
     setSelectedChangeOkey(!selectedChangeOkey);
   };
-
   return (
     <div>
       <Button

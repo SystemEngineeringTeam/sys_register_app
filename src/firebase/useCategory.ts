@@ -1,5 +1,5 @@
 import { userAtom } from '@/login/AdminLogin';
-import { developer, type category, type categoryData } from '@/types';
+import { type category, type categoryData } from '@/types';
 import {
   addDoc,
   collection,
@@ -13,7 +13,6 @@ import {
 import { useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
 import { db } from './firebase';
-import { User } from 'firebase/auth';
 
 function converter<T>() {
   return {
@@ -84,33 +83,42 @@ export const getCategory = () => {
 };
 
 // 新規作成または追加する関数
-export const setCategoty = async (data: categoryData, user:User | developer) => {
-  
+export const setCategoty = async (data: categoryData) => {
+  const user = useAtomValue(userAtom);
+  if (!user) {
+    throw new Error('User is not logged in');
+  }
+
   const colRef = collection(db, 'shop_user', user.uid, 'category').withConverter(converter<category>());
 
   await addDoc(colRef, data);
+
+  console.log('category added');
 };
 
 // 更新する関数
-export const updateCategory = async (newCategory: category, user:User | developer) => {
-  
+export const updateCategory = async (newCategory: category) => {
+  const user = useAtomValue(userAtom);
+  if (!user) {
+    throw new Error('User is not logged in');
+  }
 
   const data = {
     name: newCategory.name,
   };
-  const colRef = doc(db, 'shop_user', user.uid, 'category', newCategory.id).withConverter(converter<category>());
+  const colRef = doc(db, 'shop_user', user.uid, 'category').withConverter(converter<category>());
 
-  await setDoc(colRef, data);
+  await setDoc(doc(colRef, newCategory.id), data);
   console.log('category updated');
-
 };
 
 // 削除する関数
-export const deleteCategory = async (categoryId: string, user:User | developer) => {
+export const deleteCategory = async (categoryId: string) => {
+  const user = useAtomValue(userAtom);
+  if (!user) {
+    throw new Error('User is not logged in');
+  }
 
   await deleteDoc(doc(db, 'shop_user', user.uid, 'category', categoryId));
   console.log('category deleted');
 };
-  
-  
-  
