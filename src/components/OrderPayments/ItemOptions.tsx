@@ -2,7 +2,7 @@ import Chip from '@mui/material/Chip';
 import { type options } from '../../types/index';
 
 interface ItemOptionsProps {
-  options: options[];
+  options: options[] | undefined;
 }
 
 const ItemOptions = ({ options }: ItemOptionsProps) => {

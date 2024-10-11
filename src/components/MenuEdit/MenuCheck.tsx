@@ -38,7 +38,7 @@ const MenuCheck = () => {
         <Box>
           {/* 商品概要 */}
           <Box>
-            <CollectedItemOverview allItems={allItems} selectCategoryId={selectCategoryId} />
+            <CollectedItemOverview allItems={allItems} selectCategoryId={selectCategoryId} categorys={categorysObject.category} />
           </Box>
         </Box>
       </Box>
