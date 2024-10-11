@@ -1,16 +1,22 @@
 import { Box } from '@mui/material';
 import CollectedRegisterChenge from './CollectedRegisterChenge';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { type money } from '@/types';
 import BackButton from '@/components/OrderPayments/BackButton';
 import SetDateButton from './SetDateButton';
 import MoneyMap from './MoneyMap';
+import { updateMoney } from '@/firebase/useMoney';
+import { useLocation } from 'react-router-dom';
 
 const RegisterMoney = () => {
+  // 現在の日付の00:00:00のミリ秒を取得する
+  const today = new Date();
+  const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  const milliseconds = todayMidnight.getTime();
   // money型のState
   // undefindにならないように初期化
   const [registerMoney, setRegisterMoney] = useState<money>({
-    date: 0,
+    date: milliseconds,
     '10000': 0,
     '5000': 0,
     '1000': 0,
@@ -23,11 +29,6 @@ const RegisterMoney = () => {
     tiket100: 0,
     total: 0,
   });
-  // // 確認用のuseEffect
-  // useEffect(() => {
-  //   // eslint-disable-next-line no-console
-  //   console.log(registerMoney);
-  // }, [registerMoney]);
   return (
     <Box sx={{ display: 'flex' }}>
       {/* 通貨と合計金額、おつり */}
@@ -53,11 +54,11 @@ const RegisterMoney = () => {
             <Box sx={{ display: 'flex', margin: '1rem', position: 'fixed', right: '2rem', bottom: '1rem' }}>
               <Box>
                 {/* 戻るボタン */}
-                <BackButton id="" to="/" />
+                <BackButton id="" to="/admin" />
               </Box>
               <Box sx={{ marginLeft: '4rem' }}>
                 {/* OKボタン 押したらRegisterMoneyのdateが更新される  */}
-                <SetDateButton id="" setRegisterMoney={setRegisterMoney} to="/" />
+                <SetDateButton registerMoney={registerMoney} setRegisterMoney={setRegisterMoney} to="/admin" />
               </Box>
             </Box>
           </Box>

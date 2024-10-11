@@ -10,9 +10,7 @@ interface ItemOptionsProps {
 const ItemOptions = ({ options }: ItemOptionsProps) => {
   return (
     <div>
-
         <ItemColor options={options}/>
-
     </div>
   );
 };

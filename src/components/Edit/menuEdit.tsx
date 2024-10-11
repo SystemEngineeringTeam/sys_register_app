@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
 import ItemOptions from '../OrderPayments/ItemOptions';
-import { category, items, type options } from '@/types';
+import { category, money, type items, type options } from '@/types';
 import { useState } from 'react';
 import InputFileUpload from '../Image/upload/InputFileUpload';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -22,10 +22,10 @@ import EditButton from './EditButton';
 import { useLocation } from 'react-router-dom';
 import { getItemNameDuplication } from '@/utils/zodUtils';
 import { categoryIdToCategoryName } from '@/utils/CategoryIdToItem';
+import { updateMoney } from '@/firebase/useMoney';
 import { MenuEditSchema, menuEditType } from '@/validations/schema';
 import { ZodObject, ZodString, ZodNumber, ZodTypeAny } from 'zod';
 import EditPopup from './EditPopup';
-
 // state , statecomponents
 interface State {
   state: {
@@ -34,11 +34,15 @@ interface State {
     item?: items;
     allIitems?: items[];
     categorys?: category[];
+    registerMoney?: money;
   };
 }
 const MenuEdit = () => {
   const location = useLocation();
   const { state } = location as { state: State };
+  if(state.state.registerMoney !== undefined){
+    updateMoney(state.state.registerMoney);
+  }
   // オプション
   const [option, setOption] = useState(state.state.item?.options);
   // ポップアップ表示用
