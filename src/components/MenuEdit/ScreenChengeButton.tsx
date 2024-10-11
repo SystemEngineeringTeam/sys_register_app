@@ -3,23 +3,24 @@ import { Button } from '@mui/material';
 // eslint-disable-next-line no-restricted-imports
 import { theme } from '../../themes/theme';
 import { Link } from 'react-router-dom';
+import { category } from '@/types';
 
 interface BackButtonProps {
   text: string;
   themeColor: 'categoryEdit' | 'addItem';
   selectAdd: string;
-  // selectEdit: string;
+  categorys?: category[];
 }
 
 const ScreenChengeButton = ({
   themeColor,
   text,
   selectAdd,
-  //, selectEdit
+  categorys,
 }: BackButtonProps) => {
   const link = text === 'カテゴリー編集' ? '/categoryedit' : '/test';
 
-  const state = link === '/test' ? selectAdd : undefined;
+  const state = link === '/test' ? { selectAdd, categorys } : undefined;
 
   return (
     <ThemeProvider theme={theme}>
