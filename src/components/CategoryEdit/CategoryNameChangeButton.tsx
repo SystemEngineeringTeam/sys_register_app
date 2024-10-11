@@ -1,6 +1,5 @@
-import { Button, Dialog, DialogContent, SelectChangeEvent } from '@mui/material';
+import { Button, Dialog, DialogContent } from '@mui/material';
 import React, { useState } from 'react';
-import CategoryDeletePopupCard from '../managementPopup/CategoryDeletePopupCard';
 import CategoryNameChangeCard from '../managementPopup/CategoryNameChangeCard';
 import { category } from '@/types';
 
