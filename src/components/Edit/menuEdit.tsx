@@ -87,10 +87,6 @@ const MenuEdit = () => {
   const iconClose = () => {
     setOpen(false);
   };
-  // カテゴリーの状態
-  const [categoryName, setCategoryName] = useState(
-    categoryIdToCategoryName(state.state.categorys, state.state.item?.category_id),
-  );
   // カテゴリーの選択
   const handleCategoryChange = (event: SelectChangeEvent) => {
     setCategoryName(event.target.value);
