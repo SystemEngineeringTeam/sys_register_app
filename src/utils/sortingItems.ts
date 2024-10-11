@@ -27,7 +27,11 @@ export const sortingItems = (id: string) => {
       throw new Error('item is not found');
     } else {
       console.log('itemGet');
-      console.log('itemOptId:' + itemOptId?.map((option) => console.log(option)));
+      console.log(
+        `itemOptId:${itemOptId?.map((option) => {
+          console.log(option);
+        })}`,
+      );
 
       return item;
     }

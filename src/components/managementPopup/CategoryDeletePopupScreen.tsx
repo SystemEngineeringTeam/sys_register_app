@@ -3,19 +3,15 @@ import { Box, Button, IconButton, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
 import CancelButton from './CancelButton';
 import DeleteYesButton from './DeleteYesButton';
-import DeleteCategoryYesButton from './DeleteCategoryYesButton';
-import { category } from '@/types';
 
 interface CategoryAddPopupScreenProp {
   iconClose: () => void;
-  categoryName: string;
-  categoryId:string;
+  orderName: string
 }
 
-const CategoryDeletePopupScreen = ({ iconClose , categoryName , categoryId }: CategoryAddPopupScreenProp) => {
+const CategoryDeletePopupScreen = ({ iconClose , orderName}: CategoryAddPopupScreenProp) => {
   const [selectedChangeCancel, setSelectedChangeCalcel] = useState(true);
   const [selectedChangeOkey, setSelectedChangeOkey] = useState(true);
-
   return (
     <div>
       <Stack sx={{ textAlign: 'center' }}>
@@ -35,7 +31,7 @@ const CategoryDeletePopupScreen = ({ iconClose , categoryName , categoryId }: Ca
         </Box>
 
         <Box sx={{ mt: '5rem' }}>
-          <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 3.0vw, 5.0rem)' }}>カテゴリー:{categoryName}</Typography>
+          <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 3.0vw, 5.0rem)' }}>カテゴリー:{orderName}</Typography>
         </Box>
 
         <Box sx={{ mt: '5rem' }}>
@@ -53,8 +49,9 @@ const CategoryDeletePopupScreen = ({ iconClose , categoryName , categoryId }: Ca
             />
           </Button>
           <Button>
-            
-            <DeleteCategoryYesButton selectedChangeOkey={selectedChangeOkey} setSelectedChangeOkey={setSelectedChangeOkey} categoryId={categoryId} iconClose={iconClose}/>
+            <DeleteYesButton selectedChangeOkey={selectedChangeOkey} setSelectedChangeOkey={setSelectedChangeOkey}
+            //orderName={orderName}
+            />
           </Button>
         </Stack>
       </Stack>

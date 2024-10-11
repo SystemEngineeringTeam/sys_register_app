@@ -1,13 +1,12 @@
-import { Box, Button, Stack, Typography } from '@mui/material';
-import React, { useState } from 'react';
-import ClearIcon from '@mui/icons-material/Clear';
-import CancelButton from './CancelButton';
-import DeleteYesButton from './DeleteYesButton';
-import TextField from '@mui/material/TextField';
-import CategorySaveButton from './CategorySaveButton';
 import { category } from '@/types';
 import { categorySchema } from '@/validations/schema';
+import ClearIcon from '@mui/icons-material/Clear';
+import { Box, Button, Stack, Typography } from '@mui/material';
+import TextField from '@mui/material/TextField';
+import React, { useState } from 'react';
 import { z } from 'zod';
+import CancelButton from './CancelButton';
+import CategorySaveButton from './CategorySaveButton';
 
 interface CategoryNameChangeScreen {
   iconClose: () => void;
@@ -66,7 +65,7 @@ const CategoryNameChangeScreen = ({
         </Box>
 
         <Box sx={{ mt: '10px' }}>
-          <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 2.0vw, 3.2rem)' }}>{categoryNameSave}</Typography>
+          <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 2.0vw, 3.2rem)' }}>{orderName}</Typography>
         </Box>
 
         <Box sx={{ mt: '10rem' }}>

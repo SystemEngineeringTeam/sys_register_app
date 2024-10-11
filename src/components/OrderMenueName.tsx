@@ -16,6 +16,7 @@ interface OrderMenueNameProps {
   selectMenuId: string;
   newOrderData: order[];
   newOrder: order;
+  selectOrder: order;
 }
 
 const OrderMenueName = ({
@@ -27,6 +28,7 @@ const OrderMenueName = ({
   selectMenuId,
   newOrderData,
   newOrder,
+  selectOrder,
 }: OrderMenueNameProps) => {
   // const navigate = useNavigate()
 
@@ -47,6 +49,7 @@ const OrderMenueName = ({
           selectMenuId,
           newOrderData,
           newOrder,
+          selectOrder,
         }}
         to="/customizechange"
       >

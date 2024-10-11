@@ -1,6 +1,6 @@
 // 型定義する
 
-import { type CollectionReference, type DocumentData } from 'firebase/firestore';
+import { type DocumentData, type DocumentReference } from 'firebase/firestore';
 
 export type options_id = string;
 export type items_id = string;
@@ -121,7 +121,7 @@ export interface moneyData {
 }
 
 export interface Data {
-  item: CollectionReference<DocumentData, DocumentData>;
-  options: Array<CollectionReference<DocumentData, DocumentData>>;
+  item: DocumentReference<DocumentData, DocumentData>;
+  options: Array<DocumentReference<DocumentData, DocumentData>>;
   qty: number;
 }
