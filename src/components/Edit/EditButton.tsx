@@ -10,36 +10,25 @@ interface EditButtonProps {
   handleClose: () => void;
   open: boolean;
   handleOpen: () => void;
-  state:{
-    selectEdit: string;
-    selectAdd?: undefined;
-} | {
-    selectAdd: string;
-    selectEdit?: undefined;
-}
+  selectEdit?: string;
+  selectAdd?: string;
 }
 
-// type selectAdd = "add" | "edit";
-// const ClickSelect = (transaction:string) => {
-//     if(transaction === "add" ? <)
-// }
 
-
-function EditButton({ iconClose, open, handleClose , handleOpen , state}: EditButtonProps) {
-
-
+function EditButton({ iconClose, open, handleClose, handleOpen, selectEdit, selectAdd }: EditButtonProps) {
   return (
     <div>
       <Button onClick={handleOpen} disableElevation size="large" sx={{ backgroundColor: 'orange' }} variant="contained">
         取り消し
       </Button>
-      
+
       <Dialog fullWidth maxWidth="md" onClose={handleClose} open={open}>
         <DialogContent>
-          {
-            state.selectAdd === "add" ? <CategoryAddPopupCard iconClose={iconClose} /> : <PopupCard iconClose={iconClose} />
-          }
-          
+          {selectAdd === 'add' ? (
+            <CategoryAddPopupCard iconClose={iconClose} />
+          ) : (
+            <PopupCard iconClose={iconClose} />
+          )}
         </DialogContent>
       </Dialog>
     </div>

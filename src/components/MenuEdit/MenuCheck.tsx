@@ -24,7 +24,7 @@ const MenuCheck = () => {
           {/* カテゴリー追加ボタン */}
           <ScreenChengeButton selectAdd={selectAdd} text="カテゴリー編集" themeColor="categoryEdit" />
           {/* 商品追加ボタン */}
-          <ScreenChengeButton selectAdd={selectAdd} text="商品追加" themeColor="addItem" />
+          <ScreenChengeButton selectAdd={selectAdd} text="商品追加" themeColor="addItem" categorys={categorysObject?.category}/>
         </Box>
         {/* カテゴリー遷移バー */}
         <Box sx={{ margin: '0.5rem' }}>
@@ -38,7 +38,7 @@ const MenuCheck = () => {
         <Box>
           {/* 商品概要 */}
           <Box>
-            <CollectedItemOverview allItems={allItems} selectCategoryId={selectCategoryId} />
+            <CollectedItemOverview allItems={allItems} selectCategoryId={selectCategoryId} categorys={categorysObject.category} />
           </Box>
         </Box>
       </Box>
