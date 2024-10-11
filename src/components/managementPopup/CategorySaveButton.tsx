@@ -64,7 +64,7 @@ const CategorySaveButton = ({
         disabled={schemeError}
         onClick={() => {
           setCategoryName(value);
-          ClickSaveButton;
+          ClickSaveButton();
         }}
         size="large"
         sx={{

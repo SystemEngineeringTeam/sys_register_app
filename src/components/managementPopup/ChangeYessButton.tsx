@@ -11,6 +11,8 @@ interface ChangeYessButton {
 }
 
 const ChangeYessButton = ({ selectedChangeOkey, addCategory, iconClose }: ChangeYessButton) => {
+  
+
   const user = useAtomValue(userAtom);
   if (!user) {
     throw new Error('User is not logged in');
