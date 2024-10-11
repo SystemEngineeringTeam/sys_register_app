@@ -25,10 +25,8 @@ import CollectedItemOverview from './components/MenuEdit/CollectedItemOverview';
 import RegisterMoney from './components/Edit/RegisterMoney/RegisterMoney';
 import CategoryEdit from './components/editCategory/CategoryEdit';
 
-
 const App = () => {
   return (
-
     <Router>
       <Routes>
         <Route element={<AppLayout />} path="/">
@@ -50,14 +48,12 @@ const App = () => {
             <Route element={<CategoryEdit />} path="categoryedit" />
             <Route element={<MenuCheck />} path="menucheck" />
             <Route element={<RegisterMoney />} path="registerMoney" />
-
-            {/* <Route element={<CollectedItemOverview />} path="collecteditem" /> */}
             <Route element={<div>Not Found</div>} path="*" />
           </Route>
         </Route>
       </Routes>
     </Router>
-  </div>
-);
+  );
+};
 
 export default App;
