@@ -63,9 +63,9 @@ const OrderMenueName = ({
       <Box
         sx={{  fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' } }}
       >
-        x{selectMenuqty}
+        {selectMenuPrice}
       </Box>
-      <Box sx={{ ml:'40px' , fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' } }}>{selectMenuPrice}</Box>
+      <Box sx={{ ml:'40px' , fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' } }}>x{selectMenuqty}</Box>
     </div>
   );
 };

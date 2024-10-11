@@ -4,20 +4,39 @@ import { Button } from '@mui/material';
 import { useAtomValue } from 'jotai';
 import React from 'react';
 import { order, orderCollection } from '../types/index';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
-const OrderDelete = () => {
+interface OrderDeleteProp {
+  selectectOrderId: string;
+  selectColectionOrder: string;
+  orderData: order[];
+  selectId: string;
+}
+
+const OrderDelete = ({ selectectOrderId, selectColectionOrder, orderData, selectId }: OrderDeleteProp) => {
   const user = useAtomValue(userAtom);
   if (user == null) {
     throw new Error('User is not logged in');
   }
 
+  const navigate = useNavigate();
+  
+
+  const ClickOrderDelete = () => {
+    deleteOrder(selectId, selectectOrderId, user);
+    console.log('selectectOrderId', selectectOrderId);
+    console.log('selectColectionOrder', selectColectionOrder);
+    console.log('sekec');
+    console.log('orderData', orderData);
+    alert('カスタマイズのすべてのデータを消去します。本当に消去しますか？');
+    navigate(-1);
+  };
+
   return (
     <div>
       <Button
         disableElevation
-        onClick={() => {
-          // deleteOrder( orderCollection.id, orderId ,user);
-        }}
+        onClick={ClickOrderDelete}
         size="medium"
         sx={{
           background: '#FF4337',
@@ -25,7 +44,6 @@ const OrderDelete = () => {
           fontSize: { xs: '2rem', sm: '2.5rem', md: '2rem' },
         }}
         variant="contained"
-        
       >
         注文取消
       </Button>

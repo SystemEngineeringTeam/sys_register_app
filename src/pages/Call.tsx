@@ -11,13 +11,13 @@ const Call = () => {
   const { data } = useOrderCollection();
   return (
     <Stack>
-      <Card sx={{ backgroundColor: 'grey' }}>
-        <Box sx={{ fontSize: '2rem', margin: '1rem' }}>完了</Box>
-        <CallContena call={finishedCallsIdToNum} data={data} />
-      </Card>
-      <Card sx={{ fontSize: '2rem' }}>
+      <Card sx={{ fontSize: '2rem', backgroundColor: 'gray' }}>
         <Box sx={{ fontSize: '2rem', margin: '1rem' }}>未完了</Box>
         <CallContena call={orderCallsIdToNum} data={data} />
+      </Card>
+      <Card sx={{ backgroundColor: 'success.main' }}>
+        <Box sx={{ fontSize: '2rem', margin: '1rem' }}>完了</Box>
+        <CallContena call={finishedCallsIdToNum} data={data} />
       </Card>
     </Stack>
   );
