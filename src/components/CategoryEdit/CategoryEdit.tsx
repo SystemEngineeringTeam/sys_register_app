@@ -18,7 +18,7 @@ export default function CategoryEdit() {
   // const categoryChange = "名称変更";
 
   const [open, setOpen] = useState(false);
-  const [categoryName, setCategoryName] = useState('');
+  const [newCategoryName, setNewCategoryName] = useState('');
   const handleOpen = () => {
     setOpen(true);
   };
@@ -27,7 +27,7 @@ export default function CategoryEdit() {
     setOpen(false);
   };
 
-  const orderData = getCategory();
+  const categoryData = getCategory();
   return (
     <div>
       <Box sx={{ mr: '50px', textAlign: 'right', mt: '40px', mb: '90px' }}>
@@ -46,17 +46,17 @@ export default function CategoryEdit() {
         </Dialog>
       </Box>
 
-      {categoryData.category.map((categorydata) => (
+      {categoryData.category.map((category) => (
 
           <Stack alignItems="center" border="solid" direction="row" height="20vh">
-            <Box sx={{ fontSize: '50px', ml: '70px' }}>{categorydata.name}</Box>
+            <Box sx={{ fontSize: '50px', ml: '70px' }}>{category.name}</Box>
 
             <Stack direction="row" sx={{ ml: 'auto' }}>
               <Box sx={{ mr: '10px' }}>
-                <CategoryDeleteButton categoryName={categorydata.name} categoryId={categorydata.id}  />
+                <CategoryDeleteButton categoryName={category.name} categoryId={category.id}  />
               </Box>
               <Box sx={{ ml: 'auto', mr: '10px' }}>
-                <CategoryNameChangeButton orderName={orderName.name} setCategoryName={setCategoryName} categoryName={categoryName}/>
+                <CategoryNameChangeButton orderName={category.name} setCategoryName={setNewCategoryName} categoryName={newCategoryName}/>
               </Box>
             </Stack>
           </Stack>

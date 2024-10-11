@@ -61,7 +61,7 @@ const CategoryNameChangeScreen = ({
         </Box>
 
         <Box sx={{ mt: '10px' }}>
-          <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 2.0vw, 3.2rem)' }}>{categoryNameSave}</Typography>
+          <Typography sx={{ fontSize: 'clamp(1.0rem, 0.5rem + 2.0vw, 3.2rem)' }}>{categoryName}</Typography>
         </Box>
 
         <Box sx={{ mt: '10rem' }}>
