@@ -4,9 +4,18 @@ import React from 'react';
 interface DeleteYesButtonProps {
   selectedChangeOkey: boolean;
   setSelectedChangeOkey: React.Dispatch<React.SetStateAction<boolean>>;
+  setCategoryName: React.Dispatch<React.SetStateAction<string>>;
+  value: string;
+  schemeError: boolean;
 }
 
-const DeleteYesButton = ({ selectedChangeOkey, setSelectedChangeOkey }: DeleteYesButtonProps) => {
+const DeleteYesButton = ({
+  selectedChangeOkey,
+  setSelectedChangeOkey,
+  setCategoryName,
+  value,
+  schemeError
+}: DeleteYesButtonProps) => {
   const ClickYesButton = () => {
     setSelectedChangeOkey(!selectedChangeOkey);
   };
@@ -14,7 +23,11 @@ const DeleteYesButton = ({ selectedChangeOkey, setSelectedChangeOkey }: DeleteYe
     <div>
       <Button
         disableElevation
-        onClick={ClickYesButton}
+        disabled={schemeError}
+        onClick={() => {
+          setCategoryName(value);
+          ClickYesButton;
+        }}
         size="large"
         sx={{
           bgcolor: selectedChangeOkey ? 'red' : 'gray',

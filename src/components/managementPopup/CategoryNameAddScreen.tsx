@@ -3,20 +3,48 @@ import React, { useState } from 'react';
 import ClearIcon from '@mui/icons-material/Clear';
 import CancelButton from './CancelButton';
 import DeleteYesButton from './DeleteYesButton';
+import { categorySchema } from '@/validations/schema';
+import { z } from 'zod';
 
-interface CategoryNameAddScreen{
+interface CategoryNameAddScreen {
   iconClose: () => void;
-  
 }
 
-const CategoryNameAddScreen = ({iconClose}:CategoryNameAddScreen) => {
+const CategoryNameAddScreen = ({ iconClose }: CategoryNameAddScreen) => {
   const [selectedChangeCancel, setSelectedChangeCalcel] = useState(true);
   const [selectedChangeOkey, setSelectedChangeOkey] = useState(true);
+  const [categoryName, setCategoryName] = useState('');
+  const [value, setValue] = useState(categoryName);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [schemeError, setSchemeError] = useState<boolean>(false);
+  const handleChange = (event: { target: { value: string } }) => {
+    const inputText = event.target.value;
+    try {
+      setValue(inputText);
+      // moneyCountSchemeの形に合うかどうか判断
+      categorySchema.parse(inputText);
+      // テキストフィールドを通常表示
+      setSchemeError(false);
+      setErrorMessage('');
+      // 入力フィールドの値を入力値にする
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        // moneyCountSchemeの形に合わない場合はこちらを実行
+
+        error.errors.forEach((e) => {
+          setErrorMessage(e.message);
+        });
+        // テキストフィールドをエラー表示
+        setSchemeError(true);
+      }
+    }
+    return inputText;
+  };
 
   return (
     <div>
       <Stack sx={{ textAlign: 'center' }}>
-      <Box sx={{ textAlign: 'right' }}>
+        <Box sx={{ textAlign: 'right' }}>
           <ClearIcon onClick={iconClose} sx={{ fontSize: '80px' }} />
         </Box>
 
@@ -26,7 +54,19 @@ const CategoryNameAddScreen = ({iconClose}:CategoryNameAddScreen) => {
         </Box>
 
         <Box fontSize={{ xs: '10px', sm: '20px', md: '30px' }} sx={{ mt: '5rem' }}>
-          <TextField id="outlined-basic" label="Outlined" maxRows={6} multiline variant="outlined" />
+          <TextField
+            id="outlined-basic"
+            label="Outlined"
+            maxRows={6}
+            error={errorMessage.length > 1}
+            helperText={errorMessage}
+            multiline
+            variant="outlined"
+            value={value}
+            onChange={(e) => {
+              handleChange(e);
+            }}
+          />
         </Box>
 
         <Stack direction="row" fontSize="40px" sx={{ mt: '300px', justifyContent: 'right', mr: '7rem' }}>
@@ -37,7 +77,13 @@ const CategoryNameAddScreen = ({iconClose}:CategoryNameAddScreen) => {
             />
           </Button>
           <Button>
-            <DeleteYesButton selectedChangeOkey={selectedChangeOkey} setSelectedChangeOkey={setSelectedChangeOkey} />
+            <DeleteYesButton
+              selectedChangeOkey={selectedChangeOkey}
+              setSelectedChangeOkey={setSelectedChangeOkey}
+              setCategoryName={setCategoryName}
+              value={value}
+              schemeError={schemeError}
+            />
           </Button>
         </Stack>
       </Stack>

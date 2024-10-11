@@ -4,9 +4,11 @@ import CategoryDeletePopupCard from '../managementPopup/CategoryDeletePopupCard'
 import CategoryNameChangeCard from '../managementPopup/CategoryNameChangeCard';
 
 interface CategoryNameChangeButtonProp {
+  categoryName: string;
+  setCategoryName: React.Dispatch<React.SetStateAction<string>>;
   orderName: string;
 }
-const CategoryNameChangeButton = ({ orderName }: CategoryNameChangeButtonProp) => {
+const CategoryNameChangeButton = ({ categoryName, setCategoryName, orderName }: CategoryNameChangeButtonProp) => {
   const ClickButton = () => {
     setSelectedChange(!selectedChange);
   };
@@ -36,7 +38,12 @@ const CategoryNameChangeButton = ({ orderName }: CategoryNameChangeButtonProp) =
 
       <Dialog fullWidth maxWidth="md" onClose={handleClose} open={open}>
         <DialogContent sx={{ p: 0 }}>
-          <CategoryNameChangeCard iconClose={iconClose} orderName={orderName}/>
+          <CategoryNameChangeCard
+            iconClose={iconClose}
+            orderName={orderName}
+            setCategoryName={setCategoryName}
+            categoryName={categoryName}
+          />
         </DialogContent>
       </Dialog>
     </div>
