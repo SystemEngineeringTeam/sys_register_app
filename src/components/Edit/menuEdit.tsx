@@ -39,7 +39,7 @@ interface State {
 const MenuEdit = () => {
   const location = useLocation();
   const { state } = location as { state: State };
-  if(state.state.registerMoney !== undefined){
+  if (state.state.registerMoney !== undefined) {
     updateMoney(state.state.registerMoney);
   }
   // オプション
@@ -202,9 +202,7 @@ const MenuEdit = () => {
             <Stack direction="row" sx={{ justifyContent: 'space-between' }}>
               <Box>オプション</Box>
               <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                <Box>
-                  <ItemOptions options={option} />
-                </Box>
+                <Box>{option && <ItemOptions options={option} />}</Box>
                 <IconButton onClick={handleOptionChange}>
                   <AddCircleOutlineIcon />
                 </IconButton>
