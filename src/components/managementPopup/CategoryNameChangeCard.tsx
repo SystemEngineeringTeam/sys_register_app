@@ -1,6 +1,7 @@
 import React from 'react';
 import CategoryNameChangeScreen from './CategoryNameChangeScreen';
 import { Card } from '@mui/material';
+import { category } from '@/types';
 
 interface CategoryNameAddCard {
   iconClose: () => void;

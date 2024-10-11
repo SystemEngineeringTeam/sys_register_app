@@ -46,21 +46,21 @@ export default function CategoryEdit() {
         </Dialog>
       </Box>
 
-      {orderData.category.map((orderName) => (
-        <div>
+      {categoryData.category.map((categorydata) => (
+
           <Stack alignItems="center" border="solid" direction="row" height="20vh">
-            <Box sx={{ fontSize: '50px', ml: '70px' }}>{orderName.name}</Box>
+            <Box sx={{ fontSize: '50px', ml: '70px' }}>{categorydata.name}</Box>
 
             <Stack direction="row" sx={{ ml: 'auto' }}>
               <Box sx={{ mr: '10px' }}>
-                <CategoryDeleteButton orderName={orderName.name} />
+                <CategoryDeleteButton categoryName={categorydata.name} categoryId={categorydata.id}  />
               </Box>
               <Box sx={{ ml: 'auto', mr: '10px' }}>
                 <CategoryNameChangeButton orderName={orderName.name} setCategoryName={setCategoryName} categoryName={categoryName}/>
               </Box>
             </Stack>
           </Stack>
-        </div>
+
       ))}
     </div>
   );

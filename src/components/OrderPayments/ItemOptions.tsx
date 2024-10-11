@@ -8,7 +8,9 @@ interface ItemOptionsProps {
 const ItemOptions = ({ options }: ItemOptionsProps) => {
   return (
     <div>
-      {options?.map((option) => <Chip key={option.id} color="primary" component="button" label={option.name} />)}
+      {options.map((option) => (
+        <Chip sx={{ bgcolor:'#f26c4f'}} component="button" label={option.name} />
+      ))}
     </div>
   );
 };

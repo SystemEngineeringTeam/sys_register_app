@@ -1,35 +1,41 @@
 import { deleteCategory } from '@/firebase/useCategory';
+import { userAtom } from '@/login/AdminLogin';
+import { category } from '@/types';
 import { Button } from '@mui/material';
-import React from 'react';
+import { useAtomValue } from 'jotai';
+import React, { useEffect } from 'react';
 
-interface DeleteYesButtonProps {
+interface DeleteCategoryYesButtonProp {
   selectedChangeOkey: boolean;
   setSelectedChangeOkey: React.Dispatch<React.SetStateAction<boolean>>;
-  setCategoryName: React.Dispatch<React.SetStateAction<string>>;
-  value: string;
-  schemeError: boolean;
+  categoryId: string;
+  iconClose: () => void;
 }
 
-const DeleteYesButton = ({
+function DeleteCategoryYesButton({
   selectedChangeOkey,
   setSelectedChangeOkey,
-  setCategoryName,
-  value,
-  schemeError
-}: DeleteYesButtonProps) => {
+  categoryId,
+  iconClose,
+}: DeleteCategoryYesButtonProp) {
+
+  const user = useAtomValue(userAtom);
+  if (!user) {
+    throw new Error('User is not logged in');
+  }
+
   const ClickYesButton = () => {
     setSelectedChangeOkey(!selectedChangeOkey);
+
+    deleteCategory(categoryId,user);
+    iconClose();
   };
 
   return (
     <div>
       <Button
         disableElevation
-        disabled={schemeError}
-        onClick={() => {
-          setCategoryName(value);
-          ClickYesButton;
-        }}
+        onClick={ClickYesButton}
         size="large"
         sx={{
           bgcolor: selectedChangeOkey ? 'red' : 'gray',
@@ -45,6 +51,6 @@ const DeleteYesButton = ({
       </Button>
     </div>
   );
-};
+}
 
-export default DeleteYesButton;
+export default DeleteCategoryYesButton;
