@@ -1,5 +1,5 @@
 import { createTheme, type PaletteColor, type PaletteColorOptions } from '@mui/material';
-import { green, grey, orange, red, teal, yellow } from '@mui/material/colors';
+import { grey, orange, red, yellow } from '@mui/material/colors';
 
 declare module '@mui/material/styles' {
   interface Palette {
