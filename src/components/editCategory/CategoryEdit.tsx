@@ -2,8 +2,9 @@ import CategoryDeleteButton from '@/components/CategoryEdit/CategoryDeleteButton
 import CategoryNameChangeButton from '@/components/CategoryEdit/CategoryNameChangeButton';
 import CategoryNameAddCard from '@/components/managementPopup/CategoryNameAddCard';
 import { getCategory } from '@/firebase/useCategory';
-import { Box, Button, Dialog, DialogContent, SelectChangeEvent, Stack, TextField } from '@mui/material';
-import React, { useState } from 'react';
+import { Box, Button, Dialog, DialogContent, Stack } from '@mui/material';
+import { useState } from 'react';
+import OrderNumber from '../OrderNumber';
 
 export default function CategoryEdit() {
   const [open, setOpen] = useState(false);
@@ -39,7 +40,7 @@ export default function CategoryEdit() {
 
           <Stack direction="row" sx={{ ml: 'auto' }}>
             <Box sx={{ mr: '10px' }}>
-              <CategoryDeleteButton categoryName={category.name} categoryId={category.id} />
+              <CategoryDeleteButton orderName={category.name} />
             </Box>
             <Box sx={{ ml: 'auto', mr: '10px' }}>
               <CategoryNameChangeButton

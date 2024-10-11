@@ -1,6 +1,5 @@
-import { Button, Dialog, DialogContent, SelectChangeEvent } from '@mui/material';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Button, Dialog, DialogContent } from '@mui/material';
+import { useState } from 'react';
 import CategoryDeletePopupCard from '../managementPopup/CategoryDeletePopupCard';
 
 interface CategoryDeleteButton {
