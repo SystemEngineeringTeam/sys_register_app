@@ -1,5 +1,12 @@
 import { type User } from 'firebase/auth';
-import { collection, doc, type PartialWithFieldValue, type QueryDocumentSnapshot, setDoc } from 'firebase/firestore';
+import {
+  collection,
+  deleteDoc,
+  doc,
+  type PartialWithFieldValue,
+  type QueryDocumentSnapshot,
+  setDoc,
+} from 'firebase/firestore';
 import { type Data, type developer, type order } from '../types/index';
 import { db } from './firebase';
 
@@ -70,4 +77,19 @@ export const createOrderData = (itemId: string, optionId: string[], qty: number,
   };
 
   return orderData;
+};
+
+export const deleteOrder = async (orderCollectionId: string, orderId: string, user: User | developer) => {
+  try {
+    if (!user) {
+      console.log('Error: User is not logged in');
+      throw new Error('User is not logged in');
+    }
+    const orderDocRef = doc(db, 'shop_user', user.uid, 'orderCollection', orderCollectionId, 'order', orderId);
+
+    await deleteDoc(orderDocRef);
+    console.log('deleteOrder completed');
+  } catch (error) {
+    console.error('Error in deleteOrder:', error);
+  }
 };
