@@ -11,7 +11,8 @@ import { useAtomValue } from 'jotai';
 import { userAtom } from '@/login/AdminLogin';
 import { useEffect, useState } from 'react';
 import { db } from './firebase';
-import { type money, type moneyData } from '../types/index';
+import { developer, type money, type moneyData } from '../types/index';
+import { User } from 'firebase/auth';
 
 // ref: https://stackoverflow.com/questions/74486413
 function converter<T>() {
@@ -22,16 +23,11 @@ function converter<T>() {
 }
 
 // お金のデータをリアルタイムで取得する関数
-export function useMoney() {
-  const user = useAtomValue(userAtom);
+export function useMoney(user: User | developer) {
   // TODO (@SatooRu65536):
   // - 良い感じの Atom にする
   // - Writable Derived Atom を使って単一のドキュメントを更新する
   const [money, setMoney] = useState<money[]>();
-
-  if (user === null) {
-    throw new Error('User is not logged in');
-  }
 
   const colRef = collection(db, 'shop_user', user.uid, 'mony').withConverter(converter<money>());
 
@@ -54,7 +50,7 @@ export function useMoney() {
           '50': changeData['50'] as number,
           '5': changeData['5'] as number,
           '1': changeData['1'] as number,
-          'tiket100':changeData['tiket100'] as number,
+          tiket100: changeData['tiket100'] as number,
           total: changeData.total as number,
         };
 
@@ -108,12 +104,7 @@ export function useMoney() {
 }
 
 // money のデータを追加する関数
-export const addMoney = async (newMoney: moneyData) => {
-  const user = useAtomValue(userAtom);
-  if (user == null) {
-    throw new Error('User is not logged in');
-  }
-
+export const addMoney = async (newMoney: moneyData, user: User | developer) => {
   // 現在の日付の00:00:00のミリ秒を取得する
   const today = new Date();
   const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
@@ -127,12 +118,7 @@ export const addMoney = async (newMoney: moneyData) => {
 };
 
 // money のデータを更新する関数
-export const updateMoney = async (newMoney: money) => {
-  const user = useAtomValue(userAtom);
-  if (user == null) {
-    throw new Error('User is not logged in');
-  }
-
+export const updateMoney = async (newMoney: money, user: User | developer) => {
   const moneyID = newMoney.date;
 
   const moneyData: moneyData = {
@@ -157,12 +143,7 @@ export const updateMoney = async (newMoney: money) => {
 };
 
 // money のデータを削除する関数
-export const deleteMoney = async (day: Date) => {
-  const user = useAtomValue(userAtom);
-  if (!user) {
-    throw new Error('User is not logged in');
-  }
-
+export const deleteMoney = async (day: Date, user: User | developer) => {
   const dayMidnight = new Date(day.getFullYear(), day.getMonth(), day.getDate());
   const milliseconds = dayMidnight.getTime();
 

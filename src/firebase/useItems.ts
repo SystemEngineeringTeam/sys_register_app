@@ -1,5 +1,5 @@
 import { userAtom } from '@/login/AdminLogin';
-import { type items, type itemsData, type options } from '@/types';
+import { developer, type items, type itemsData, type options } from '@/types';
 import {
   collection,
   deleteDoc,
@@ -15,6 +15,7 @@ import {
 import { useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
 import { db } from './firebase';
+import { User } from 'firebase/auth';
 
 function converter<T>() {
   return {
@@ -24,12 +25,7 @@ function converter<T>() {
 }
 
 // dataの更新
-export const updateItems = async (newData: items) => {
-  const user = useAtomValue(userAtom);
-
-  if (!user) {
-    throw new Error('User is not logged in');
-  }
+export const updateItems = async (newData: items, user: User | developer) => {
   const data = {
     name: newData.name,
     category_id: newData.category_id,
@@ -46,13 +42,7 @@ export const updateItems = async (newData: items) => {
 };
 
 // 新規作成または追加
-export const setItems = async (data: itemsData) => {
-  const user = useAtomValue(userAtom);
-
-  if (!user) {
-    throw new Error('User is not logged in');
-  }
-
+export const setItems = async (data: itemsData, user: User | developer) => {
   const colRef = collection(db, 'shop_user', user.uid, 'items').withConverter(converter<items>());
 
   await setDoc(doc(colRef), data);
@@ -60,11 +50,7 @@ export const setItems = async (data: itemsData) => {
   console.log('setItems');
 };
 
-export const getItems = () => {
-  const user = useAtomValue(userAtom);
-  if (!user) {
-    throw new Error('User is not logged in');
-  }
+export const getItems = (user: User | developer) => {
   const [data, setData] = useState<items[]>();
   const colRef = collection(db, 'shop_user', user.uid, 'item').withConverter(converter<items>());
 
@@ -143,13 +129,7 @@ export const getItems = () => {
 };
 
 // itemを消去する関数
-export const deleteItems = async (itemId: string) => {
-  const user = useAtomValue(userAtom);
-
-  if (!user) {
-    throw new Error('User is not logged in');
-  }
-
+export const deleteItems = async (itemId: string, user: User | developer) => {
   await deleteDoc(doc(db, 'shop_user', user.uid, 'items', itemId));
 
   console.log('deleteItems');

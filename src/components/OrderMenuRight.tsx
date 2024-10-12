@@ -3,14 +3,21 @@ import { useOrderCollection } from '../firebase/useOrderCollection';
 import { idToTotalAmount } from '../utils/accountingUtils';
 import OrderButton from './OrderButton';
 import OrderNumber from './OrderNumber';
+import { userAtom } from '@/login/AdminLogin';
+import { useAtomValue } from 'jotai';
 
 interface OrderMenuRightProps {
   selectId: number;
 }
 
 const OrderMenuRight = ({ selectId }: OrderMenuRightProps) => {
+  const user = useAtomValue(userAtom);
+
+  if (!user) {
+    throw new Error('User is not logged in');
+  }
   {
-    const { data } = useOrderCollection();
+    const { data } = useOrderCollection(user);
 
     const id = selectId.toString();
     const totalAmount = data ? idToTotalAmount(id, data) : 0;
@@ -56,7 +63,6 @@ const OrderMenuRight = ({ selectId }: OrderMenuRightProps) => {
                 color: '#000',
                 lineHeight: '3rem',
                 marginLeft: '8px',
-
               }}
             >
               {totalAmount}円

@@ -13,6 +13,8 @@ import { idToTotalAmount } from '@/utils/accountingUtils';
 import TiketCount from './MoneyCount/TiketCount';
 // import DiscountAmount from './MoneyCount/DiscountAmount';
 import { type money } from '@/types';
+import { userAtom } from '@/login/AdminLogin';
+import { useAtomValue } from 'jotai';
 
 interface State {
   id: string;
@@ -37,9 +39,14 @@ const OrderPayment = () => {
   });
   const orderCollectionId = id;
 
+  const user = useAtomValue(userAtom);
+
+  if (!user) {
+    throw new Error('User is not logged in');
+  }
   // ここのdataは固定名
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { data } = useOrderCollection();
+  const { data } = useOrderCollection(user);
   // 貨幣の数を数えるuseState
   // const [discount100, setDiscount100] = useState(0);
   // const [discount50, setDiscount50] = useState(0);

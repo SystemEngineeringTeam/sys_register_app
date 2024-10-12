@@ -24,14 +24,14 @@ function converter<T>() {
 
 // カテゴリーのデータをリアルタイムで取得する関数
 
-export const getCategory = () => {
+export const getCategory = (user: User | developer) => {
   const [category, setCategory] = useState<category[]>([]);
 
-  const user = useAtomValue(userAtom);
+  // const user = useAtomValue(userAtom);
 
-  if (!user) {
-    throw new Error('User is not logged in');
-  }
+  // if (!user) {
+  //   throw new Error('User is not logged in');
+  // }
 
   const colRef = collection(db, 'shop_user', user.uid, 'category').withConverter(converter<category>());
 
@@ -84,11 +84,11 @@ export const getCategory = () => {
 };
 
 // 新規作成または追加する関数
-export const setCategoty = async (data: categoryData) => {
-  const user = useAtomValue(userAtom);
-  if (!user) {
-    throw new Error('User is not logged in');
-  }
+export const setCategoty = async (data: categoryData, user: User | developer) => {
+  // const user = useAtomValue(userAtom);
+  // if (!user) {
+  //   throw new Error('User is not logged in');
+  // }
 
   const colRef = collection(db, 'shop_user', user.uid, 'category').withConverter(converter<category>());
 
@@ -98,7 +98,7 @@ export const setCategoty = async (data: categoryData) => {
 };
 
 // 更新する関数
-export const updateCategory = async (newCategory: category ,user: User | developer) => {
+export const updateCategory = async (newCategory: category, user: User | developer) => {
   const data = {
     name: newCategory.name,
   };

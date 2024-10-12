@@ -33,7 +33,7 @@ const CategorySaveButton = ({
     throw new Error('User is not logged in');
   }
 
-  const categoryData = getCategory();
+  const categoryData = getCategory(user);
 
   const ClickSaveButton = () => {
     const updatecategorydata = {

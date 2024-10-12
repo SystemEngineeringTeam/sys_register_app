@@ -5,8 +5,9 @@ import { Box } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import OrderMenuLeft from '../components/OrderMenuLeft';
 import OrderMenuRight from '../components/OrderMenuRight';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { orderDataAtom } from '@/stores/orderAtom';
+import { userAtom } from '@/login/AdminLogin';
 
 export default function OrderChange(): ReactElement {
   interface State {
@@ -16,8 +17,14 @@ export default function OrderChange(): ReactElement {
   const location = useLocation();
   const { state } = location as { state: State };
 
+  const user = useAtomValue(userAtom);
+
+  if (!user) {
+    throw new Error('User is not logged in');
+  }
+
   // orderCollectionのIDを取得
-  const orderCollection = useOrderCollection();
+  const orderCollection = useOrderCollection(user);
   const selectId = state.orderId;
   // selectIDに一致するorderを取得
   const orderData = sortingOrders(selectId);

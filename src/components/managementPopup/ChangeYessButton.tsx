@@ -11,16 +11,14 @@ interface ChangeYessButton {
 }
 
 const ChangeYessButton = ({ selectedChangeOkey, addCategory, iconClose }: ChangeYessButton) => {
-  
-
   const user = useAtomValue(userAtom);
   if (!user) {
     throw new Error('User is not logged in');
   }
 
-  const categoryData = getCategory();
+  const categoryData = getCategory(user);
 
-//ボタン押した時の処理
+  //ボタン押した時の処理
   const AddButton = () => {
     const updateddata = {
       name: addCategory,
@@ -34,7 +32,7 @@ const ChangeYessButton = ({ selectedChangeOkey, addCategory, iconClose }: Change
 
     //被っている数が0だったら配列に入れる
     if (filterupdateddata.length === 0) {
-        setCategoty(updateddata, user);
+      setCategoty(updateddata, user);
     }
     if (filterupdateddata.length > 0) {
       alert('error');
@@ -43,8 +41,6 @@ const ChangeYessButton = ({ selectedChangeOkey, addCategory, iconClose }: Change
     //ポップアップ閉じる処理
     iconClose();
   };
-
-
 
   return (
     <div>

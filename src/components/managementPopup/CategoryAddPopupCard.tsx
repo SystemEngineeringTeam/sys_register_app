@@ -1,6 +1,4 @@
-import React from 'react';
 import CategoryAddPopupScreen from './CategoryAddPopupScreen';
-import { Card } from '@mui/material';
 
 interface CategoryAddPopupCardProps {
   iconClose: () => void;

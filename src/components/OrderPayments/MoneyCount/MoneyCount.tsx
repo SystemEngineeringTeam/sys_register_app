@@ -10,6 +10,8 @@ import { setMoneyFnc } from '@/utils/setRegisterMoney';
 import { type money } from '@/types';
 import { useEffect, useState } from 'react';
 import MonChenOkButton from './MonChenOkButton';
+import { useAtomValue } from 'jotai';
+import { userAtom } from '@/login/AdminLogin';
 
 interface State {
   totalPayment: number;
@@ -18,7 +20,12 @@ interface State {
   paymentMoney: money;
 }
 const MoneyCount = () => {
-  const { money } = useMoney();
+  const user = useAtomValue(userAtom);
+
+  if (!user) {
+    throw new Error('User is not logged in');
+  }
+  const { money } = useMoney(user);
   const location = useLocation();
   const { totalAmount, totalPayment, id, paymentMoney } = location.state as State;
   // 現在の日付の00:00:00のミリ秒を取得する

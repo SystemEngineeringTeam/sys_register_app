@@ -2,11 +2,18 @@ import CategoryDeleteButton from '@/components/CategoryEdit/CategoryDeleteButton
 import CategoryNameChangeButton from '@/components/CategoryEdit/CategoryNameChangeButton';
 import CategoryNameAddCard from '@/components/managementPopup/CategoryNameAddCard';
 import { getCategory } from '@/firebase/useCategory';
+import { userAtom } from '@/login/AdminLogin';
 import { Box, Button, Dialog, DialogContent, Stack } from '@mui/material';
+import { useAtomValue } from 'jotai';
 import { useState } from 'react';
-import OrderNumber from '../OrderNumber';
 
 export default function CategoryEdit() {
+  const user = useAtomValue(userAtom);
+
+  if (!user) {
+    throw new Error('User is not logged in');
+  }
+
   const [open, setOpen] = useState(false);
   const [newCategoryName, setNewCategoryName] = useState('');
   const handleOpen = () => {
@@ -16,7 +23,7 @@ export default function CategoryEdit() {
   const iconClose = () => {
     setOpen(false);
   };
-  const categoryData = getCategory();
+  const categoryData = getCategory(user);
   return (
     <div>
       <Box sx={{ mr: '50px', textAlign: 'right', mt: '40px', mb: '90px' }}>

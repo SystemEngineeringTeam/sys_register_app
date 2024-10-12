@@ -1,14 +1,21 @@
 import CallContena from '@/components/Call/CallContena';
 import { useOrderCollection } from '@/firebase/useOrderCollection';
+import { userAtom } from '@/login/AdminLogin';
 import { processOrderCollection } from '@/utils/processOrderCollection';
 import { Box, Card, Stack } from '@mui/material';
+import { useAtomValue } from 'jotai';
 
 const Call = () => {
   const orderCallsId = processOrderCollection('offer');
   const orderCallsIdToNum = orderCallsId.map((callObj) => Number(callObj.id));
   const finishedCallsId = processOrderCollection('finish');
   const finishedCallsIdToNum = finishedCallsId.map((callObj) => Number(callObj.id));
-  const { data } = useOrderCollection();
+  const user = useAtomValue(userAtom);
+
+  if (!user) {
+    throw new Error('User is not logged in');
+  }
+  const { data } = useOrderCollection(user);
   return (
     <Stack>
       <Card sx={{ fontSize: '2rem', backgroundColor: 'gray' }}>

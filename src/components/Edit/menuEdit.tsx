@@ -25,6 +25,8 @@ import ItemOptions from '../OrderPayments/ItemOptions';
 import AddButton from './AddButton';
 import EditButton from './EditButton';
 import EditPopup from './EditPopup';
+import { userAtom } from '@/login/AdminLogin';
+import { useAtomValue } from 'jotai';
 // state , statecomponents
 interface State {
   state: {
@@ -37,10 +39,15 @@ interface State {
   };
 }
 const MenuEdit = () => {
+  const user = useAtomValue(userAtom);
+
+  if (!user) {
+    throw new Error('User is not logged in');
+  }
   const location = useLocation();
   const { state } = location as { state: State };
   if (state.state.registerMoney !== undefined) {
-    updateMoney(state.state.registerMoney);
+    updateMoney(state.state.registerMoney, user);
   }
   // オプション
   const [option, setOption] = useState(state.state.item?.options);

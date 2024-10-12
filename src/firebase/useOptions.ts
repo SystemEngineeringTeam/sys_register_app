@@ -1,4 +1,4 @@
-import { type options } from '@/types';
+import { developer, type options } from '@/types';
 import {
   addDoc,
   collection,
@@ -10,10 +10,9 @@ import {
   type QueryDocumentSnapshot,
 } from 'firebase/firestore';
 
+import { User } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import { db } from './firebase';
-import { useAtomValue } from 'jotai';
-import { userAtom } from '@/login/AdminLogin';
 
 function converter<T>() {
   return {
@@ -23,12 +22,7 @@ function converter<T>() {
 }
 
 // options のデータをリアルタイムで取得する関数
-export const useOptions = () => {
-  const user = useAtomValue(userAtom);
-
-  if (!user) {
-    throw new Error('User is not logged in');
-  }
+export const useOptions = (user: User | developer) => {
   const [options, setOptions] = useState<options[]>([]);
 
   const colRef = collection(db, 'shop_user', user.uid, 'options').withConverter(converter<options>());
@@ -80,13 +74,7 @@ export const useOptions = () => {
 
 // Optionsを追加する関数
 
-export const addOptions = async (newOption: options) => {
-  const user = useAtomValue(userAtom);
-
-  if (!user) {
-    throw new Error('User is not logged in');
-  }
-
+export const addOptions = async (newOption: options, user: User | developer) => {
   const data = {
     name: newOption.name,
     price: newOption.price,
@@ -98,13 +86,7 @@ export const addOptions = async (newOption: options) => {
 };
 
 // Optionsを更新する関数
-export const updateOptions = async (newOption: options) => {
-  const user = useAtomValue(userAtom);
-
-  if (!user) {
-    throw new Error('User is not logged in');
-  }
-
+export const updateOptions = async (newOption: options, user: User | developer) => {
   const data = {
     id: newOption.id,
     name: newOption.name,
@@ -117,13 +99,7 @@ export const updateOptions = async (newOption: options) => {
 };
 
 // Optionsを削除する関数
-export const deleteOptions = async (optionId: string) => {
-  const user = useAtomValue(userAtom);
-
-  if (!user) {
-    throw new Error('User is not logged in');
-  }
-
+export const deleteOptions = async (optionId: string, user: User | developer) => {
   await deleteDoc(doc(db, 'shop_user', user.uid, 'options', optionId));
 
   console.log('options deleted');

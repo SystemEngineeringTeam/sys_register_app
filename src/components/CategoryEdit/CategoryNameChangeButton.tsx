@@ -1,7 +1,7 @@
+import { category } from '@/types';
 import { Button, Dialog, DialogContent } from '@mui/material';
 import React, { useState } from 'react';
 import CategoryNameChangeCard from '../managementPopup/CategoryNameChangeCard';
-import { category } from '@/types';
 
 interface CategoryNameChangeButtonProp {
   categoryName: string;
@@ -15,9 +15,9 @@ const CategoryNameChangeButton = ({
   categorydata,
   setCategoryName,
 }: CategoryNameChangeButtonProp) => {
-  const ClickButton = () => {
-    setSelectedChange(!selectedChange);
-  };
+  // const ClickButton = () => {
+  //   setSelectedChange(!selectedChange);
+  // };
 
   const [selectedChange, setSelectedChange] = useState(true);
 

@@ -22,7 +22,7 @@ const MenuCheck = () => {
     updateMoney(state?.registerMoney);
     console.log('updateMoney!');
   }
-  const categorysObject = getCategory();
+  const categorysObject = getCategory(usr);
   // console.log('🚀 ~ MenuCheck ~ categorysObject:', categorysObject);
   // console.log('🚀 ~ MenuCheck ~ categorysObject:', categorysObject.category);
   const [selectCategoryId, setSelectcategoryId] = useState('');

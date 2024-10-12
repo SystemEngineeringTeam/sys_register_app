@@ -1,8 +1,15 @@
+import { useAtomValue } from 'jotai';
 import { useOrderCollection } from '../firebase/useOrderCollection';
 import { useState, useEffect } from 'react';
+import { userAtom } from '@/login/AdminLogin';
 
 export const processOrderCollection = (process: string): Array<{ id: string | null }> => {
-  const { data } = useOrderCollection();
+  const user = useAtomValue(userAtom);
+
+  if (!user) {
+    throw new Error('User is not logged in');
+  }
+  const { data } = useOrderCollection(user);
   const orderCollections = data || [];
   const [aryAccountigId, setAryAccountigID] = useState<Array<{ id: string | null }>>([]);
   const [aryCookingId, setAryCookingID] = useState<Array<{ id: string | null }>>([]);

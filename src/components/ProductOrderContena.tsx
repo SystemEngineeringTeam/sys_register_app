@@ -5,13 +5,20 @@ import { DoNotDisturbOnTotalSilenceOutlined } from '@mui/icons-material';
 import Ordercard from './OrderList/Ordercard';
 import { useOrderUpdate } from '@/firebase/setProcess';
 import { useOrderCollection } from '@/firebase/useOrderCollection';
+import { userAtom } from '@/login/AdminLogin';
+import { useAtomValue } from 'jotai';
 
 interface ProductOrderContenaProps {
   id: number;
 }
 
 const ProductOrderContena = ({ id }: ProductOrderContenaProps) => {
-  const { data } = useOrderCollection();
+  const user = useAtomValue(userAtom);
+
+  if (!user) {
+    throw new Error('User is not logged in');
+  }
+  const { data } = useOrderCollection(user);
   const orders = (data ?? []).filter((order) => order.id === id.toString());
   const order = orders.flatMap((orderData) => {
     return orderData.order;

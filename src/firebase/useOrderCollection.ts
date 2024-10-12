@@ -9,9 +9,10 @@ import {
 import { useAtomValue } from 'jotai';
 import { useState, useEffect } from 'react';
 import { userAtom } from '../login/AdminLogin';
-import { type orderCollection } from '../types';
+import { developer, type orderCollection } from '../types';
 import { db } from './firebase';
 import { fetchOrder } from './FirebaseUtils';
+import { User } from 'firebase/auth';
 
 // ref: https://stackoverflow.com/questions/74486413
 function converter<T>() {
@@ -21,16 +22,11 @@ function converter<T>() {
   };
 }
 
-export function useOrderCollection() {
-  const user = useAtomValue(userAtom);
+export function useOrderCollection(user: User | developer) {
   // TODO (@SatooRu65536):
   // - 良い感じの Atom にする
   // - Writable Derived Atom を使って単一のドキュメントを更新する
   const [data, setData] = useState<orderCollection[]>();
-
-  if (user === null) {
-    throw new Error('User is not logged in');
-  }
 
   const colRef = collection(db, 'shop_user', user.uid, 'orderCollection').withConverter(converter<orderCollection>());
 

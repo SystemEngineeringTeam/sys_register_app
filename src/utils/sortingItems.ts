@@ -1,7 +1,14 @@
 import { getItems } from '@/firebase/useItems';
+import { userAtom } from '@/login/AdminLogin';
+import { useAtom, useAtomValue } from 'jotai';
 
 export const sortingItems = (id: string) => {
-  const itemsArray = getItems();
+  const user = useAtomValue(userAtom);
+
+  if (!user) {
+    throw new Error('User is not logged in');
+  }
+  const itemsArray = getItems(user);
 
   console.log('sortingItems');
   console.log('itemArray:', itemsArray);
