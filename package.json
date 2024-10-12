@@ -27,6 +27,8 @@
     "react-google-login": "^5.2.2",
     "react-hook-form": "^7.53.0",
     "react-router-dom": "^6.26.0",
+    "uuid": "^10.0.0",
+    "uuidv4": "^6.2.13",
     "zod": "^3.23.8"
   },
   "devDependencies": {

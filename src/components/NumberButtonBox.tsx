@@ -14,13 +14,15 @@ const NumberButtonBox = ({ ordersId }: NumberButtonProps) => {
           flexDirection: 'row',
           wordBreak: 'break-word',
           flexWrap: 'wrap',
-          mb:'100px',
-          
+          mb: '100px',
         }}
       >
-        
         {ordersId.map((orderId) => {
-          return <NumberButton orderId={orderId} />;
+          return (
+            <Box key={orderId}>
+              <NumberButton orderId={orderId} />
+            </Box>
+          );
         })}
       </Box>
     </div>
