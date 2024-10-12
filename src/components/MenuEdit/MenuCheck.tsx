@@ -9,27 +9,35 @@ import ScreenChengeRegister from './ScreenChengeRegister';
 import { money } from '@/types';
 import { useLocation } from 'react-router-dom';
 import { updateMoney } from '@/firebase/useMoney';
+import { useAtomValue } from 'jotai';
+import { userAtom } from '@/login/AdminLogin';
 
 const MenuCheck = () => {
   interface State {
     registerMoney?: money;
   }
 
+  const user = useAtomValue(userAtom);
+
+  if (!user) {
+    throw new Error('User is not logged in');
+  }
+
   const location = useLocation();
   const { state } = location as { state: State };
   console.log('updateMoney?', state?.registerMoney);
   if (state?.registerMoney !== undefined) {
-    updateMoney(state?.registerMoney);
+    updateMoney(state?.registerMoney, user);
     console.log('updateMoney!');
   }
-  const categorysObject = getCategory(usr);
+  const categorysObject = getCategory(user);
   // console.log('🚀 ~ MenuCheck ~ categorysObject:', categorysObject);
   // console.log('🚀 ~ MenuCheck ~ categorysObject:', categorysObject.category);
   const [selectCategoryId, setSelectcategoryId] = useState('');
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectAdd, setSelectAdd] = useState('add');
   // const [selectEdit, setSelectEdit] = useState('edit');
-  const allItems = getItems();
+  const allItems = getItems(user);
   return (
     <Box>
       <Box sx={{ margin: '1.5rem' }}>
@@ -38,9 +46,13 @@ const MenuCheck = () => {
           {/* カテゴリー追加ボタン */}
           <ScreenChengeButton selectAdd={selectAdd} text="カテゴリー編集" themeColor="categoryEdit" />
           {/* 商品追加ボタン */}
-          <ScreenChengeButton selectAdd={selectAdd} text="商品追加" themeColor="addItem" categorys={categorysObject?.category}/>
+          <ScreenChengeButton
+            selectAdd={selectAdd}
+            text="商品追加"
+            themeColor="addItem"
+            categorys={categorysObject?.category}
+          />
           <ScreenChengeRegister selectAdd={selectAdd} text="釣り銭管理" />
-
         </Box>
         {/* カテゴリー遷移バー */}
         <Box sx={{ margin: '0.5rem' }}>
