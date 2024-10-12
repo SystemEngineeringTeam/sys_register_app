@@ -88,6 +88,7 @@ export const addOptions = async (newOption: options) => {
   }
 
   const data = {
+    id: newOption.id,
     name: newOption.name,
     price: newOption.price,
   };
