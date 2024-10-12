@@ -106,8 +106,8 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
   justifyContent: 'flex-end',
 }));
-
 const AppLayout = () => {
+  const location = useLocation(); // useLocation() をコンポーネントのトップレベルで呼び出す
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -136,7 +136,7 @@ const AppLayout = () => {
             <MenuIcon />
           </IconButton>
           <Typography component="div" noWrap variant="h6">
-            <p>{listItems.find((item) => item.to === useLocation().pathname)?.text}</p>
+            <p>{listItems.find((item) => item.to === location.pathname)?.text}</p>
           </Typography>
           <UserIcon />
         </Toolbar>
