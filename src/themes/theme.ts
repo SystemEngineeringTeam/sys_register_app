@@ -7,18 +7,20 @@ declare module '@mui/material/styles' {
     back: PaletteColor;
     categoryEdit: PaletteColor;
     addItem: PaletteColor;
-    categoryCheeseColor:PaletteColor;
-    categoryKetchupColor:PaletteColor;
-    categoryMayonnaiseColor:PaletteColor;
+    categoryCheeseColor: PaletteColor;
+    categoryKetchupColor: PaletteColor;
+    categoryMayonnaiseColor: PaletteColor;
+    categoryTareColor: PaletteColor;
   }
   interface PaletteOptions {
     ok?: PaletteColorOptions;
     back?: PaletteColorOptions;
     categoryEdit?: PaletteColorOptions;
     addItem?: PaletteColorOptions;
-    categoryCheeseColor?: PaletteColorOptions; 
-    categoryKetchupColor?: PaletteColorOptions; 
-    categoryMayonnaiseColor?: PaletteColorOptions; 
+    categoryCheeseColor?: PaletteColorOptions;
+    categoryKetchupColor?: PaletteColorOptions;
+    categoryMayonnaiseColor?: PaletteColorOptions;
+    categoryTareColor?: PaletteColorOptions;
   }
 }
 export const theme = createTheme({
@@ -65,6 +67,12 @@ export const theme = createTheme({
       dark: yellow[700],
       contrastText: '#fff',
     },
+    categoryTareColor: {
+      main: yellow[300],
+      light: yellow[400],
+      dark: yellow[600],
+      contrastText: '#fff',
+    },
   },
 });
 
@@ -76,7 +84,3 @@ declare module '@mui/material/Button' {
     addItem: true;
   }
 }
-
-
-
-

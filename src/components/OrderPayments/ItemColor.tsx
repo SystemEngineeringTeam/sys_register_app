@@ -23,7 +23,11 @@ function ItemColor({ options }: ItemColorProps) {
                       ? theme.palette.categoryKetchupColor.main
                       : option.name === 'マヨネーズ'
                         ? theme.palette.categoryMayonnaiseColor.main
-                        : 'gray',
+                        : option.name === 'タレ'
+                          ? theme.palette.categoryTareColor.light
+                          : option.name === 'シオ'
+                            ? theme.palette.primary.light
+                            : theme.palette.primary.light,
               }}
               component="button"
               label={option.name}
